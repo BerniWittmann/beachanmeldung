@@ -1,10 +1,10 @@
-![Logo](https://ibin.co/w800/3VInKPBZdoRU.png)
+![Logo](https://ibin.co/3fSR79BU7Nug.png)
 
-# Mampf core
+# Beachanmeldung
 
-> Foodsharing made easy
+> Anmelde-Plattform für die Beachturniere in Ismaning
 
-This is the frontend for Mampf
+This is the frontend for Beachanmeldung
 
 ## Usage
 To get up and running run:

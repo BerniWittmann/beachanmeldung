@@ -10,9 +10,6 @@
                 <el-col :lg="{span: 4, offset: 8}" :md="{span: 4, offset: 8}" :sm="{span: 4, offset: 8}"
                         :xs="{span: 4}">
                     <p class="footer-paragraph">
-                        <router-link :to="{ name: 'etc.team' }">{{ $t('nav.team') }}</router-link>
-                    </p>
-                    <p class="footer-paragraph">
                         <router-link :to="{}" tag="p">{{ $t('nav.contact') }}</router-link>
                     </p>
                     <p class="footer-paragraph">

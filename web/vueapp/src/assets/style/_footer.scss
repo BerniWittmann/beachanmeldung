@@ -15,11 +15,13 @@
 
   .footer {
     padding: 30px 20vw;
-    background: rgb(246, 244, 238);
+    background: rgb(0, 0, 0);
+    color: #FDD648;
 
     .footer-paragraph {
       font-size: 14px;
       &, p {
+        color: inherit;
         -webkit-margin-before: 0;
         -webkit-margin-after: 0.4em;
       }

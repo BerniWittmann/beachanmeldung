@@ -4,7 +4,6 @@
  *
  * The routes and redirects are defined in this file.
  */
-import teamService from '@/services/team';
 
 /**
  * The routes
@@ -96,23 +95,6 @@ export default [
     },
   },
 
-  // Team Page
-  {
-    path: '/team',
-    name: 'etc.team',
-    component: require('@/pages/etc/team.vue'),
-
-    // If the user needs to be a authenticated to view this page
-    meta: {
-      auth: false,
-    },
-
-    beforeEnter: (to, from, next) => {
-      teamService.get();
-      next();
-    },
-  },
-
   // ComingSoon Page
   {
     path: '/coming-soon',
@@ -122,11 +104,6 @@ export default [
     // If the user needs to be a authenticated to view this page
     meta: {
       auth: false,
-    },
-
-    beforeEnter: (to, from, next) => {
-      teamService.get();
-      next();
     },
   },
 

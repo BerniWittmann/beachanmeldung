@@ -5,7 +5,6 @@
     >
       <slot name="header"></slot>
       <span class="pull-right">
-          <p>{{ isEditing }}</p>
           <el-button type="primary" icon="edit" v-if="!isEditing" @click="edit()">{{ $t(editTextKey) }}</el-button>
           <el-button :plain="true" type="danger" icon="delete" v-if="isEditing" @click="abort()">{{ $t(abortTextKey) }}</el-button>
           <el-button type="success" icon="check" v-if="isEditing" @click="save()">{{ $t(saveTextKey) }}</el-button>

@@ -1,14 +1,16 @@
 <template>
-  <div class="container">
-    <v-navigation class="no-nav-margin"></v-navigation>
-
-    <div>
-      <!-- Content will be placed here -->
-      <slot></slot>
-    </div>
-
-    <v-footer></v-footer>
-  </div>
+    <el-container>
+        <el-header>
+            <v-navigation class="no-nav-margin"></v-navigation>
+        </el-header>
+        <el-main>
+            <!-- Content will be placed here -->
+            <slot></slot>
+        </el-main>
+        <el-footer>
+            <v-footer></v-footer>
+        </el-footer>
+    </el-container>
 </template>
 
 <script>

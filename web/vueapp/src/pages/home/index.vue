@@ -7,30 +7,16 @@
 
     <el-row class="home-part">
       <el-col :span="24">
-        <h2>Bringt Leben an den Esstisch</h2>
-        <h4>Mit Mampf essen Sie gemeinsam und sparen dabei sogar noch</h4>
+        <h2>Die Beachturniere in Ismaning starten wieder</h2>
+        <h4>Melden Sie sich heute noch an.</h4>
         <v-link-button
                 type="primary"
                 size="large"
-        >Essen finden
+        >Anmelden
         </v-link-button>
       </el-col>
     </el-row>
 
-    <el-row :gutter="20" class="home-part">
-      <el-col :lg="12" :md="12" :sm="24" :xs="24">
-        <div class="home-subheader-image"></div>
-      </el-col>
-      <el-col :lg="12" :md="12" :sm="24" :xs="24">
-        <h3>Gemeinsam essen lohnt sich</h3>
-        <p class="lead">Essen anbieten. Gäste einladen. Kosten sparen</p>
-        <v-link-button
-                type="primary"
-                size="large"
-        >Essen anbieten
-        </v-link-button>
-      </el-col>
-    </el-row>
     <el-row class="home-part">
       <el-col :span="24">
         <h3>{{ $t("general.welcome") }}</h3>
