@@ -1,0 +1,21 @@
+django
+djangorestframework
+django-cors-headers
+django-debug-toolbar
+django-rest-authemail
+djangorestframework-jwt
+django-admin-interface
+django-ordered-model
+django-stdimage
+six
+psycopg2
+python-decouple
+django-webpack-loader
+gunicorn
+Whitenoise
+
+flake8
+coverage
+
+# DEV
+changelog-cli

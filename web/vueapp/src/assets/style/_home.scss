@@ -1,0 +1,47 @@
+.home-part {
+  padding: 30px 20vw;
+
+  &.home-part-image {
+    padding: 0;
+    flex-shrink: 2;
+  }
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    & > a {
+      align-self: flex-start
+    }
+  }
+
+  &:nth-child(odd) {
+    background: #f2f2f2;
+  }
+
+  .home-header-image {
+    width: 100vw;
+    height: 365px;
+    max-height: 70vh;
+    background: url('../../../static/images/home_header.png') center 20%;
+    background-size: cover;
+
+    &.home-header-image-thin {
+      height: 200px;
+    }
+  }
+
+  .home-subheader-image {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    background: url('../../../static/images/home_subheader.jpg') center;
+    background-size: cover;
+  }
+
+  &.home-part-split-vertical {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

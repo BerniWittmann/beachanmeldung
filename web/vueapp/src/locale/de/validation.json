@@ -1,0 +1,24 @@
+{
+  "failed": "Bitte überprüfe alle Felder auf Richtigkeit",
+  "first_name": {
+    "required": "Bitte gib deinen Vornamen an",
+    "min": "Der Name sollte mindestens 3 Zeichen lang sein"
+  },
+  "last_name": {
+    "required": "Bitte gib deinen Nachnamen an",
+    "min": "Der Name sollte mindestens 3 Zeichen lang sein"
+  },
+  "email": {
+    "required": "Bitte gib deine E-Mail an",
+    "valid": "Bitte gib eine gültige E-Mail Adresse an"
+  },
+  "password": {
+    "required": "Bitte gib ein Passwort an",
+    "min": "Dein Passwort sollte mindestens 8 Zeichen lang sein"
+  },
+  "password_confirm": {
+    "required": "Bitte bestätige dein Passwort",
+    "min": "Dein Passwort sollte mindestens 8 Zeichen lang sein",
+    "match": "Die Passwörter stimmen nicht überein"
+  }
+}

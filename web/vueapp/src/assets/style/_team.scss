@@ -1,0 +1,37 @@
+.team-member {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 20px;
+
+  .team-member-name, .team-member-role, .team-member-description, .team-member-email {
+    text-align: center;
+    -webkit-margin-before: 0.1em;
+    -webkit-margin-after: 0.5em;
+  }
+
+  .team-member-description {
+    font-size: 14px;
+    padding: 1em 5%;
+  }
+
+  .team-member-image-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+
+    .team-member-image {
+      width: 110px;
+
+      img {
+        border: 5px solid rgba(222, 129, 0, 1);
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover {
+          border-color: rgba(247, 143, 0, 1);
+        }
+      }
+    }
+  }
+}

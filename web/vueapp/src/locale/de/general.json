@@ -1,0 +1,12 @@
+{
+  "welcome": "Willkommen",
+  "welcome_text": "Dies ist der Prototyp für Mampf.",
+  "bug_notice": "Bugs bitte melden unter:",
+  "github": "GitHub",
+  "email": "E-Mail",
+  "by_text": "Made with <i class='fa fa-heart pulsating-heart'></i>",
+  "copyright_name": "Mampf",
+  "edit": "Bearbeiten",
+  "save": "Speichern",
+  "abort": "Abbrechen"
+}

@@ -1,0 +1,17 @@
+.nav {
+  margin-bottom: 20px;
+  &.no-nav-margin {
+    margin-bottom: 0;
+  }
+  .nav-right {
+    float: right;
+  }
+
+  .nav-image-wrap {
+    float: left;
+    .nav-image {
+      margin: 10px 0 10px 20px;
+      height: 40px;
+    }
+  }
+}

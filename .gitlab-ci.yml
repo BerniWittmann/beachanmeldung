@@ -1,0 +1,68 @@
+image: registry.gitlab.com/mampf/core:latest
+
+services:
+    - postgres:latest
+
+stages:
+  - lint
+  - test
+
+variables:
+    SECRET_KEY: test-secret
+    POSTGRES_DB: mampftest
+    POSTGRES_USER: mampftest
+    POSTGRES_PASSWORD: mampftest
+    LANGUAGE_CODE: en-us
+    TIME_ZONE: Europe/Berlin
+    DEFAULT_EMAIL_FROM: test@mampf.de
+    SERVER_EMAIL: test@mampf.de
+
+
+backend_tests:
+    stage: test
+    before_script:
+    - export DATABASE_NAME=mampftest
+    - export DATABASE_USER=mampftest
+    - export DATABASE_PASSWORD=mampftest
+    - export DATABASE_HOST=postgres
+    - source /app/venv/bin/activate
+    script:
+        - coverage run manage.py test
+    after_script:
+    - source /app/venv/bin/activate
+    - coverage report
+    - coverage html
+    artifacts:
+      paths:
+      - htmlcov
+      expire_in: 4 weeks
+
+backend_lint:
+  stage: lint
+  before_script:
+  - source /app/venv/bin/activate
+  script:
+        - flake8
+
+frontend_tests:
+    stage: test
+    before_script:
+        - cd web/vueapp
+        - cp -R /app/node_modules .
+        - npm run build-theme
+    script:
+        - npm run test
+    artifacts:
+      paths:
+      - web/vueapp/test/unit/reports
+      - web/vueapp/test/unit/coverage
+      expire_in: 4 weeks
+
+frontend_lint:
+    stage: lint
+    before_script:
+        - cd web/vueapp
+        - cp -R /app/node_modules .
+        - npm run build-theme
+    script:
+        - npm run lint

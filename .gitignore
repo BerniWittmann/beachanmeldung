@@ -1,0 +1,14 @@
+.env
+npm-debug.log
+/static
+/web/vueapp/dist
+/web/vueapp/.idea/
+/web/vueapp/node_modules/
+/web/vueapp/src/assets/theme
+/web/vueapp/test/unit/coverage
+/web/vueapp/test/unit/reports
+/.idea
+/media
+__pycache__
+/htmlcov/
+/.coverage

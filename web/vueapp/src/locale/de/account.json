@@ -1,0 +1,11 @@
+{
+  "my_account": "Mein Account",
+  "first_name": "Vorname",
+  "last_name": "Nachname",
+  "email": "E-Mail",
+  "details": "Accountdetails",
+  "edit": "Bearbeiten",
+  "date_joined": "Mitglied seit",
+  "please_verify": "Bitte verifiziere deine E-Mail Adresse.",
+  "resend_verification": "Verifizierung erneut schicken"
+}

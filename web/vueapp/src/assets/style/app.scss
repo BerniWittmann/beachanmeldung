@@ -1,0 +1,85 @@
+@import "mixins";
+@import "overrides";
+@import "panel";
+@import "home";
+@import "nav";
+@import "footer";
+@import "team";
+@import "account";
+
+.padding-left {
+  padding-left: 8px;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
+}
+
+.container-tiles {
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  & > * {
+    margin: 10px;
+  }
+}
+
+.full-size-background {
+  width: 100vw;
+  height: 100vh;
+
+  & > .el-row:first-of-type {
+    overflow: auto;
+    margin-top: -20px;
+    padding-top: 20px;
+    height: calc(100vh - 63px);
+    background: url('../../../static/images/home_header.png') no-repeat fixed center;
+    background-size: cover;
+  }
+
+  &.container > .footer-wrap {
+    margin-top: -20px;
+    padding-top: 20px;
+  }
+}
+
+.form-part {
+  margin-bottom: 5em;
+
+  .form-part-title {
+    margin-bottom: 10px;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.pulsating-heart {
+  color: #FF4949;
+  -webkit-transition: all 0.5s; /* Safari */
+  transition: all 0.5s;
+  &:hover {
+    color: #e1000c;
+  }
+}
+
+.fa-slow-spin {
+  -webkit-animation: fa-spin 6s infinite linear;
+  animation: fa-spin 6s infinite linear;
+}
+
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
