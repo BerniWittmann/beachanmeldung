@@ -1,13 +1,13 @@
-![Logo](https://ibin.co/w800/3VInKPBZdoRU.png)
+![Logo](https://ibin.co/3fSR79BU7Nug.png)
 
-# Mampf core
+# Beachanmeldung
 
-> Foodsharing made easy
+> Anmelde-Plattform für die Beachturniere in Ismaning
 
-This is the core project for Mampf. It contains the backend as well as the browser frontend.
+This is the core project for Beachanmeldung. It contains the backend as well as the browser frontend.
 
-[![build status](https://gitlab.com/mampf/core/badges/master/build.svg)](https://gitlab.com/mampf/core/commits/master)
-[![coverage report](https://gitlab.com/mampf/core/badges/master/coverage.svg)](https://gitlab.com/mampf/core/commits/master)
+[![build status](https://gitlab.com/berniwittmann/beachanmeldung/badges/master/build.svg)](https://gitlab.com/berniwittmann/beachanmeldung/commits/master)
+[![coverage report](https://gitlab.com/berniwittmann/beachanmeldung/badges/master/coverage.svg)](https://gitlab.com/berniwittmann/beachanmeldung/commits/master)
 
 ## Installation
 

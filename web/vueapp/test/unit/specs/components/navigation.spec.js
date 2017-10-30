@@ -6,7 +6,7 @@ import sinon from 'sinon';
 describe('Components', () => {
   describe('Navigation', () => {
     const state = { auth: { authenticated: false } };
-    const actions = { auth: { logout: sinon.stub() } };
+    const actions = { auth: { handler: () => {}, logout: () => sinon.stub() } };
     let store;
     beforeEach(() => {
       store = new Vuex.Store({

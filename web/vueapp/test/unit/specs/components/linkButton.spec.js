@@ -6,8 +6,8 @@ describe('Components', () => {
   describe('LinkButton', () => {
     describe('gets a route object', () => {
       it('should point to the route', () => {
-        const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'etc.team' } } });
-        expect(vm.hasAttribute('href', '/team')).to.equal(true);
+        const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'auth.login' } } });
+        expect(vm.hasAttribute('href', '/login')).to.equal(true);
       });
 
       it('should pass the content', () => {
@@ -188,7 +188,7 @@ describe('Components', () => {
     describe('should have computed properties', () => {
       describe('show Route', () => {
         it('should not show Route if disabled', () => {
-          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'etc.team' }, disabled: true } });
+          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'auth.login' }, disabled: true } });
           expect(vm.vm.showRoute).to.equal(false);
         });
         it('should not show Route if route not given', () => {
@@ -196,11 +196,11 @@ describe('Components', () => {
           expect(vm.vm.showRoute).to.equal(undefined);
         });
         it('should not show Route if href is given', () => {
-          const vm = utils.mountComponent(LinkButton, { propsData: { href: '/test', route: { name: 'etc.team' } } });
+          const vm = utils.mountComponent(LinkButton, { propsData: { href: '/login', route: { name: 'auth.login' } } });
           expect(vm.vm.showRoute).to.equal(false);
         });
         it('should show Route', () => {
-          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'etc.team' } } });
+          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'auth.login' } } });
           expect(vm.vm.showRoute).to.equal(true);
         });
       });
@@ -226,7 +226,7 @@ describe('Components', () => {
 
       describe('get route url', () => {
         it('should not return anything if disabled', () => {
-          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'etc.team' }, disabled: true } });
+          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'auth.login' }, disabled: true } });
           expect(vm.vm.routeUrl).to.equal(undefined);
         });
         it('should not return anything if no route given', () => {
@@ -234,8 +234,8 @@ describe('Components', () => {
           expect(vm.vm.routeUrl).to.equal(undefined);
         });
         it('should return route', () => {
-          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'etc.team' } } });
-          expect(vm.vm.routeUrl).to.deep.equal({ name: 'etc.team', params: {}, path: '/team' });
+          const vm = utils.mountComponent(LinkButton, { propsData: { route: { name: 'auth.login' } } });
+          expect(vm.vm.routeUrl).to.deep.equal({ name: 'auth.login', params: {}, path: '/login' });
         });
       });
 

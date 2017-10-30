@@ -26,7 +26,7 @@ class SetLastLoginMiddlewareTestCase(TestCase):
     def test_set_last_login(self):
         client = APIClient()
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
-        response = client.get(reverse('v1:team-member-list'))
+        response = client.get(reverse('v1:authemail-me'))
         self.assertEqual(response.status_code, 200)
         self.assertIsNotNone(MyUser.objects.first().last_login)
         self.assertAlmostEqual((MyUser.objects.first().last_login - now())
@@ -34,6 +34,6 @@ class SetLastLoginMiddlewareTestCase(TestCase):
 
     def test_not_set_last_login_without_user(self):
         client = APIClient()
-        response = client.get(reverse('v1:team-member-list'))
+        response = client.get(reverse('v1:authemail-me'))
         self.assertEqual(response.status_code, 200)
         self.assertIsNone(self.user.last_login)

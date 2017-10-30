@@ -3,10 +3,9 @@
   "version": "0.2.0",
   "description": "Frontend for Beachanmeldung",
   "scripts": {
-    "dev": "npm run build-theme && node build/dev-server.js",
-    "build": "npm run build-theme && node build/build.js",
+    "dev": "node build/dev-server.js",
+    "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
-    "build-theme": "et -c src/assets/style/element-variables.scss -o src/assets/theme",
     "postinstall": "npm rebuild node-sass",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit"

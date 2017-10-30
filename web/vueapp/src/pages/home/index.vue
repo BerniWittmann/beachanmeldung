@@ -12,7 +12,7 @@
         <v-link-button
                 type="primary"
                 size="large"
-        >Anmelden
+        >Anmelden <i class="el-icon-success"></i>
         </v-link-button>
       </el-col>
     </el-row>
@@ -28,7 +28,7 @@
         </p>
         <el-row :gutter="20">
           <el-col :lg="4" :md="6" :sm="8" :xs="12">
-            <v-link-button type="primary" href="https://github.com/BerniWittmann/mampf-prototype/issues" target="_blank">
+            <v-link-button type="primary" href="https://github.com/BerniWittmann" target="_blank">
               <i class="fa fa-github fa-fw" aria-hidden="true"></i>
               <span class="padding-left">{{ $t("general.github") }}</span>
             </v-link-button>
