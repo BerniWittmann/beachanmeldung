@@ -35,5 +35,5 @@ class SetLastLoginMiddlewareTestCase(TestCase):
     def test_not_set_last_login_without_user(self):
         client = APIClient()
         response = client.get(reverse('v1:authemail-me'))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 401)
         self.assertIsNone(self.user.last_login)
