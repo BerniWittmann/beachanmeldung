@@ -46,9 +46,11 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'stdimage',
     'rest_framework',
+    'djmoney',
     'api.apps.ApiConfig',
     'authemail',
     'api.accounts.apps.AccountsConfig',
+    'api.tournaments.apps.TournamentsConfig',
 ]
 
 MIDDLEWARE = [
