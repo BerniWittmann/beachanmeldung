@@ -11,12 +11,12 @@
                         <el-form ref="passwordResetForm" :rules="rules" :model="user">
                             <el-form-item prop="password">
                                 <el-input v-model="user.password"
-                                          type="password"
+                                          type="password" @keyup.native.enter="resetPassword"
                                           v-bind:placeholder="$t('auth.password')"></el-input>
                             </el-form-item>
                             <el-form-item prop="passwordConfirm">
                                 <el-input v-model="user.passwordConfirm"
-                                          type="password"
+                                          type="password" @keyup.native.enter="resetPassword"
                                           v-bind:placeholder="$t('auth.password_confirm')"></el-input>
                             </el-form-item>
                             <el-form-item>

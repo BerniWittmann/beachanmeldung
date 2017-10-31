@@ -1,16 +1,20 @@
 <template>
-  <div class="container">
-    <v-navigation></v-navigation>
-
-    <el-row>
-      <el-col :span="24">
-        <!-- Content will be placed here -->
-        <slot></slot>
-      </el-col>
-    </el-row>
-
-    <v-footer></v-footer>
-  </div>
+    <el-container>
+        <el-header>
+            <v-navigation></v-navigation>
+        </el-header>
+        <el-main>
+            <el-row>
+                <el-col :span="24">
+                    <!-- Content will be placed here -->
+                    <slot></slot>
+                </el-col>
+            </el-row>
+        </el-main>
+        <el-footer>
+            <v-footer></v-footer>
+        </el-footer>
+    </el-container>
 </template>
 
 <script>

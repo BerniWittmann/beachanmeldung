@@ -11,27 +11,27 @@
                         <el-form ref="registerForm" :rules="rules" :model="user">
                             <el-form-item prop="firstName">
                                 <el-input v-model="user.firstName"
-                                          type="text"
+                                          type="text" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.first_name')"></el-input>
                             </el-form-item>
                             <el-form-item prop="lastName">
                                 <el-input v-model="user.lastName"
-                                          type="text"
+                                          type="text" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.last_name')"></el-input>
                             </el-form-item>
                             <el-form-item prop="email">
                                 <el-input v-model="user.email"
-                                          type="email"
+                                          type="email" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.email')"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
                                 <el-input v-model="user.password"
-                                          type="password"
+                                          type="password" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.password')"></el-input>
                             </el-form-item>
                             <el-form-item prop="passwordConfirm">
                                 <el-input v-model="user.passwordConfirm"
-                                          type="password"
+                                          type="password" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.password_confirm')"></el-input>
                             </el-form-item>
                             <el-form-item>

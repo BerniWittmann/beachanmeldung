@@ -1,4 +1,3 @@
-djchoices
 certifi==2017.7.27.1
 changelog-cli==0.6.1
 chardet==3.0.4
@@ -6,20 +5,21 @@ click==6.7
 coverage==4.4.1
 Django==1.11.3
 django-admin-interface==0.5.1
-django-choices
+django-choices==1.6.0
 django-colorfield==0.1.14
 django-cors-headers==2.1.0
 django-cors-middleware==1.3.1
 django-debug-toolbar==1.8
 django-flat-responsive==1.4.1
 django-flat-theme==1.1.4
-django-money
+django-money==0.12
 django-ordered-model==1.4.1
 django-rest-authemail==1.4.0
 django-stdimage==2.4.2
 django-webpack-loader==0.5.0
 djangorestframework==3.6.3
 djangorestframework-jwt==1.11.0
+enum34==1.1.6
 flake8==3.4.1
 gunicorn==19.7.1
 idna==2.5
@@ -28,6 +28,7 @@ olefile==0.44
 Pillow==4.2.1
 progressbar2==3.34.2
 psycopg2==2.7.3
+py-moneyed==0.7.0
 pycodestyle==2.3.1
 pyflakes==1.5.0
 PyJWT==1.5.2

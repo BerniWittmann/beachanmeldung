@@ -45,14 +45,13 @@ h6 {
 
 .page {
   height: 100%;
-  max-height: calc(100vh - 118px);
   overflow: auto;
-  padding-bottom: 30px;
+  flex: 2;
+
 
   .el-card__body {
     overflow: auto;
     height: 100%;
-    max-height: calc(100vh - 180px);
   }
 }
 
@@ -69,4 +68,22 @@ h6 {
 }
 .button-new-tag {
   margin-left: 5px;
+}
+
+.el-main, .el-header, .el-footer {
+  padding: 0;
+}
+
+.el-footer {
+  min-height: 60px;
+  height: auto !important;
+}
+
+.footer {
+  margin: 0 !important;
+}
+
+.el-menu.el-menu--horizontal {
+  border-bottom: none;
+  height: inherit;
 }

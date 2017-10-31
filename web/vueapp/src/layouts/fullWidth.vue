@@ -1,10 +1,9 @@
 <template>
     <el-container>
         <el-header>
-            <v-navigation class="no-nav-margin"></v-navigation>
+            <v-navigation></v-navigation>
         </el-header>
         <el-main>
-            <!-- Content will be placed here -->
             <slot></slot>
         </el-main>
         <el-footer>

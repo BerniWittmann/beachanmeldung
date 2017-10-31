@@ -9,9 +9,22 @@
 
   .nav-image-wrap {
     float: left;
+    display: flex;
+    align-items: center;
+    text-decoration: none !important;
+    outline: none !important;
+
     .nav-image {
       margin: 10px 0 10px 20px;
       height: 40px;
+    }
+    p {
+      margin-left: 10px;
+
+      &, &:hover, &:active, &:focus, &:visited {
+        color: #FDD648;
+        text-underline: none;
+      }
     }
   }
 }

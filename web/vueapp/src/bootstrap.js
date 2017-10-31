@@ -165,13 +165,13 @@ Vue.use(ElementUI, {
   i18n: key => i18n.t(key),
 });
 
-Vue.prototype.$loading = Loading.service;
-Vue.prototype.$msgbox = MessageBox;
-Vue.prototype.$alert = MessageBox.alert;
-Vue.prototype.$confirm = MessageBox.confirm;
-Vue.prototype.$prompt = MessageBox.prompt;
-Vue.prototype.$notify = Notification;
-Vue.prototype.$message = Message;
+Vue.$loading = Loading.service;
+Vue.$msgbox = MessageBox;
+Vue.$alert = MessageBox.alert;
+Vue.$confirm = MessageBox.confirm;
+Vue.$prompt = MessageBox.prompt;
+Vue.$notify = Notification;
+Vue.$message = Message;
 
 
 /* ============

@@ -1,24 +1,27 @@
 <template>
-  <div class="container full-size-background">
-    <v-navigation></v-navigation>
-
-    <el-row>
-      <el-col :lg="{span: 5, offset: 1}" :md="{span: 5, offset: 1}" :sm="{span: 5, offset: 1}"
-              :xs="{span: 22, offset: 1}" v-if="hasSlot('side')">
-        <slot name="side"></slot>
-      </el-col>
-      <el-col :lg="{span: 15, offset: 2}" :md="{span: 15, offset: 2}" :sm="{span: 15, offset: 2}"
-              :xs="{span: 22, offset: 1}">
-        <div class="page">
-          <!-- Content will be placed here -->
-          <slot></slot>
-        </div>
-      </el-col>
-    </el-row>
-
-
-    <v-footer></v-footer>
-  </div>
+    <el-container class="full-size-background">
+        <el-header>
+            <v-navigation></v-navigation>
+        </el-header>
+        <el-main>
+            <el-row>
+                <el-col :lg="{span: 5, offset: 1}" :md="{span: 5, offset: 1}" :sm="{span: 5, offset: 1}"
+                        :xs="{span: 22, offset: 1}" v-if="hasSlot('side')">
+                    <slot name="side"></slot>
+                </el-col>
+                <el-col :lg="{span: 15, offset: 2}" :md="{span: 15, offset: 2}" :sm="{span: 15, offset: 2}"
+                        :xs="{span: 22, offset: 1}">
+                    <div class="page">
+                        <!-- Content will be placed here -->
+                        <slot></slot>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-main>
+        <el-footer>
+            <v-footer></v-footer>
+        </el-footer>
+    </el-container>
 </template>
 
 <script>

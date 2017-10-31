@@ -12,7 +12,7 @@
         <v-link-button
                 type="primary"
                 size="large"
-        >Anmelden <i class="el-icon-success"></i>
+        >Anmelden
         </v-link-button>
       </el-col>
     </el-row>

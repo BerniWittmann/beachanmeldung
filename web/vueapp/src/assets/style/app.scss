@@ -34,21 +34,15 @@
 }
 
 .full-size-background {
-  width: 100vw;
   height: 100vh;
-
-  & > .el-row:first-of-type {
-    overflow: auto;
-    margin-top: -20px;
-    padding-top: 20px;
-    height: calc(100vh - 63px);
+  .el-main {
     background: url('../../../static/images/home_header.jpg') no-repeat fixed center;
     background-size: cover;
-  }
+    flex: 2;
+    height: 100%;
 
-  &.container > .footer-wrap {
-    margin-top: -20px;
     padding-top: 20px;
+    padding-bottom: 20px;
   }
 }
 

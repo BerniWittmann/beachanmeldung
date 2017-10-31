@@ -13,12 +13,12 @@ const success = (token) => {
 
 // When the request fails
 const failed = (error) => {
-  if (error.response.data.key === 'account_not_active') {
+  if (error && error.response && error.response.data && error.response.data.key === 'account_not_active') {
     Vue.$notify.error({
       title: Vue.i18n.t('auth.notifications.login.inactive.title'),
       message: Vue.i18n.t('auth.notifications.login.inactive.message'),
     });
-  } else if (error.response.data.key === 'account_not_verified') {
+  } else if (error && error.response && error.response.data && error.response.data.key === 'account_not_verified') {
     Vue.$notify.error({
       title: Vue.i18n.t('auth.notifications.login.not_verified.title'),
       message: Vue.i18n.t('auth.notifications.login.not_verified.message'),

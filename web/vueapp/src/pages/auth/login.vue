@@ -11,12 +11,12 @@
                         <el-form :rules="rules" :model="user" ref="loginForm">
                             <el-form-item prop="email">
                                 <el-input v-model="user.email"
-                                          type="email"
+                                          type="email" @keyup.native.enter="login"
                                           v-bind:placeholder="$t('auth.email')"></el-input>
                             </el-form-item>
                             <el-form-item prop="password">
                                 <el-input v-model="user.password"
-                                          type="password"
+                                          type="password" @keyup.native.enter="login"
                                           v-bind:placeholder="$t('auth.password')"></el-input>
                             </el-form-item>
                             <el-form-item>
