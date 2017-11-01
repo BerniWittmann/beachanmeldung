@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import timezone
 from djchoices import DjangoChoices, ChoiceItem
 from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
@@ -18,6 +19,7 @@ class Tournament(models.Model):
                               choices)
     start_date = models.DateField()
     end_date = models.DateField()
+    start_signup = models.DateTimeField(default=timezone.now)
     deadline_signup = models.DateTimeField()
     deadline_edit = models.DateTimeField()
     advertisement_url = models.URLField(null=True,
@@ -28,11 +30,23 @@ class Tournament(models.Model):
                               decimal_places=2,
                               default_currency='EUR')
 
+    def signup_open(self):
+        return self.deadline_signup > timezone.now() >= self.start_signup
+    signup_open.admin_order_field = 'deadline_signup'
+    signup_open.boolean = True
+    signup_open.short_description = _('SignUp Possible')
+
     def clean(self):
         if self.start_date and self.end_date and \
                         self.start_date > self.end_date:
             raise ValidationError(
                 _('StartDate must be before EndDate')
+            )
+
+        if self.start_signup and self.deadline_signup and \
+                        self.start_signup > self.deadline_signup:
+            raise ValidationError(
+                _('Deadline of Signup must be after Start of Signup')
             )
 
     def __str__(self):

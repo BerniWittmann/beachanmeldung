@@ -1,4 +1,7 @@
+import datetime
 from django.test import TestCase
+from django.utils import timezone
+
 from api.accounts.models import MyUser
 from .models import Tournament
 from rest_framework.test import APIClient
@@ -71,7 +74,7 @@ class Tournaments(TestCase):
             'gender': 'female',
             'start_date': '2017-01-02',
             'end_date': '2017-01-02',
-            'deadline_signup': '2017-01-01T00:00:00Z',
+            'deadline_signup': '2100-01-01T00:00:00Z',
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
@@ -81,10 +84,12 @@ class Tournaments(TestCase):
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['id'], 2)
         self.assertEqual(data['name'], 'New Turnier')
+        self.assertTrue(data['signup_open'])
 
         self.assertEqual(Tournament.objects.all().count(), 2)
         self.assertEqual(Tournament.objects.last().id, 2)
         self.assertEqual(Tournament.objects.last().name, 'New Turnier')
+        self.assertIsNotNone(Tournament.objects.last().start_signup)
 
     def test_tournament_missing_parameter(self):
         client = APIClient()
@@ -117,6 +122,26 @@ class Tournaments(TestCase):
         self.assertEqual(data['non_field_errors'],
                          ['StartDate must be before EndDate'])
 
+    def test_tournament_create_invalid_start_deadline_signup(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.post(reverse('v1:tournament-list'), {
+            'name': 'New Turnier',
+            'gender': 'female',
+            'start_date': '2017-01-01',
+            'end_date': '2017-01-02',
+            'deadline_signup': '2017-01-01T00:00:00Z',
+            'start_signup': '2017-01-02T00:00:00Z',
+            'deadline_edit': '2017-01-01T00:00:00Z',
+            'advertisement_url': 'http://www.google.de',
+            'contact_email': 'test@byom.de',
+            'starting_fee': 60.0
+        })
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(data['non_field_errors'],
+                         ['Deadline of Signup must be after Start of Signup'])
+
     def test_tournament_get(self):
         client = APIClient()
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
@@ -146,6 +171,7 @@ class Tournaments(TestCase):
             'start_date': '2017-01-01',
             'end_date': '2017-01-02',
             'deadline_signup': '2017-01-01T00:00:00Z',
+            'start_signup': '2016-01-01T00:00:00Z',
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
@@ -176,6 +202,27 @@ class Tournaments(TestCase):
         self.assertEqual(data['non_field_errors'],
                          ['StartDate must be before EndDate'])
 
+    def test_tournament_put_invalid_start_deadline_signup(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:tournament-detail',
+                                      kwargs={'pk': self.tournament.id}), {
+            'name': 'New Turnier',
+            'gender': 'female',
+            'start_date': '2017-01-01',
+            'end_date': '2017-01-02',
+            'deadline_signup': '2017-01-01T00:00:00Z',
+            'start_signup': '2017-01-02T00:00:00Z',
+            'deadline_edit': '2017-01-01T00:00:00Z',
+            'advertisement_url': 'http://www.google.de',
+            'contact_email': 'test@byom.de',
+            'starting_fee': 60.0
+        })
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(data['non_field_errors'],
+                         ['Deadline of Signup must be after Start of Signup'])
+
     def test_tournament_delete(self):
         client = APIClient()
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
@@ -183,3 +230,22 @@ class Tournaments(TestCase):
                                          kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 204)
         self.assertEqual(Tournament.objects.all().count(), 0)
+
+    def test_tournament_signup_open(self):
+        self.tournament.deadline_signup = timezone.now() + datetime.timedelta(days=1)
+        self.tournament.start_signup = timezone.now() - datetime.timedelta(days=1)
+        self.tournament.save()
+
+        self.assertTrue(self.tournament.signup_open())
+
+        self.tournament.deadline_signup = timezone.now() + datetime.timedelta(days=2)
+        self.tournament.start_signup = timezone.now() + datetime.timedelta(days=1)
+        self.tournament.save()
+
+        self.assertFalse(self.tournament.signup_open())
+
+        self.tournament.deadline_signup = timezone.now() - datetime.timedelta(days=1)
+        self.tournament.start_signup = timezone.now() - datetime.timedelta(days=2)
+        self.tournament.save()
+
+        self.assertFalse(self.tournament.signup_open())
