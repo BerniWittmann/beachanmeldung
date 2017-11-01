@@ -31,6 +31,20 @@
     &.home-header-image-thin {
       height: 200px;
     }
+
+    h1, h2 {
+      text-align: center;
+      color: #f2f2f2;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    }
+
+    h1 {
+      font-size: 50px;
+    }
+
+    h2 {
+      font-size: 40px;
+    }
   }
 
   .home-subheader-image {

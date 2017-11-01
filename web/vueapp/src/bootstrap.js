@@ -159,6 +159,7 @@ import 'normalize.css';
  * http://element.eleme.io
  */
 import './assets/style/element-variables.scss';
+import 'element-ui/lib/theme-chalk/display.css';
 import ElementUI, { Loading, MessageBox, Notification, Message } from 'element-ui';
 
 Vue.use(ElementUI, {

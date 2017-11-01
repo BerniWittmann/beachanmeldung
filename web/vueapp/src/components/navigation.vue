@@ -5,8 +5,8 @@
       class="nav-image-wrap"
       tag="a"
     >
-      <img class="nav-image" src="/static/images/logo.png" :alt="$t('nav.name')">
-      <p>Beach - Anmeldung</p>
+      <img class="nav-image" src="/static/images/logo.png">
+      <p class="hidden-sm-and-down">{{ $t('nav.name') }}</p>
     </router-link>
     <div class="nav-right">
       <el-menu-item v-if="isLoggedIn" index="auth.account" :route="{ name: 'auth.account' }">{{ $t('nav.account') }}</el-menu-item>
