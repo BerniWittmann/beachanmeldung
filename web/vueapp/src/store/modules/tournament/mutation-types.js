@@ -7,7 +7,9 @@
  */
 
 export const STORE = 'STORE';
+export const SET_ACTIVE = 'SET_ACTIVE';
 
 export default {
   STORE,
+  SET_ACTIVE,
 };

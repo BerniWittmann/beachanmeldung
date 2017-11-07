@@ -16,5 +16,14 @@ describe('Routes', () => {
       expect(spy.called).to.equal(true);
     });
   });
+
+  describe('Tournament', () => {
+    it('should load Tournament, before route enter', () => {
+      const route = findRouteByName('tournament.single');
+      const spy = sinon.stub();
+      expect(route.beforeEnter).to.be.a('function');
+      route.beforeEnter({ params: { tournamentID: 1} }, {}, spy);
+    });
+  });
 });
 

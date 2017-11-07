@@ -113,6 +113,21 @@ export default [
     },
   },
 
+  // Tournament Single Page
+  {
+    path: '/tournament/:tournamentID',
+    name: 'tournament.single',
+    component: require('@/pages/tournament/single.vue'),
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: false,
+    },
+
+    beforeEnter: (to, from, next) => {
+      tournamentService.getByID(to.params.tournamentID).then(next);
+    },
+  },
+
   {
     path: '/',
     redirect: '/home',

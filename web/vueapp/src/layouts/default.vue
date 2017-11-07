@@ -5,9 +5,21 @@
         </el-header>
         <el-main>
             <el-row>
-                <el-col :span="24">
-                    <!-- Content will be placed here -->
-                    <slot></slot>
+                <el-col>
+                    <div class="main">
+                        <el-row>
+                            <el-col :span="16" :offset="4">
+                                <el-card class="tournament-card">
+                                    <div slot="header" class="header" v-if="hasSlot('header')">
+                                        <slot name="header"></slot>
+                                    </div>
+                                    <div class="body">
+                                        <slot></slot>
+                                    </div>
+                                </el-card>
+                            </el-col>
+                        </el-row>
+                    </div>
                 </el-col>
             </el-row>
         </el-main>
@@ -27,8 +39,13 @@
    * Layouts are used to store a lot of shared code.
    * This way the app stays clean.
    */
+  import SlotMixin from '@/mixins/slot';
 
   export default {
+    mixins: [
+      SlotMixin,
+    ],
+
     components: {
       VNavigation: require('@/components/navigation.vue'),
       VFooter: require('@/components/footer.vue'),

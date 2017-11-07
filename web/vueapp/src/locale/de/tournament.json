@@ -14,5 +14,11 @@
     "title": "Anmeldung derzeit nicht möglich",
     "before_signup": "Der Anmeldezeitraum startet am {date} um {time} Uhr",
     "after_signup": "Der Anmeldezeitraum hat bereits am {date} um {time} Uhr geendet."
-  }
+  },
+  "date_of_tournament": "Datum des Turniers",
+  "starting_fee": "Startgebühr",
+  "number_of_placed": "Gesamtanzahl Plätze",
+  "display_date_time": "{datetime} Uhr",
+  "advertisement": "Ausschreibung",
+  "contact": "Kontakt"
 }

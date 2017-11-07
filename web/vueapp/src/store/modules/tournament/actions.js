@@ -12,6 +12,11 @@ export const store = ({ commit }, payload) => {
   commit(types.STORE, payload);
 };
 
+export const setActive = ({ commit }, payload) => {
+  commit(types.SET_ACTIVE, payload);
+};
+
 export default {
   store,
+  setActive,
 };

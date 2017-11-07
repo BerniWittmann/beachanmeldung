@@ -1,7 +1,7 @@
 <template>
-    <el-card class="tournament-card">
+    <el-card class="tournament-card" @click.native="navigateToTournament()">
         <div slot="header" class="header">
-            <span class="tournament-name">{{ tournament.name }} <span v-if="showGender"> - {{ $t('general.gender.' + tournament.gender) }}</span></span>
+            <span class="tournament-name"><v-tournament-name :tournament="tournament"></v-tournament-name></span>
             <el-popover
                     placement="top"
                     :title="$t('tournament.signup_not_open.title')"
@@ -9,7 +9,7 @@
                     :disabled="isSignupOpen">
                 <span v-show="isBeforeSignup">{{ $t('tournament.signup_not_open.before_signup', getDateTime('startSignup') ) }}</span>
                 <span v-show="isAfterSignup">{{ $t('tournament.signup_not_open.after_signup',  getDateTime('deadlineSignup') ) }}</span>
-                <v-link-button slot="reference">{{ $t('tournament.register_team') }}</v-link-button>
+                <v-link-button slot="reference" :route="{ name: 'tournament.single', params: { tournamentID: tournament.id }}">{{ $t('tournament.register_team') }}</v-link-button>
             </el-popover>
         </div>
         <div class="body">
@@ -40,13 +40,10 @@
 
     components: {
       VLinkButton: require('@/components/linkButton.vue'),
+      VTournamentName: require('@/components/tournamentName.vue'),
     },
 
     computed: {
-      showGender() {
-        return this.tournament.gender !== 'mixed';
-      },
-
       isSignupOpen() {
         return this.tournament.signupOpen;
       },
@@ -74,6 +71,10 @@
           date: datetime.format('DD.MM.YYYY'),
           time: datetime.format('HH:mm'),
         };
+      },
+
+      navigateToTournament() {
+        this.$router.push({ name: 'tournament.single', params: { tournamentID: this.tournament.id } });
       },
     },
   };

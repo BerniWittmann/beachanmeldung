@@ -5,7 +5,6 @@
  * The transformer for the tournament.
  */
 
-import moment from 'moment';
 import { parseDate, parseDateToISOString } from '@/utils/helpers';
 import Transformer from './transformer';
 

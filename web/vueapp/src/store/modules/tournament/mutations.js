@@ -6,10 +6,13 @@
  * tournament module.
  */
 
-import { STORE } from './mutation-types';
+import { STORE, SET_ACTIVE } from './mutation-types';
 
 export default {
   [STORE](state, tournaments) {
     state.tournaments = tournaments || [];
+  },
+  [SET_ACTIVE](state, tournament) {
+    state.activeTournament = tournament;
   },
 };

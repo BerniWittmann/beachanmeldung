@@ -7,4 +7,5 @@
 
 export default {
   tournaments: [],
+  activeTournament: undefined,
 };
