@@ -2,46 +2,26 @@
     <v-layout>
         <el-row class="home-part home-part-image">
             <div class="home-header-image">
-                <h1>Beachturniere {{ currentYear }}</h1>
-                <h2>Ismaning</h2>
+                <h1>{{ $t('general.header.title', { currentYear: currentYear }) }}</h1>
+                <h2>{{ $t('general.header.subtitle') }}</h2>
             </div>
         </el-row>
 
         <el-row class="home-part">
             <el-col :span="24">
-                <h2>Die Beachturniere in Ismaning starten wieder</h2>
-                <h4>Melden Sie sich heute noch an.</h4>
+                <p v-html="$t('general.welcome_text')"></p>
                 <v-link-button
                         type="primary"
                         size="large"
-                >Anmelden
+                >Heute noch Anmelden
                 </v-link-button>
             </el-col>
         </el-row>
 
         <el-row class="home-part">
             <el-col :span="24">
-                <h3>{{ $t("general.welcome") }}</h3>
-                <p>
-                    {{ $t("general.welcome_text") }}
-                </p>
-                <p>
-                    {{ $t("general.bug_notice") }}
-                </p>
-                <el-row :gutter="20">
-                    <el-col :lg="4" :md="6" :sm="8" :xs="12">
-                        <v-link-button type="primary" href="https://github.com/BerniWittmann" target="_blank">
-                            <i class="fa fa-github fa-fw" aria-hidden="true"></i>
-                            <span class="padding-left">{{ $t("general.github") }}</span>
-                        </v-link-button>
-                    </el-col>
-                    <el-col :lg="4" :md="6" :sm="8" :xs="12">
-                        <v-link-button type="primary" href="mailto:b.wittmann@mail.de">
-                            <i class="fa fa-envelope fa-fw" aria-hidden="true"></i>
-                            <span class="padding-left">{{ $t("general.email") }}</span>
-                        </v-link-button>
-                    </el-col>
-                </el-row>
+                <h2>{{ $t('tournament.all_tournaments') }}</h2>
+                <v-tournament-card v-for="tournament in tournaments" :key="'tournament_' + tournament.id" :tournament="tournament"></v-tournament-card>
             </el-col>
         </el-row>
     </v-layout>
@@ -60,11 +40,23 @@
     components: {
       VLayout: require('@/layouts/fullWidth.vue'),
       VLinkButton: require('@/components/linkButton.vue'),
+      VTournamentCard: require('@/components/tournamentCard'),
     },
 
     computed: {
       currentYear() {
         return moment().format('YYYY');
+      },
+
+      tournaments() {
+        return Object.assign([], this.$store.state.tournament.tournaments).sort((a, b) => {
+          if (a.startDate.isBefore(b.startDate)) {
+            return -1;
+          } else if (a.startDate.isAfter(b.startDate)) {
+            return 1;
+          }
+          return 0;
+        });
       },
     },
   };

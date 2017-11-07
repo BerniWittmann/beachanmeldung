@@ -5,6 +5,7 @@
  * The routes and redirects are defined in this file.
  */
 
+import tournamentService from '@/services/tournament';
 /**
  * The routes
  *
@@ -20,6 +21,11 @@ export default [
     // If the user needs to be authenticated to view this page
     meta: {
       auth: false,
+    },
+
+    beforeEnter: (to, from, next) => {
+      tournamentService.getAll();
+      next();
     },
   },
 

@@ -14,6 +14,7 @@ import * as account from './account.json';
 import * as validation from './validation.json';
 import * as alerts from './alerts.json';
 import * as comingSoon from './coming_soon.json';
+import * as tournament from './tournament.json';
 
 export default {
   ...localeElementUi,
@@ -24,4 +25,5 @@ export default {
   validation,
   alerts,
   comingSoon,
+  tournament,
 };

@@ -86,4 +86,8 @@ h6 {
 .el-menu.el-menu--horizontal {
   border-bottom: none;
   height: inherit;
+
+  .el-menu-item:hover {
+    background-color: rgb(45, 45, 45) !important;
+  }
 }

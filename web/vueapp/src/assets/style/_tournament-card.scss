@@ -1,0 +1,24 @@
+.tournament-card {
+  margin-bottom: 20px;
+
+  .header, .body {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .header {
+    justify-content: space-between;
+
+    .tournament-name {
+      font-size: 20px;
+    }
+  }
+
+  .body {
+    justify-content: flex-start;
+    span {
+      margin-right: 10px;
+    }
+  }
+}

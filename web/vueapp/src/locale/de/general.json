@@ -1,6 +1,4 @@
 {
-  "welcome": "Willkommen",
-  "welcome_text": "Dies ist der Prototyp für die Beach Anmeldung.",
   "bug_notice": "Bugs bitte melden unter:",
   "github": "GitHub",
   "email": "E-Mail",
@@ -8,5 +6,15 @@
   "copyright_name": "Bernhard Wittmann",
   "edit": "Bearbeiten",
   "save": "Speichern",
-  "abort": "Abbrechen"
+  "abort": "Abbrechen",
+  "gender": {
+    "male": "Männlich",
+    "female": "Weiblich",
+    "mixed": "Mixed"
+  },
+  "header": {
+    "title": "Beachturniere {currentYear}",
+    "subtitle": "Ismaning"
+  },
+  "welcome_text": "Liebe Beachfamilie, </br></br> Besonders stolz dürfen wir erneut die Bayerischen Jugendmeisterschaften im Beachhandball 2017 ausrichten und auf dem Seniorenturnier können Teams sowohl Punkte der South Beach Tour als auch der neugegründeten Deutschen Beachhandball Tour des DHB sammeln. Das mittlerweile legendäre Kinderbeach mit alleine 50 Teams der jüngsten Altersklassen und der Gemeinde Cup runden unser Angebot für Jedermann ab.</br></br>Zusammen begrüßen wir an drei Wochenenden wieder über 200 Mannschaften im Münchner Norden. Springt auch ihr mit auf: Auf gute Laune, Urlaubsfeeling und jede Menge Spaß am Ismaninger Beach."
 }

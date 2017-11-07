@@ -1,0 +1,18 @@
+{
+  "tournament": "Turnier",
+  "all_tournaments": "Alle Turniere",
+  "register_team": "Team Anmelden",
+  "notifications": {
+    "get": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Die Turniere konnten nicht geladen werden"
+      }
+    }
+  },
+  "signup_not_open": {
+    "title": "Anmeldung derzeit nicht möglich",
+    "before_signup": "Der Anmeldezeitraum startet am {date} um {time} Uhr",
+    "after_signup": "Der Anmeldezeitraum hat bereits am {date} um {time} Uhr geendet."
+  }
+}
