@@ -29,12 +29,19 @@ class Tournament(models.Model):
     starting_fee = MoneyField(max_digits=10,
                               decimal_places=2,
                               default_currency='EUR')
+    number_of_places = models.PositiveIntegerField()
 
     def signup_open(self):
         return self.deadline_signup > timezone.now() >= self.start_signup
     signup_open.admin_order_field = 'deadline_signup'
     signup_open.boolean = True
     signup_open.short_description = _('SignUp Possible')
+
+    def is_before_signup(self):
+        return timezone.now() < self.start_signup
+
+    def is_after_signup(self):
+        return timezone.now() > self.deadline_signup
 
     def clean(self):
         if self.start_date and self.end_date and \
@@ -44,7 +51,7 @@ class Tournament(models.Model):
             )
 
         if self.start_signup and self.deadline_signup and \
-                        self.start_signup > self.deadline_signup:
+           self.start_signup > self.deadline_signup:
             raise ValidationError(
                 _('Deadline of Signup must be after Start of Signup')
             )

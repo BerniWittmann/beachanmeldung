@@ -19,7 +19,9 @@ describe('Pages', () => {
           signupOpen: true,
           startingFee: '60.00',
           advertisementUrl: 'http://www.google.de',
-          contactEmail: 'test@byom.de'
+          contactEmail: 'test@byom.de',
+          isBeforeSignup: false,
+          isAfterSignup: false,
         }
       },
     };
@@ -42,7 +44,6 @@ describe('Pages', () => {
 
     it('should contain a register button', () => {
       const vm = utils.mountComponent(TournamentSingle, { store });
-      console.log(vm.html());
       expect(vm.first('.tournament-header').contains('button')).to.be.true;
     });
 

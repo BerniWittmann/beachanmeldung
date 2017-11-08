@@ -13,7 +13,8 @@ class TournamentAdmin(admin.ModelAdmin):
                                   'deadline_edit')}),
         ('General', {'fields': ('advertisement_url',
                                 'contact_email',
-                                'starting_fee')})
+                                'starting_fee',
+                                'number_of_places')})
     )
 
 

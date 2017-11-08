@@ -5,13 +5,13 @@
                 <v-tournament-name :tournament="tournament"></v-tournament-name>
             </h1>
             <span class="tournament-header-right">
-                <v-link-button :disabled="!isSignupOpen" slot="reference">
+                <v-link-button :disabled="!tournament.signupOpen" slot="reference">
                     {{ $t('tournament.register_team') }}
                 </v-link-button>
-                <p v-if="isBeforeSignup">
+                <p v-if="tournament.isBeforeSignup">
                     {{ $t('tournament.signup_not_open.before_signup', getDateTime('startSignup')) }}
                 </p>
-                <p v-if="isAfterSignup">
+                <p v-if="tournament.isAfterSignup">
                     {{ $t('tournament.signup_not_open.after_signup', getDateTime('deadlineSignup')) }}
                 </p>
             </span>
@@ -24,7 +24,7 @@
                             <el-tooltip class="item" effect="dark" :content="$t('tournament.date_of_tournament')" placement="top-start">
                                 <i class="el-icon-date"></i>
                             </el-tooltip>
-                            <p>{{ tournamentDate }}</p>
+                            <p>{{ tournament.tournamentDate }}</p>
                         </el-col>
                         <el-col class="tournament-body-information-row" :xl="4" :lg="4" :md="4" :sm="12" :xs="24">
                             <el-tooltip class="item" effect="dark" :content="$t('tournament.starting_fee')" placement="top-start">
@@ -36,7 +36,7 @@
                             <el-tooltip class="item" effect="dark" :content="$t('tournament.number_of_places')" placement="top-start">
                                 <i class="el-icon-tickets"></i>
                             </el-tooltip>
-                            <p>12</p>
+                            <p>{{ tournament.numberOfPlaces }}</p>
                         </el-col>
                         <el-col class="tournament-body-information-row" :xl="8" :lg="8" :md="8" :sm="24" :xs="24">
                             <el-tooltip class="item" effect="dark" :content="$t('tournament.deadline_signup')" placement="top-start">
@@ -67,7 +67,7 @@
    * A page which displays a single tournament
    */
 
-  import moment from 'moment';
+  import { getDateTimeByKey } from '@/utils/helpers';
 
   export default {
     components: {
@@ -80,34 +80,11 @@
       tournament() {
         return this.$store.state.tournament.activeTournament;
       },
-
-      tournamentDate() {
-        if (this.tournament.startDate.isSame(this.tournament.endDate, 'day')) {
-          return this.tournament.startDate.format('DD.MM.YYYY');
-        }
-        return `${this.tournament.startDate.format('DD.MM.YYYY')} - ${this.tournament.endDate.format('DD.MM.YYYY')}`;
-      },
-
-      isSignupOpen() {
-        return this.tournament.signupOpen;
-      },
-
-      isBeforeSignup() {
-        return !this.isSignupOpen && moment().isBefore(this.tournament.startSignup);
-      },
-
-      isAfterSignup() {
-        return !this.isSignupOpen && moment().isAfter(this.tournament.deadlineSignup);
-      },
     },
 
     methods: {
       getDateTime(key) {
-        const datetime = this.tournament[key];
-        return {
-          date: datetime.format('DD.MM.YYYY'),
-          time: datetime.format('HH:mm'),
-        };
+        return getDateTimeByKey(this.tournament, key);
       },
     },
   };

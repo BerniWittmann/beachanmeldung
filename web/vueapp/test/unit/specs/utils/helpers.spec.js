@@ -1,4 +1,4 @@
-import { parseDate, parseDateToISOString } from '@/utils/helpers';
+import { parseDate, parseDateToISOString, getDateTimeByKey } from '@/utils/helpers';
 import moment from 'moment';
 
 describe('Utils', () => {
@@ -26,6 +26,37 @@ describe('Utils', () => {
       it('should parse an undefined date to undefined', () => {
         expect(parseDateToISOString(undefined)).to.equal(undefined);
         expect(parseDateToISOString(null)).to.equal(undefined);
+      });
+    });
+
+    describe('getDateTimeByKey', () => {
+      it('should get date and time from an object by key', () => {
+        const obj = {
+          testKey: moment()
+        };
+        expect(getDateTimeByKey(obj, 'testKey')).to.deep.equal({
+          date: obj.testKey.format('DD.MM.YYYY'),
+          time: obj.testKey.format('HH:mm'),
+        });
+      });
+
+      it('should empty object when having invalid parameters', () => {
+        const obj = {
+          testKey: moment(),
+          foo: 'bar',
+        };
+        expect(getDateTimeByKey(undefined, 'testKey')).to.deep.equal({
+          date: undefined,
+          time: undefined,
+        });
+        expect(getDateTimeByKey(obj, 'anotherKey')).to.deep.equal({
+          date: undefined,
+          time: undefined,
+        });
+        expect(getDateTimeByKey(obj, 'foo')).to.deep.equal({
+          date: undefined,
+          time: undefined,
+        });
       });
     });
   });

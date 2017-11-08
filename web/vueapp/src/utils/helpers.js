@@ -7,3 +7,17 @@ export function parseDate(dateString) {
 export function parseDateToISOString(date) {
   return date ? date.toISOString() : undefined;
 }
+
+export function getDateTimeByKey(obj, key) {
+  if (!obj || !key || !obj[key] || !moment(obj[key]).isValid()) {
+    return {
+      date: undefined,
+      time: undefined,
+    };
+  }
+  const datetime = obj[key];
+  return {
+    date: datetime.format('DD.MM.YYYY'),
+    time: datetime.format('HH:mm'),
+  };
+}

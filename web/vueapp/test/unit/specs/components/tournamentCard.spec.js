@@ -17,6 +17,9 @@ describe('Components', () => {
         deadlineSignup: moment(),
         signupOpen: true,
         startingFee: '60.00',
+        isBeforeSignup: false,
+        isAfterSignup: false,
+        tournamentDate: moment().format('DD.MM.YYYY'),
       };
     });
 
@@ -28,7 +31,7 @@ describe('Components', () => {
 
       it('should contain a register Button', () => {
         expect(vm.contains('button')).to.be.true;
-        expect(vm.first('button').text()).to.equal('tournament.register_team');
+        expect(vm.first('button').text()).to.contain('tournament.register_team');
       });
       it('should contain the name', () => {
         expect(vm.contains('.tournament-name')).to.be.true;
@@ -54,6 +57,8 @@ describe('Components', () => {
         tournament.startSignup = moment().add(1, 'days');
         tournament.deadlineSignup = moment().add(2, 'days');
         tournament.signupOpen = false;
+        tournament.isBeforeSignup = true;
+        tournament.isAfterSignup = false;
 
         vm = utils.mountComponent(TournamentCard, { propsData: { tournament } });
       });
@@ -78,6 +83,8 @@ describe('Components', () => {
         tournament.startSignup = moment().subtract(2, 'days');
         tournament.deadlineSignup = moment().subtract(1, 'days');
         tournament.signupOpen = false;
+        tournament.isBeforeSignup = false;
+        tournament.isAfterSignup = true;
         vm = utils.mountComponent(TournamentCard, { propsData: { tournament } });
       });
 
@@ -113,6 +120,7 @@ describe('Components', () => {
       beforeEach(() => {
         tournament.startDate = moment();
         tournament.endDate = moment().add(2, 'days');
+        tournament.tournamentDate = `${tournament.startDate.format('DD.MM.YYYY')} - ${tournament.endDate.format('DD.MM.YYYY')}`;
         vm = utils.mountComponent(TournamentCard, { propsData: { tournament } });
       });
 

@@ -17,7 +17,7 @@
   },
   "date_of_tournament": "Datum des Turniers",
   "starting_fee": "Startgebühr",
-  "number_of_placed": "Gesamtanzahl Plätze",
+  "number_of_places": "Gesamtanzahl Plätze",
   "display_date_time": "{datetime} Uhr",
   "advertisement": "Ausschreibung",
   "contact": "Kontakt"

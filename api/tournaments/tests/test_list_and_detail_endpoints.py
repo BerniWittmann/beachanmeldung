@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 from api.accounts.models import MyUser
-from .models import Tournament
+from api.tournaments.models import Tournament
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse
 import json
@@ -38,7 +38,8 @@ class Tournaments(TestCase):
                     deadline_edit='2017-01-01T00:00:00Z',
                     advertisement_url='http://www.google.de',
                     contact_email='test@byom.de',
-                    starting_fee=60.0
+                    starting_fee=60.0,
+                    number_of_places=12
                     )
 
     def test_tournament_list_get(self):
@@ -50,6 +51,17 @@ class Tournaments(TestCase):
         self.assertEqual(len(data['results']), 1)
         self.assertEqual(data['results'][0]['name'], 'Test Turnier')
         self.assertGreaterEqual(data['results'][0]['id'], 1)
+
+    def test_tournament_list_get_signup_flags(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.get(reverse('v1:tournament-list'))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(len(data['results']), 1)
+        self.assertFalse(data['results'][0]['signup_open'])
+        self.assertFalse(data['results'][0]['is_before_signup'])
+        self.assertTrue(data['results'][0]['is_after_signup'])
 
     def test_tournament_list_get_unauthorized(self):
         client = APIClient()
@@ -78,7 +90,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
@@ -115,7 +128,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
@@ -135,7 +149,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
@@ -161,6 +176,17 @@ class Tournaments(TestCase):
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['detail'], 'Not found.')
 
+    def test_tournament_get_signup_flags(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.get(reverse('v1:tournament-detail',
+                                      kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertFalse(data['signup_open'])
+        self.assertFalse(data['is_before_signup'])
+        self.assertTrue(data['is_after_signup'])
+
     def test_tournament_put(self):
         client = APIClient()
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
@@ -175,7 +201,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
@@ -195,7 +222,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
@@ -216,7 +244,8 @@ class Tournaments(TestCase):
             'deadline_edit': '2017-01-01T00:00:00Z',
             'advertisement_url': 'http://www.google.de',
             'contact_email': 'test@byom.de',
-            'starting_fee': 60.0
+            'starting_fee': 60.0,
+            'number_of_places': 12
         })
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
@@ -232,20 +261,26 @@ class Tournaments(TestCase):
         self.assertEqual(Tournament.objects.all().count(), 0)
 
     def test_tournament_signup_open(self):
-        self.tournament.deadline_signup = timezone.now() + datetime.timedelta(days=1)
-        self.tournament.start_signup = timezone.now() - datetime.timedelta(days=1)
+        self.tournament.deadline_signup = timezone.now() + \
+                                          datetime.timedelta(days=1)
+        self.tournament.start_signup = timezone.now() - \
+            datetime.timedelta(days=1)
         self.tournament.save()
 
         self.assertTrue(self.tournament.signup_open())
 
-        self.tournament.deadline_signup = timezone.now() + datetime.timedelta(days=2)
-        self.tournament.start_signup = timezone.now() + datetime.timedelta(days=1)
+        self.tournament.deadline_signup = timezone.now() + \
+            datetime.timedelta(days=2)
+        self.tournament.start_signup = timezone.now() + \
+            datetime.timedelta(days=1)
         self.tournament.save()
 
         self.assertFalse(self.tournament.signup_open())
 
-        self.tournament.deadline_signup = timezone.now() - datetime.timedelta(days=1)
-        self.tournament.start_signup = timezone.now() - datetime.timedelta(days=2)
+        self.tournament.deadline_signup = timezone.now() - \
+            datetime.timedelta(days=1)
+        self.tournament.start_signup = timezone.now() - \
+            datetime.timedelta(days=2)
         self.tournament.save()
 
         self.assertFalse(self.tournament.signup_open())

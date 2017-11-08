@@ -8,6 +8,17 @@
 import { parseDate, parseDateToISOString } from '@/utils/helpers';
 import Transformer from './transformer';
 
+function displayTournamentDate(tournament) {
+  const startDate = parseDate(tournament.start_date);
+  const endDate = parseDate(tournament.end_date);
+  if (!startDate || !endDate) return undefined;
+
+  if (startDate.isSame(endDate, 'day')) {
+    return startDate.format('DD.MM.YYYY');
+  }
+  return `${startDate.format('DD.MM.YYYY')} - ${endDate.format('DD.MM.YYYY')}`;
+}
+
 export default class TournamentTransformer extends Transformer {
   /**
    * Method used to transform a fetched tournament
@@ -30,6 +41,10 @@ export default class TournamentTransformer extends Transformer {
       contactEmail: tournament.contact_email,
       signupOpen: tournament.signup_open,
       startingFee: tournament.starting_fee,
+      isBeforeSignup: tournament.is_before_signup,
+      isAfterSignup: tournament.is_after_signup,
+      numberOfPlaces: tournament.number_of_places,
+      tournamentDate: displayTournamentDate(tournament),
     };
   }
 
@@ -54,6 +69,7 @@ export default class TournamentTransformer extends Transformer {
       contact_email: tournament.contactEmail,
       signup_open: tournament.signupOpen,
       starting_fee: tournament.startingFee,
+      number_of_places: tournament.numberOfPlaces,
     };
   }
 }
