@@ -114,14 +114,12 @@ describe('Transformers', () => {
         const date = moment();
         let original = { start_date: date.format('DD.MM.YYYY'), end_date: date.format('DD.MM.YYYY') };
         let transformed = TournamentTransformer.fetch(original);
-        console.log(transformed);
         expect(transformed.tournamentDate).to.equal(date.format('DD.MM.YYYY'));
 
         const startDate = moment();
         const endDate = moment().add(1, 'day');
         original = { start_date: startDate.format('DD.MM.YYYY'), end_date: endDate.format('DD.MM.YYYY') };
         transformed = TournamentTransformer.fetch(original);
-        console.log(transformed);
 
         expect(transformed.tournamentDate).to.equal(startDate.format('DD.MM.YYYY') + ' - ' + endDate.format('DD.MM.YYYY'));
       });

@@ -13,6 +13,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     queryset = Team.objects.all().order_by('date_signup')
     permission_classes = (IsTrainerOrAdminOrReadOnly,)
     serializer_class = TeamSerializer
+    pagination_class = None
 
     def get_serializer_context(self):
         return {'request': self.request}

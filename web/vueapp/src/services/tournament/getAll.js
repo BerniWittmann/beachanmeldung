@@ -20,7 +20,7 @@ const failed = () => {
 export default () =>
   Vue.$http.get('/tournaments/')
     .then((response) => {
-      success(response.data.results);
+      success(response.data);
     }).catch((error) => {
       failed(error);
     });
