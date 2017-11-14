@@ -17,7 +17,8 @@ class Tournaments(TestCase):
                     deadline_edit='2017-01-01T00:00:00Z',
                     advertisement_url='http://www.google.de',
                     contact_email='test@byom.de',
-                    starting_fee=60.0
+                    starting_fee=60.0,
+                    number_of_places=23
                     )
 
     def test_tournament_is_signup_open(self):

@@ -11,9 +11,7 @@ class PasswordResetTestCase(TestCase):
     user = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de',
-                                          first_name='Test',
-                                          last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
         self.user.set_password('test123')
         self.user.is_verified = True
         self.user.save()
@@ -67,9 +65,7 @@ class PasswordResetTestCase(TestCase):
                             code_before)
 
     def test_reset_password_code_dont_delete_other_users_codes(self):
-        other_user = MyUser.objects.create(email='other-test@byom.de',
-                                           first_name='Other',
-                                           last_name='User')
+        other_user = MyUser.objects.create(email='other-test@byom.de', first_name='Other', last_name='User')
         other_user.set_password('test123')
         other_user.is_verified = True
         other_user.save()

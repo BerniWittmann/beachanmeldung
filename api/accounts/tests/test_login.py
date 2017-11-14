@@ -10,9 +10,7 @@ token_regex = '^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
 
 class LoginTestCase(TestCase):
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de',
-                                     first_name='Test',
-                                     last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
         user.set_password('test123')
         user.is_verified = True
         user.save()

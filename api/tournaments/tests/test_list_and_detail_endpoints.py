@@ -20,8 +20,7 @@ class Tournaments(TestCase):
     tournament = None
 
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de', first_name='Test',
-                                     last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
         user.set_password('test123')
         user.is_verified = True
         user.is_staff = True
@@ -95,12 +94,12 @@ class Tournaments(TestCase):
         })
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(data['id'], 2)
+        self.assertGreater(data['id'], 1)
         self.assertEqual(data['name'], 'New Turnier')
         self.assertTrue(data['signup_open'])
 
         self.assertEqual(Tournament.objects.all().count(), 2)
-        self.assertEqual(Tournament.objects.last().id, 2)
+        self.assertGreater(Tournament.objects.last().id, 1)
         self.assertEqual(Tournament.objects.last().name, 'New Turnier')
         self.assertIsNotNone(Tournament.objects.last().start_signup)
 

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'authemail',
     'api.accounts.apps.AccountsConfig',
     'api.tournaments.apps.TournamentsConfig',
+    'api.team.apps.TeamConfig',
 ]
 
 MIDDLEWARE = [

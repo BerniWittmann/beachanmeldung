@@ -15,9 +15,7 @@ class ResendVerificationTestCase(TestCase):
     user = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de',
-                                          first_name='Test',
-                                          last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
         self.user.set_password('test123')
         self.user.is_verified = False
         self.user.save()

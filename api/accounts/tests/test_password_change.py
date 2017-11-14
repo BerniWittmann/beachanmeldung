@@ -14,9 +14,7 @@ class PasswordChangeTestCase(TestCase):
     token = None
 
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de',
-                                     first_name='Test',
-                                     last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
         user.set_password('test123')
         user.is_verified = True
         user.save()

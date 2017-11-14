@@ -29,7 +29,7 @@ class CustomLogin(Login):
                 if user.is_active:
                     payload = jwt_payload_handler(user)
                     token = jwt_encode_handler(payload)
-                    get_user_model().objects.filter(pk=user.pk)\
+                    get_user_model().objects.filter(pk=user.pk) \
                         .update(last_login=now())
                     return Response({'token': token},
                                     status=status.HTTP_200_OK)
