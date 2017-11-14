@@ -1,16 +1,12 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
+from rest_framework.response import Response
 
 from api.permissions import IsTrainerOrAdminOrReadOnly
-from api.tournaments.models import Tournament
 from .models import Team
 from .serializers import TeamSerializer
-from api.accounts.serializers import UserSerializer
-from api.tournaments.serializers import TournamentSerializer
-from rest_framework.response import Response
-from rest_framework.renderers import JSONRenderer
-from django.utils.translation import gettext_lazy as _
 
 
 class TeamViewSet(viewsets.ModelViewSet):
