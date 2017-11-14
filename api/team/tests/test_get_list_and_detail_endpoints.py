@@ -1,14 +1,13 @@
-import datetime
+import json
+
+from django.core.urlresolvers import reverse
 from django.test import TestCase
-from django.utils import timezone
+from rest_framework.test import APIClient
+from rest_framework_jwt.settings import api_settings
 
 from api.accounts.models import MyUser
-from api.tournaments.models import Tournament
 from api.team.models import Team
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
-import json
-from rest_framework_jwt.settings import api_settings
+from api.tournaments.models import Tournament
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -93,11 +92,3 @@ class Teams(TestCase):
         self.assertEqual(response.status_code, 404)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['detail'], 'Not found.')
-
-    def test_team_delete(self):
-        client = APIClient()
-        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
-        response = client.delete(reverse('v1:team-detail',
-                                         kwargs={'pk': self.team.id}))
-        self.assertEqual(response.status_code, 204)
-        self.assertEqual(Team.objects.all().count(), 0)
