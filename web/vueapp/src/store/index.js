@@ -16,6 +16,7 @@ import account from './modules/account';
 import auth from './modules/auth';
 import loading from './modules/loading';
 import tournament from './modules/tournament';
+import team from './modules/team';
 
 Vue.use(Vuex);
 
@@ -30,6 +31,7 @@ export default new Vuex.Store({
     auth,
     loading,
     tournament,
+    team,
   },
 
   /**

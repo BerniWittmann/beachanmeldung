@@ -55,7 +55,7 @@ describe('Transformers', () => {
         original = { start_date: startDate.format('DD.MM.YYYY'), end_date: endDate.format('DD.MM.YYYY') };
         transformed = TournamentTransformer.fetch(original);
 
-        expect(transformed.tournamentDate).to.equal(startDate.format('DD.MM.YYYY') + ' - ' + endDate.format('DD.MM.YYYY'));
+        expect(transformed.tournamentDate).to.equal(`${startDate.format('DD.MM.YYYY')} - ${endDate.format('DD.MM.YYYY')}`);
       });
       it('should resolve all given attributes correctly', () => {
         const original = {

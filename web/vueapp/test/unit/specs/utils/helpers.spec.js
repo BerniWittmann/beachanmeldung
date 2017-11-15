@@ -32,7 +32,7 @@ describe('Utils', () => {
     describe('getDateTimeByKey', () => {
       it('should get date and time from an object by key', () => {
         const obj = {
-          testKey: moment()
+          testKey: moment(),
         };
         expect(getDateTimeByKey(obj, 'testKey')).to.deep.equal({
           date: obj.testKey.format('DD.MM.YYYY'),
