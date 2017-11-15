@@ -1,13 +1,14 @@
 import datetime
+import json
+
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
+from rest_framework.test import APIClient
+from rest_framework_jwt.settings import api_settings
 
 from api.accounts.models import MyUser
 from api.tournaments.models import Tournament
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
-import json
-from rest_framework_jwt.settings import api_settings
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -47,9 +48,9 @@ class Tournaments(TestCase):
         response = client.get(reverse('v1:tournament-list'))
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(data['results']), 1)
-        self.assertEqual(data['results'][0]['name'], 'Test Turnier')
-        self.assertGreaterEqual(data['results'][0]['id'], 1)
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]['name'], 'Test Turnier')
+        self.assertGreaterEqual(data[0]['id'], 1)
 
     def test_tournament_list_get_signup_flags(self):
         client = APIClient()
@@ -57,10 +58,10 @@ class Tournaments(TestCase):
         response = client.get(reverse('v1:tournament-list'))
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(data['results']), 1)
-        self.assertFalse(data['results'][0]['signup_open'])
-        self.assertFalse(data['results'][0]['is_before_signup'])
-        self.assertTrue(data['results'][0]['is_after_signup'])
+        self.assertEqual(len(data), 1)
+        self.assertFalse(data[0]['signup_open'])
+        self.assertFalse(data[0]['is_before_signup'])
+        self.assertTrue(data[0]['is_after_signup'])
 
     def test_tournament_list_get_unauthorized(self):
         client = APIClient()
@@ -68,8 +69,8 @@ class Tournaments(TestCase):
         self.assertNotEqual(response.status_code, 401)
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(data['results']), 1)
-        self.assertEqual(data['results'][0]['name'], 'Test Turnier')
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]['name'], 'Test Turnier')
 
     def test_tournament_list_get_invalid_token(self):
         client = APIClient()

@@ -7,4 +7,5 @@ from rest_framework.response import Response
 class NotFoundView:
     @api_view(['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS'])
     def raise_404(self):
-        return Response({'details': _('Route Not Found')}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'details': _('Route Not Found')},
+                        status=status.HTTP_404_NOT_FOUND)

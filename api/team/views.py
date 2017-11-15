@@ -1,7 +1,6 @@
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
+from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from api.permissions import IsTrainerOrAdminOrReadOnly
@@ -24,11 +23,7 @@ class TeamViewSet(viewsets.ModelViewSet):
             'name': request.data.get('name'),
             'beachname': request.data.get('beachname'),
         }
-        try:
-            team = Team.objects.get(pk=pk)
-        except ObjectDoesNotExist:
-            return Response(_('Team not found'), status=status.HTTP_404_NOT_FOUND)
-
+        team = get_object_or_404(Team.objects.all(), pk=pk)
         self.check_object_permissions(self.request, team)
 
         serializer = TeamSerializer(team, data=data, partial=True, context={'request': self.request, 'team_id': pk})

@@ -1,15 +1,10 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
-from djchoices import DjangoChoices, ChoiceItem
-from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
+from djmoney.models.fields import MoneyField
 
-
-class TournamentGenderTypes(DjangoChoices):
-    female = ChoiceItem()
-    male = ChoiceItem()
-    mixed = ChoiceItem()
+from api.enums import TeamStateTypes, TournamentGenderTypes
 
 
 class Tournament(models.Model):
@@ -30,6 +25,24 @@ class Tournament(models.Model):
                               decimal_places=2,
                               default_currency='EUR')
     number_of_places = models.PositiveIntegerField()
+
+    def active_teams(self):
+        return self.teams.exclude(state=TeamStateTypes.denied)
+
+    def total_count_teams(self):
+        return self.active_teams().count()
+
+    def count_signed_up_teams(self):
+        return self.active_teams().filter(state=TeamStateTypes.signed_up).count()
+
+    def free_places(self):
+        return self.number_of_places - self.count_signed_up_teams()
+
+    def waitlist_count(self):
+        return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval, TeamStateTypes.waiting]).count()
+
+    def approval_count(self):
+        return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval]).count()
 
     def signup_open(self):
         return self.deadline_signup > timezone.now() >= self.start_signup

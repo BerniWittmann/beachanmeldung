@@ -13,3 +13,5 @@ __pycache__
 /htmlcov/
 /.coverage
 *.pyc
+/pre-commit-hook.sh
+pre-commit-hook.sh

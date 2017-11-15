@@ -62,7 +62,7 @@ class Teams(TestCase):
             tournament=self.tournament,
             trainer=self.user,
         )
-        other_team = Team.objects.create(
+        Team.objects.create(
             name='Other Team',
             beachname='Another Name',
             tournament=other_tournament,

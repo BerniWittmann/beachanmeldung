@@ -1,21 +1,26 @@
 from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import serializers
-from .models import Team, TeamStateTypes
-from api.tournaments.serializers import TournamentSerializer
-from api.tournaments.models import Tournament
-from api.accounts.serializers import UserSerializer
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
+from rest_framework import serializers
+
+from api.accounts.serializers import UserSerializer
+from api.enums import TeamStateTypes
+from api.tournaments.models import Tournament
+from api.tournaments.serializers import TournamentSerializer
+from .models import Team
 
 
 class TeamSerializer(serializers.Serializer):
     id = serializers.IntegerField(label='ID', read_only=True)
     name = serializers.CharField(max_length=200, required=True)
-    beachname = serializers.CharField(allow_blank=True, allow_null=True, max_length=400, required=True)
+    beachname = serializers.CharField(allow_blank=True,
+                                      allow_null=True,
+                                      max_length=400,
+                                      required=True)
     date_signup = serializers.DateTimeField(read_only=True)
-    state = serializers.ChoiceField(choices=TeamStateTypes.choices, read_only=True)
+    state = serializers.ChoiceField(choices=TeamStateTypes.choices,
+                                    read_only=True)
     paid = serializers.BooleanField(read_only=True)
-    trainer = UserSerializer(required=False)
+    trainer = serializers.SerializerMethodField(required=False)
     tournament = TournamentSerializer(required=False)
     is_displayed = serializers.ReadOnlyField(read_only=True)
     complete_name = serializers.ReadOnlyField(read_only=True)
@@ -23,7 +28,8 @@ class TeamSerializer(serializers.Serializer):
 
     def validate(self, data):
         try:
-            tournament = Tournament.objects.get(pk=data.get('tournament_id')) if not self.instance else self.instance.tournament
+            tournament = Tournament.objects.get(pk=data.get('tournament_id')) \
+                if not self.instance else self.instance.tournament
         except ObjectDoesNotExist:
             raise serializers.ValidationError(
                 _('Tournament not Found')
@@ -56,3 +62,10 @@ class TeamSerializer(serializers.Serializer):
                                   tournament=tournament)
         obj.save()
         return obj
+
+    def get_trainer(self, obj):
+        request = self.context['request']
+        if request.user and (request.user.is_staff or request.user == obj.trainer):
+            return UserSerializer(obj.trainer).data
+
+        return {}

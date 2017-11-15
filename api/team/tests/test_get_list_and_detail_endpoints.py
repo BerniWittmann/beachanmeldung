@@ -55,9 +55,9 @@ class Teams(TestCase):
         response = client.get(reverse('v1:team-list'))
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(data['results']), 1)
-        self.assertEqual(data['results'][0]['name'], 'TSV Ismaning')
-        self.assertGreaterEqual(data['results'][0]['id'], 1)
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]['name'], 'TSV Ismaning')
+        self.assertGreaterEqual(data[0]['id'], 1)
 
     def test_team_list_get_unauthorized(self):
         client = APIClient()
@@ -65,8 +65,8 @@ class Teams(TestCase):
         self.assertNotEqual(response.status_code, 401)
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(len(data['results']), 1)
-        self.assertEqual(data['results'][0]['name'], 'TSV Ismaning')
+        self.assertEqual(len(data), 1)
+        self.assertEqual(data[0]['name'], 'TSV Ismaning')
 
     def test_team_list_get_invalid_token(self):
         client = APIClient()
@@ -83,6 +83,7 @@ class Teams(TestCase):
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['name'], 'TSV Ismaning')
         self.assertGreaterEqual(data['id'], 1)
+        self.assertNotEqual(data['trainer'], {})
 
     def test_team_get_unkown(self):
         client = APIClient()
@@ -92,3 +93,21 @@ class Teams(TestCase):
         self.assertEqual(response.status_code, 404)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['detail'], 'Not found.')
+
+    def test_team_get_as_other_trainer(self):
+        other_user = MyUser.objects.create_user(email='newuser@byom.de', first_name='Another', last_name='User')
+        other_user.set_password('test123')
+        other_user.is_verified = True
+        other_user.is_staff = False
+        other_user.save()
+        other_payload = jwt_payload_handler(other_user)
+        other_token = jwt_encode_handler(other_payload)
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + other_token)
+        response = client.get(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}))
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(data['id'], self.team.id)
+        self.assertEqual(data['trainer'], {})

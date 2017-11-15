@@ -1,15 +1,9 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+
+from api.enums import TeamStateTypes
 from api.tournaments.models import Tournament
-from djchoices import DjangoChoices, ChoiceItem
-
-
-class TeamStateTypes(DjangoChoices):
-    waiting = ChoiceItem()
-    signed_up = ChoiceItem()
-    needs_approval = ChoiceItem()
-    denied = ChoiceItem()
 
 
 class Team(models.Model):

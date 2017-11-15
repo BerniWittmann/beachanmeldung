@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Team
 
 
@@ -8,7 +9,7 @@ class TeamAdmin(admin.ModelAdmin):
         (None, {'fields': ('name', 'beachname',)}),
         ('Date', {'fields': ('date_signup',)}),
         ('Status', {'fields': ('state',
-                                  'paid',)}),
+                               'paid',)}),
         ('Relations', {'fields': ('trainer', 'tournament',)})
     )
 

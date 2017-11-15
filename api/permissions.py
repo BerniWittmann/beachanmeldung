@@ -33,4 +33,5 @@ class IsTrainerOrAdminOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to admin users or the trainer
-        return request.user.is_staff or obj.trainer is not None and obj.trainer == request.user
+        return request.user.is_staff or obj.trainer is not None and\
+            obj.trainer == request.user
