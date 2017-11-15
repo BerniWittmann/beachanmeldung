@@ -4,72 +4,6 @@ import moment from 'moment';
 describe('Transformers', () => {
   describe('Tournament', () => {
     describe('should fetch a tournament', () => {
-      it('should resolve the id correctly', () => {
-        const original = { id: 1 };
-        const transformed = {
-          id: 1,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the name correctly', () => {
-        const original = { name: 'Test' };
-        const transformed = {
-          id: undefined,
-          name: 'Test',
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the gender correctly', () => {
-        const original = { gender: 'male' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: 'male',
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
       it('should resolve the startDate correctly', () => {
         const date = moment();
         const original = { start_date: date.format('DD.MM.YYYY') };
@@ -123,160 +57,6 @@ describe('Transformers', () => {
 
         expect(transformed.tournamentDate).to.equal(startDate.format('DD.MM.YYYY') + ' - ' + endDate.format('DD.MM.YYYY'));
       });
-      it('should resolve the advertisement Url correctly', () => {
-        const original = { advertisement_url: 'http://www.google.de' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: 'http://www.google.de',
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the contact Email correctly', () => {
-        const original = { contact_email: 'test@byom.de' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: 'test@byom.de',
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the signup Open state correctly', () => {
-        const original = { signup_open: true };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: true,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the starting Fee correctly', () => {
-        const original = { starting_fee: 60.00 };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: 60.00,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the is After Signup correctly', () => {
-        const original = { is_after_signup: true };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: true,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the is Before Signup correctly', () => {
-        const original = { is_before_signup: true };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: true,
-          isAfterSignup: undefined,
-          numberOfPlaces: undefined,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the number of places correctly', () => {
-        const original = { number_of_places: 12 };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          startDate: undefined,
-          endDate: undefined,
-          startSignup: undefined,
-          deadlineSignup: undefined,
-          deadlineEdit: undefined,
-          advertisementUrl: undefined,
-          contactEmail: undefined,
-          signupOpen: undefined,
-          startingFee: undefined,
-          isBeforeSignup: undefined,
-          isAfterSignup: undefined,
-          numberOfPlaces: 12,
-          tournamentDate: undefined,
-        };
-        expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
-      });
       it('should resolve all given attributes correctly', () => {
         const original = {
           id: 1,
@@ -294,7 +74,11 @@ describe('Transformers', () => {
           is_before_signup: false,
           is_after_signup: false,
           number_of_places: 12,
-          tournamentDate: undefined,
+          total_count_teams: 3,
+          count_signed_up_teams: 2,
+          free_places: 10,
+          waitlist_count: 2,
+          approval_count: 1,
         };
         const transformed = {
           id: 1,
@@ -313,6 +97,11 @@ describe('Transformers', () => {
           isAfterSignup: false,
           numberOfPlaces: 12,
           tournamentDate: undefined,
+          totalCountTeams: 3,
+          countSignedUpTeams: 2,
+          freePlaces: 10,
+          waitlistCount: 2,
+          approvalCount: 1,
         };
         expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -335,264 +124,17 @@ describe('Transformers', () => {
           isAfterSignup: undefined,
           numberOfPlaces: undefined,
           tournamentDate: undefined,
+          totalCountTeams: undefined,
+          countSignedUpTeams: undefined,
+          freePlaces: undefined,
+          waitlistCount: undefined,
+          approvalCount: undefined,
         };
         expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
       });
     });
 
     describe('should send a single tournament', () => {
-      it('should resolve the id correctly', () => {
-        const original = { id: 1 };
-        const transformed = {
-          id: 1,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the name correctly', () => {
-        const original = { name: 'Test' };
-        const transformed = {
-          id: undefined,
-          name: 'Test',
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the gender correctly', () => {
-        const original = { gender: 'male' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: 'male',
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the startDate correctly', () => {
-        const date = moment();
-        const original = { startDate: date };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: date.toISOString(),
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the endDate correctly', () => {
-        const date = moment();
-        const original = { endDate: date };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: date.toISOString(),
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the start Signup correctly', () => {
-        const date = moment();
-        const original = { startSignup: date };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: date.toISOString(),
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the deadline Signup correctly', () => {
-        const date = moment();
-        const original = { deadlineSignup: date };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: date.toISOString(),
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the deadline Edit correctly', () => {
-        const date = moment();
-        const original = { deadlineEdit: date };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: date.toISOString(),
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the advertisement Url correctly', () => {
-        const original = { advertisementUrl: 'http://www.google.de' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: 'http://www.google.de',
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the contact Email correctly', () => {
-        const original = { contactEmail: 'test@byom.de' };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: 'test@byom.de',
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the signup Open state correctly', () => {
-        const original = { signupOpen: true };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: true,
-          starting_fee: undefined,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the starting Fee correctly', () => {
-        const original = { startingFee: 60.00 };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: 60.00,
-          number_of_places: undefined,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
-      it('should resolve the number Of Places correctly', () => {
-        const original = { numberOfPlaces: 12 };
-        const transformed = {
-          id: undefined,
-          name: undefined,
-          gender: undefined,
-          start_date: undefined,
-          end_date: undefined,
-          start_signup: undefined,
-          deadline_signup: undefined,
-          deadline_edit: undefined,
-          advertisement_url: undefined,
-          contact_email: undefined,
-          signup_open: undefined,
-          starting_fee: undefined,
-          number_of_places: 12,
-        };
-        expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
-      });
       it('should resolve all given attributes correctly', () => {
         const date = moment();
         const original = {
@@ -608,7 +150,12 @@ describe('Transformers', () => {
           contactEmail: 'test@byom.de',
           signupOpen: true,
           startingFee: 60.00,
-          numberOfPlaces: undefined,
+          numberOfPlaces: 12,
+          totalCountTeams: undefined,
+          countSignedUpTeams: undefined,
+          freePlaces: undefined,
+          waitlistCount: undefined,
+          approvalCount: undefined,
         };
         const transformed = {
           id: 1,
@@ -623,7 +170,7 @@ describe('Transformers', () => {
           contact_email: 'test@byom.de',
           signup_open: true,
           starting_fee: 60.00,
-          number_of_places: undefined,
+          number_of_places: 12,
         };
         expect(TournamentTransformer.send(original)).to.deep.equal(transformed);
       });

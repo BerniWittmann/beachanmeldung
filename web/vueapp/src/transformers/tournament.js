@@ -45,6 +45,11 @@ export default class TournamentTransformer extends Transformer {
       isAfterSignup: tournament.is_after_signup,
       numberOfPlaces: tournament.number_of_places,
       tournamentDate: displayTournamentDate(tournament),
+      totalCountTeams: tournament.total_count_teams,
+      countSignedUpTeams: tournament.count_signed_up_teams,
+      freePlaces: tournament.free_places,
+      waitlistCount: tournament.waitlist_count,
+      approvalCount: tournament.approval_count,
     };
   }
 
