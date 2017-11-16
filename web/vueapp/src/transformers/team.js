@@ -5,10 +5,14 @@
  * The transformer for the Team.
  */
 
-import { parseDate } from '@/utils/helpers';
+import { parseDate, checkObjectEmpty } from '@/utils/helpers';
 import Transformer from './transformer';
 import TournamentTransformer from './tournament';
 import AccountTransformer from './account';
+
+function fetchTrainer(trainer) {
+  return checkObjectEmpty(trainer) ? undefined : AccountTransformer(trainer);
+}
 
 export default class TeamTransformer extends Transformer {
   /**
@@ -26,7 +30,7 @@ export default class TeamTransformer extends Transformer {
       dateSignup: parseDate(team.date_signup),
       state: team.state,
       paid: team.paid,
-      trainer: team.trainer ? AccountTransformer.fetch(team.trainer) : undefined,
+      trainer: fetchTrainer(team.trainer),
       tournament: team.tournament ? TournamentTransformer.fetch(team.tournament) : undefined,
       isDisplayed: team.is_displayed,
       completeName: team.complete_name,

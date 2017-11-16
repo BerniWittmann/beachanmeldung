@@ -6,6 +6,8 @@
  */
 
 import tournamentService from '@/services/tournament';
+import teamService from '@/services/team';
+
 /**
  * The routes
  *
@@ -124,7 +126,10 @@ export default [
     },
 
     beforeEnter: (to, from, next) => {
-      tournamentService.getByID(to.params.tournamentID).then(next);
+      Promise.all([
+        tournamentService.getByID(to.params.tournamentID),
+        teamService.getAll(),
+      ]).then(next);
     },
   },
 

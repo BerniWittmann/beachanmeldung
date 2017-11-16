@@ -20,5 +20,6 @@
   "number_of_places": "Gesamtanzahl Plätze",
   "display_date_time": "{datetime} Uhr",
   "advertisement": "Ausschreibung",
-  "contact": "Kontakt"
+  "contact": "Kontakt",
+  "deadline_signup": "Ende des Anmeldezeitraums"
 }

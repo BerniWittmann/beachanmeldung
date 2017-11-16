@@ -1,4 +1,4 @@
-import { parseDate, parseDateToISOString, getDateTimeByKey } from '@/utils/helpers';
+import { parseDate, parseDateToISOString, getDateTimeByKey, checkObjectEmpty } from '@/utils/helpers';
 import moment from 'moment';
 
 describe('Utils', () => {
@@ -57,6 +57,26 @@ describe('Utils', () => {
           date: undefined,
           time: undefined,
         });
+      });
+    });
+
+    describe('checkObjectEmpty', () => {
+      it('should return true for an empty object', () => {
+        expect(checkObjectEmpty({})).to.be.true;
+      });
+
+      it('should return true for undefined or null', () => {
+        expect(checkObjectEmpty(undefined)).to.be.true;
+        expect(checkObjectEmpty(null)).to.be.true;
+      });
+
+      it('should return false for a normal object', () => {
+        expect(checkObjectEmpty({ foo: 'bar' })).to.be.false;
+      });
+
+      it('should return false for a date object', () => {
+        expect(checkObjectEmpty(new Date())).to.be.false;
+        expect(checkObjectEmpty(moment())).to.be.false;
       });
     });
   });

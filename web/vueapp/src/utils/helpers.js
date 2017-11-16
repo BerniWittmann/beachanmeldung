@@ -21,3 +21,8 @@ export function getDateTimeByKey(obj, key) {
     time: datetime.format('HH:mm'),
   };
 }
+
+export function checkObjectEmpty(obj) {
+  if (!obj) return true;
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
