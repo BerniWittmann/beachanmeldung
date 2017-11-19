@@ -21,38 +21,52 @@
                 <div class="tournament-body-information">
                     <el-row>
                         <el-col class="tournament-body-information-row" :xl="8" :lg="8" :md="8" :sm="24" :xs="24">
-                            <el-tooltip class="item" effect="dark" :content="$t('tournament.date_of_tournament')" placement="top-start">
+                            <el-tooltip class="item" effect="dark" :content="$t('tournament.date_of_tournament')"
+                                        placement="top-start">
                                 <i class="el-icon-date"></i>
                             </el-tooltip>
                             <p>{{ tournament.tournamentDate }}</p>
                         </el-col>
                         <el-col class="tournament-body-information-row" :xl="4" :lg="4" :md="4" :sm="12" :xs="24">
-                            <el-tooltip class="item" effect="dark" :content="$t('tournament.starting_fee')" placement="top-start">
+                            <el-tooltip class="item" effect="dark" :content="$t('tournament.starting_fee')"
+                                        placement="top-start">
                                 <i>€</i>
                             </el-tooltip>
                             <p>{{ tournament.startingFee }}</p>
                         </el-col>
                         <el-col class="tournament-body-information-row" :xl="4" :lg="4" :md="4" :sm="12" :xs="24">
-                            <el-tooltip class="item" effect="dark" :content="$t('tournament.number_of_places')" placement="top-start">
+                            <el-tooltip class="item" effect="dark" :content="$t('tournament.number_of_places')"
+                                        placement="top-start">
                                 <i class="el-icon-tickets"></i>
                             </el-tooltip>
                             <p>{{ tournament.numberOfPlaces }}</p>
                         </el-col>
                         <el-col class="tournament-body-information-row" :xl="8" :lg="8" :md="8" :sm="24" :xs="24">
-                            <el-tooltip class="item" effect="dark" :content="$t('tournament.deadline_signup')" placement="top-start">
+                            <el-tooltip class="item" effect="dark" :content="$t('tournament.deadline_signup')"
+                                        placement="top-start">
                                 <i class="el-icon-edit-outline"></i>
                             </el-tooltip>
-                            <p>{{ $t('tournament.display_date_time', { datetime: tournament.deadlineSignup.format('DD.MM.YYYY HH:mm') } ) }}</p>
+                            <p>
+                                {{ $t('tournament.display_date_time', { datetime: tournament.deadlineSignup.format('DD.MM.YYYY HH:mm') })
+                                }}</p>
                         </el-col>
                     </el-row>
                 </div>
                 <div class="tournament-body-contact-buttons">
                     <a :href="tournament.advertisementUrl" target="_blank">
-                        <el-button type="info" icon="el-icon-document" round>{{ $t('tournament.advertisement') }}</el-button>
+                        <el-button type="info" icon="el-icon-document" round>{{ $t('tournament.advertisement') }}
+                        </el-button>
                     </a>
                     <a :href="`mailto:${tournament.contactEmail}`">
                         <el-button type="info" icon="el-icon-message" round>{{ $t('tournament.contact') }}</el-button>
                     </a>
+                </div>
+                <div class="tournament-body-lists">
+                    <h2>{{ $t('tournament.list_signed_up') }}</h2>
+                    <v-team-teable :teams="signedUpTeams" :max-count="tournament.numberOfPlaces"></v-team-teable>
+                    <br>
+                    <h2>{{ $t('tournament.list_waiting') }}</h2>
+                    <v-team-teable :teams="waitingTeams"></v-team-teable>
                 </div>
             </el-col>
         </el-row>
@@ -68,17 +82,31 @@
    */
 
   import { getDateTimeByKey } from '@/utils/helpers';
+  import { teamStates, waitingListTeamStates } from '@/utils/constants';
 
   export default {
     components: {
       VLayout: require('@/layouts/default.vue'),
       VLinkButton: require('@/components/linkButton.vue'),
       VTournamentName: require('@/components/tournamentName.vue'),
+      VTeamTeable: require('@/components/teamTable.vue'),
     },
 
     computed: {
       tournament() {
         return this.$store.state.tournament.activeTournament;
+      },
+
+      teams() {
+        return this.$store.getters['team/teamsByTournament'](this.tournament.id);
+      },
+
+      signedUpTeams() {
+        return this.teams.filter(single => single.state === teamStates.signedUp);
+      },
+
+      waitingTeams() {
+        return this.teams.filter(single => waitingListTeamStates.includes(single.state));
       },
     },
 

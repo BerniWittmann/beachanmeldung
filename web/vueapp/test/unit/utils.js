@@ -40,7 +40,7 @@ function getTestComponent() {
 }
 
 // helper for testing action with expected mutations
-function testAction(action, payload, state, expectedMutations, done) {
+function testAction(action, payload, state, expectedMutations, done, dispatch) {
   let count = 0;
 
   // mock commit
@@ -62,8 +62,13 @@ function testAction(action, payload, state, expectedMutations, done) {
     }
   };
 
-  // call the action with mocked store and arguments
-  action({ commit, state }, payload);
+  if (dispatch) {
+    // call the action with mocked store and arguments
+    action({ commit, state, dispatch }, payload);
+  } else {
+    // call the action with mocked store and arguments
+    action({ commit, state }, payload);
+  }
 
   // check if no mutations should have been dispatched
   if (expectedMutations.length === 0) {

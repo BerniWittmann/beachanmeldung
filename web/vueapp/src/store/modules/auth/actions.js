@@ -16,7 +16,8 @@ export const login = ({ commit }, payload) => {
   commit(types.LOGIN, payload);
 };
 
-export const logout = ({ commit }) => {
+export const logout = ({ commit, dispatch }) => {
+  dispatch('account/store', {}, { root: true });
   commit(types.LOGOUT);
 };
 

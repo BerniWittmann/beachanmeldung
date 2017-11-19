@@ -1,0 +1,29 @@
+{
+  "notifications": {
+    "get": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Die Teams konnten nicht geladen werden"
+      }
+    },
+    "post": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Das Team konnte nicht erstellt werden"
+      }
+    },
+    "put": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Das Team konnte nicht geändert werden"
+      }
+    }
+  },
+  "approve": "Anmeldung bestätigen",
+  "sign_up": "Verbindlich anmelden",
+  "move_to_waitlist": "Auf Warteliste verschieben",
+  "edit": "Bearbeiten",
+  "mark_paid": "Als Bezahlt markieren",
+  "mark_unpaid": "Als Nicht Bezahlt markieren",
+  "needs_approval": "Wartet auf Bestätigung"
+}

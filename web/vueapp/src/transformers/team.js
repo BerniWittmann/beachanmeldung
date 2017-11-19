@@ -11,7 +11,7 @@ import TournamentTransformer from './tournament';
 import AccountTransformer from './account';
 
 function fetchTrainer(trainer) {
-  return checkObjectEmpty(trainer) ? undefined : AccountTransformer(trainer);
+  return checkObjectEmpty(trainer) ? undefined : AccountTransformer.fetch(trainer);
 }
 
 export default class TeamTransformer extends Transformer {

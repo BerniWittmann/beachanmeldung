@@ -142,7 +142,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -156,7 +156,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -170,7 +170,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -196,10 +196,9 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.update({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.update({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
-          const lastreq = moxios.requests.mostRecent();
           expect(onFulfilled.called).to.equal(true);
           done();
         });
@@ -211,7 +210,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.update({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.update({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -225,7 +224,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.update({ id: 1, name: 'Test Team'}).then(onFulfilled);
+        teamService.update({ id: 1, name: 'Test Team' }).then(onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);

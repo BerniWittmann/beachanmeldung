@@ -2,6 +2,7 @@ import auth from '@/store/modules/auth';
 import Vue from 'vue';
 import { CHECK, LOGIN, LOGOUT } from '@/store/modules/auth/mutation-types';
 import utils from '../../utils';
+import sinon from 'sinon';
 
 describe('Vuex Modules', () => {
   describe('Auth', () => {
@@ -75,7 +76,7 @@ describe('Vuex Modules', () => {
       it('logout', (done) => {
         utils.testAction(auth.actions.logout, null, {}, [
           { type: 'LOGOUT' },
-        ], done);
+        ], done, sinon.stub());
       });
     });
 

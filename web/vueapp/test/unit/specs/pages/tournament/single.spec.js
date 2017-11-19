@@ -2,11 +2,13 @@ import TournamentSingle from '@/pages/tournament/single';
 import Vuex from 'vuex';
 import utils from '../../../utils';
 import moment from 'moment';
+import { teamStates } from "@/utils/constants";
 
 describe('Pages', () => {
   describe('Tournament Single', () => {
     const state = {
       auth: { authenticated: false },
+      account: { isStaff: true },
       tournament: {
         activeTournament: {
           id: 1,
@@ -25,10 +27,29 @@ describe('Pages', () => {
         }
       },
     };
+    const getters = {
+      ['team/teamsByTournament']: (state) => ((id) => {
+        if (id !== 1) return [];
+        return [{
+          id: 12,
+          name: 'TSV Ismaning',
+          beachname: 'THC Eh Drin!',
+          completeName: 'THC Eh Drin! (TSV Ismaning)',
+          state: teamStates.signedUp,
+        }, {
+          id: 13,
+          name: 'TSV Ismaning',
+          beachname: 'Anderes Team',
+          completeName: 'Anderes Team (TSV Ismaning)',
+          state: teamStates.waiting,
+        }];
+      }),
+    };
     let store;
     beforeEach(() => {
       store = new Vuex.Store({
         state,
+        getters,
       });
     });
 
@@ -55,6 +76,23 @@ describe('Pages', () => {
     it('should contain a link to the contact Email', () => {
       const vm = utils.mountComponent(TournamentSingle, { store });
       expect(vm.first('.tournament-body').find('a')[1].hasAttribute('href', `mailto:${store.state.tournament.activeTournament.contactEmail}`)).to.be.true;
+    });
+
+    it('should contain a computed property for signed up teams', () => {
+      const vm = utils.mountComponent(TournamentSingle, { store });
+      expect(vm.vm.signedUpTeams.length).to.equal(1);
+      expect(vm.vm.signedUpTeams[0].id).to.equal(12);
+    });
+
+    it('should contain two team tables', () => {
+      const vm = utils.mountComponent(TournamentSingle, { store });
+      expect(vm.find('.el-table').length).to.equal(2);
+    });
+
+    it('should contain a computed property for waiting teams', () => {
+      const vm = utils.mountComponent(TournamentSingle, { store });
+      expect(vm.vm.waitingTeams.length).to.equal(1);
+      expect(vm.vm.waitingTeams[0].id).to.equal(13);
     });
   });
 });

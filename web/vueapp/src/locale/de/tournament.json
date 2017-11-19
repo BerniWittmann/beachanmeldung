@@ -21,5 +21,7 @@
   "display_date_time": "{datetime} Uhr",
   "advertisement": "Ausschreibung",
   "contact": "Kontakt",
-  "deadline_signup": "Ende des Anmeldezeitraums"
+  "deadline_signup": "Ende des Anmeldezeitraums",
+  "list_signed_up": "Meldeliste",
+  "list_waiting": "Warteliste"
 }
