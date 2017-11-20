@@ -1,6 +1,8 @@
+from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
 from api.permissions import IsTrainerOrAdminOrReadOnly
@@ -45,5 +47,24 @@ class TeamViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @detail_route(methods=['post', 'put'], permission_classes=[IsAdminUser])
+    def update_state(self, request, pk=None, **kwargs):
+        if not request.user:
+            return Response({'detail': _('Authentication credentials were not provided.')},
+                            status=status.HTTP_401_UNAUTHORIZED)
+
+        if not request.user.is_staff:
+            return Response({'detail': _('You do not have permission to perform this action.')},
+                            status=status.HTTP_403_FORBIDDEN)
+
+        team = get_object_or_404(Team.objects.all(), pk=pk)
+        serializer = TeamSerializer(team, data=request.data, partial=True,
+                                    context={'request': self.request, 'team_id': pk})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

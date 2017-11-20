@@ -17,8 +17,7 @@ class TeamSerializer(serializers.Serializer):
                                       max_length=400,
                                       required=True)
     date_signup = serializers.DateTimeField(read_only=True)
-    state = serializers.ChoiceField(choices=TeamStateTypes.choices,
-                                    read_only=True)
+    state = serializers.ChoiceField(choices=TeamStateTypes.choices)
     paid = serializers.BooleanField(read_only=True)
     trainer = serializers.SerializerMethodField(required=False)
     tournament = TournamentSerializer(required=False)
@@ -39,11 +38,11 @@ class TeamSerializer(serializers.Serializer):
                 _('Name already taken')
             )
         for team in tournament.teams.all().exclude(id=self.context.get('team_id')):
-            if data['beachname'] is None:
-                if team.name == data['name']:
+            if data.get('beachname') is None:
+                if team.name == data.get('name'):
                     raise unique_error
             else:
-                if team.name == data['name'] and team.beachname == data['beachname']:
+                if team.name == data.get('name') and team.beachname == data.get('beachname'):
                     raise unique_error
 
         return data
@@ -51,6 +50,7 @@ class TeamSerializer(serializers.Serializer):
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
         instance.beachname = validated_data.get('beachname', instance.beachname)
+        instance.state = validated_data.get('state', instance.state)
         instance.save()
         return instance
 
