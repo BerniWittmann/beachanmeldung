@@ -22,6 +22,11 @@
     background: #f2f2f2;
   }
 
+
+  &:last-child {
+    flex: 2;
+  }
+
   .home-header-image {
     width: 100vw;
     height: 365px;

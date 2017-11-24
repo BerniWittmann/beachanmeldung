@@ -3,9 +3,10 @@
             :ref="ref"
             :data="tableData"
             border fit :show-header="false"
-            style="width: 100%">
+            style="width: 100%"
+            @row-click="navigateToTeam">
         <el-table-column
-                type="expand" v-if="canDisplayOptions">
+                type="expand" v-if="canDisplayOptions" @click.prevent.stop>
             <template slot-scope="props">
                 <v-team-table-options v-if="props.row.data" :team="props.row.data"></v-team-table-options>
             </template>
@@ -24,7 +25,9 @@
             <template slot-scope="scope">
                 <div v-if="scope.row.data">
                     <i v-if="scope.row.data.paid" class="fa fa-money fa-fw"></i>
-                    <el-button @click="expandRow(scope.row)" v-if="needsApproval(scope.row.data)" type="danger" size="mini" round>{{ $t('team.needs_approval') }}</el-button>
+                    <el-button @click.prevent.stop="expandRow(scope.row)" v-if="needsApproval(scope.row.data)" type="danger"
+                               size="mini" round>{{ $t('team.needs_approval') }}
+                    </el-button>
                 </div>
             </template>
         </el-table-column>
@@ -99,6 +102,17 @@
 
       expandRow(row) {
         this.$refs[this.ref].toggleRowExpansion(row, true);
+      },
+
+      navigateToTeam(row, event, column) {
+        if (!row || !row.data || !row.data.id || column.type === 'expand') return;
+
+        this.$router.push({
+          name: 'team.single',
+          params: {
+            teamID: row.data.id,
+          },
+        });
       },
     },
   };

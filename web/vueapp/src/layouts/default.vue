@@ -4,8 +4,8 @@
             <v-navigation></v-navigation>
         </el-header>
         <el-main>
-            <el-row>
-                <el-col>
+            <el-row class="flex">
+                <el-col class="flex">
                     <div class="main">
                         <el-row>
                             <el-col :span="16" :offset="4">

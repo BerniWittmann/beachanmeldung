@@ -35,3 +35,15 @@
     }
   }
 }
+
+.team-action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .el-button {
+    margin-bottom: 5px;
+  }
+}

@@ -118,8 +118,7 @@ export default [
   // Tournament Single Page
   {
     path: '/tournament/:tournamentID',
-    name: 'tournament.single',
-    component: require('@/pages/tournament/single.vue'),
+    component: require('@/pages/tournament/wrapper.vue'),
     // If the user needs to be a authenticated to view this page
     meta: {
       auth: false,
@@ -131,6 +130,25 @@ export default [
         teamService.getAll(),
       ]).then(next);
     },
+
+    children: [
+      {
+        path: '',
+        name: 'tournament.single',
+        component: require('@/pages/tournament/single.vue'),
+      }, {
+        // Team Single Page
+        path: 'team/:teamID',
+        name: 'team.single',
+        component: require('@/pages/team/single.vue'),
+
+        beforeEnter: (to, from, next) => {
+          if (teamService.checkIsAllowedToViewTeam(to.params.teamID)) {
+            return teamService.getByID(to.params.teamID).then(next);
+          }
+          return next(!from.name ? { name: 'home.index' } : false);
+        },
+      }],
   },
 
   {

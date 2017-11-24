@@ -38,6 +38,7 @@ h6 {
 
 .el-row {
   margin-bottom: 20px;
+  width: 100%;
   &:last-child {
     margin-bottom: 0;
   }
@@ -88,6 +89,7 @@ h6 {
 }
 
 .el-footer {
+  flex-grow: 0;
   height: auto !important;
 }
 
