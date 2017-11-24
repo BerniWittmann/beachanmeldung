@@ -34,10 +34,22 @@
                                     prop="value"
                                     align="center">
                                 <template slot-scope="scope">
-                                    {{ scope.row.value }}
-                                    <span v-if="scope.row.isTrainerRow && isStaff"> <a
-                                            :href="`mailto:${trainer.email}`"><el-button
-                                            size="mini" round icon="el-icon-message"></el-button></a></span>
+                                    <span v-if="scope.row.isPaidRow">
+                                        <el-checkbox v-model="hasPaid" border @change="triggerPaidChange" :disabled="!isStaff">
+                                            <span v-if="hasPaid">
+                                                Bezahlt
+                                            </span>
+                                            <span v-else>
+                                                Nicht Bezahlt
+                                            </span>
+                                        </el-checkbox>
+                                    </span>
+                                    <span v-else>
+                                        {{ scope.row.value }}
+                                        <span v-if="scope.row.isTrainerRow && isStaff"> <a
+                                                :href="`mailto:${trainer.email}`"><el-button
+                                                size="mini" round icon="el-icon-message"></el-button></a></span>
+                                    </span>
                                 </template>
                             </el-table-column>
                         </el-table>
@@ -49,11 +61,20 @@
                         <el-row>
                             <el-col class="team-action-buttons">
                                 <el-button>Bearbeiten</el-button>
-                                <el-button type="primary" v-if="displayButtonSignup">Anmeldung Bestätigen</el-button>
-                                <el-button type="warning" v-if="displayButtonWaitlist">Auf Warteliste Setzen</el-button>
-                                <el-button type="success" v-if="!team.paid">Als Bezahlt markieren</el-button>
-                                <el-button type="info" v-else>Als Nicht Bezahlt markieren</el-button>
-                                <el-button type="danger">Abmelden</el-button>
+                                <el-button type="primary" @click="teamTransitionStateSignup(team.id)"
+                                           v-if="isStaff && displayButtonSignup">Anmeldung Bestätigen
+                                </el-button>
+                                <el-button type="warning" @click="teamTransitionStateWaiting(team.id)"
+                                           v-if="isStaff && displayButtonWaitlist">Auf Warteliste Setzen
+                                </el-button>
+                                <el-button type="success" @click="teamTransitionStatePaid(team.id)" v-if="isStaff && !hasPaid">
+                                    Als Bezahlt markieren
+                                </el-button>
+                                <el-button type="info" @click="teamTransitionStateUnpaid(team.id)" v-if="isStaff && hasPaid">
+                                    Als Nicht Bezahlt markieren
+                                </el-button>
+                                <el-button type="danger" @click="teamTransitionStateDenied(team.id)">Abmelden
+                                </el-button>
                             </el-col>
                         </el-row>
                     </el-col>
@@ -72,6 +93,7 @@
    */
 
   import { teamStates } from '@/utils/constants';
+  import TeamStateTransitionMixin from '@/mixins/teamStateTransitions';
 
   export default {
     components: {
@@ -79,6 +101,10 @@
       VLinkButton: require('@/components/linkButton.vue'),
       VTournamentName: require('@/components/tournamentName.vue'),
     },
+
+    mixins: [
+      TeamStateTransitionMixin,
+    ],
 
     data() {
       return {
@@ -93,10 +119,6 @@
 
       trainer() {
         return this.team.trainer || {};
-      },
-
-      isTrainer() {
-        return this.$store.getters['account/isTrainerOfTeam'](this.team);
       },
 
       isStaff() {
@@ -132,21 +154,45 @@
         }, {
           label: 'Angemeldet am',
           value: this.team.dateSignup.format('DD.MM.YYYY HH:mm'),
+        }, {
+          label: 'Bezahlt',
+          value: this.team.paid,
+          isPaidRow: true,
         }];
       },
 
       displayButtonSignup() {
-        return [teamStates.needsApproval, teamStates.waiting].includes(this.team.state);
+        return [
+          teamStates.needsApproval,
+          teamStates.waiting,
+          teamStates.denied,
+        ].includes(this.team.state);
       },
 
       displayButtonWaitlist() {
-        return [teamStates.needsApproval, teamStates.signedUp].includes(this.team.state);
+        return [
+          teamStates.needsApproval,
+          teamStates.signedUp,
+          teamStates.denied,
+        ].includes(this.team.state);
+      },
+
+      hasPaid() {
+        return this.team.paid;
       },
     },
 
     methods: {
       handleWindowResize() {
         this.currentStepLayoutDirection = document.documentElement.clientWidth <= 1000 ? 'vertical' : 'horizontal';
+      },
+
+      triggerPaidChange() {
+        if (this.team.paid) {
+          this.teamTransitionStateUnpaid(this.team.id);
+        } else {
+          this.teamTransitionStatePaid(this.team.id);
+        }
       },
     },
 

@@ -18,7 +18,7 @@ class TeamSerializer(serializers.Serializer):
                                       required=True)
     date_signup = serializers.DateTimeField(read_only=True)
     state = serializers.ChoiceField(choices=TeamStateTypes.choices)
-    paid = serializers.BooleanField(read_only=True)
+    paid = serializers.BooleanField()
     trainer = serializers.SerializerMethodField(required=False)
     tournament = TournamentSerializer(required=False)
     is_displayed = serializers.ReadOnlyField(read_only=True)
@@ -51,6 +51,7 @@ class TeamSerializer(serializers.Serializer):
         instance.name = validated_data.get('name', instance.name)
         instance.beachname = validated_data.get('beachname', instance.beachname)
         instance.state = validated_data.get('state', instance.state)
+        instance.paid = validated_data.get('paid', instance.paid)
         instance.save()
         return instance
 

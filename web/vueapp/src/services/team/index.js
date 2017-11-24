@@ -3,6 +3,9 @@ import getByID from './getByID';
 import create from './create';
 import update from './update';
 import checkIsAllowedToViewTeam from './checkIsAllowedToViewTeam';
+import updateState from './updateState';
+import markPaid from './markPaid';
+import markUnpaid from './markUnpaid';
 
 export default {
   getAll,
@@ -10,4 +13,7 @@ export default {
   create,
   update,
   checkIsAllowedToViewTeam,
+  updateState,
+  markPaid,
+  markUnpaid,
 };

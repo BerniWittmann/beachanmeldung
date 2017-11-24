@@ -108,6 +108,30 @@ class Teams(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Team.objects.first().trainer, self.user)
 
+    def test_team_update_not_update_paid(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}), {
+                                  'beachname': 'THC Eh Drin!',
+                                  'name': 'TSV Ismaning',
+                                  'paid': True,
+                              })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Team.objects.first().paid, False)
+
+    def test_team_update_not_update_state(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}), {
+                                  'beachname': 'THC Eh Drin!',
+                                  'name': 'TSV Ismaning',
+                                  'state': 'signed up',
+                              })
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Team.objects.first().state, 'needs approval')
+
     def test_team_name_not_unqiue(self):
         team2 = Team.objects.create(
             name='TSV Ismaning 2',

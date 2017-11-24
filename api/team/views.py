@@ -68,3 +68,29 @@ class TeamViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def set_paid_state(self, request, pk=None, state=False, **kwargs):
+        if not request.user:
+            return Response({'detail': _('Authentication credentials were not provided.')},
+                            status=status.HTTP_401_UNAUTHORIZED)
+
+        if not request.user.is_staff:
+            return Response({'detail': _('You do not have permission to perform this action.')},
+                            status=status.HTTP_403_FORBIDDEN)
+
+        team = get_object_or_404(Team.objects.all(), pk=pk)
+        serializer = TeamSerializer(team, data={'paid': state}, partial=True,
+                                    context={'request': self.request, 'team_id': pk})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @detail_route(methods=['post'], permission_classes=[IsAdminUser])
+    def mark_paid(self, request, pk=None, **kwargs):
+        return self.set_paid_state(request, pk, True, **kwargs)
+
+    @detail_route(methods=['post'], permission_classes=[IsAdminUser])
+    def mark_unpaid(self, request, pk=None, **kwargs):
+        return self.set_paid_state(request, pk, False, **kwargs)

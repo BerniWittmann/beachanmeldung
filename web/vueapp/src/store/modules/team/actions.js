@@ -32,8 +32,11 @@ export const update = ({ commit }, payload) => {
   commit(types.UPDATE, payload);
 };
 
-export const updateSingle = ({ commit }, payload) => {
+export const updateSingle = ({ commit, state }, payload) => {
   commit(types.UPDATE, [payload]);
+  if (state.activeTeam && state.activeTeam.id === payload.id) {
+    commit(types.SET_ACTIVE, payload);
+  }
 };
 
 export default {
