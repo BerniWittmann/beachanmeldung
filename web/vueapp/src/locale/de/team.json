@@ -17,6 +17,18 @@
         "title": "Ein Fehler ist aufgetreten",
         "message": "Das Team konnte nicht geändert werden"
       }
+    },
+    "state_change": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Das Team konnte nicht geändert werden"
+      }
+    },
+    "paid_change": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Das Team konnte nicht geändert werden"
+      }
     }
   },
   "approve": "Anmeldung bestätigen",
@@ -25,5 +37,27 @@
   "edit": "Bearbeiten",
   "mark_paid": "Als Bezahlt markieren",
   "mark_unpaid": "Als Nicht Bezahlt markieren",
-  "needs_approval": "Wartet auf Bestätigung"
+  "needs_approval": "Wartet auf Bestätigung",
+  "name": "Name",
+  "tournament": "Turnier",
+  "person_of_responsibility": "Verantwortlicher",
+  "date_signup": "Angemeldet am",
+  "paid": "Bezahlt",
+  "actions": {
+    "title": "Aktionen",
+    "move_to_waitlist": "Auf Warteliste verschieben",
+    "signup": "Anmelden",
+    "confirm_signup": "Anmeldung Bestätigen",
+    "mark_paid": "Als Bezahlt markieren",
+    "mark_unpaid": "Als Nicht Bezahlt markieren",
+    "sign_off": "Abmelden"
+  },
+  "states": {
+    "preliminary_signup": "Vorläufig Angemeldet",
+    "waitlist": "Auf Warteliste",
+    "signed_up": "Angemeldet",
+    "not_paid": "Nicht Bezahlt",
+    "paid": "Bezahlt",
+    "uploaded_player_list": "Mannschaftsliste hochgeladen"
+  }
 }

@@ -1,10 +1,10 @@
 <template>
     <div v-if="team" class="team-action-buttons">
-        <el-button v-if="needsApproval || isWaiting" type="primary" @click.prevent.stop="teamTransitionStateSignup(team.id)">{{ $t('team.sign_up') }}</el-button>
-        <el-button v-if="needsApproval || isSignedUp" type="warning" @click.prevent.stop="teamTransitionStateWaiting(team.id)">{{ $t('team.move_to_waitlist') }}</el-button>
         <el-button>{{ $t('team.edit') }}</el-button>
-        <el-button v-if="!hasPaid" type="success" @click.prevent.stop="teamTransitionStatePaid(team.id)">{{ $t('team.mark_paid') }}</el-button>
-        <el-button v-if="hasPaid" type="info" @click.prevent.stop="teamTransitionStateUnpaid(team.id)">{{ $t('team.mark_unpaid') }}</el-button>
+        <el-button v-if="needsApproval || isWaiting" type="primary" @click.prevent.stop="teamTransitionStateSignup(team.id)">{{ $t('team.actions.confirm_signup') }}</el-button>
+        <el-button v-if="needsApproval || isSignedUp" type="warning" @click.prevent.stop="teamTransitionStateWaiting(team.id)">{{ $t('team.actions.move_to_waitlist') }}</el-button>
+        <el-button v-if="!hasPaid" type="success" @click.prevent.stop="teamTransitionStatePaid(team.id)">{{ $t('team.actions.mark_paid') }}</el-button>
+        <el-button v-if="hasPaid" type="info" @click.prevent.stop="teamTransitionStateUnpaid(team.id)">{{ $t('team.actions.mark_unpaid') }}</el-button>
     </div>
 </template>
 

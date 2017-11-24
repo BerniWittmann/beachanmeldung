@@ -11,11 +11,13 @@
                     <el-col>
                         <el-steps :active="currentStep" finish-status="wait" process-status="success" align-center
                                   :direction="currentStepLayoutDirection">
-                            <el-step title="Vorläufige Anmeldung"></el-step>
-                            <el-step title="Auf Warteliste"></el-step>
-                            <el-step title="Angemeldet" description="Nicht Bezahlt"></el-step>
-                            <el-step title="Angemeldet" description="Bezahlt"></el-step>
-                            <el-step title="Mannschaftsliste hochgeladen"></el-step>
+                            <el-step :title="$t('team.states.preliminary_signup')"></el-step>
+                            <el-step :title="$t('team.states.waitlist')"></el-step>
+                            <el-step :title="$t('team.states.signed_up')"
+                                     :description="$t('team.states.not_paid')"></el-step>
+                            <el-step :title="$t('team.states.signed_up')"
+                                     :description="$t('team.states.paid')"></el-step>
+                            <el-step :title="$t('team.states.uploaded_player_list')"></el-step>
                         </el-steps>
                     </el-col>
                 </el-row>
@@ -35,14 +37,18 @@
                                     align="center">
                                 <template slot-scope="scope">
                                     <span v-if="scope.row.isPaidRow">
-                                        <el-checkbox v-model="hasPaid" border @change="triggerPaidChange" :disabled="!isStaff">
+                                        <el-checkbox v-model="hasPaid" border @change="triggerPaidChange"
+                                                     :disabled="!isStaff">
                                             <span v-if="hasPaid">
-                                                Bezahlt
+                                                {{ $t('team.states.paid') }}
                                             </span>
                                             <span v-else>
-                                                Nicht Bezahlt
+                                                {{ $t('team.states.not_paid') }}
                                             </span>
                                         </el-checkbox>
+                                    </span>
+                                    <span v-else-if="scope.row.isTournamentRow">
+                                        <v-tournament-name :tournament="scope.row.value.tournament"></v-tournament-name>
                                     </span>
                                     <span v-else>
                                         {{ scope.row.value }}
@@ -57,23 +63,25 @@
                 </el-row>
                 <el-row>
                     <el-col>
-                        <h2 class="text-center">Aktionen</h2>
+                        <h2 class="text-center">{{ $t('team.actions.title') }}</h2>
                         <el-row>
                             <el-col class="team-action-buttons">
-                                <el-button>Bearbeiten</el-button>
+                                <el-button>{{ $t('team.edit') }}</el-button>
                                 <el-button type="primary" @click="teamTransitionStateSignup(team.id)"
-                                           v-if="isStaff && displayButtonSignup">Anmeldung Bestätigen
+                                           v-if="isStaff && displayButtonSignup">{{ $t('team.actions.confirm_signup') }}
                                 </el-button>
                                 <el-button type="warning" @click="teamTransitionStateWaiting(team.id)"
-                                           v-if="isStaff && displayButtonWaitlist">Auf Warteliste Setzen
+                                           v-if="isStaff && displayButtonWaitlist">{{ $t('team.actions.move_to_waitlist') }}
                                 </el-button>
-                                <el-button type="success" @click="teamTransitionStatePaid(team.id)" v-if="isStaff && !hasPaid">
-                                    Als Bezahlt markieren
+                                <el-button type="success" @click="teamTransitionStatePaid(team.id)"
+                                           v-if="isStaff && !hasPaid">
+                                    {{ $t('team.actions.mark_paid') }}
                                 </el-button>
-                                <el-button type="info" @click="teamTransitionStateUnpaid(team.id)" v-if="isStaff && hasPaid">
-                                    Als Nicht Bezahlt markieren
+                                <el-button type="info" @click="teamTransitionStateUnpaid(team.id)"
+                                           v-if="isStaff && hasPaid">
+                                    {{ $t('team.actions.mark_unpaid') }}
                                 </el-button>
-                                <el-button type="danger" @click="teamTransitionStateDenied(team.id)">Abmelden
+                                <el-button type="danger" @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
                                 </el-button>
                             </el-col>
                         </el-row>
@@ -142,20 +150,21 @@
 
       tableData() {
         return [{
-          label: 'Name',
+          label: this.$t('team.name'),
           value: this.team.completeName,
         }, {
-          label: 'Turnier',
-          value: `${this.team.tournament.name} (${this.team.tournament.gender})`,
+          label: this.$t('team.tournament'),
+          value: this.team,
+          isTournamentRow: true,
         }, {
-          label: 'Verantwortlicher',
+          label: this.$t('team.person_of_responsibility'),
           value: `${this.trainer.firstName} ${this.trainer.lastName}`,
           isTrainerRow: true,
         }, {
-          label: 'Angemeldet am',
+          label: this.$t('team.date_signup'),
           value: this.team.dateSignup.format('DD.MM.YYYY HH:mm'),
         }, {
-          label: 'Bezahlt',
+          label: this.$t('team.paid'),
           value: this.team.paid,
           isPaidRow: true,
         }];
