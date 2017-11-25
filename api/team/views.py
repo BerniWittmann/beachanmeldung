@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
@@ -7,6 +8,7 @@ from rest_framework.response import Response
 
 from api.enums import TeamStateTypes
 from api.permissions import IsTrainerOrAdminOrReadOnly
+from api.tournaments.models import Tournament
 from .models import Team
 from .serializers import TeamSerializer
 
@@ -48,6 +50,19 @@ class TeamViewSet(viewsets.ModelViewSet):
 
         serializer = TeamSerializer(data=data, context={'request': self.request})
         if serializer.is_valid():
+            tournament = Tournament.objects.get(pk=data.get('tournament_id'))
+            if timezone.now() < tournament.start_signup:
+                return Response({
+                    'detail': _('Team Creation not possible before Signup period has started'),
+                    'key': _('before_start_signup')
+                }, status=status.HTTP_400_BAD_REQUEST)
+
+            if timezone.now() > tournament.deadline_signup:
+                return Response({
+                    'detail': _('Team Creation not possible after Signup period has ended'),
+                    'key': _('after_deadline_signup')
+                }, status=status.HTTP_400_BAD_REQUEST)
+
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 

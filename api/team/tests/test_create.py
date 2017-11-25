@@ -2,6 +2,7 @@ import json
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.utils import timezone
 from rest_framework.test import APIClient
 from rest_framework_jwt.settings import api_settings
 
@@ -35,8 +36,8 @@ class Teams(TestCase):
                     gender='mixed',
                     start_date='2017-01-01',
                     end_date='2017-01-02',
-                    start_signup='2016-01-01T00:00:00Z',
-                    deadline_signup='2017-01-01T00:00:00Z',
+                    start_signup=timezone.now() - timezone.timedelta(days=365),
+                    deadline_signup=timezone.now() + timezone.timedelta(days=365),
                     deadline_edit='2017-01-01T00:00:00Z',
                     advertisement_url='http://www.google.de',
                     contact_email='test@byom.de',
@@ -148,4 +149,42 @@ class Teams(TestCase):
             'key': ['name_already_taken']
         })
 
+        self.assertEqual(Team.objects.all().count(), 1)
+
+    def test_team_create_before_signup_start(self):
+        self.tournament.start_signup = timezone.now() + timezone.timedelta(days=1)
+        self.tournament.save()
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.post(reverse('v1:team-list'), {
+            'name': 'New Team',
+            'beachname': 'creative Name',
+            'tournament': self.tournament.id,
+        })
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertDictEqual(data, {
+            'detail': 'Team Creation not possible before Signup period has started',
+            'key': 'before_start_signup'
+        })
+        self.assertEqual(Team.objects.all().count(), 1)
+
+    def test_team_create_after_deadline_signup(self):
+        self.tournament.deadline_signup = timezone.now() - timezone.timedelta(days=1)
+        self.tournament.save()
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.post(reverse('v1:team-list'), {
+            'name': 'New Team',
+            'beachname': 'creative Name',
+            'tournament': self.tournament.id,
+        })
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertDictEqual(data, {
+            'detail': 'Team Creation not possible after Signup period has ended',
+            'key': 'after_deadline_signup'
+        })
         self.assertEqual(Team.objects.all().count(), 1)
