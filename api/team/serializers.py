@@ -34,9 +34,10 @@ class TeamSerializer(serializers.Serializer):
                 _('Tournament not Found')
             )
 
-        unique_error = serializers.ValidationError(
-                _('Name already taken')
-            )
+        unique_error = serializers.ValidationError({
+            'detail': _('Name already taken'),
+            'key': _('name_already_taken')
+        })
         for team in tournament.teams.all().exclude(id=self.context.get('team_id')):
             if data.get('beachname') is None:
                 if team.name == data.get('name'):

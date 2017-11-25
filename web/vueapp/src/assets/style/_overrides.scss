@@ -106,3 +106,7 @@ h6 {
     background-color: rgb(45, 45, 45) !important;
   }
 }
+
+a + .el-button {
+  margin-left: 10px;
+}

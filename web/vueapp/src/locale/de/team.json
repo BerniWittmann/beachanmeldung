@@ -16,6 +16,10 @@
       "failed": {
         "title": "Ein Fehler ist aufgetreten",
         "message": "Das Team konnte nicht geändert werden"
+      },
+      "name_already_taken": {
+        "title": "Das Team konnte nicht geändert werden",
+        "message": "Der Name ist bereits vergeben"
       }
     },
     "state_change": {
@@ -58,6 +62,11 @@
     "signed_up": "Angemeldet",
     "not_paid": "Nicht Bezahlt",
     "paid": "Bezahlt",
-    "uploaded_player_list": "Mannschaftsliste hochgeladen"
-  }
+    "uploaded_player_list": "Mannschaftsliste hochgeladen",
+    "denied_description": "Dieses Team wurde abgemeldet und ist nicht mehr aktiv"
+  },
+  "save": "Speichern",
+  "beachname": "Beachname",
+  "beachname_description": "Ein kreativer Beachname",
+  "abort": "Abbrechen"
 }

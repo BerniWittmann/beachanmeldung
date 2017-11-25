@@ -1,6 +1,6 @@
 <template>
     <div v-if="team" class="team-action-buttons">
-        <el-button>{{ $t('team.edit') }}</el-button>
+        <v-link-button :route="{ name: 'team.edit', params: { teamID: team.id } }">{{ $t('team.edit') }}</v-link-button>
         <el-button v-if="needsApproval || isWaiting" type="primary" @click.prevent.stop="teamTransitionStateSignup(team.id)">{{ $t('team.actions.confirm_signup') }}</el-button>
         <el-button v-if="needsApproval || isSignedUp" type="warning" @click.prevent.stop="teamTransitionStateWaiting(team.id)">{{ $t('team.actions.move_to_waitlist') }}</el-button>
         <el-button v-if="!hasPaid" type="success" @click.prevent.stop="teamTransitionStatePaid(team.id)">{{ $t('team.actions.mark_paid') }}</el-button>
@@ -27,6 +27,10 @@
         type: Object,
         required: true,
       },
+    },
+
+    components: {
+      VLinkButton: require('@/components/linkButton.vue'),
     },
 
     mixins: [

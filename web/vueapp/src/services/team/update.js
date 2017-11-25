@@ -10,11 +10,18 @@ const success = (team) => {
 };
 
 // When the request fails
-const failed = () => {
-  Vue.$notify.error({
-    title: Vue.i18n.t('team.notifications.put.failed.title'),
-    message: Vue.i18n.t('team.notifications.put.failed.message'),
-  });
+const failed = (error) => {
+  if (error && error.response && error.response.data && error.response.data.key && error.response.data.key[0] === 'name_already_taken') {
+    Vue.$notify.error({
+      title: Vue.i18n.t('team.notifications.put.name_already_taken.title'),
+      message: Vue.i18n.t('team.notifications.put.name_already_taken.message'),
+    });
+  } else {
+    Vue.$notify.error({
+      title: Vue.i18n.t('team.notifications.put.failed.title'),
+      message: Vue.i18n.t('team.notifications.put.failed.message'),
+    });
+  }
 };
 
 export default (team) => {

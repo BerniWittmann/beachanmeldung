@@ -20,5 +20,8 @@
     "required": "Bitte bestätige dein Passwort",
     "min": "Dein Passwort sollte mindestens 8 Zeichen lang sein",
     "match": "Die Passwörter stimmen nicht überein"
+  },
+  "team_name": {
+    "required": "Bitte gib einen Namen an"
   }
 }

@@ -139,8 +139,7 @@ export default [
       }, {
         // Team Single Page
         path: 'team/:teamID',
-        name: 'team.single',
-        component: require('@/pages/team/single.vue'),
+        component: require('@/pages/team/wrapper.vue'),
 
         beforeEnter: (to, from, next) => {
           if (teamService.checkIsAllowedToViewTeam(to.params.teamID)) {
@@ -148,6 +147,18 @@ export default [
           }
           return next(!from.name ? { name: 'home.index' } : false);
         },
+
+        children: [
+          {
+            path: '',
+            name: 'team.single',
+            component: require('@/pages/team/single.vue'),
+          }, {
+            path: 'edit',
+            name: 'team.edit',
+            component: require('@/pages/team/edit.vue'),
+          },
+        ],
       }],
   },
 

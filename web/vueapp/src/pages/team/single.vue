@@ -20,6 +20,13 @@
                             <el-step :title="$t('team.states.uploaded_player_list')"></el-step>
                         </el-steps>
                     </el-col>
+                    <el-col v-if="teamIsDenied">
+                        <el-alert
+                                :title="$t('team.states.denied_description')"
+                                type="error" :closable="false"
+                                show-icon center>
+                        </el-alert>
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :lg="{span: 16, offset: 4}" :md="{span: 18, offset: 3}" :sm="{span: 22, offset: 1}"
@@ -66,7 +73,7 @@
                         <h2 class="text-center">{{ $t('team.actions.title') }}</h2>
                         <el-row>
                             <el-col class="team-action-buttons">
-                                <el-button>{{ $t('team.edit') }}</el-button>
+                                <v-link-button :route="{ name: 'team.edit', params: { teamID: team.id } }">{{ $t('team.edit') }}</v-link-button>
                                 <el-button type="primary" @click="teamTransitionStateSignup(team.id)"
                                            v-if="isStaff && displayButtonSignup">{{ $t('team.actions.confirm_signup') }}
                                 </el-button>
@@ -81,7 +88,7 @@
                                            v-if="isStaff && hasPaid">
                                     {{ $t('team.actions.mark_unpaid') }}
                                 </el-button>
-                                <el-button type="danger" @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
+                                <el-button type="danger" v-if="!teamIsDenied" @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
                                 </el-button>
                             </el-col>
                         </el-row>
@@ -144,7 +151,7 @@
             // TODO Check if player list already uploadded
             return 3;
           default:
-            return 0;
+            return -1;
         }
       },
 
@@ -184,6 +191,10 @@
           teamStates.signedUp,
           teamStates.denied,
         ].includes(this.team.state);
+      },
+
+      teamIsDenied() {
+        return this.team.state === teamStates.denied;
       },
 
       hasPaid() {
