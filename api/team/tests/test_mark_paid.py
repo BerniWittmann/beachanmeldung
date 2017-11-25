@@ -54,7 +54,7 @@ class Teams(TestCase):
         client = APIClient()
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = client.post(reverse('v1:team-mark-paid',
-                                      kwargs={'pk': self.team.id}))
+                               kwargs={'pk': self.team.id}))
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(data['paid'], True)
@@ -63,7 +63,7 @@ class Teams(TestCase):
     def test_team_change_state_unauthorized(self):
         client = APIClient()
         response = client.post(reverse('v1:team-mark-paid',
-                                       kwargs={'pk': self.team.id}),)
+                               kwargs={'pk': self.team.id}),)
         self.assertEqual(response.status_code, 401)
 
     def test_team_change_state_wrong_method(self):

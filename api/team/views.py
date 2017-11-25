@@ -5,13 +5,14 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAdminUser
 from rest_framework.response import Response
 
+from api.enums import TeamStateTypes
 from api.permissions import IsTrainerOrAdminOrReadOnly
 from .models import Team
 from .serializers import TeamSerializer
 
 
 class TeamViewSet(viewsets.ModelViewSet):
-    queryset = Team.objects.all().order_by('date_signup')
+    queryset = Team.objects.all().exclude(state=TeamStateTypes.denied).order_by('date_signup')
     permission_classes = (IsTrainerOrAdminOrReadOnly,)
     serializer_class = TeamSerializer
     pagination_class = None
