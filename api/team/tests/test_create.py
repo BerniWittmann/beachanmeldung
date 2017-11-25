@@ -35,6 +35,7 @@ class Teams(TestCase):
                     gender='mixed',
                     start_date='2017-01-01',
                     end_date='2017-01-02',
+                    start_signup='2016-01-01T00:00:00Z',
                     deadline_signup='2017-01-01T00:00:00Z',
                     deadline_edit='2017-01-01T00:00:00Z',
                     advertisement_url='http://www.google.de',
@@ -59,11 +60,11 @@ class Teams(TestCase):
         })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(data['id'], 2)
+        self.assertGreaterEqual(data['id'], 2)
         self.assertEqual(data['name'], 'New Team')
 
         self.assertEqual(Team.objects.all().count(), 2)
-        self.assertEqual(Team.objects.last().id, 2)
+        self.assertGreaterEqual(Team.objects.last().id, 2)
         self.assertEqual(Team.objects.last().name, 'New Team')
         self.assertIsNotNone(Team.objects.last().trainer)
         self.assertIsNotNone(Team.objects.last().tournament)
@@ -126,7 +127,10 @@ class Teams(TestCase):
         })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['non_field_errors'], ['Name already taken'])
+        self.assertDictEqual(data, {
+            'detail': ['Name already taken'],
+            'key': ['name_already_taken']
+        })
 
         self.assertEqual(Team.objects.all().count(), 1)
 
@@ -139,6 +143,9 @@ class Teams(TestCase):
         })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['non_field_errors'], ['Name already taken'])
+        self.assertDictEqual(data, {
+            'detail': ['Name already taken'],
+            'key': ['name_already_taken']
+        })
 
         self.assertEqual(Team.objects.all().count(), 1)

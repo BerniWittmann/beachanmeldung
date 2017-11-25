@@ -42,6 +42,8 @@ class TeamViewSet(viewsets.ModelViewSet):
             'name': request.data.get('name'),
             'beachname': request.data.get('beachname'),
             'tournament_id': request.data.get('tournament'),
+            'paid': False,
+            'state': TeamStateTypes.needs_approval
         }
 
         serializer = TeamSerializer(data=data, context={'request': self.request})

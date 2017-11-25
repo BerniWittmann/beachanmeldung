@@ -143,12 +143,15 @@ class Teams(TestCase):
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = client.put(reverse('v1:team-detail',
                                       kwargs={'pk': team2.id}), {
-            'name': 'TSV Ismaning',
-            'beachname': 'THC Eh Drin!'
-        })
+                                  'name': 'TSV Ismaning',
+                                  'beachname': 'THC Eh Drin!'
+                              })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['non_field_errors'], ['Name already taken'])
+        self.assertDictEqual(data, {
+            'detail': ['Name already taken'],
+            'key': ['name_already_taken']
+        })
 
         self.assertEqual(Team.objects.last().name, team2.name)
         self.assertEqual(Team.objects.last().beachname, team2.beachname)
@@ -164,11 +167,14 @@ class Teams(TestCase):
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = client.put(reverse('v1:team-detail',
                                       kwargs={'pk': team2.id}), {
-            'name': 'TSV Ismaning',
-        })
+                                  'name': 'TSV Ismaning',
+                              })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(data['non_field_errors'], ['Name already taken'])
+        self.assertDictEqual(data, {
+            'detail': ['Name already taken'],
+            'key': ['name_already_taken']
+        })
 
         self.assertEqual(Team.objects.last().name, team2.name)
         self.assertEqual(Team.objects.last().beachname, team2.beachname)
