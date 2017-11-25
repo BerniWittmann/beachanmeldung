@@ -18,7 +18,12 @@
             </el-col>
         </el-row>
 
-        <el-row class="home-part">
+        <el-row class="home-part homepart-content-vertical">
+            <el-col :span="24" v-if="currentUsersTeams && currentUsersTeams.length > 0">
+                <h2>{{ $t('team.mine') }}</h2>
+                <v-team-card v-for="team in currentUsersTeams" :key="'team_card_' + team.id" :team="team"></v-team-card>
+            </el-col>
+
             <el-col :span="24">
                 <h2>{{ $t('tournament.all_tournaments') }}</h2>
                 <v-tournament-card v-for="tournament in tournaments" :key="'tournament_' + tournament.id" :tournament="tournament"></v-tournament-card>
@@ -41,6 +46,7 @@
       VLayout: require('@/layouts/fullWidth.vue'),
       VLinkButton: require('@/components/linkButton.vue'),
       VTournamentCard: require('@/components/tournamentCard'),
+      VTeamCard: require('@/components/teamCard'),
     },
 
     computed: {
@@ -57,6 +63,10 @@
           }
           return 0;
         });
+      },
+
+      currentUsersTeams() {
+        return this.$store.getters['team/teamsByUser'] || [];
       },
     },
   };

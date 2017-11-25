@@ -26,3 +26,18 @@ export function checkObjectEmpty(obj) {
   if (!obj) return true;
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 }
+
+export function arrayUnion(arr1, arr2, equalityFunc) {
+  const union = [].concat(arr1);
+
+  arr2.forEach((obj) => {
+    const index = arr1.findIndex((single) => equalityFunc(single, obj));
+    if (index < 0) {
+      union.push(obj);
+    } else {
+      union[index] = obj;
+    }
+  });
+
+  return union;
+}

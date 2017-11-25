@@ -8,7 +8,10 @@
                         <i class="fa fa-fw fa-envelope"></i>
                         {{ account.email }}
                     </h4>
-                    <p class="account-page-side-resend-verification" v-if="!account.isVerified">{{ $t('account.please_verify') }} <a href="" @click.prevent="resendVerification()">{{ $t('account.resend_verification') }}</a></p>
+                    <p class="account-page-side-resend-verification" v-if="!account.isVerified">
+                        {{ $t('account.please_verify') }} <a href=""
+                                                             @click.prevent="resendVerification()">{{ $t('account.resend_verification')
+                        }}</a></p>
                 </div>
             </v-panel>
         </el-row>
@@ -19,7 +22,22 @@
                         {{ $t('account.details') }}
                     </span>
                     <div slot="body">
-                        <p>{{ dateJoined }}</p>
+                        <el-row>
+                            <el-col>
+                                <p>{{ dateJoined }}</p>
+                            </el-col>
+                        </el-row>
+                        <el-row>
+                            <el-col>
+                                <h2>{{ $t('team.mine') }}</h2>
+                                <el-row>
+                                    <el-col :span="16" :offset="4">
+                                        <v-team-card v-for="team in teams" :team="team"
+                                                     :key="`team_card_${team.id}`"></v-team-card>
+                                    </el-col>
+                                </el-row>
+                            </el-col>
+                        </el-row>
                     </div>
                     <div slot="bodyEditing">
                         <el-form ref="accountEditForm" :rules="rules" :model="user">
@@ -62,6 +80,7 @@
       VLayout: require('@/layouts/backgroundWithSide.vue'),
       VPanel: require('@/components/panel.vue'),
       VEditingPanel: require('@/components/editingPanel.vue'),
+      VTeamCard: require('@/components/teamCard.vue'),
     },
 
     data() {
@@ -106,6 +125,10 @@
       dateJoined() {
         if (!this.account.dateJoined) return undefined;
         return `${this.$t('account.date_joined')}: ${this.account.dateJoined.format('DD.MM.YYYY')}`;
+      },
+
+      teams() {
+        return this.$store.getters['team/teamsByUser'];
       },
     },
 

@@ -1,0 +1,37 @@
+.team-card {
+  margin-bottom: 20px;
+
+  .header, .body {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .header {
+    justify-content: space-between;
+
+    .team-name {
+      font-size: 20px;
+    }
+
+    .team-status {
+      font-size: 15px;
+
+      .team-status-payment {
+        margin-left: 5px;
+        color: #fa5555;
+
+        &.paid {
+          color: #67c23a;
+        }
+      }
+    }
+  }
+
+  .body {
+    justify-content: space-between;
+    span {
+      margin-right: 10px;
+    }
+  }
+}

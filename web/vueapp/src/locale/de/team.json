@@ -65,8 +65,15 @@
     "uploaded_player_list": "Mannschaftsliste hochgeladen",
     "denied_description": "Dieses Team wurde abgemeldet und ist nicht mehr aktiv"
   },
+  "status": {
+    "needs_approval": "Vorläufig Angemeldet",
+    "waiting": "Auf Warteliste",
+    "signed_up": "Angemeldet",
+    "denied": "Zurückgezogen"
+  },
   "save": "Speichern",
   "beachname": "Beachname",
   "beachname_description": "Ein kreativer Beachname",
-  "abort": "Abbrechen"
+  "abort": "Abbrechen",
+  "mine": "Meine Teams"
 }

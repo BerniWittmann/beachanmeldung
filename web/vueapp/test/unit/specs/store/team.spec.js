@@ -108,6 +108,39 @@ describe('Vuex Modules', () => {
           }]);
         });
 
+        it('should add new team data', () => {
+          const state = {
+            teams: [{
+              id: 1,
+              name: 'Test Team',
+              beachname: 'Beach',
+            }, {
+              id: 2,
+              name: 'Test Team 2',
+              beachname: 'Beach',
+            }],
+          };
+          team.mutations[UPDATE](state, [{
+            id: 3,
+            name: 'New  Team',
+            beachname: 'Beach',
+          }]);
+
+          expect(state.teams).to.deep.equal([{
+            id: 1,
+            name: 'Test Team',
+            beachname: 'Beach',
+          }, {
+            id: 2,
+            name: 'Test Team 2',
+            beachname: 'Beach',
+          }, {
+            id: 3,
+            name: 'New  Team',
+            beachname: 'Beach',
+          }]);
+        });
+
         it('should update multiple', () => {
           const state = {
             teams: [{

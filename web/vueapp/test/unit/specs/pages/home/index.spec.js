@@ -8,11 +8,18 @@ describe('Pages', () => {
     const state = {
       auth: { authenticated: false },
       tournament: { tournaments: [] },
+      team: { teams: [] },
+    };
+    const getters = {
+      team: () => ({
+        teamsByUser: () => [],
+      }),
     };
     let store;
     beforeEach(() => {
       store = new Vuex.Store({
         state,
+        getters,
       });
     });
 

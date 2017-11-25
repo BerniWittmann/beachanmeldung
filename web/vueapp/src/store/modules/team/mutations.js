@@ -7,6 +7,7 @@
  */
 
 import { STORE, SET_ACTIVE, UPDATE, ADD } from './mutation-types';
+import { arrayUnion } from '@/utils/helpers';
 
 export default {
   [STORE](state, teams) {
@@ -19,12 +20,6 @@ export default {
     state.teams = state.teams.concat(teams);
   },
   [UPDATE](state, teams) {
-    teams.forEach((team) => {
-      /* eslint-disable arrow-body-style */
-      state.teams = state.teams.map((single) => {
-        return team.id === single.id ? team : single;
-      });
-      /* eslint-enable arrow-body-style */
-    });
+    state.teams = arrayUnion(state.teams, teams, (a, b) => a.id === b.id);
   },
 };

@@ -28,8 +28,15 @@ export const addSingle = ({ commit }, payload) => {
   }
 };
 
-export const update = ({ commit }, payload) => {
+export const update = ({ commit, state }, payload) => {
   commit(types.UPDATE, payload);
+  if (state.activeTeam) {
+    payload.forEach((team) => {
+      if (state.activeTeam.id === team.id) {
+        commit(types.SET_ACTIVE, team);
+      }
+    });
+  }
 };
 
 export const updateSingle = ({ commit, state }, payload) => {

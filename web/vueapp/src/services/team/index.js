@@ -6,6 +6,7 @@ import checkIsAllowedToViewTeam from './checkIsAllowedToViewTeam';
 import updateState from './updateState';
 import markPaid from './markPaid';
 import markUnpaid from './markUnpaid';
+import getMine from './getMine';
 
 export default {
   getAll,
@@ -16,4 +17,5 @@ export default {
   updateState,
   markPaid,
   markUnpaid,
+  getMine,
 };

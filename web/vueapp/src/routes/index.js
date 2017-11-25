@@ -41,6 +41,8 @@ export default [
     meta: {
       auth: true,
     },
+
+    beforeEnter: (to, from, next) => teamService.getMine().then(next),
   },
 
   // Login

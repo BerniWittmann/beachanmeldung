@@ -27,6 +27,14 @@
     flex: 2;
   }
 
+  &.homepart-content-vertical {
+    flex-direction: column;
+
+    & > * {
+      margin-bottom: 30px;
+    }
+  }
+
   .home-header-image {
     width: 100vw;
     height: 365px;

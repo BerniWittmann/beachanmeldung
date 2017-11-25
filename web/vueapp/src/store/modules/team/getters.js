@@ -16,4 +16,11 @@ export default {
     };
     /* eslint-enable arrow-body-style */
   },
+
+  teamsByUser(state, getters, rootState) {
+    if (!rootState.account.email) return [];
+    return state.teams.filter(single => single.trainer
+      && single.trainer.email
+      && rootState.account.email === single.trainer.email);
+  },
 };
