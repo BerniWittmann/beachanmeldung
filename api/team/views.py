@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import viewsets, status
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
 from api.enums import TeamStateTypes
@@ -88,7 +88,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def set_paid_state(self, request, pk=None, state=False, **kwargs):
-        if not request.user:
+        if not request.auth:
             return Response({'detail': _('Authentication credentials were not provided.')},
                             status=status.HTTP_401_UNAUTHORIZED)
 
@@ -112,3 +112,12 @@ class TeamViewSet(viewsets.ModelViewSet):
     @detail_route(methods=['post'], permission_classes=[IsAdminUser])
     def mark_unpaid(self, request, pk=None, **kwargs):
         return self.set_paid_state(request, pk, False, **kwargs)
+
+    @detail_route(methods=['get'], permission_classes=[IsAuthenticated])
+    def get_by_user(self, request, **kwargs):
+        if not request.auth:
+            return Response({'detail': _('Authentication credentials were not provided.')},
+                            status=status.HTTP_401_UNAUTHORIZED)
+
+        teams = Team.objects.all().filter(trainer=request.user)
+        return Response(TeamSerializer(teams, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
