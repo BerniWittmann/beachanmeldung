@@ -27,6 +27,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         data = {
             'name': request.data.get('name'),
             'beachname': request.data.get('beachname'),
+            'players': request.data.get('players', []),
         }
         team = get_object_or_404(Team.objects.all(), pk=pk)
         self.check_object_permissions(self.request, team)

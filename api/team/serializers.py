@@ -1,9 +1,15 @@
+from collections import OrderedDict
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
+from rest_framework.fields import SkipField
+from rest_framework.relations import PKOnlyObject
 
 from api.accounts.serializers import UserSerializer
 from api.enums import TeamStateTypes
+from api.players.models import Player
+from api.players.serializers import PlayerSerializer
 from api.tournaments.models import Tournament
 from api.tournaments.serializers import TournamentSerializer
 from .models import Team
@@ -24,6 +30,7 @@ class TeamSerializer(serializers.Serializer):
     is_displayed = serializers.ReadOnlyField(read_only=True)
     complete_name = serializers.ReadOnlyField(read_only=True)
     tournament_id = serializers.IntegerField(write_only=True)
+    players = PlayerSerializer(many=True, required=False)
 
     def validate(self, data):
         try:
@@ -46,6 +53,24 @@ class TeamSerializer(serializers.Serializer):
                 if team.name == data.get('name') and team.beachname == data.get('beachname'):
                     raise unique_error
 
+        number_list = []
+        name_list = []
+        players = data.get('players', [])
+        for player in players:
+            number_list.append(player.get('number'))
+            name_list.append(player.get('first_name') + '-' + player.get('last_name'))
+
+        if len(list(set(number_list))) != len(number_list):
+            raise serializers.ValidationError({
+                'detail': _('Duplicate Player Number'),
+                'key': _('duplicate_player_number')
+            })
+
+        if len(list(set(name_list))) != len(name_list):
+            raise serializers.ValidationError({
+                'detail': _('Duplicate Player Name'),
+                'key': _('duplicate_player_name')
+            })
         return data
 
     def update(self, instance, validated_data):
@@ -53,6 +78,13 @@ class TeamSerializer(serializers.Serializer):
         instance.beachname = validated_data.get('beachname', instance.beachname)
         instance.state = validated_data.get('state', instance.state)
         instance.paid = validated_data.get('paid', instance.paid)
+
+        Player.objects.filter(team=instance).delete()
+        players = validated_data.get('players', [])
+        if players is not None:
+            for player in players:
+                Player.objects.create(team=instance, **player)
+
         instance.save()
         return instance
 
@@ -71,3 +103,34 @@ class TeamSerializer(serializers.Serializer):
             return UserSerializer(obj.trainer).data
 
         return {}
+
+    def to_representation(self, instance):
+        """
+        Object instance -> Dict of primitive datatypes.
+        """
+        ret = OrderedDict()
+        fields = self._readable_fields
+
+        for field in fields:
+            try:
+                attribute = field.get_attribute(instance)
+            except SkipField:
+                continue
+
+            # We skip `to_representation` for `None` values so that fields do
+            # not have to explicitly deal with that case.
+            #
+            # For related fields with `use_pk_only_optimization` we need to
+            # resolve the pk value.
+            check_for_none = attribute.pk if isinstance(attribute, PKOnlyObject) else attribute
+            if check_for_none is None:
+                ret[field.field_name] = None
+            else:
+                request = self.context.get('request')
+                if field.field_name == 'players' and not (
+                            request.user and (request.user.is_staff or request.user.id == instance.trainer.id)):
+                    ret[field.field_name] = []
+                else:
+                    ret[field.field_name] = field.to_representation(attribute)
+
+        return ret

@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os
 import datetime
+import os
+
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
     'api.accounts.apps.AccountsConfig',
     'api.tournaments.apps.TournamentsConfig',
     'api.team.apps.TeamConfig',
+    'api.players.apps.PlayersConfig',
 ]
 
 MIDDLEWARE = [
