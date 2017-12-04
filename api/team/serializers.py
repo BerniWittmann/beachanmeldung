@@ -79,11 +79,12 @@ class TeamSerializer(serializers.Serializer):
         instance.state = validated_data.get('state', instance.state)
         instance.paid = validated_data.get('paid', instance.paid)
 
-        Player.objects.filter(team=instance).delete()
-        players = validated_data.get('players', [])
-        if players is not None:
-            for player in players:
-                Player.objects.create(team=instance, **player)
+        if validated_data.get('players') is not None:
+            Player.objects.filter(team=instance).delete()
+            players = validated_data.get('players', [])
+            if players is not None:
+                for player in players:
+                    Player.objects.create(team=instance, **player)
 
         instance.save()
         return instance

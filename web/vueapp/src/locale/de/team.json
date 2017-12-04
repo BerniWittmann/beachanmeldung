@@ -75,5 +75,6 @@
   "beachname": "Beachname",
   "beachname_description": "Ein kreativer Beachname",
   "abort": "Abbrechen",
-  "mine": "Meine Teams"
+  "mine": "Meine Teams",
+  "player_list": "Spielerliste"
 }

@@ -16,6 +16,7 @@ import * as alerts from './alerts.json';
 import * as comingSoon from './coming_soon.json';
 import * as tournament from './tournament.json';
 import * as team from './team.json';
+import * as player from './player.json';
 
 export default {
   ...localeElementUi,
@@ -28,4 +29,5 @@ export default {
   comingSoon,
   tournament,
   team,
+  player,
 };

@@ -73,12 +73,15 @@
                         <h2 class="text-center">{{ $t('team.actions.title') }}</h2>
                         <el-row>
                             <el-col class="team-action-buttons">
-                                <v-link-button :route="{ name: 'team.edit', params: { teamID: team.id } }">{{ $t('team.edit') }}</v-link-button>
+                                <v-link-button :route="{ name: 'team.edit', params: { teamID: team.id } }">
+                                    {{ $t('team.edit') }}
+                                </v-link-button>
                                 <el-button type="primary" @click="teamTransitionStateSignup(team.id)"
                                            v-if="isStaff && displayButtonSignup">{{ $t('team.actions.confirm_signup') }}
                                 </el-button>
                                 <el-button type="warning" @click="teamTransitionStateWaiting(team.id)"
-                                           v-if="isStaff && displayButtonWaitlist">{{ $t('team.actions.move_to_waitlist') }}
+                                           v-if="isStaff && displayButtonWaitlist">
+                                    {{ $t('team.actions.move_to_waitlist') }}
                                 </el-button>
                                 <el-button type="success" @click="teamTransitionStatePaid(team.id)"
                                            v-if="isStaff && !hasPaid">
@@ -88,10 +91,42 @@
                                            v-if="isStaff && hasPaid">
                                     {{ $t('team.actions.mark_unpaid') }}
                                 </el-button>
-                                <el-button type="danger" v-if="!teamIsDenied" @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
+                                <el-button type="danger" v-if="!teamIsDenied"
+                                           @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
                                 </el-button>
                             </el-col>
                         </el-row>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :lg="{span: 10, offset: 7}" :md="{span: 12, offset: 6}" :sm="{span: 16, offset: 4}"
+                            :xs="{span: 24, offset: 0}">
+                        <h2 class="text-center">{{ $t('team.player_list') }}</h2>
+                        <el-table
+                                :data="playerTableData"
+                                fit
+                                style="width: 100%">
+                            <el-table-column
+                                    prop="number"
+                                    align="center"
+                                    :label="$t('player.number')">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="firstName"
+                                    align="center"
+                                    :label="$t('player.first_name')">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="lastName"
+                                    align="center"
+                                    :label="$t('player.last_name')">
+                            </el-table-column>
+                            <el-table-column
+                                    prop="yearOfBirth"
+                                    align="center"
+                                    :label="$t('player.year_of_birth')">
+                            </el-table-column>
+                        </el-table>
                     </el-col>
                 </el-row>
             </el-col>
@@ -177,6 +212,10 @@
         }];
       },
 
+      playerTableData() {
+        return this.team.players;
+      },
+
       displayButtonSignup() {
         return [
           teamStates.needsApproval,
@@ -197,8 +236,14 @@
         return this.team.state === teamStates.denied;
       },
 
-      hasPaid() {
-        return this.team.paid;
+      hasPaid: {
+        /* eslint-disable arrow-body-style */
+        get: function get() {
+          return this.team.paid;
+        },
+        set: () => {
+        },
+        /* eslint-enable arrow-body-style */
       },
     },
 

@@ -13,7 +13,7 @@
                 <v-link-button
                         type="primary"
                         size="large"
-                >Heute noch Anmelden
+                >{{ $t('general.call_to_action') }}
                 </v-link-button>
             </el-col>
         </el-row>

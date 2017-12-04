@@ -1,0 +1,9 @@
+{
+  "number": "Nummer",
+  "first_name": "Vorname",
+  "last_name": "Nachname",
+  "year_of_birth": "Jahrgang",
+  "index": "Spieler {index}",
+  "add": "Spieler hinzufügen",
+  "remove": "Spieler entfernen"
+}

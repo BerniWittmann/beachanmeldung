@@ -23,5 +23,23 @@
   },
   "team_name": {
     "required": "Bitte gib einen Namen an"
+  },
+  "player": {
+    "number": {
+      "required": "Bitte gib eine Nummer für diesen Spieler an",
+      "type": "Bitte gib eine gültige Nummer an",
+      "min": "Die Nummer muss größer als 0 sein"
+    },
+    "first_name": {
+      "required": "Bitte gib einen Vornamen für diesen Spieler an"
+    },
+    "last_name": {
+      "required": "Bitte gib einen Nachnamen für diesen Spieler an"
+    },
+    "year_of_birth": {
+      "required": "Bitte gib ein Geburtsjahr an",
+      "type": "Bitte gib das Geburtsjahr im Format JJJJ an (z.B. 1990)",
+      "range": "Bitte gib ein korrektes Geburtsjahr im Format JJJJ an (z.B. 1990)"
+    }
   }
 }

@@ -31,7 +31,7 @@ export function arrayUnion(arr1, arr2, equalityFunc) {
   const union = [].concat(arr1);
 
   arr2.forEach((obj) => {
-    const index = arr1.findIndex((single) => equalityFunc(single, obj));
+    const index = arr1.findIndex(single => equalityFunc(single, obj));
     if (index < 0) {
       union.push(obj);
     } else {

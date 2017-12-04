@@ -17,10 +17,10 @@ const failed = () => {
   });
 };
 
-export default () =>
+export default () => {
+  if (!store.state.auth.authenticated) return;
   Vue.$http.get('/teams/mine/')
     .then((response) => {
       success(response.data);
-    }).catch((error) => {
-      failed(error);
-    });
+    }).catch(failed);
+};
