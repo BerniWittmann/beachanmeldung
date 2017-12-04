@@ -119,6 +119,28 @@ export default [
     },
   },
 
+  {
+    path: '/contact',
+    name: 'etc.contact',
+    component: require('@/pages/etc/contact.vue'),
+
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: false,
+    },
+  },
+
+  {
+    path: '/privacy',
+    name: 'etc.privacy',
+    component: require('@/pages/etc/privacy.vue'),
+
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: false,
+    },
+  },
+
   // Tournament Single Page
   {
     path: '/tournament/:tournamentID',
@@ -151,6 +173,8 @@ export default [
           }
           return next(!from.name ? { name: 'home.index' } : false);
         },
+
+        auth: true,
 
         children: [
           {

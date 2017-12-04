@@ -1,0 +1,14 @@
+{
+  "privacy": {
+    "headline": "Datenschutz",
+    "privacy_referral_text": "Die auf dieser Website angegebenen Daten werden hauptsächlich zu organisatorischen Zwecken verwendet. Desweiteren finden die Datenschutzbestimmungen auf der <a href=\"http://www.handballismaning.de/datenschutz\" target=\"_blank\">Homepage</a> Anwendung."
+  },
+  "contact": {
+    "headline": "Kontakt",
+    "match_operations": "Bei Problemen mit dem Spielbetrieb steht Ihnen die Geschäftsstelle zur Verfügung",
+    "implementation": "Technische Umsetzung",
+    "implementation_name": "Bernhard Wittmann",
+    "github": "GitHub",
+    "mail": "E-Mail"
+  }
+}

@@ -17,6 +17,7 @@ import * as comingSoon from './coming_soon.json';
 import * as tournament from './tournament.json';
 import * as team from './team.json';
 import * as player from './player.json';
+import * as etc from './etc.json';
 
 export default {
   ...localeElementUi,
@@ -30,4 +31,5 @@ export default {
   tournament,
   team,
   player,
+  etc,
 };

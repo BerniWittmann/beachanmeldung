@@ -26,6 +26,16 @@
         -webkit-margin-after: 0.4em;
       }
 
+      &, a {
+        &, &:hover, &:visited, &:focus, &:active {
+          color: inherit;
+          text-decoration: none;
+        }
+
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0.4em;
+      }
+
       &.footer-paragrap-copyright {
         font-size: 13px;
       }

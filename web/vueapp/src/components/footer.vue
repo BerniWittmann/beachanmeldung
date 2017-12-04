@@ -10,13 +10,13 @@
                 <el-col :lg="{span: 4, offset: 8}" :md="{span: 4, offset: 8}" :sm="{span: 4, offset: 8}"
                         :xs="{span: 4}">
                     <p class="footer-paragraph">
-                        <router-link :to="{}" tag="p">{{ $t('nav.contact') }}</router-link>
+                        <router-link :to="{ name: 'etc.contact' }">{{ $t('nav.contact') }}</router-link>
                     </p>
                     <p class="footer-paragraph">
-                        <router-link :to="{}" tag="p">{{ $t('nav.about') }}</router-link>
+                        <a href="http://www.handballismaning.de/impressum">{{ $t('nav.imprint') }}</a>
                     </p>
                     <p class="footer-paragraph">
-                        <router-link :to="{}" tag="p">{{ $t('nav.privacy') }}</router-link>
+                        <router-link :to="{ name: 'etc.privacy' }">{{ $t('nav.privacy') }}</router-link>
                     </p>
                 </el-col>
             </el-row>
