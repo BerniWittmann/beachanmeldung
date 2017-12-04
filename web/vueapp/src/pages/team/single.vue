@@ -99,7 +99,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :lg="{span: 10, offset: 7}" :md="{span: 12, offset: 6}" :sm="{span: 16, offset: 4}"
+                    <el-col :lg="{span: 14, offset: 5}" :md="{span: 14, offset: 5}" :sm="{span: 16, offset: 4}"
                             :xs="{span: 24, offset: 0}">
                         <h2 class="text-center">{{ $t('team.player_list') }}</h2>
                         <el-table

@@ -4,6 +4,10 @@
             <h1>
                 {{ team.completeName }}
             </h1>
+            <v-link-button type="text" icon="el-icon-arrow-left"
+                           :route="{ name: 'team.single', params: { teamID: activeTeam.id } }">
+                {{ $t('team.back') }}
+            </v-link-button>
         </div>
         <el-row class="team-body">
             <el-col>
@@ -12,7 +16,8 @@
                             :xs="{span: 24, offset: 0}">
                         <el-form :rules="rules" :model="team" ref="teamEditForm">
                             <el-row>
-                                <el-col :lg="{span: 16, offset: 4}" :md="{span: 18, offset: 3}" :sm="{span: 20, offset: 2}"
+                                <el-col :lg="{span: 16, offset: 4}" :md="{span: 18, offset: 3}"
+                                        :sm="{span: 20, offset: 2}"
                                         :xs="{span: 24, offset: 0}">
                                     <el-form-item prop="name">
                                         <el-input v-model="team.name"
@@ -31,7 +36,8 @@
                                     v-for="(player, index) in team.players"
                                     :key="`player_${player.key}`"
                             >
-                                <el-col :lg="{span: 22, offset: 1}" :md="{span: 22, offset: 1}" :sm="{span: 24, offset: 0}"
+                                <el-col :lg="{span: 22, offset: 1}" :md="{span: 22, offset: 1}"
+                                        :sm="{span: 24, offset: 0}"
                                         :xs="{span: 24, offset: 0}">
                                     <h3>
                                         {{ $t('player.index', { index: player.key }) }}

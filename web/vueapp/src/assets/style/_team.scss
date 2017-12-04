@@ -47,3 +47,11 @@
     margin-bottom: 5px;
   }
 }
+
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+}

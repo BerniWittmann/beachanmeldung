@@ -1,16 +1,16 @@
 <template>
     <a v-if="showHref" v-bind:href="routeHref" v-bind:target="target">
-        <el-button :type="type" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
+        <el-button :type="type" :icon="icon" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
             <slot></slot>
         </el-button>
     </a>
     <router-link :to="routeUrl" v-else-if="showRoute">
-        <el-button :type="type" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
+        <el-button :type="type" :icon="icon" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
             <slot></slot>
         </el-button>
     </router-link>
     <span v-else>
-        <el-button @click="handleNoRedirect()" :type="type" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
+        <el-button @click="handleNoRedirect()" :icon="icon" :type="type" :size="size" :loading="loading" :disabled="disabled" :native-type="nativeType">
             <slot></slot>
         </el-button>
     </span>
@@ -48,6 +48,9 @@
         type: String,
       },
       target: {
+        type: String,
+      },
+      icon: {
         type: String,
       },
     },
