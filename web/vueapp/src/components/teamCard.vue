@@ -2,14 +2,24 @@
     <el-card class="team-card" @click.native="navigateToTeam()">
         <div slot="header" class="header">
             <span class="team-name">{{ team.completeName }}</span>
-            <span class="team-status">{{ $t(`team.status.${team.state.replace(' ', '_')}`) }} <span
-                    :class="paymentClasses"><i class="fa fa-lg fa-money"></i></span></span>
+            <span class="team-status">{{ $t(`team.status.${team.state.replace(' ', '_')}`) }}
+                <el-tooltip :content="paymentText" placement="top">
+                    <span :class="paymentClasses"><i class="fa fa-lg fa-money"></i></span>
+                </el-tooltip>
+                 <el-tooltip :content="listUploadText" placement="top">
+                    <span :class="listUploadClasses"><i class="fa fa-lg fa-list"></i></span>
+                </el-tooltip>
+            </span>
         </div>
         <div class="body">
-            <span class="team-tournament-name"><v-tournament-name
-                    :tournament="team.tournament"></v-tournament-name></span>
-            <span class="team-tournament-button"><v-link-button size="small" :route="routeConfigTeamPage">{{ $t('team.edit')
-                }}</v-link-button></span>
+            <span class="team-tournament-name">
+                <v-tournament-name :tournament="team.tournament"></v-tournament-name>
+            </span>
+            <span class="team-tournament-button">
+                <v-link-button size="small" :route="routeConfigTeamPage">
+                    {{ $t('team.edit') }}
+                </v-link-button>
+            </span>
         </div>
     </el-card>
 </template>
@@ -44,11 +54,16 @@
 
     computed: {
       paymentClasses() {
-        const result = ['team-status-payment'];
-        if (this.team.paid) {
-          result.push('paid');
-        }
-        return result.join(' ');
+        return this.team.paid ? 'team-status-positive' : 'team-status-negative';
+      },
+      listUploadClasses() {
+        return this.team.hasPlayers ? 'team-status-positive' : 'team-status-negative';
+      },
+      paymentText() {
+        return this.team.paid ? this.$t('team.paid') : this.$t('team.not_paid');
+      },
+      listUploadText() {
+        return this.team.hasPlayers ? this.$t('team.list_uploaded') : this.$t('team.list_not_uploaded');
       },
 
       routeConfigTeamPage() {

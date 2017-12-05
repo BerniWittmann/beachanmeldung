@@ -37,6 +37,7 @@ export default class TeamTransformer extends Transformer {
       completeName: team.complete_name,
       players: team.players ? PlayerTransformer.fetchCollection(team.players)
         .sort((a, b) => a.number - b.number) : [],
+      hasPlayers: team.has_players,
     };
   }
 

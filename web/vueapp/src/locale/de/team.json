@@ -47,6 +47,9 @@
   "person_of_responsibility": "Verantwortlicher",
   "date_signup": "Angemeldet am",
   "paid": "Bezahlt",
+  "not_paid": "Nicht Bezahlt",
+  "list_uploaded": "Spieler hochgeladen",
+  "list_not_uploaded": "Spieler nicht hochgeladen",
   "actions": {
     "title": "Aktionen",
     "move_to_waitlist": "Auf Warteliste verschieben",

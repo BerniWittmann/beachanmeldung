@@ -24,7 +24,12 @@
                 v-if="canDisplayOptions">
             <template slot-scope="scope">
                 <div v-if="scope.row.data">
-                    <i v-if="scope.row.data.paid" class="fa fa-money fa-fw"></i>
+                    <el-tooltip v-if="scope.row.data.paid" :content="$t('team.paid')" placement="top">
+                        <i class="fa fa-money fa-fw"></i>
+                    </el-tooltip>
+                    <el-tooltip v-if="scope.row.data.hasPlayers" :content="$t('team.list_uploaded')" placement="top">
+                        <i class="fa fa-list fa-fw"></i>
+                    </el-tooltip>
                     <el-button @click.prevent.stop="expandRow(scope.row)" v-if="needsApproval(scope.row.data)" type="danger"
                                size="mini" round>{{ $t('team.needs_approval') }}
                     </el-button>

@@ -31,6 +31,7 @@ class TeamSerializer(serializers.Serializer):
     complete_name = serializers.ReadOnlyField(read_only=True)
     tournament_id = serializers.IntegerField(write_only=True)
     players = PlayerSerializer(many=True, required=False)
+    has_players = serializers.BooleanField(read_only=True)
 
     def validate(self, data):
         try:

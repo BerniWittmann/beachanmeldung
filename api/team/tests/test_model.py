@@ -3,12 +3,14 @@ from django.test import TestCase
 from api.accounts.models import MyUser
 from api.team.models import Team
 from api.tournaments.models import Tournament
+from api.players.models import Player
 
 
 class Tournaments(TestCase):
     tournament = None
     team = None
     user = None
+    player = None
 
     def setUp(self):
         self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
@@ -35,6 +37,14 @@ class Tournaments(TestCase):
             trainer=self.user,
         )
 
+        self.player = Player.objects.create(
+            number=1,
+            first_name='Test',
+            last_name='Player',
+            year_of_birth='1990',
+            team=self.team
+        )
+
     def test_team_complete_name(self):
         self.assertEqual(self.team.complete_name(), 'THC Eh Drin! (TSV Ismaning)')
 
@@ -42,3 +52,10 @@ class Tournaments(TestCase):
         self.team.beachname = None
         self.team.save()
         self.assertEqual(self.team.complete_name(), 'TSV Ismaning')
+
+    def test_team_has_players(self):
+        self.assertTrue(self.team.has_players())
+
+    def test_team_has_no_players(self):
+        self.player.delete()
+        self.assertFalse(self.team.has_players())

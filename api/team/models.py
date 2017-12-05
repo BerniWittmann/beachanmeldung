@@ -37,5 +37,8 @@ class Team(models.Model):
 
         return self.beachname + ' (' + self.name + ')'
 
+    def has_players(self):
+        return self.players.count() > 0
+
     def __str__(self):
         return self.complete_name()

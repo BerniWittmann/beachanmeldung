@@ -29,7 +29,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :lg="{span: 16, offset: 4}" :md="{span: 18, offset: 3}" :sm="{span: 22, offset: 1}"
+                    <el-col :lg="{span: 18, offset: 3}" :md="{span: 18, offset: 3}" :sm="{span: 22, offset: 1}"
                             :xs="{span: 24, offset: 0}">
                         <el-table
                                 :data="tableData"
@@ -51,6 +51,16 @@
                                             </span>
                                             <span v-else>
                                                 {{ $t('team.states.not_paid') }}
+                                            </span>
+                                        </el-checkbox>
+                                    </span>
+                                    <span v-else-if="scope.row.isListUploadRow">
+                                        <el-checkbox v-model="hasUploaded" border>
+                                            <span v-if="hasUploaded">
+                                                {{ $t('team.list_uploaded') }}
+                                            </span>
+                                            <span v-else>
+                                                {{ $t('team.list_not_uploaded') }}
                                             </span>
                                         </el-checkbox>
                                     </span>
@@ -183,7 +193,7 @@
             return 1;
           case teamStates.signedUp:
             if (!this.team.paid) return 2;
-            // TODO Check if player list already uploadded
+            if (this.team.hasPlayers) return 4;
             return 3;
           default:
             return -1;
@@ -209,6 +219,10 @@
           label: this.$t('team.paid'),
           value: this.team.paid,
           isPaidRow: true,
+        }, {
+          label: this.$t('team.player_list'),
+          value: this.team.hasPlayers,
+          isListUploadRow: true,
         }];
       },
 
@@ -240,6 +254,16 @@
         /* eslint-disable arrow-body-style */
         get: function get() {
           return this.team.paid;
+        },
+        set: () => {
+        },
+        /* eslint-enable arrow-body-style */
+      },
+
+      hasUploaded: {
+        /* eslint-disable arrow-body-style */
+        get: function get() {
+          return this.team.hasPlayers;
         },
         set: () => {
         },

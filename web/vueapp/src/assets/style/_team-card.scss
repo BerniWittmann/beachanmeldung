@@ -17,13 +17,13 @@
     .team-status {
       font-size: 15px;
 
-      .team-status-payment {
+      .team-status-positive {
+        margin-left: 5px;
+        color: #67c23a;
+      }
+      .team-status-negative {
         margin-left: 5px;
         color: #fa5555;
-
-        &.paid {
-          color: #67c23a;
-        }
       }
     }
   }
