@@ -115,7 +115,7 @@ class Players(TransactionTestCase):
                                       kwargs={'pk': self.team.id}), {
                                   'name': 'TSV Ismaning',
                                   'beachname': 'THC Eh Drin!',
-                                  'players': [],
+                                  'players': json.dumps([]),
                               })
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(response.status_code, 200)
@@ -123,6 +123,21 @@ class Players(TransactionTestCase):
         players = data['players']
         self.assertEqual(players, [])
         self.assertEqual(Player.objects.count(), 0)
+
+    def test_team_update_without_players(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}), {
+                                  'name': 'TSV Ismaning',
+                                  'beachname': 'THC Eh Drin!',
+                              })
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response.status_code, 200)
+        self.assertIsNotNone(data['players'])
+        players = data['players']
+        self.assertNotEqual(players, [])
+        self.assertNotEqual(Player.objects.count(), 0)
 
     def test_team_update_players(self):
         client = APIClient()

@@ -154,6 +154,7 @@
 
   import { teamStates } from '@/utils/constants';
   import TeamStateTransitionMixin from '@/mixins/teamStateTransitions';
+  import StepLayoutDirectionMixin from '@/mixins/stepLayoutDirection';
 
   export default {
     components: {
@@ -164,13 +165,8 @@
 
     mixins: [
       TeamStateTransitionMixin,
+      StepLayoutDirectionMixin,
     ],
-
-    data() {
-      return {
-        currentStepLayoutDirection: 'horizontal',
-      };
-    },
 
     computed: {
       team() {
@@ -272,10 +268,6 @@
     },
 
     methods: {
-      handleWindowResize() {
-        this.currentStepLayoutDirection = document.documentElement.clientWidth <= 1000 ? 'vertical' : 'horizontal';
-      },
-
       triggerPaidChange() {
         if (this.team.paid) {
           this.teamTransitionStateUnpaid(this.team.id);
@@ -283,18 +275,6 @@
           this.teamTransitionStatePaid(this.team.id);
         }
       },
-    },
-
-    mounted() {
-      this.$nextTick(() => {
-        window.addEventListener('resize', this.handleWindowResize);
-
-        this.handleWindowResize();
-      });
-    },
-
-    beforeDestroy() {
-      window.removeEventListener('resize', this.handleWindowResize);
     },
   };
 </script>

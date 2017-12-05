@@ -5,7 +5,8 @@
                 <v-tournament-name :tournament="tournament"></v-tournament-name>
             </h1>
             <span class="tournament-header-right">
-                <v-link-button :disabled="!tournament.signupOpen" slot="reference">
+                <v-link-button :disabled="!tournament.signupOpen" slot="reference"
+                               :route="{ name: 'team.register', query: { tournament: tournament.id } }">
                     {{ $t('tournament.register_team') }}
                 </v-link-button>
                 <p v-if="tournament.isBeforeSignup">

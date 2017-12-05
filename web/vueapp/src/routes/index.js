@@ -141,6 +141,21 @@ export default [
     },
   },
 
+  {
+    path: '/register-team',
+    name: 'team.register',
+    component: require('@/pages/team/signup.vue'),
+
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: false,
+    },
+
+    beforeEnter: (to, from, next) => {
+      tournamentService.setCurrentSignupTournament(to.query.tournament).then(next);
+    },
+  },
+
   // Tournament Single Page
   {
     path: '/tournament/:tournamentID',

@@ -7,7 +7,7 @@
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "postinstall": "npm rebuild node-sass",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run --browserConsoleLogOptions = { level: 'error' } --loglevel error",
     "test": "npm run unit"
   },
   "repository": {

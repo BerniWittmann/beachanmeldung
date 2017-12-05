@@ -31,22 +31,17 @@ describe('Components', () => {
       it('should link to the contact page', () => {
         const element = vm.find('.footer-paragraph')[2];
         expect(element.text()).to.contain('nav.contact');
-        // Use test again, when implemented link
-        // expect(element.querySelector('a').getAttribute('href')).to.equal('/contact');
       });
 
       it('should link to the about page', () => {
         const element = vm.find('.footer-paragraph')[3];
-        expect(element.text()).to.contain('nav.about');
-        // Use test again, when implemented link
-        // expect(element.querySelector('a').getAttribute('href')).to.equal('/about');
+        console.log(element.html());
+        expect(element.text()).to.contain('nav.imprint');
       });
 
       it('should link to the privacy page', () => {
         const element = vm.find('.footer-paragraph')[4];
         expect(element.text()).to.contain('nav.privacy');
-        // Use test again, when implemented link
-        // expect(element.querySelector('a').getAttribute('href')).to.equal('/privacy');
       });
     });
   });

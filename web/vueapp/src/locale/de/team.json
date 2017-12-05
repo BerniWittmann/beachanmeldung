@@ -88,5 +88,14 @@
   "abort": "Abbrechen",
   "mine": "Meine Teams",
   "player_list": "Spielerliste",
-  "back": "Zurück zum Team"
+  "back": "Zurück zum Team",
+  "register": "Team anmelden",
+  "signup": {
+    "state": {
+      "account": "Account erstellen",
+      "tournament": "Turnier auswählen",
+      "teaminfo": "Team Infos",
+      "confirm": "Bestätigen"
+    }
+  }
 }

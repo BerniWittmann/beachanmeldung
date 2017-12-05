@@ -13,6 +13,7 @@
                 <v-link-button
                         type="primary"
                         size="large"
+                        :route="{ name: 'team.register' }"
                 >{{ $t('general.call_to_action') }}
                 </v-link-button>
             </el-col>

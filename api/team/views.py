@@ -24,10 +24,15 @@ class TeamViewSet(viewsets.ModelViewSet):
 
     @detail_route(methods=['put', 'patch'], permission_classes=[IsTrainerOrAdminOrReadOnly])
     def update(self, request, pk=None, **kwargs):
+        players = None
+        if 'players' in request.data:
+            players = request.data.get('players', [])
+            players = [] if players == '[]' else players
+
         data = {
             'name': request.data.get('name'),
             'beachname': request.data.get('beachname'),
-            'players': request.data.get('players', None),
+            'players': players,
         }
         team = get_object_or_404(Team.objects.all(), pk=pk)
         self.check_object_permissions(self.request, team)

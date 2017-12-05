@@ -30,7 +30,7 @@ class TeamSerializer(serializers.Serializer):
     is_displayed = serializers.ReadOnlyField(read_only=True)
     complete_name = serializers.ReadOnlyField(read_only=True)
     tournament_id = serializers.IntegerField(write_only=True)
-    players = PlayerSerializer(many=True, required=False)
+    players = PlayerSerializer(many=True, required=False, allow_null=True)
     has_players = serializers.BooleanField(read_only=True)
 
     def validate(self, data):
@@ -56,22 +56,24 @@ class TeamSerializer(serializers.Serializer):
 
         number_list = []
         name_list = []
-        players = data.get('players', [])
-        for player in players:
-            number_list.append(player.get('number'))
-            name_list.append(player.get('first_name') + '-' + player.get('last_name'))
+        players = data.get('players')
+        if players is not None:
+            for player in players:
+                number_list.append(player.get('number'))
+                name_list.append(player.get('first_name') + '-' + player.get('last_name'))
 
-        if len(list(set(number_list))) != len(number_list):
-            raise serializers.ValidationError({
-                'detail': _('Duplicate Player Number'),
-                'key': _('duplicate_player_number')
-            })
+            if len(list(set(number_list))) != len(number_list):
+                raise serializers.ValidationError({
+                    'detail': _('Duplicate Player Number'),
+                    'key': _('duplicate_player_number')
+                })
 
-        if len(list(set(name_list))) != len(name_list):
-            raise serializers.ValidationError({
-                'detail': _('Duplicate Player Name'),
-                'key': _('duplicate_player_name')
-            })
+            if len(list(set(name_list))) != len(name_list):
+                raise serializers.ValidationError({
+                    'detail': _('Duplicate Player Name'),
+                    'key': _('duplicate_player_name')
+                })
+
         return data
 
     def update(self, instance, validated_data):

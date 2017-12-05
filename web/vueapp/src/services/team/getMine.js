@@ -18,8 +18,8 @@ const failed = () => {
 };
 
 export default () => {
-  if (!store.state.auth.authenticated) return;
-  Vue.$http.get('/teams/mine/')
+  if (!store.state.auth.authenticated) return Promise.reject();
+  return Vue.$http.get('/teams/mine/')
     .then((response) => {
       success(response.data);
     }).catch(failed);

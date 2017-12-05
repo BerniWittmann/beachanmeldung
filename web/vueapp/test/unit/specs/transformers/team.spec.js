@@ -24,6 +24,8 @@ describe('Transformers', () => {
           tournament: undefined,
           is_displayed: true,
           complete_name: 'Beach (Test)',
+          players: undefined,
+          has_players: true,
         };
         const transformed = {
           id: 1,
@@ -36,6 +38,8 @@ describe('Transformers', () => {
           tournament: undefined,
           isDisplayed: true,
           completeName: 'Beach (Test)',
+          players: [],
+          hasPlayers: true,
         };
         expect(TeamTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -52,6 +56,8 @@ describe('Transformers', () => {
           tournament: undefined,
           isDisplayed: undefined,
           completeName: undefined,
+          players: [],
+          hasPlayers: undefined,
         };
         expect(TeamTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -78,6 +84,7 @@ describe('Transformers', () => {
           name: 'Test',
           beachname: 'Beach',
           tournament: 5,
+          players: []
         };
         expect(TeamTransformer.send(original)).to.deep.equal(transformed);
       });
@@ -88,6 +95,7 @@ describe('Transformers', () => {
           name: undefined,
           beachname: undefined,
           tournament: undefined,
+          players: []
         };
         expect(TeamTransformer.send(original)).to.deep.equal(transformed);
       });
