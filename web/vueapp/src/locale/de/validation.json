@@ -28,7 +28,8 @@
     "number": {
       "required": "Bitte gib eine Nummer für diesen Spieler an",
       "type": "Bitte gib eine gültige Nummer an",
-      "min": "Die Nummer muss größer als 0 sein"
+      "min": "Die Nummer muss größer als 0 sein",
+      "unique": "Die Nummer darf nicht doppelt vorkommen"
     },
     "first_name": {
       "required": "Bitte gib einen Vornamen für diesen Spieler an"
@@ -40,6 +41,9 @@
       "required": "Bitte gib ein Geburtsjahr an",
       "type": "Bitte gib das Geburtsjahr im Format JJJJ an (z.B. 1990)",
       "range": "Bitte gib ein korrektes Geburtsjahr im Format JJJJ an (z.B. 1990)"
+    },
+    "name": {
+      "unique": "Der Name darf nicht doppelt vorkommen"
     }
   }
 }

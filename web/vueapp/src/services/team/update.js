@@ -16,6 +16,16 @@ const failed = (error) => {
       title: Vue.i18n.t('team.notifications.put.name_already_taken.title'),
       message: Vue.i18n.t('team.notifications.put.name_already_taken.message'),
     });
+  } else if (error && error.response && error.response.data && error.response.data.key && error.response.data.key[0] === 'duplicate_player_number') {
+    Vue.$notify.error({
+      title: Vue.i18n.t('team.notifications.put.duplicate_player_number.title'),
+      message: Vue.i18n.t('team.notifications.put.duplicate_player_number.message'),
+    });
+  } else if (error && error.response && error.response.data && error.response.data.key && error.response.data.key[0] === 'duplicate_player_name') {
+    Vue.$notify.error({
+      title: Vue.i18n.t('team.notifications.put.duplicate_player_name.title'),
+      message: Vue.i18n.t('team.notifications.put.duplicate_player_name.message'),
+    });
   } else {
     Vue.$notify.error({
       title: Vue.i18n.t('team.notifications.put.failed.title'),

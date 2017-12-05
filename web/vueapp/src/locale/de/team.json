@@ -20,6 +20,14 @@
       "name_already_taken": {
         "title": "Das Team konnte nicht geändert werden",
         "message": "Der Name ist bereits vergeben"
+      },
+      "duplicate_player_number": {
+        "title": "Das Team konnte nicht geändert werden",
+        "message": "Es existiert eine doppelte Spielernummer"
+      },
+      "duplicate_player_name": {
+        "title": "Das Team konnte nicht geändert werden",
+        "message": "Zwei Spieler haben den selben Namen"
       }
     },
     "state_change": {

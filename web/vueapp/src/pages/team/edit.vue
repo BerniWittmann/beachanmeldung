@@ -166,12 +166,27 @@
             { required: true, message: this.$t('validation.player.number.required') },
             { type: 'number', message: this.$t('validation.player.number.type'), trigger: 'blur' },
             { min: 0, type: 'number', message: this.$t('validation.player.number.min'), trigger: 'blur' },
+            {
+              validator: this.validateNumberUnique,
+              message: this.$t('validation.player.number.unique'),
+              trigger: 'blur',
+            },
           ],
           firstName: [
             { required: true, message: this.$t('validation.player.first_name.required'), trigger: 'blur' },
+            {
+              validator: this.validateNameUnique,
+              message: this.$t('validation.player.name.unique'),
+              trigger: 'blur',
+            },
           ],
           lastName: [
             { required: true, message: this.$t('validation.player.last_name.required'), trigger: 'blur' },
+            {
+              validator: this.validateNameUnique,
+              message: this.$t('validation.player.name.unique'),
+              trigger: 'blur',
+            },
           ],
           yearOfBirth: [
             { required: true, message: this.$t('validation.player.year_of_birth.required') },
@@ -225,6 +240,23 @@
             yearOfBirth: undefined,
           },
         });
+      },
+
+      validateNumberUnique(rule, value, callback) {
+        const amount = this.team.players.filter(single => single.value.number === value).length;
+        return amount > 1 ? callback(new Error('Player number not unique')) : callback();
+      },
+
+      validateNameUnique(rule, value, callback) {
+        const uniquePlayerNames = [];
+        this.team.players.forEach((player) => {
+          const name = `${player.value.firstName}-${player.value.lastName}`;
+          if (uniquePlayerNames.includes(name)) {
+            return callback(new Error('Player Name not unique'));
+          }
+          return uniquePlayerNames.push(name);
+        });
+        return callback();
       },
     },
 
