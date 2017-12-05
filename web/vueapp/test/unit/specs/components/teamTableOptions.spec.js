@@ -1,4 +1,4 @@
-import TeamTableOptions from '@/components/TeamTableOptions.vue';
+import TeamTableOptions from '@/components/teamTableOptions.vue';
 import utils from '../../utils';
 import { teamStates } from "@/utils/constants";
 
