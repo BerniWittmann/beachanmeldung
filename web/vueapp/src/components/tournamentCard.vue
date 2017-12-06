@@ -2,20 +2,22 @@
     <el-card class="tournament-card" @click.native="navigateToTournament()">
         <div slot="header" class="header">
             <span class="tournament-name"><v-tournament-name :tournament="tournament"></v-tournament-name></span>
-            <el-popover
-                    placement="top"
-                    :title="$t('tournament.signup_not_open.title')"
-                    trigger="hover"
-                    :disabled="tournament.signupOpen">
-                <span v-show="tournament.isBeforeSignup">{{ $t('tournament.signup_not_open.before_signup', getDateTime('startSignup'))
+            <el-badge is-dot :hidden="!tournament.fewPlacesLeft">
+                <el-popover
+                        placement="top"
+                        :title="$t('tournament.signup_not_open.title')"
+                        trigger="hover"
+                        :disabled="tournament.signupOpen">
+                    <span v-show="tournament.isBeforeSignup">{{ $t('tournament.signup_not_open.before_signup', getDateTime('startSignup'))
                     }}</span>
-                <span v-show="tournament.isAfterSignup">{{ $t('tournament.signup_not_open.after_signup', getDateTime('deadlineSignup'))
-                    }}</span>
-                <v-link-button slot="reference"
-                               :route="{ name: 'tournament.single', params: { tournamentID: tournament.id }}">
-                    {{ $t('tournament.register_team') }}
-                </v-link-button>
-            </el-popover>
+                    <span v-show="tournament.isAfterSignup">{{ $t('tournament.signup_not_open.after_signup', getDateTime('deadlineSignup'))
+                        }}</span>
+                    <v-link-button slot="reference"
+                                   :route="{ name: 'tournament.single', params: { tournamentID: tournament.id }}">
+                        {{ $t('tournament.register_team') }}
+                    </v-link-button>
+                </el-popover>
+            </el-badge>
         </div>
         <div class="body">
             <span><i class="el-icon-date"></i> {{ tournament.tournamentDate }}</span>

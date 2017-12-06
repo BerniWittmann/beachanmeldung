@@ -12,8 +12,14 @@
                 <p v-if="tournament.isBeforeSignup">
                     {{ $t('tournament.signup_not_open.before_signup', getDateTime('startSignup')) }}
                 </p>
-                <p v-if="tournament.isAfterSignup">
+                <p v-else-if="tournament.isAfterSignup">
                     {{ $t('tournament.signup_not_open.after_signup', getDateTime('deadlineSignup')) }}
+                </p>
+                <p v-else-if="tournament.fewPlacesLeft" class="tournament-header-note-big">
+                    {{ $tc('tournament.few_places_left', tournament.freePlaces, { amount: tournament.freePlaces }) }}
+                </p>
+                <p v-else-if="tournament.noPlacesLeft" class="tournament-header-note-big">
+                    {{ $t('tournament.now_places_left') }}
                 </p>
             </span>
         </div>

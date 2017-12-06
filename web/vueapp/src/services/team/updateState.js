@@ -1,12 +1,14 @@
 import teamTransformer from './../../transformers/team';
 import store from './../../store';
 import Vue from 'vue';
+import tournamentService from '@/services/tournament';
 
 // When the request succeeds
 const success = (team) => {
   team = teamTransformer.fetch(team);
 
   store.dispatch('team/updateSingle', team);
+  tournamentService.getByID(team.tournament.id);
 };
 
 // When the request fails

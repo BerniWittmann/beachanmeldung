@@ -18,6 +18,10 @@
     p {
       color: #e1000c;
       font-size: 13px;
+
+      &.tournament-header-note-big {
+        font-size: 16px;
+      }
     }
   }
 }

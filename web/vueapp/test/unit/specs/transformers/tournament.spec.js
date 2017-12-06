@@ -79,6 +79,8 @@ describe('Transformers', () => {
           free_places: 10,
           waitlist_count: 2,
           approval_count: 1,
+          no_places_left_flag: false,
+          few_places_left_flag: false,
         };
         const transformed = {
           id: 1,
@@ -102,6 +104,8 @@ describe('Transformers', () => {
           freePlaces: 10,
           waitlistCount: 2,
           approvalCount: 1,
+          noPlacesLeft: false,
+          fewPlacesLeft: false,
         };
         expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -129,6 +133,8 @@ describe('Transformers', () => {
           freePlaces: undefined,
           waitlistCount: undefined,
           approvalCount: undefined,
+          noPlacesLeft: undefined,
+          fewPlacesLeft: undefined,
         };
         expect(TournamentTransformer.fetch(original)).to.deep.equal(transformed);
       });

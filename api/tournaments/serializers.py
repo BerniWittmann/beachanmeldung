@@ -14,10 +14,12 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
                   'starting_fee', 'signup_open', 'start_signup',
                   'is_before_signup', 'is_after_signup',
                   'number_of_places', 'total_count_teams', 'count_signed_up_teams',
-                  'free_places', 'waitlist_count', 'approval_count')
+                  'free_places', 'waitlist_count', 'approval_count',
+                  'no_places_left_flag', 'few_places_left_flag')
         read_only_fields = ('id', 'signup_open', 'is_before_signup', 'is_after_signup',
                             'total_count_teams', 'count_signed_up_teams',
-                            'free_places', 'waitlist_count', 'approval_count')
+                            'free_places', 'waitlist_count', 'approval_count',
+                            'no_places_left_flag', 'few_places_left_flag')
 
     def validate(self, data):
         start_date = data.get('start_date', self.instance.start_date if

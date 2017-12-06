@@ -50,6 +50,8 @@ export default class TournamentTransformer extends Transformer {
       freePlaces: tournament.free_places,
       waitlistCount: tournament.waitlist_count,
       approvalCount: tournament.approval_count,
+      noPlacesLeft: tournament.no_places_left_flag,
+      fewPlacesLeft: tournament.few_places_left_flag,
     };
   }
 

@@ -36,13 +36,20 @@ class Tournament(models.Model):
         return self.active_teams().filter(state=TeamStateTypes.signed_up).count()
 
     def free_places(self):
-        return self.number_of_places - self.count_signed_up_teams()
+        return max(self.number_of_places - self.count_signed_up_teams(), 0)
 
     def waitlist_count(self):
         return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval, TeamStateTypes.waiting]).count()
 
     def approval_count(self):
         return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval]).count()
+
+    def no_places_left_flag(self):
+        return self.free_places() == 0
+
+    def few_places_left_flag(self):
+        if self.no_places_left_flag(): return False
+        return self.free_places() / self.number_of_places <= 0.25 or self.free_places() <= 2
 
     def signup_open(self):
         return self.deadline_signup > timezone.now() >= self.start_signup
