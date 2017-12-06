@@ -225,4 +225,3 @@ class Teams(TestCase):
         })
         self.assertNotEqual(Team.objects.first().beachname, 'New Name Name')
         self.assertNotEqual(Team.objects.first().name, 'TSV Ismaning 2')
-
