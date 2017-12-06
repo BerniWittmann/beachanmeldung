@@ -14,6 +14,7 @@ describe('Utils', () => {
                 authenticated: false,
               },
             },
+            dispatch: () => {},
           };
           to = {
             matched: {
@@ -46,6 +47,7 @@ describe('Utils', () => {
                 authenticated: true,
               },
             },
+            dispatch: () => {},
           };
           to = {
             matched: {
@@ -78,6 +80,7 @@ describe('Utils', () => {
                 authenticated: false,
               },
             },
+            dispatch: () => {},
           };
           to = {
             matched: {
