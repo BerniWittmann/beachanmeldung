@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from api.accounts.models import MyUser
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse
@@ -7,26 +7,29 @@ import json
 from authemail.models import SignupCode
 
 
-class SignupTestCase(TestCase):
+class SignupTestCase(TransactionTestCase):
     def test_signup_valid(self):
         client = APIClient()
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
                                 'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['email'], 'test@byom.de')
         self.assertEqual(data['first_name'], 'Test')
         self.assertEqual(data['last_name'], 'User')
+        self.assertEqual(data['phone'], '+49192481024')
 
     def test_signup_email_required(self):
         client = APIClient()
         response = client.post(reverse('v1:authemail-signup'),
                                {'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['email'], ['This field is required.'])
@@ -36,17 +39,42 @@ class SignupTestCase(TestCase):
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 400)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['password'], ['This field is required.'])
+
+    def test_signup_phone_required(self):
+        client = APIClient()
+        response = client.post(reverse('v1:authemail-signup'),
+                               {'email': 'test@byom.de',
+                                'first_name': 'Test',
+                                'last_name': 'User',
+                                'password': 'test123'})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(data['phone'], ['This field is required.'])
+
+    def test_signup_phone_invalid(self):
+        client = APIClient()
+        response = client.post(reverse('v1:authemail-signup'),
+                               {'email': 'test@byom.de',
+                                'first_name': 'Test',
+                                'last_name': 'User',
+                                'password': 'test123',
+                                'phone': 'abciaj'})
+        self.assertEqual(response.status_code, 400)
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(data['phone'], ['Phone Number is not valid'])
 
     def test_signup_first_name_optional(self):
         client = APIClient()
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
                                 'last_name': 'User',
-                                'password': 'test123'})
+                                'password': 'test123',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['email'], 'test@byom.de')
@@ -58,7 +86,8 @@ class SignupTestCase(TestCase):
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
                                 'first_name': 'Test',
-                                'password': 'test123'})
+                                'password': 'test123',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['email'], 'test@byom.de')
@@ -69,7 +98,8 @@ class SignupTestCase(TestCase):
         client = APIClient()
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
-                                'password': 'test123'})
+                                'password': 'test123',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['email'], 'test@byom.de')
@@ -82,7 +112,8 @@ class SignupTestCase(TestCase):
                                {'email': 'test@byom.de',
                                 'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         user_id = MyUser.objects.first().id
         signup_code = SignupCode.objects.filter(user=user_id)
@@ -95,13 +126,15 @@ class SignupTestCase(TestCase):
                                {'email': 'test@byom.de',
                                 'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         response = client.post(reverse('v1:authemail-signup'),
                                {'email': 'test@byom.de',
                                 'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(SignupCode.objects.count(), 1)
 
@@ -111,7 +144,8 @@ class SignupTestCase(TestCase):
                                {'email': 'test@byom.de',
                                 'password': 'test123',
                                 'first_name': 'Test',
-                                'last_name': 'User'})
+                                'last_name': 'User',
+                                'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Verify your email address')

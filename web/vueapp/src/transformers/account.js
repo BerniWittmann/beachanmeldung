@@ -24,6 +24,7 @@ export default class AccountTransformer extends Transformer {
       isVerified: account.is_verified,
       dateJoined: account.date_joined ? moment(account.date_joined, [moment.ISO_8601, 'DD.MM.YYYY']) : undefined,
       isStaff: account.is_staff || false,
+      phone: account.phone,
     };
   }
 
@@ -39,6 +40,7 @@ export default class AccountTransformer extends Transformer {
       email: account.email,
       first_name: account.firstName,
       last_name: account.lastName,
+      phone: account.phone,
     };
   }
 }

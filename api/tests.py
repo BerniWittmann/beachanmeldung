@@ -17,7 +17,8 @@ class SetLastLoginMiddlewareTestCase(TestCase):
     def setUp(self):
         self.user = MyUser.objects.create(email='test@byom.de',
                                           first_name='Test',
-                                          last_name='User')
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.is_verified = True
         self.user.save()

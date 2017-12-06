@@ -8,6 +8,10 @@
                         <i class="fa fa-fw fa-envelope"></i>
                         {{ account.email }}
                     </h4>
+                    <h4>
+                        <i class="fa fa-fw fa-phone"></i>
+                        {{ account.phone }}
+                    </h4>
                     <p class="account-page-side-resend-verification" v-if="!account.isVerified">
                         {{ $t('account.please_verify') }} <a href=""
                                                              @click.prevent="resendVerification()">{{ $t('account.resend_verification')
@@ -56,6 +60,11 @@
                                           type="email"
                                           v-bind:placeholder="$t('account.email')"></el-input>
                             </el-form-item>
+                            <el-form-item prop="phone">
+                                <el-input v-model="user.phone"
+                                          type="phone"
+                                          v-bind:placeholder="$t('account.phone')"></el-input>
+                            </el-form-item>
                         </el-form>
                     </div>
                 </v-editing-panel>
@@ -89,6 +98,7 @@
           firstName: undefined,
           lastName: undefined,
           email: undefined,
+          phone: undefined,
         },
         rules: {
           firstName: [
@@ -102,6 +112,10 @@
           email: [
             { required: true, message: this.$t('validation.email.required'), trigger: 'blur' },
             { type: 'email', message: this.$t('validation.email.valid') },
+          ],
+          phone: [
+            { required: true, message: this.$t('validation.phone.required'), trigger: 'blur' },
+            { type: 'string', pattern: /^\+?1?\d{9,15}$/, message: this.$t('validation.phone.valid') },
           ],
         },
       };

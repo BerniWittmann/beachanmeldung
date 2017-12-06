@@ -1,15 +1,13 @@
 from django.conf.urls import url
 
-from authemail.views import Signup, PasswordResetVerify, PasswordChange
+from authemail.views import PasswordResetVerify, PasswordChange
 
 from .views import (CustomLogin, CustomLogout, CustomPasswordResetVerified,
                     CustomUserMe, CustomPasswordReset, CustomSignupVerify,
-                    ResendVerification)
+                    ResendVerification, CustomSignup)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    url(r'^signup/$', Signup.as_view(), name='authemail-signup'),
+    url(r'^signup/$', CustomSignup.as_view(), name='authemail-signup'),
     url(r'^signup/verify/$', CustomSignupVerify.as_view(),
         name='authemail-signup-verify'),
 

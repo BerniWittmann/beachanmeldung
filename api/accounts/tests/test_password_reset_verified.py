@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from api.accounts.models import MyUser
 from django.contrib.auth import authenticate
 from rest_framework.test import APIClient
@@ -7,11 +7,11 @@ from authemail.models import PasswordResetCode
 import json
 
 
-class PasswordResetVerifiedTestCase(TestCase):
+class PasswordResetVerifiedTestCase(TransactionTestCase):
     code = None
 
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User', phone='+49192481024')
         user.set_password('test123')
         user.is_verified = True
         user.save()

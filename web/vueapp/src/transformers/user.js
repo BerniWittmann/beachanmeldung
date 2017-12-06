@@ -32,6 +32,7 @@ export default class UserTransformer extends Transformer {
       first_name: user.firstName,
       last_name: user.lastName,
       password: user.password,
+      phone: user.phone,
     };
   }
 }

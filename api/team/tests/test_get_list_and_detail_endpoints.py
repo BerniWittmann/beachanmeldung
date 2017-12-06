@@ -22,7 +22,10 @@ class Teams(TestCase):
     user = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de',
+                                          first_name='Test',
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.is_verified = True
         self.user.is_staff = True
@@ -95,7 +98,10 @@ class Teams(TestCase):
         self.assertEqual(data['detail'], 'Not found.')
 
     def test_team_get_as_other_trainer(self):
-        other_user = MyUser.objects.create_user(email='newuser@byom.de', first_name='Another', last_name='User')
+        other_user = MyUser.objects.create_user(email='newuser@byom.de',
+                                                first_name='Another',
+                                                last_name='User',
+                                                phone='+49192481024')
         other_user.set_password('test123')
         other_user.is_verified = True
         other_user.is_staff = False

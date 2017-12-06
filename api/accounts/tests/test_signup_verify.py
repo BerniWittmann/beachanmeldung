@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from api.accounts.models import MyUser
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse
@@ -6,13 +6,16 @@ import json
 from authemail.models import SignupCode
 
 
-class SignupVerifyTestCase(TestCase):
+class SignupVerifyTestCase(TransactionTestCase):
     user_id = None
     user = None
     signup_code = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de',
+                                          first_name='Test',
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.save()
         self.user_id = self.user.id
@@ -61,7 +64,10 @@ class SignupVerifyTestCase(TestCase):
         self.assertEqual(SignupCode.objects.count(), 0)
 
     def test_reset_password_code_dont_delete_other_users_codes(self):
-        other_user = MyUser.objects.create(email='other-test@byom.de', first_name='Other', last_name='User')
+        other_user = MyUser.objects.create(email='other-test@byom.de',
+                                           first_name='Other',
+                                           last_name='User',
+                                           phone='+49192481024')
         other_user.set_password('test123')
         other_user.is_verified = True
         other_user.save()

@@ -48,7 +48,8 @@ class Tournament(models.Model):
         return self.free_places() == 0
 
     def few_places_left_flag(self):
-        if self.no_places_left_flag(): return False
+        if self.no_places_left_flag():
+            return False
         return self.free_places() / self.number_of_places <= 0.25 or self.free_places() <= 2
 
     def signup_open(self):

@@ -19,6 +19,7 @@ describe('Vuex Modules', () => {
             dateJoined: '19.02.1996',
             isVerified: true,
             isStaff: false,
+            phone: '+49123456789',
           });
 
           expect(state).to.deep.equal({
@@ -28,6 +29,7 @@ describe('Vuex Modules', () => {
             dateJoined: '19.02.1996',
             isVerified: true,
             isStaff: false,
+            phone: '+49123456789',
           });
         });
 
@@ -44,6 +46,7 @@ describe('Vuex Modules', () => {
             dateJoined: undefined,
             isVerified: undefined,
             isStaff: undefined,
+            phone: undefined,
           });
         });
       });
@@ -58,6 +61,7 @@ describe('Vuex Modules', () => {
           dateJoined: '19.02.1996',
           isVerified: true,
           isStaff: false,
+          phone: '+49123456789',
         };
         utils.testAction(account.actions.store, data, {}, [
           { type: 'STORE', payload: data },

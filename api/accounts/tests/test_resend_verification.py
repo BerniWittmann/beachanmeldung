@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from api.accounts.models import MyUser
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse
@@ -10,12 +10,15 @@ jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
 
-class ResendVerificationTestCase(TestCase):
+class ResendVerificationTestCase(TransactionTestCase):
     token = None
     user = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de',
+                                          first_name='Test',
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.is_verified = False
         self.user.save()

@@ -3,17 +3,72 @@ from django.conf import settings
 from django.utils.timezone import now
 from django.utils.translation import gettext as _
 from authemail.views import (Login, Logout, PasswordResetVerified,
-                             UserMe, PasswordReset, SignupVerify)
+                             UserMe, PasswordReset, SignupVerify, Signup)
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_jwt.settings import api_settings
-from .serializers import UserSerializer
-from authemail.models import PasswordResetCode, SignupCode
+from .serializers import UserSerializer, CustomSignupSerializer
+from authemail.models import PasswordResetCode, SignupCode, send_multi_format_email
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+
+
+class CustomSignup(Signup):
+    serializer_class = CustomSignupSerializer
+
+    def post(self, request, format=None):
+        serializer = CustomSignupSerializer(data=request.data)
+
+        if serializer.is_valid():
+            email = serializer.data['email']
+            password = serializer.data['password']
+            first_name = serializer.data['first_name']
+            last_name = serializer.data['last_name']
+            phone = serializer.data['phone']
+
+            must_validate_email = getattr(settings, "AUTH_EMAIL_VERIFICATION", True)
+
+            try:
+                user = get_user_model().objects.get(email=email)
+                if user.is_verified:
+                    content = {'detail':
+                               _('User with this Email address already exists.')}
+                    return Response(content, status=status.HTTP_400_BAD_REQUEST)
+
+                try:
+                    # Delete old signup codes
+                    signup_code = SignupCode.objects.get(user=user)
+                    signup_code.delete()
+                except SignupCode.DoesNotExist:
+                    pass
+
+            except get_user_model().DoesNotExist:
+                user = get_user_model().objects.create_user(email=email)
+
+            # Set user fields provided
+            user.set_password(password)
+            user.first_name = first_name
+            user.last_name = last_name
+            user.phone = phone
+            if not must_validate_email:
+                user.is_verified = True
+                send_multi_format_email('welcome_email',
+                                        {'email': user.email, },
+                                        target_email=user.email)
+            user.save()
+
+            if must_validate_email:
+                # Create and associate signup code
+                ipaddr = self.request.META.get('REMOTE_ADDR', '0.0.0.0')
+                signup_code = SignupCode.objects.create_signup_code(user, ipaddr)
+                signup_code.send_signup_email()
+
+            return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class CustomLogin(Login):

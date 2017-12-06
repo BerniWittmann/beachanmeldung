@@ -82,6 +82,11 @@
                                                   type="email" @keyup.native.enter="register"
                                                   v-bind:placeholder="$t('auth.email')"></el-input>
                                     </el-form-item>
+                                    <el-form-item prop="phone">
+                                        <el-input v-model="user.phone"
+                                                  type="phone" @keyup.native.enter="register"
+                                                  v-bind:placeholder="$t('auth.phone')"></el-input>
+                                    </el-form-item>
                                     <el-form-item prop="password">
                                         <el-input v-model="user.password"
                                                   type="password" @keyup.native.enter="register"
@@ -195,6 +200,7 @@
           passwordConfirm: undefined,
           firstName: undefined,
           lastName: undefined,
+          phone: undefined,
         },
         team: {
           name: undefined,
@@ -228,6 +234,10 @@
             { required: true, message: this.$t('validation.team_name.required'), trigger: 'blur' },
           ],
           beachname: [],
+          phone: [
+            { required: true, message: this.$t('validation.phone.required'), trigger: 'blur' },
+            { type: 'string', pattern: /^\+?1?\d{9,15}$/, message: this.$t('validation.phone.valid') },
+          ],
         },
       };
     },

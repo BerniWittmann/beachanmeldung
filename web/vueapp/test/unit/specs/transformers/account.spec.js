@@ -13,6 +13,7 @@ describe('Transformers', () => {
           isVerified: undefined,
           isStaff: false,
           dateJoined: moment('19.02.1996', 'DD.MM.YYYY'),
+          phone: undefined,
         };
         expect(accountTransformer.fetch(original).dateJoined.isSame(transformed.dateJoined))
           .to.equal(true);
@@ -26,6 +27,7 @@ describe('Transformers', () => {
           is_verified: true,
           is_staff: true,
           date_joined: undefined,
+          phone: '+49123456789',
         };
         const transformed = {
           email: 'test@byom.de',
@@ -34,6 +36,7 @@ describe('Transformers', () => {
           isVerified: true,
           isStaff: true,
           dateJoined: undefined,
+          phone: '+49123456789',
         };
         expect(accountTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -46,6 +49,7 @@ describe('Transformers', () => {
           isVerified: undefined,
           isStaff: false,
           dateJoined: undefined,
+          phone: undefined,
         };
         expect(accountTransformer.fetch(original)).to.deep.equal(transformed);
       });
@@ -53,13 +57,13 @@ describe('Transformers', () => {
 
     describe('should send a single account', () => {
       it('should resolve all given attributes correctly', () => {
-        const original = { email: 'test@byom.de', firstName: 'Test', lastName: 'User' };
-        const transformed = { email: 'test@byom.de', first_name: 'Test', last_name: 'User' };
+        const original = { email: 'test@byom.de', firstName: 'Test', lastName: 'User', phone: '+49123456789' };
+        const transformed = { email: 'test@byom.de', first_name: 'Test', last_name: 'User', phone: '+49123456789' };
         expect(accountTransformer.send(original)).to.deep.equal(transformed);
       });
       it('should not resolve other attributes', () => {
         const original = { anotherAttribute: 'test@byom.de', isStaff: true };
-        const transformed = { email: undefined, first_name: undefined, last_name: undefined };
+        const transformed = { email: undefined, first_name: undefined, last_name: undefined, phone: undefined };
         expect(accountTransformer.send(original)).to.deep.equal(transformed);
       });
     });
@@ -75,6 +79,7 @@ describe('Transformers', () => {
             isVerified: undefined,
             isStaff: false,
             dateJoined: undefined,
+            phone: undefined,
           },
           {
             email: undefined,
@@ -83,6 +88,7 @@ describe('Transformers', () => {
             isVerified: undefined,
             isStaff: false,
             dateJoined: moment('19.02.1996', 'DD.MM.YYYY'),
+            phone: undefined,
           },
         ];
         expect(accountTransformer.fetchCollection(original)[0].dateJoined)
@@ -99,6 +105,7 @@ describe('Transformers', () => {
             is_verified: true,
             is_staff: false,
             date_joined: undefined,
+            phone: '+49123456789',
           },
           {
             email: 'test2@byom.de',
@@ -107,6 +114,7 @@ describe('Transformers', () => {
             is_verified: false,
             is_staff: false,
             date_joined: undefined,
+            phone: '+491234567890',
           },
         ];
         const transformed = [
@@ -117,6 +125,7 @@ describe('Transformers', () => {
             isVerified: true,
             isStaff: false,
             dateJoined: undefined,
+            phone: '+49123456789',
           },
           {
             email: 'test2@byom.de',
@@ -125,6 +134,7 @@ describe('Transformers', () => {
             isVerified: false,
             isStaff: false,
             dateJoined: undefined,
+            phone: '+491234567890',
           },
         ];
         expect(accountTransformer.fetchCollection(original)).to.deep.equal(transformed);
@@ -142,6 +152,7 @@ describe('Transformers', () => {
             isVerified: undefined,
             isStaff: false,
             dateJoined: undefined,
+            phone: undefined,
           },
           {
             email: undefined,
@@ -150,6 +161,7 @@ describe('Transformers', () => {
             isVerified: undefined,
             isStaff: false,
             dateJoined: undefined,
+            phone: undefined,
           },
         ];
         expect(accountTransformer.fetchCollection(original)).to.deep.equal(transformed);
@@ -159,12 +171,12 @@ describe('Transformers', () => {
     describe('should send a collection of accounts', () => {
       it('should resolve all given attributes correctly', () => {
         const original = [
-          { email: 'test@byom.de', firstName: 'Test', lastName: 'User' },
-          { email: 'test@byom.de', firstName: 'Test', lastName: 'User' },
+          { email: 'test@byom.de', firstName: 'Test', lastName: 'User', phone: '+49123456789' },
+          { email: 'test@byom.de', firstName: 'Test', lastName: 'User', phone: '+49123456789'},
         ];
         const transformed = [
-          { email: 'test@byom.de', first_name: 'Test', last_name: 'User' },
-          { email: 'test@byom.de', first_name: 'Test', last_name: 'User' },
+          { email: 'test@byom.de', first_name: 'Test', last_name: 'User', phone: '+49123456789' },
+          { email: 'test@byom.de', first_name: 'Test', last_name: 'User', phone: '+49123456789' },
         ];
         expect(accountTransformer.sendCollection(original)).to.deep.equal(transformed);
       });
@@ -174,8 +186,8 @@ describe('Transformers', () => {
           { yet_another_attribute: 'aha' },
         ];
         const transformed = [
-          { email: undefined, first_name: undefined, last_name: undefined },
-          { email: undefined, first_name: undefined, last_name: undefined },
+          { email: undefined, first_name: undefined, last_name: undefined, phone: undefined },
+          { email: undefined, first_name: undefined, last_name: undefined, phone: undefined },
         ];
         expect(accountTransformer.sendCollection(original)).to.deep.equal(transformed);
       });

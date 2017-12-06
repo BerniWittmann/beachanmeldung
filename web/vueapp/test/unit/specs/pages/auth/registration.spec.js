@@ -141,7 +141,7 @@ describe('Pages', () => {
       describe('the password should be validated', () => {
         it('password should be required', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 3, '');
+          utils.inputFormItem(vm, 4, '');
           vm.update();
           vm.vm.$refs.registerForm.validateField('password', (error) => {
             expect(error).to.equal('validation.password.required');
@@ -150,7 +150,7 @@ describe('Pages', () => {
         });
         it('password should have minlength', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 3, 'short');
+          utils.inputFormItem(vm, 4, 'short');
           vm.update();
           vm.vm.$refs.registerForm.validateField('password', (error) => {
             expect(error).to.equal('validation.password.min');
@@ -159,7 +159,7 @@ describe('Pages', () => {
         });
         it('should not show a validation error if password is given', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 3, 'p4S$w0rD');
+          utils.inputFormItem(vm, 4, 'p4S$w0rD');
           vm.update();
           vm.vm.$refs.registerForm.validateField('password', (error) => {
             expect(error).to.equal('');
@@ -171,7 +171,7 @@ describe('Pages', () => {
       describe('the confirm password should be validated', () => {
         it('confirm password should be required', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 4, '');
+          utils.inputFormItem(vm, 5, '');
           vm.update();
           vm.vm.$refs.registerForm.validateField('passwordConfirm', (error) => {
             expect(error).to.equal('validation.password_confirm.required');
@@ -180,7 +180,7 @@ describe('Pages', () => {
         });
         it('confirm password should match first password', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 4, 'p4S$w0rD');
+          utils.inputFormItem(vm, 5, 'p4S$w0rD');
           vm.update();
           vm.vm.$refs.registerForm.validateField('passwordConfirm', (error) => {
             expect(error).to.equal('validation.password_confirm.match');
@@ -189,8 +189,8 @@ describe('Pages', () => {
         });
         it('confirm password should have minlength', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 3, 'short');
           utils.inputFormItem(vm, 4, 'short');
+          utils.inputFormItem(vm, 5, 'short');
           vm.update();
           vm.vm.$refs.registerForm.validateField('passwordConfirm', (error) => {
             expect(error).to.equal('validation.password_confirm.min');
@@ -199,8 +199,8 @@ describe('Pages', () => {
         });
         it('should not show a validation error if confirm password is given', (done) => {
           const vm = utils.mountComponent(Registration, { store });
-          utils.inputFormItem(vm, 3, 'p4S$w0rD');
           utils.inputFormItem(vm, 4, 'p4S$w0rD');
+          utils.inputFormItem(vm, 5, 'p4S$w0rD');
           vm.update();
           vm.vm.$refs.registerForm.validateField('passwordConfirm', (error) => {
             expect(error).to.equal('');
@@ -227,8 +227,9 @@ describe('Pages', () => {
       utils.inputFormItem(vm, 0, 'First');
       utils.inputFormItem(vm, 1, 'Name');
       utils.inputFormItem(vm, 2, 'test@byom.de');
-      utils.inputFormItem(vm, 3, 'p4S$w0rD');
+      utils.inputFormItem(vm, 3, '+491234567890');
       utils.inputFormItem(vm, 4, 'p4S$w0rD');
+      utils.inputFormItem(vm, 5, 'p4S$w0rD');
 
       vm.first('form').first('button').trigger('click');
 
@@ -240,6 +241,7 @@ describe('Pages', () => {
           password: 'p4S$w0rD',
           first_name: 'First',
           last_name: 'Name',
+          phone: '+491234567890',
         });
         return done();
       });

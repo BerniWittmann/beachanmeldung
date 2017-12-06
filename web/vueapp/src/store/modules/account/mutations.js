@@ -16,5 +16,6 @@ export default {
     state.isVerified = account.isVerified;
     state.dateJoined = account.dateJoined;
     state.isStaff = account.isStaff;
+    state.phone = account.phone;
   },
 };

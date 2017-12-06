@@ -24,7 +24,10 @@ class Tournaments(TestCase):
                     starting_fee=60.0,
                     number_of_places=23
                     )
-        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de',
+                                          first_name='Test',
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.is_verified = True
         self.user.is_staff = True

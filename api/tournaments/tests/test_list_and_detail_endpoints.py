@@ -21,7 +21,7 @@ class Tournaments(TestCase):
     tournament = None
 
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User', phone='+49192481024')
         user.set_password('test123')
         user.is_verified = True
         user.is_staff = True

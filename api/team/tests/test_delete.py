@@ -20,12 +20,18 @@ class Teams(TestCase):
     user = None
 
     def setUp(self):
-        self.user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        self.user = MyUser.objects.create(email='test@byom.de',
+                                          first_name='Test',
+                                          last_name='User',
+                                          phone='+49192481024')
         self.user.set_password('test123')
         self.user.is_verified = True
         self.user.is_staff = True
         self.user.save()
-        other_user = MyUser.objects.create(email='another_test@byom.de', first_name='Test', last_name='Other')
+        other_user = MyUser.objects.create(email='another_test@byom.de',
+                                           first_name='Test',
+                                           last_name='Other',
+                                           phone='+49192481024')
         other_user.set_password('test123')
         other_user.is_verified = True
         other_user.save()

@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from api.accounts.models import MyUser
 from rest_framework.test import APIClient
 from django.core.urlresolvers import reverse
@@ -8,9 +8,9 @@ import json
 token_regex = '^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
 
 
-class LoginTestCase(TestCase):
+class LoginTestCase(TransactionTestCase):
     def setUp(self):
-        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User')
+        user = MyUser.objects.create(email='test@byom.de', first_name='Test', last_name='User', phone='+49192481024')
         user.set_password('test123')
         user.is_verified = True
         user.save()
@@ -86,7 +86,7 @@ class LoginTestCase(TestCase):
         data = json.loads(response.content.decode('utf-8'))
         self.assertIn(data['detail'],
                       ['User account not active.',
-                      'Unable to login with provided credentials.'])
+                       'Unable to login with provided credentials.'])
 
     def test_login_set_last_login(self):
         client = APIClient()

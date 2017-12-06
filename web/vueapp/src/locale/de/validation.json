@@ -45,5 +45,9 @@
     "name": {
       "unique": "Der Name darf nicht doppelt vorkommen"
     }
+  },
+  "phone": {
+    "required": "Bitte gib deine Telefonnummer an",
+    "valid": "Bitte gib eine gülte Telefonnummer an (z.B. +49123456789)"
   }
 }

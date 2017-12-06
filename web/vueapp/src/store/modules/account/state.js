@@ -12,4 +12,5 @@ export default {
   dateJoined: null,
   isVerified: null,
   isStaff: null,
+  phone: null,
 };
