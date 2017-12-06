@@ -2,6 +2,7 @@ import json
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
+from django.utils import timezone
 from rest_framework.test import APIClient
 from rest_framework_jwt.settings import api_settings
 
@@ -39,7 +40,7 @@ class Teams(TestCase):
                     start_date='2017-01-01',
                     end_date='2017-01-02',
                     deadline_signup='2017-01-01T00:00:00Z',
-                    deadline_edit='2017-01-01T00:00:00Z',
+                    deadline_edit=timezone.now() + timezone.timedelta(days=30),
                     advertisement_url='http://www.google.de',
                     contact_email='test@byom.de',
                     starting_fee=60.0,
@@ -184,3 +185,44 @@ class Teams(TestCase):
 
         self.assertEqual(Team.objects.last().name, team2.name)
         self.assertEqual(Team.objects.last().beachname, team2.beachname)
+
+    def test_team_update_after_deadline_staff(self):
+        self.tournament.deadline_edit = timezone.now() - timezone.timedelta(days=3)
+        self.tournament.save()
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}), {
+                                  'name': 'TSV Ismaning 2',
+                                  'beachname': 'New Name Name',
+                              })
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(data['beachname'], 'New Name Name')
+        self.assertEqual(Team.objects.first().beachname, 'New Name Name')
+        self.assertEqual(data['name'], 'TSV Ismaning 2')
+        self.assertEqual(Team.objects.first().name, 'TSV Ismaning 2')
+
+    def test_team_update_after_deadline_trainer(self):
+        self.tournament.deadline_edit = timezone.now() - timezone.timedelta(days=3)
+        self.tournament.save()
+        self.user.is_staff = False
+        self.user.save()
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:team-detail',
+                                      kwargs={'pk': self.team.id}), {
+                                  'name': 'TSV Ismaning 2',
+                                  'beachname': 'New Name Name',
+                              })
+        data = json.loads(response.content.decode('utf-8'))
+        self.assertEqual(response.status_code, 400)
+        self.assertDictEqual(data, {
+            'detail': 'Team Update not possible after Edit-Deadline',
+            'key': 'after_deadline_edit',
+        })
+        self.assertNotEqual(Team.objects.first().beachname, 'New Name Name')
+        self.assertNotEqual(Team.objects.first().name, 'TSV Ismaning 2')
+

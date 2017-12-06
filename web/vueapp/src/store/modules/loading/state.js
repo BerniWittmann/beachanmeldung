@@ -7,4 +7,5 @@
 
 export default {
   loading: false,
+  loadingNavigation: undefined,
 };

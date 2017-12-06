@@ -9,6 +9,8 @@
 import {
   SET,
   UNSET,
+  SET_NAVIGATION,
+  UNSET_NAVIGATION,
 } from './mutation-types';
 
 export default {
@@ -18,5 +20,12 @@ export default {
 
   [UNSET](state) {
     state.loading = false;
+  },
+  [SET_NAVIGATION](state) {
+    state.loadingNavigation = true;
+  },
+
+  [UNSET_NAVIGATION](state) {
+    state.loadingNavigation = false;
   },
 };

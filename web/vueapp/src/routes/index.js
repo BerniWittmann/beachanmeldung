@@ -7,6 +7,9 @@
 
 import tournamentService from '@/services/tournament';
 import teamService from '@/services/team';
+import store from '@/store';
+import moment from 'moment';
+import Vue from 'vue';
 
 /**
  * The routes
@@ -203,6 +206,19 @@ export default [
             path: 'edit',
             name: 'team.edit',
             component: require('@/pages/team/edit.vue'),
+
+            beforeEnter: (to, from, next) => {
+              if (store.state.account.isStaff) return next();
+              const currentTournament = store.state.tournament.currentTournament || {};
+              if (moment().isBefore(currentTournament.deadlineEdit)) {
+                return next();
+              }
+              Vue.$notify.error({
+                title: Vue.i18n.t('team.notifications.put.after_deadline_edit.title'),
+                message: Vue.i18n.t('team.notifications.put.after_deadline_edit.message'),
+              });
+              return next(!from.name ? { name: 'home.index' } : false);
+            },
           },
         ],
       }],

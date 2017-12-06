@@ -1,7 +1,9 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
-  </div>
+    <div id="app" >
+        <transition>
+            <router-view></router-view>
+        </transition>
+    </div>
 </template>
 <script>
   /* ============
@@ -40,6 +42,12 @@
       if (this.$store.state.auth.authenticated) {
         accountService.find();
       }
+    },
+
+    computed: {
+      showNavigationLoading() {
+        return this.$store.getters['loading/isNavigationLoading'];
+      },
     },
   };
 </script>

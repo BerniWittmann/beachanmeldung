@@ -32,6 +32,10 @@
       "duplicate_player_name": {
         "title": "Das Team konnte nicht geändert werden",
         "message": "Zwei Spieler haben den selben Namen"
+      },
+      "after_deadline_edit": {
+        "title": "Das Team kann nicht mehr bearbeitet werden",
+        "message": "Der Zeitraum zum Bearbeiten ist vorbei"
       }
     },
     "state_change": {

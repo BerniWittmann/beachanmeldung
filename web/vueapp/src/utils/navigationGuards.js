@@ -1,6 +1,8 @@
 let store;
+import Vue from 'vue';
 
 function beforeAll(to, from, next) {
+  store.dispatch('loading/setNavigation');
   if (to.matched.some(m => m.meta.auth) && !store.state.auth.authenticated) {
     /*
      * If the user is not authenticated and visits
@@ -28,4 +30,16 @@ function getBeforeAll(currentStore) {
   return beforeAll;
 }
 
-export default { getBeforeAll };
+function afterAll() {
+  Vue.nextTick(() => {
+    store.dispatch('loading/unsetNavigation');
+  });
+}
+
+// decorator to inject store
+function getAfterAll(currentStore) {
+  store = currentStore;
+  return afterAll;
+}
+
+export default { getBeforeAll, getAfterAll };

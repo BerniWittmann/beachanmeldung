@@ -37,8 +37,15 @@ class TeamViewSet(viewsets.ModelViewSet):
         team = get_object_or_404(Team.objects.all(), pk=pk)
         self.check_object_permissions(self.request, team)
 
-        serializer = TeamSerializer(team, data=data, partial=True, context={'request': self.request, 'team_id': pk})
+        serializer = TeamSerializer(team, data=data, partial=True, context={'request': request, 'team_id': pk})
         if serializer.is_valid():
+            tournament = team.tournament
+            if timezone.now() > tournament.deadline_edit and not request.user.is_staff:
+                return Response({
+                    'detail': _('Team Update not possible after Edit-Deadline'),
+                    'key': _('after_deadline_edit')
+                }, status=status.HTTP_400_BAD_REQUEST)
+
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
 

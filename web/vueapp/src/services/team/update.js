@@ -26,6 +26,11 @@ const failed = (error) => {
       title: Vue.i18n.t('team.notifications.put.duplicate_player_name.title'),
       message: Vue.i18n.t('team.notifications.put.duplicate_player_name.message'),
     });
+  } else if (error && error.response && error.response.data && error.response.data.key && error.response.data.key === 'after_deadline_edit') {
+    Vue.$notify.error({
+      title: Vue.i18n.t('team.notifications.put.after_deadline_edit.title'),
+      message: Vue.i18n.t('team.notifications.put.after_deadline_edit.message'),
+    });
   } else {
     Vue.$notify.error({
       title: Vue.i18n.t('team.notifications.put.failed.title'),

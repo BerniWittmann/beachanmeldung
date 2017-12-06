@@ -10,4 +10,7 @@ export default {
   isLoading(state) {
     return state.loading;
   },
+  isNavigationLoading(state) {
+    return state.loadingNavigation;
+  },
 };

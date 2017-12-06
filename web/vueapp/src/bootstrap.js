@@ -78,6 +78,7 @@ export const router = new VueRouter({
   routes,
 });
 router.beforeEach(navigationGuards.getBeforeAll(store));
+router.afterEach(navigationGuards.getAfterAll(store));
 VuexRouterSync.sync(store, router);
 
 Vue.router = router;
