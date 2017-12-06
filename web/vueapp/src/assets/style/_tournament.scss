@@ -54,3 +54,14 @@
     }
   }
 }
+
+.tournament-signup-body {
+  .tournament-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    .el-button {
+      margin: 10px;
+    }
+  }
+}

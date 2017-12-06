@@ -142,7 +142,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -156,7 +156,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -170,7 +170,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled);
+        teamService.create({ id: 1, name: 'Test Team' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);

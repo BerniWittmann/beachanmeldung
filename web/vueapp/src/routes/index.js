@@ -29,7 +29,7 @@ export default [
       Promise.all([
         tournamentService.getAll(),
         teamService.getMine(),
-      ]).then(next);
+      ]).catch(next).then(next);
     },
   },
 
@@ -152,7 +152,10 @@ export default [
     },
 
     beforeEnter: (to, from, next) => {
-      tournamentService.setCurrentSignupTournament(to.query.tournament).then(next);
+      Promise.all([
+        tournamentService.getAll(),
+        tournamentService.setCurrentSignupTournament(to.query.tournament),
+      ]).catch(next).then(next);
     },
   },
 

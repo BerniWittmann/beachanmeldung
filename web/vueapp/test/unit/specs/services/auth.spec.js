@@ -88,7 +88,7 @@ describe('Services', () => {
     describe('Login', () => {
       it('should pass user object to endpoint', (done) => {
         const onFulfilled = sinon.spy();
-        authService.login({ username: 'test', password: 'password' }).then(onFulfilled);
+        authService.login({ username: 'test', password: 'password' }).then(onFulfilled, () => {});
 
         moxios.wait(() => {
           const request = moxios.requests.mostRecent();
@@ -105,7 +105,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        authService.login({ username: 'test', password: 'test' }).then(onFulfilled);
+        authService.login({ username: 'test', password: 'test' }).then(onFulfilled, () => {});
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -122,7 +122,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        authService.login({ username: 'test', password: 'test' }).then(onFulfilled);
+        authService.login({ username: 'test', password: 'test' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -142,7 +142,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        authService.login({ username: 'test', password: 'test' }).then(onFulfilled);
+        authService.login({ username: 'test', password: 'test' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -162,7 +162,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        authService.login({ username: 'test', password: 'test' }).then(onFulfilled);
+        authService.login({ username: 'test', password: 'test' }).then(onFulfilled, onFulfilled);
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -235,7 +235,7 @@ describe('Services', () => {
           firstName: 'Test',
           lastName: 'User',
           password: 'password',
-        }).then(onFulfilled);
+        }).then(onFulfilled, () => {});
 
         moxios.wait(() => {
           const request = moxios.requests.mostRecent();
@@ -256,7 +256,7 @@ describe('Services', () => {
         });
 
         const onFulfilled = sinon.spy();
-        authService.register({}).then(onFulfilled);
+        authService.register({}).then(onFulfilled, () => {});
 
         moxios.wait(() => {
           expect(onFulfilled.called).to.equal(true);
@@ -271,7 +271,7 @@ describe('Services', () => {
           status: 200,
         });
 
-        authService.register({});
+        authService.register({}, () => {});
 
         moxios.wait(() => {
           expect(notification.success.called).to.equal(true);
@@ -288,7 +288,7 @@ describe('Services', () => {
           status: 400,
         });
 
-        authService.register({});
+        authService.register({}, () => {});
 
         moxios.wait(() => {
           expect(notification.error.called).to.equal(true);

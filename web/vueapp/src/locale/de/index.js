@@ -18,6 +18,7 @@ import * as tournament from './tournament.json';
 import * as team from './team.json';
 import * as player from './player.json';
 import * as etc from './etc.json';
+import * as wizard from './wizard.json';
 
 export default {
   ...localeElementUi,
@@ -32,4 +33,5 @@ export default {
   team,
   player,
   etc,
+  wizard,
 };
