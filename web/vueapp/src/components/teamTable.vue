@@ -21,6 +21,7 @@
                 prop="name">
         </el-table-column>
         <el-table-column
+                width="70"
                 v-if="canDisplayOptions">
             <template slot-scope="scope">
                 <div v-if="scope.row.data">
@@ -30,9 +31,11 @@
                     <el-tooltip v-if="scope.row.data.hasPlayers" :content="$t('team.list_uploaded')" placement="top">
                         <i class="fa fa-list fa-fw"></i>
                     </el-tooltip>
-                    <el-button @click.prevent.stop="expandRow(scope.row)" v-if="needsApproval(scope.row.data)" type="danger"
-                               size="mini" round>{{ $t('team.needs_approval') }}
-                    </el-button>
+                    <el-tooltip v-if="needsApproval(scope.row.data)" :content="$t('team.needs_approval')"
+                                placement="top">
+                        <el-button @click.prevent.stop="expandRow(scope.row)" icon="el-icon-warning" type="danger"
+                                   size="mini" round></el-button>
+                    </el-tooltip>
                 </div>
             </template>
         </el-table-column>
