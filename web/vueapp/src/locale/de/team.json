@@ -82,7 +82,7 @@
     }
   },
   "states": {
-    "preliminary_signup": "Vorläufig Angemeldet",
+    "preliminary_signup": "Warten auf Bestätigung",
     "waitlist": "Auf Warteliste",
     "signed_up": "Angemeldet",
     "not_paid": "Nicht Bezahlt",
@@ -91,7 +91,7 @@
     "denied_description": "Dieses Team wurde abgemeldet und ist nicht mehr aktiv"
   },
   "status": {
-    "needs_approval": "Vorläufig Angemeldet",
+    "needs_approval": "Warten auf Bestätigung",
     "waiting": "Auf Warteliste",
     "signed_up": "Angemeldet",
     "denied": "Zurückgezogen"
