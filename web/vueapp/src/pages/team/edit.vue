@@ -4,10 +4,6 @@
             <h1>
                 {{ team.completeName }}
             </h1>
-            <v-link-button type="text" icon="el-icon-arrow-left"
-                           :route="{ name: 'team.single', params: { teamID: activeTeam.id } }">
-                {{ $t('team.back') }}
-            </v-link-button>
         </div>
         <el-row class="team-body">
             <el-col>

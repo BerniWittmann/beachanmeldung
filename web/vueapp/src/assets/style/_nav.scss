@@ -18,12 +18,12 @@
       margin: 10px 0 10px 20px;
       height: 40px;
     }
-    p {
+    p, a {
       margin-left: 10px;
 
       &, &:hover, &:active, &:focus, &:visited {
         color: #FDD648;
-        text-underline: none;
+        text-decoration: none;
       }
     }
   }

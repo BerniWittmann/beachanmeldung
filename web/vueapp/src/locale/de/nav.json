@@ -8,5 +8,9 @@
   "about": "Über uns",
   "privacy": "Datenschutz",
   "contact": "Kontakt",
-  "imprint": "Impressum"
+  "imprint": "Impressum",
+  "back_to": {
+    "team": "Zurück zum Team",
+    "tournament": "Zurück zum Turnier"
+  }
 }
