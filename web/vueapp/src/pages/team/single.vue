@@ -78,7 +78,7 @@
                         </el-table>
                     </el-col>
                 </el-row>
-                <el-row>
+                <el-row v-if="!teamIsDenied">
                     <el-col>
                         <h2 class="text-center">{{ $t('team.actions.title') }}</h2>
                         <el-row>
@@ -102,8 +102,21 @@
                                     {{ $t('team.actions.mark_unpaid') }}
                                 </el-button>
                                 <el-button type="danger" v-if="!teamIsDenied"
-                                           @click="teamTransitionStateDenied(team.id)">{{ $t('team.actions.sign_off') }}
+                                           @click="deleteDialogVisible = true">{{ $t('team.actions.sign_off.button') }}
                                 </el-button>
+
+                                <el-dialog
+                                        :title="$t('team.actions.sign_off.title')"
+                                        :visible.sync="deleteDialogVisible"
+                                        width="30%"
+                                        center>
+                                    <span>{{ $t('team.actions.sign_off.message') }}</span>
+                                    <span slot="footer" class="dialog-footer">
+                                        <el-button @click="deleteDialogVisible = false">{{ $t('team.actions.sign_off.cancel') }}</el-button>
+                                        <el-button type="danger"
+                                                   @click="teamTransitionStateDenied(team.id); deleteDialogVisible = false">{{ $t('team.actions.sign_off.confirm') }}</el-button>
+                                    </span>
+                                </el-dialog>
                             </el-col>
                         </el-row>
                     </el-col>
@@ -275,6 +288,12 @@
           this.teamTransitionStatePaid(this.team.id);
         }
       },
+    },
+
+    data() {
+      return {
+        deleteDialogVisible: false,
+      };
     },
   };
 </script>

@@ -73,7 +73,13 @@
     "confirm_signup": "Anmeldung Bestätigen",
     "mark_paid": "Als Bezahlt markieren",
     "mark_unpaid": "Als Nicht Bezahlt markieren",
-    "sign_off": "Abmelden"
+    "sign_off": {
+      "button": "Abmelden",
+      "message": "Wollen Sie das Team wirklich endgültig abmelden?",
+      "title": "Wirklich abmelden?",
+      "cancel": "Abbrechen",
+      "confirm": "Abmeldung bestätigen"
+    }
   },
   "states": {
     "preliminary_signup": "Vorläufig Angemeldet",
