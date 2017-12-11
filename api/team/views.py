@@ -43,7 +43,7 @@ class TeamViewSet(viewsets.ModelViewSet):
             if timezone.now() > tournament.deadline_edit and not request.user.is_staff:
                 return Response({
                     'detail': _('Team Update not possible after Edit-Deadline'),
-                    'key': _('after_deadline_edit')
+                    'key': 'after_deadline_edit'
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             serializer.save()
@@ -67,13 +67,13 @@ class TeamViewSet(viewsets.ModelViewSet):
             if timezone.now() < tournament.start_signup:
                 return Response({
                     'detail': _('Team Creation not possible before Signup period has started'),
-                    'key': _('before_start_signup')
+                    'key': 'before_start_signup'
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             if timezone.now() > tournament.deadline_signup:
                 return Response({
                     'detail': _('Team Creation not possible after Signup period has ended'),
-                    'key': _('after_deadline_signup')
+                    'key': 'after_deadline_signup'
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             serializer.save()

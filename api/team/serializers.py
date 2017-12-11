@@ -44,7 +44,7 @@ class TeamSerializer(serializers.Serializer):
 
         unique_error = serializers.ValidationError({
             'detail': _('Name already taken'),
-            'key': _('name_already_taken')
+            'key': 'name_already_taken'
         })
         for team in tournament.teams.all().exclude(id=self.context.get('team_id')):
             if data.get('beachname') is None:
@@ -65,13 +65,13 @@ class TeamSerializer(serializers.Serializer):
             if len(list(set(number_list))) != len(number_list):
                 raise serializers.ValidationError({
                     'detail': _('Duplicate Player Number'),
-                    'key': _('duplicate_player_number')
+                    'key': 'duplicate_player_number'
                 })
 
             if len(list(set(name_list))) != len(name_list):
                 raise serializers.ValidationError({
                     'detail': _('Duplicate Player Name'),
-                    'key': _('duplicate_player_name')
+                    'key': 'duplicate_player_name'
                 })
 
         return data
@@ -96,8 +96,9 @@ class TeamSerializer(serializers.Serializer):
         tournament = Tournament.objects.get(pk=validated_data['tournament_id'])
         trainer = self.context['request'].user
 
-        obj = Team.objects.create(**validated_data, trainer=trainer,
-                                  tournament=tournament)
+        obj = Team.objects.create(trainer=trainer,
+                                  tournament=tournament,
+                                  **validated_data)
         obj.save()
         return obj
 

@@ -1,16 +1,17 @@
-from django.contrib.auth import authenticate, get_user_model
-from django.conf import settings
-from django.utils.timezone import now
-from django.utils.translation import gettext as _
+from authemail.models import PasswordResetCode, SignupCode, send_multi_format_email
 from authemail.views import (Login, Logout, PasswordResetVerified,
                              UserMe, PasswordReset, SignupVerify, Signup)
+from django.conf import settings
+from django.contrib.auth import authenticate, get_user_model
+from django.utils.timezone import now
+from django.utils.translation import gettext as _
 from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings
+
 from .serializers import UserSerializer, CustomSignupSerializer
-from authemail.models import PasswordResetCode, SignupCode, send_multi_format_email
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -90,13 +91,13 @@ class CustomLogin(Login):
                                     status=status.HTTP_200_OK)
                 else:
                     content = {'detail': _('User account not active.'),
-                               'key': _('account_not_active')}
+                               'key': 'account_not_active'}
                     return Response(content,
                                     status=status.HTTP_401_UNAUTHORIZED)
             else:
                 content = {'detail':
                            _('Unable to login with provided credentials.'),
-                           'key': _('login_failed')}
+                           'key': 'login_failed'}
                 return Response(content, status=status.HTTP_401_UNAUTHORIZED)
 
         else:
