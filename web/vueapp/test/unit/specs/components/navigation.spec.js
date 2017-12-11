@@ -44,7 +44,7 @@ describe('Components', () => {
       it('should show Login Button', () => {
         const vm = utils.mountComponent(Navigation, { store });
         const link = vm.first('.nav-right').first('li');
-        expect(link.text()).to.equal('nav.login');
+        expect(link.text()).to.contain('nav.login');
       });
     });
 
@@ -60,12 +60,12 @@ describe('Components', () => {
       it('should show Link to Account Page', () => {
         const vm = utils.mountComponent(Navigation, { store });
         const link = vm.first('.nav-right').first('li');
-        expect(link.text()).to.equal('nav.account');
+        expect(link.text()).to.contain('nav.account');
       });
       it('should show Logout Button', () => {
         const vm = utils.mountComponent(Navigation, { store });
         const link = vm.first('.nav-right').find('li')[1];
-        expect(link.text()).to.equal('nav.logout');
+        expect(link.text()).to.contain('nav.logout');
       });
       it('on click on logout it should log the user out', () => {
         // This test is incomplete and needs to be redone...
