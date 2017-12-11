@@ -8,23 +8,44 @@ from api.enums import TeamStateTypes, TournamentGenderTypes
 
 
 class Tournament(models.Model):
-    name = models.CharField(max_length=120)
+    name = models.CharField(max_length=120,
+                            help_text=_("Name of the Tournament"),
+                            verbose_name=_("Tournament Name"))
     gender = models.CharField(max_length=10,
                               choices=TournamentGenderTypes.
-                              choices)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    start_signup = models.DateTimeField(default=timezone.now)
-    deadline_signup = models.DateTimeField()
-    deadline_edit = models.DateTimeField()
+                              choices,
+                              help_text=_("Choose a gender for the tournament (female, male, mixed)"),
+                              verbose_name=_("Tournament Gender"))
+    start_date = models.DateField(help_text=_("The first day when the tournament takes place"),
+                                  verbose_name=_("Start Date of the Tournament"))
+    end_date = models.DateField(help_text=_("The last day when the tournament takes place"),
+                                verbose_name=_("End Date of the Tournament"))
+    start_signup = models.DateTimeField(default=timezone.now,
+                                        help_text=_("Date when the Signup period starts"),
+                                        verbose_name=_("Start of the Signup Period"))
+    deadline_signup = models.DateTimeField(help_text=_("Date when the Signup period ends"),
+                                           verbose_name=_("End of the Signup Period"))
+    deadline_edit = models.DateTimeField(help_text=_("Date by which the Edit by trainers is not possible anymore"),
+                                         verbose_name=_("Deadline for Editing"))
     advertisement_url = models.URLField(null=True,
-                                        blank=True)
+                                        blank=True,
+                                        help_text=_("Url to the Advertisement"),
+                                        verbose_name=_("Advertisement Url")
+                                        )
     contact_email = models.EmailField(null=True,
-                                      blank=True)
+                                      blank=True,
+                                      help_text=_("Contact Email Address for the tournament"),
+                                      verbose_name=_("Contact Email")
+                                      )
     starting_fee = MoneyField(max_digits=10,
                               decimal_places=2,
-                              default_currency='EUR')
-    number_of_places = models.PositiveIntegerField()
+                              default_currency='EUR',
+                              help_text=_("Initial required payment"),
+                              verbose_name=_("Signup Fee"))
+    number_of_places = models.PositiveIntegerField(
+        help_text=_("Count of possible teams that can take place in the tournament"),
+        verbose_name=_("Numer of Places")
+    )
 
     def active_teams(self):
         return self.teams.exclude(state=TeamStateTypes.denied)
@@ -54,6 +75,7 @@ class Tournament(models.Model):
 
     def signup_open(self):
         return self.deadline_signup > timezone.now() >= self.start_signup
+
     signup_open.admin_order_field = 'deadline_signup'
     signup_open.boolean = True
     signup_open.short_description = _('SignUp Possible')
@@ -72,7 +94,7 @@ class Tournament(models.Model):
             )
 
         if self.start_signup and self.deadline_signup and \
-           self.start_signup > self.deadline_signup:
+                        self.start_signup > self.deadline_signup:
             raise ValidationError(
                 _('Deadline of Signup must be after Start of Signup')
             )

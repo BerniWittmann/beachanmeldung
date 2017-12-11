@@ -4,25 +4,33 @@ from django.utils import timezone
 
 from api.enums import TeamStateTypes
 from api.tournaments.models import Tournament
+from django.utils.translation import gettext_lazy as _
 
 
 class Team(models.Model):
-    name = models.CharField(max_length=200)
-    beachname = models.CharField(max_length=400, null=True, blank=True)
-    date_signup = models.DateTimeField(default=timezone.now)
+    name = models.CharField(max_length=200, help_text=_("Usually the club name"), verbose_name=_("Name"))
+    beachname = models.CharField(max_length=400, null=True, blank=True, help_text=_("creative team name"),
+                                 verbose_name=_("beachname"))
+    date_signup = models.DateTimeField(default=timezone.now, help_text=_("date of initial signup"),
+                                       verbose_name=_("Date Signup"))
     state = models.CharField(max_length=50,
                              choices=TeamStateTypes.
-                             choices, default=TeamStateTypes.needs_approval)
-    paid = models.BooleanField(default=False)
+                             choices, default=TeamStateTypes.needs_approval,
+                             help_text=_("current state of the team"),
+                             verbose_name=_("Team State"))
+    paid = models.BooleanField(default=False, help_text=_("has the team already paid?"),
+                               verbose_name=_("Paid State"))
     tournament = models.ForeignKey(
         Tournament,
         on_delete=models.CASCADE,
-        related_name='teams'
+        related_name='teams',
+        help_text=_("tournament of the team"), verbose_name=_("Team tournament")
     )
     trainer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name='teams'
+        related_name='teams',
+        help_text=_("User account who is responsible for the team"), verbose_name=_("Trainer")
     )
 
     class Meta:

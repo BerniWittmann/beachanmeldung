@@ -3,21 +3,30 @@ from django.db import models
 from django.utils import timezone
 
 from api.team.models import Team
+from django.utils.translation import gettext_lazy as _
 
 
 class Player(models.Model):
-    last_name = models.CharField(max_length=200)
-    first_name = models.CharField(max_length=200)
-    number = models.PositiveIntegerField()
+    last_name = models.CharField(max_length=200,
+                                 help_text=_("Last Name of the player"),
+                                 verbose_name=_("Last Name"))
+    first_name = models.CharField(max_length=200,
+                                  help_text=_("First Name of the player"),
+                                  verbose_name=_("First Name"))
+    number = models.PositiveIntegerField(help_text=_("shirt number of the player"),
+                                         verbose_name=_("Number"))
     year_of_birth = models.PositiveIntegerField(
-            validators=[
-                MinValueValidator(1900),
-                MaxValueValidator(timezone.now().year)],
-            help_text="Use the following format: YYYY")
+        validators=[
+            MinValueValidator(1900),
+            MaxValueValidator(timezone.now().year)],
+        help_text=_("Use the following format: YYYY"),
+        verbose_name=_("Year of Birth"))
     team = models.ForeignKey(
         Team,
         on_delete=models.CASCADE,
-        related_name='players'
+        related_name='players',
+        help_text=_("Team associated with the player"),
+        verbose_name=_("Team")
     )
 
     class Meta:
