@@ -3,11 +3,6 @@ image: registry.gitlab.com/berniwittmann/beachanmeldung:latest
 services:
     - postgres:latest
 
-stages:
-  - lint
-  - test
-  - deploy
-
 variables:
     SECRET_KEY: test-secret
     POSTGRES_DB: beachtest
@@ -19,7 +14,6 @@ variables:
     SERVER_EMAIL: test@beach.handballismaning.de.de
 
 deploy:
-    stage: deploy
     script:
     - apt-get update -qy
     - apt-get install -y ruby-dev
