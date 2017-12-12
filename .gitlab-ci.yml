@@ -6,6 +6,7 @@ services:
 stages:
   - lint
   - test
+  - deploy
 
 variables:
     SECRET_KEY: test-secret
@@ -64,3 +65,11 @@ frontend_lint:
         - cp -R /app/node_modules .
     script:
         - npm run lint
+
+deploy:
+  type: deploy
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
