@@ -104,6 +104,7 @@ DATABASES = {
         'PASSWORD':  config('DATABASE_PASSWORD'),
         'HOST': config('DATABASE_HOST', default=None),
         'PORT': config('DATABASE_PORT', default=None),
+        'CONN_MAX_AGE': 60*10,
     }
 }
 
