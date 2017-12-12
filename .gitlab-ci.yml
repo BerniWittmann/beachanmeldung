@@ -18,62 +18,6 @@ variables:
     DEFAULT_EMAIL_FROM: test@beach.handballismaning.de
     SERVER_EMAIL: test@beach.handballismaning.de.de
 
-
-backend_tests:
-    stage: test
-    before_script:
-    - export DATABASE_NAME=beachtest
-    - export DATABASE_USER=beachtest
-    - export DATABASE_PASSWORD=beachtest
-    - export DATABASE_HOST=postgres
-    - source /app/venv/bin/activate
-    script:
-        - coverage run manage.py test
-    after_script:
-    - source /app/venv/bin/activate
-    - coverage report
-    - coverage html
-    artifacts:
-      paths:
-      - htmlcov
-      expire_in: 4 weeks
-    only:
-    - not_available
-
-backend_lint:
-  stage: lint
-  before_script:
-  - source /app/venv/bin/activate
-  script:
-        - flake8
-  only:
-  - not_available
-
-frontend_tests:
-    stage: test
-    before_script:
-        - cd web/vueapp
-        - cp -R /app/node_modules .
-    script:
-        - npm run test
-    artifacts:
-      paths:
-      - web/vueapp/test/unit/reports
-      - web/vueapp/test/unit/coverage
-      expire_in: 4 weeks
-    only:
-    - not_available
-
-frontend_lint:
-    stage: lint
-    before_script:
-        - cd web/vueapp
-        - cp -R /app/node_modules .
-    script:
-        - npm run lint
-    only:
-    - not_available
-
 deploy:
     stage: deploy
     script:
