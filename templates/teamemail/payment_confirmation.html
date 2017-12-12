@@ -1,8 +1,8 @@
 {% extends "base_email.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Reset your Password" %}{% endblock %}
-{% block pagetitle %}{% trans "Reset your Password" %}{% endblock %}
+{% block title %}{% trans "Payment Confirmation" %}{% endblock %}
+{% block pagetitle %}{% trans "Payment Confirmation" %}{% endblock %}
 
 {% block content %}
     <table width="100%" cellpadding="0" cellspacing="0"
@@ -12,8 +12,8 @@
                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                 valign="top">
 
-                {% blocktrans %}
-                    You requested a new password. Click on the following link to create a new password
+                {% blocktrans with name=team.complete_name %}
+                    We received the payment for your team {{ name }}
                 {% endblocktrans %}
             </td>
         </tr>
@@ -21,8 +21,8 @@
             <td class="content-block"
                 style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;"
                 valign="top">
-                <a href="{{ host }}/password/reset/?code={{ code }}" class="btn-primary"
-                   style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;">{% trans "Reset Password" %}</a>
+                <a href="{{ host }}{{ team.url }}" class="btn-primary"
+                   style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; color: #FFF; text-decoration: none; line-height: 2em; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 5px; text-transform: capitalize; background-color: #348eda; margin: 0; border-color: #348eda; border-style: solid; border-width: 10px 20px;">{% trans "Edit Team" %}</a>
             </td>
         </tr>
     </table>

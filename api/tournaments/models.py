@@ -94,7 +94,7 @@ class Tournament(models.Model):
             )
 
         if self.start_signup and self.deadline_signup and \
-                        self.start_signup > self.deadline_signup:
+           self.start_signup > self.deadline_signup:
             raise ValidationError(
                 _('Deadline of Signup must be after Start of Signup')
             )

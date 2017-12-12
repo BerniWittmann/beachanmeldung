@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from api.enums import TeamStateTypes
 from api.permissions import IsTrainerOrAdminOrReadOnly
 from api.tournaments.models import Tournament
+from .MailSender import MailSender
 from .models import Team
 from .serializers import TeamSerializer
 
@@ -77,6 +78,12 @@ class TeamViewSet(viewsets.ModelViewSet):
                 }, status=status.HTTP_400_BAD_REQUEST)
 
             serializer.save()
+
+            team = get_object_or_404(Team.objects.all(), pk=serializer.data.id)
+            mail_sender = MailSender(team=team, request=self.request)
+            mail_sender.send_signup_preliminary_confirmation()
+            mail_sender.send_needs_approval_notification()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -96,6 +103,18 @@ class TeamViewSet(viewsets.ModelViewSet):
                                     context={'request': self.request, 'team_id': pk})
         if serializer.is_valid():
             serializer.save()
+
+            state = serializer.data.get('state')
+            mail_sender = MailSender(team=team, request=request)
+            if state == TeamStateTypes.signed_up:
+                mail_sender.send_signup_confirmation()
+            elif state == TeamStateTypes.needs_approval:
+                mail_sender.send_needs_approval_notification()
+            elif state == TeamStateTypes.denied:
+                mail_sender.send_signoff_confirmation()
+            elif state == TeamStateTypes.waiting:
+                mail_sender.send_waitlist_confirmation()
+
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -112,8 +131,12 @@ class TeamViewSet(viewsets.ModelViewSet):
         team = get_object_or_404(Team.objects.all(), pk=pk)
         serializer = TeamSerializer(team, data={'paid': state}, partial=True,
                                     context={'request': self.request, 'team_id': pk})
+
         if serializer.is_valid():
             serializer.save()
+            if state is True:
+                MailSender(team=team, request=request).send_payment_confirmation()
+
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

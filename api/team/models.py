@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from api.enums import TeamStateTypes
 from api.tournaments.models import Tournament
-from django.utils.translation import gettext_lazy as _
 
 
 class Team(models.Model):
@@ -50,3 +50,9 @@ class Team(models.Model):
 
     def __str__(self):
         return self.complete_name()
+
+    def url(self):
+        return '/tournament/{}/team/{}'.format(self.tournament.id, self.id)
+
+    def banking_reference(self):
+        return 'Beachanmeldung {} - {}'.format(self.tournament.__str__(), self.complete_name())
