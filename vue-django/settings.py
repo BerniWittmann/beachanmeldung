@@ -101,9 +101,9 @@ WSGI_APPLICATION = 'vue-django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  config('DATABASE_NAME'),
-        'USER':  config('DATABASE_USER'),
-        'PASSWORD':  config('DATABASE_PASSWORD'),
+        'NAME':  config('DATABASE_NAME', default=None),
+        'USER':  config('DATABASE_USER', default=None),
+        'PASSWORD':  config('DATABASE_PASSWORD', default=None),
         'HOST': config('DATABASE_HOST', default=None),
         'PORT': config('DATABASE_PORT', default=None),
         'CONN_MAX_AGE': 60*10,
