@@ -1,0 +1,526 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-12 15:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: api/accounts/models.py:15
+msgid "Phone number, preferrably mobile"
+msgstr "Telefonnummer, möglichst Handynummer"
+
+#: api/accounts/models.py:15
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: api/accounts/views.py:40
+msgid "User with this Email address already exists."
+msgstr "Ein Nutzer mit dieser E-Mail existiert bereits."
+
+#: api/accounts/views.py:94
+msgid "User account not active."
+msgstr "Account ist nicht aktiv."
+
+#: api/accounts/views.py:100
+msgid "Unable to login with provided credentials."
+msgstr "Login mit den angegebenen Daten nicht möglich."
+
+#: api/accounts/views.py:114
+msgid "User logged out."
+msgstr "Nutzer wurde ausgeloggt."
+
+#: api/accounts/views.py:131
+msgid "Password reset."
+msgstr "Das Passwort wurde zurückgesetzt."
+
+#: api/accounts/views.py:134 api/accounts/views.py:226
+msgid "Unable to verify user."
+msgstr "Der Nutzer konnte"
+
+#: api/accounts/views.py:204
+msgid "Password reset not allowed."
+msgstr "Das Passwort darf nicht zurückgesetzt werden."
+
+#: api/accounts/views.py:223
+msgid "User verified."
+msgstr "Der Nutzer wurde verifiziert."
+
+#: api/accounts/views.py:237
+msgid "User already verified."
+msgstr "Der Nutzer wurde bereits verifiziert"
+
+#: api/accounts/views.py:244
+msgid "Email sent."
+msgstr "E-Mail wurde versendet."
+
+#: api/players/models.py:11
+msgid "Last Name of the player"
+msgstr "Nachname des Spielers"
+
+#: api/players/models.py:12
+msgid "Last Name"
+msgstr "Nachname"
+
+#: api/players/models.py:14
+msgid "First Name of the player"
+msgstr "Vorname des Spielers"
+
+#: api/players/models.py:15
+msgid "First Name"
+msgstr "Vorname"
+
+#: api/players/models.py:16
+msgid "shirt number of the player"
+msgstr "Trikotnummer des Spielers"
+
+#: api/players/models.py:17
+msgid "Number"
+msgstr "Nummer"
+
+#: api/players/models.py:22
+msgid "Use the following format: YYYY"
+msgstr "Benutze das folgende Format: JJJJ"
+
+#: api/players/models.py:23
+msgid "Year of Birth"
+msgstr "Geburtsjahr"
+
+#: api/players/models.py:28
+msgid "Team associated with the player"
+msgstr "Team des Spielers"
+
+#: api/players/models.py:29
+msgid "Team"
+msgstr "Team"
+
+#: api/team/models.py:11
+msgid "Usually the club name"
+msgstr "Normalerweise der Vereinsname"
+
+#: api/team/models.py:11
+msgid "Name"
+msgstr "Name"
+
+#: api/team/models.py:12
+msgid "creative team name"
+msgstr "Kreativer Team-Name"
+
+#: api/team/models.py:13
+msgid "beachname"
+msgstr "Beachname"
+
+#: api/team/models.py:14
+msgid "date of initial signup"
+msgstr "Datum der erstmaligen Anmeldung"
+
+#: api/team/models.py:15
+msgid "Date Signup"
+msgstr "Anmeldedatum"
+
+#: api/team/models.py:19
+msgid "current state of the team"
+msgstr "derzeitiger Status des Teams"
+
+#: api/team/models.py:20
+msgid "Team State"
+msgstr "Team Status"
+
+#: api/team/models.py:21
+msgid "has the team already paid?"
+msgstr "Hat das Team bereits bezahlt?"
+
+#: api/team/models.py:22
+msgid "Paid State"
+msgstr "Bezahlt Status"
+
+#: api/team/models.py:27
+msgid "tournament of the team"
+msgstr "Turnier des Teams"
+
+#: api/team/models.py:27
+msgid "Team tournament"
+msgstr "Turnier"
+
+#: api/team/models.py:33
+msgid "User account who is responsible for the team"
+msgstr "Nutzer-Account, der für das Team verantwortlich ist"
+
+#: api/team/models.py:33
+msgid "Trainer"
+msgstr "Trainer"
+
+#: api/team/serializers.py:42
+msgid "Tournament not Found"
+msgstr "Turnier wurde nicht gefunden"
+
+#: api/team/serializers.py:46
+msgid "Name already taken"
+msgstr "Der Name existiert bereits"
+
+#: api/team/serializers.py:67
+msgid "Duplicate Player Number"
+msgstr "Doppelte Spieler Nummer"
+
+#: api/team/serializers.py:73
+msgid "Duplicate Player Name"
+msgstr "Doppelter Spieler Name"
+
+#: api/team/views.py:46
+msgid "Team Update not possible after Edit-Deadline"
+msgstr "Die Bearbeitung eines Teams ist nicht mehr möglich"
+
+#: api/team/views.py:70
+msgid "Team Creation not possible before Signup period has started"
+msgstr "Vor dem Start der Anmeldephase kann noch kein Team angemeldet werden"
+
+#: api/team/views.py:76
+msgid "Team Creation not possible after Signup period has ended"
+msgstr "Nach dem Ende der Anmeldephase kann kein Team mehr angemeldet werden"
+
+#: api/team/views.py:94 api/team/views.py:124 api/team/views.py:155
+msgid "Authentication credentials were not provided."
+msgstr "Authentifizierungs-details wurden nicht angegeben"
+
+#: api/team/views.py:98 api/team/views.py:128
+msgid "You do not have permission to perform this action."
+msgstr "Sie haben nicht die ausreichenden Rechte, um diese Aktion auszuführen"
+
+#: api/tournaments/models.py:12
+msgid "Name of the Tournament"
+msgstr "Name des Turniers"
+
+#: api/tournaments/models.py:13
+msgid "Tournament Name"
+msgstr "Turnier Name"
+
+#: api/tournaments/models.py:17
+msgid "Choose a gender for the tournament (female, male, mixed)"
+msgstr "Wähle ein Geschlecht für das Turnier (Weiblich, Männlich, Mixed)"
+
+#: api/tournaments/models.py:18
+msgid "Tournament Gender"
+msgstr "Geschlecht"
+
+#: api/tournaments/models.py:19
+msgid "The first day when the tournament takes place"
+msgstr "Der erste Turniertag"
+
+#: api/tournaments/models.py:20
+msgid "Start Date of the Tournament"
+msgstr "Start Datum des Turniers"
+
+#: api/tournaments/models.py:21
+msgid "The last day when the tournament takes place"
+msgstr "Der letzte Turniertag"
+
+#: api/tournaments/models.py:22
+msgid "End Date of the Tournament"
+msgstr "End Datum des Turniers"
+
+#: api/tournaments/models.py:24
+msgid "Date when the Signup period starts"
+msgstr "Start Datum des Anmeldezeitraums"
+
+#: api/tournaments/models.py:25
+msgid "Start of the Signup Period"
+msgstr "Start der Anmeldung"
+
+#: api/tournaments/models.py:26
+msgid "Date when the Signup period ends"
+msgstr "End Datum des Anmeldezeitraums"
+
+#: api/tournaments/models.py:27
+msgid "End of the Signup Period"
+msgstr "Ende der Anmeldung"
+
+#: api/tournaments/models.py:28
+msgid "Date by which the Edit by trainers is not possible anymore"
+msgstr "Datum, nach dem keine Bearbeitung durch die Trainer mehr möglich ist"
+
+#: api/tournaments/models.py:29
+msgid "Deadline for Editing"
+msgstr "End Datum für die Bearbeitung"
+
+#: api/tournaments/models.py:32
+msgid "Url to the Advertisement"
+msgstr "Link zur Ausschreibung"
+
+#: api/tournaments/models.py:33
+msgid "Advertisement Url"
+msgstr "Ausschreibung"
+
+#: api/tournaments/models.py:37
+msgid "Contact Email Address for the tournament"
+msgstr "Kontakt E-mail Adresse für das Turnier"
+
+#: api/tournaments/models.py:38
+msgid "Contact Email"
+msgstr "E-Mail Adresse"
+
+#: api/tournaments/models.py:43
+msgid "Initial required payment"
+msgstr "Einmalig zu entrichtente Startgebühr"
+
+#: api/tournaments/models.py:44
+msgid "Signup Fee"
+msgstr "Startgebühr"
+
+#: api/tournaments/models.py:46
+msgid "Count of possible teams that can take place in the tournament"
+msgstr "Anzahl an möglichen Teams, die am Turnier teilnehmen können"
+
+#: api/tournaments/models.py:47
+msgid "Numer of Places"
+msgstr "Anzahl Startplätze"
+
+#: api/tournaments/models.py:81
+msgid "SignUp Possible"
+msgstr "Anmeldung möglich"
+
+#: api/tournaments/models.py:93 api/tournaments/serializers.py:32
+msgid "StartDate must be before EndDate"
+msgstr "Start Datum muss vor End Datum liegen"
+
+#: api/tournaments/models.py:99 api/tournaments/serializers.py:44
+msgid "Deadline of Signup must be after Start of Signup"
+msgstr "Das Ende der Anmeldephase muss nach dem Start liegen"
+
+#: api/views.py:10
+msgid "Route Not Found"
+msgstr "Der Pfad wurde nicht gefunden"
+
+#: templates/authemail/password_reset_email.html:4
+#: templates/authemail/password_reset_email.html:5
+msgid "Reset your Password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/authemail/password_reset_email.html:15
+msgid ""
+"\n"
+"                    You requested a new password. Click on the following "
+"link to create a new password\n"
+"                "
+msgstr ""
+"\n"
+"                    Du hast ein neues Passwort angefordert. Klicke auf den Link, um ein neues zu erstellen.\n"
+"                "
+
+#: templates/authemail/password_reset_email.html:25
+msgid "Reset Password"
+msgstr "Passwort zurücksetzen"
+
+#: templates/authemail/signup_email.html:4
+#: templates/authemail/signup_email.html:5
+msgid "Confirm your Email Address"
+msgstr "E-Mail Adresse Bestätigen"
+
+#: templates/authemail/signup_email.html:15
+msgid ""
+"\n"
+"                    Please confirm your email address by clicking the link "
+"below\n"
+"                "
+msgstr ""
+"\n"
+"                    Bitte bestätige deine E-Mail Adresse indem du auf den Link klickst.\n"
+"                "
+
+#: templates/authemail/signup_email.html:25
+msgid "Confirm Email Address"
+msgstr "E-Mail Adresse bestätigen"
+
+#: templates/authemail/welcome_email.html:4
+#: templates/authemail/welcome_email.html:5
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: templates/authemail/welcome_email.html:15
+msgid ""
+"\n"
+"                    Your Account was successfully created.\n"
+"                "
+msgstr ""
+"\n"
+"                    Dein Account wurde erfolgreich erstellt.\n"
+"                "
+
+#: templates/teamemail/needs_approval_notification.html:4
+#: templates/teamemail/needs_approval_notification.html:5
+msgid "A New Team Registered"
+msgstr "Ein neues Team wurde angemeldet"
+
+#: templates/teamemail/needs_approval_notification.html:15
+#, python-format
+msgid ""
+"\n"
+"                    The Team %(name)s registered and is now waiting for "
+"approval.\n"
+"                "
+msgstr ""
+"\n"
+"                    Das Team %(name)s wurde neu angemeldet und wartet nun auf Prüfung.\n"
+"                "
+
+#: templates/teamemail/needs_approval_notification.html:25
+msgid "View the Team"
+msgstr "Team Anzeigen"
+
+#: templates/teamemail/needs_approval_notification.txt:2
+msgid "A new team registered and is now waiting for approval"
+msgstr "Ein neues Team wurde angemeldet und wartet nun auf Prüfung"
+
+#: templates/teamemail/needs_approval_notification_subject.txt:2
+msgid "New Team Registered"
+msgstr "Neues Team Angemeldet"
+
+#: templates/teamemail/payment_confirmation.html:4
+#: templates/teamemail/payment_confirmation.html:5
+#: templates/teamemail/payment_confirmation_subject.txt:2
+msgid "Payment Confirmation"
+msgstr "Zahlungsbestätigung"
+
+#: templates/teamemail/payment_confirmation.html:15
+#, python-format
+msgid ""
+"\n"
+"                    We received the payment for your team %(name)s\n"
+"                "
+msgstr ""
+"\n"
+"                    Wir haben die Zahlung für das Team %(name)s erhalten.\n"
+"                "
+
+#: templates/teamemail/payment_confirmation.html:25
+#: templates/teamemail/signup_confirmation.html:40
+#: templates/teamemail/signup_preliminary_confirmation.html:25
+#: templates/teamemail/waitlist_confirmation.html:25
+msgid "Edit Team"
+msgstr "Team Bearbeiten"
+
+#: templates/teamemail/payment_confirmation.txt:2
+msgid "We received your payment."
+msgstr "Wir haben die Zahlung erhalten."
+
+#: templates/teamemail/signoff_confirmation.html:4
+#: templates/teamemail/signoff_confirmation.html:5
+msgid "Your team is now signed off"
+msgstr "Dein Team wurde abgemeldet"
+
+#: templates/teamemail/signoff_confirmation.html:15
+#, python-format
+msgid ""
+"\n"
+"                    Your team %(name)s is now signed off and not accessible "
+"anymore.\n"
+"                "
+msgstr ""
+"\n"
+"                    Dein Team %(name)s wurde abgemeldet und ist nun nicht mehr aktiv.\n"
+"                "
+
+#: templates/teamemail/signoff_confirmation.txt:2
+msgid "Your Team was signed off."
+msgstr "Dein Team wurde abgemeldet"
+
+#: templates/teamemail/signoff_confirmation_subject.txt:2
+msgid "Team Signed Off"
+msgstr "Team Abgemeldet"
+
+#: templates/teamemail/signup_confirmation.html:4
+#: templates/teamemail/signup_confirmation.html:5
+msgid "Your team is now signed up"
+msgstr "Team Angemeldet"
+
+#: templates/teamemail/signup_confirmation.html:15
+#, python-format
+msgid ""
+"\n"
+"                    Your team %(name)s is now successfully signed up.\n"
+"                "
+msgstr ""
+"\n"
+"                    Dein Team %(name)s ist nun erfolgreich angemeldet.\n"
+"                "
+
+#: templates/teamemail/signup_confirmation.html:26
+#, python-format
+msgid ""
+"\n"
+"                     You still need to pay the starting fee of %(amount)s\n"
+"                "
+msgstr ""
+"\n"
+"                    Du musst noch die Anmeldegebühr in Höhe von %(amount)s bezahlen.\n"
+"                "
+
+#: templates/teamemail/signup_confirmation.html:31
+msgid "reference"
+msgstr "Verwendungszweck"
+
+#: templates/teamemail/signup_confirmation.txt:2
+msgid "Your Team was successfully signed up."
+msgstr "Dein Team wurde erfolgreich angemeldet."
+
+#: templates/teamemail/signup_confirmation_subject.txt:2
+msgid "Team Signed Up"
+msgstr "Team Angemeldet"
+
+#: templates/teamemail/signup_preliminary_confirmation.html:4
+#: templates/teamemail/signup_preliminary_confirmation.html:5
+#: templates/teamemail/signup_preliminary_confirmation_subject.txt:2
+msgid "We received your Team Registration"
+msgstr "Vorläufige Anmeldung erhalten"
+
+#: templates/teamemail/signup_preliminary_confirmation.html:15
+#, python-format
+msgid ""
+"\n"
+"                    We received the registration of %(name)s. We will check "
+"the data and come back to you.\n"
+"                "
+msgstr ""
+"\n"
+"                    Wir haben die vorläufige Anmeldung des Teams %(name)s erhalten. Wir prüfen nun die Anmeldung und benachrichtigen dich.\n"
+"                "
+
+#: templates/teamemail/signup_preliminary_confirmation.txt:2
+msgid ""
+"We received your team registration and we're going to check the registration."
+msgstr "Wir haben die vorläufige Anmeldung erhalten und prüfen diese nun."
+
+#: templates/teamemail/waitlist_confirmation.html:4
+#: templates/teamemail/waitlist_confirmation.html:5
+msgid "Your team is now on the waitlist"
+msgstr "Dein Team ist nun auf der Warteliste"
+
+#: templates/teamemail/waitlist_confirmation.html:15
+#, python-format
+msgid ""
+"\n"
+"                    Your team %(name)s was moved to the waitlist.\n"
+"                "
+msgstr ""
+"\n"
+"                    Dein Team %(name)s wurde auf die Warteliste verschoben.\n"
+"                "
+
+#: templates/teamemail/waitlist_confirmation.txt:2
+msgid "Your Team was moved to the Waitlist."
+msgstr "Dein Team wurde auf die Warteliste verschoben."
+
+#: templates/teamemail/waitlist_confirmation_subject.txt:2
+msgid "Team On Waitlist"
+msgstr "Team auf Warteliste"
