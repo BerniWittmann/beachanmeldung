@@ -1,5 +1,8 @@
-from django.test import TestCase, Client
 from django.core.urlresolvers import reverse
+from django.test import TestCase, Client
+from django.utils.translation import activate
+
+activate('en-us')
 
 
 class HomeTestCase(TestCase):

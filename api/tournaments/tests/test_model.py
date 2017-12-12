@@ -1,10 +1,13 @@
 from django.test import TestCase
 from django.utils import timezone
+from django.utils.translation import activate
 
 from api.accounts.models import MyUser
 from api.enums import TeamStateTypes
 from api.team.models import Team
 from api.tournaments.models import Tournament
+
+activate('en-us')
 
 
 class Tournaments(TestCase):

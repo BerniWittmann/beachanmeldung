@@ -79,7 +79,7 @@ class TeamViewSet(viewsets.ModelViewSet):
 
             serializer.save()
 
-            team = get_object_or_404(Team.objects.all(), pk=serializer.data.id)
+            team = get_object_or_404(Team.objects.all(), pk=serializer.data.get('id'))
             mail_sender = MailSender(team=team, request=self.request)
             mail_sender.send_signup_preliminary_confirmation()
             mail_sender.send_needs_approval_notification()

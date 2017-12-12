@@ -1,10 +1,15 @@
-from django.test import TransactionTestCase
-from api.accounts.models import MyUser
-from django.contrib.auth import authenticate
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
 import json
+
+from django.contrib.auth import authenticate
+from django.core.urlresolvers import reverse
+from django.test import TransactionTestCase
+from django.utils.translation import activate
+from rest_framework.test import APIClient
 from rest_framework_jwt.settings import api_settings
+
+from api.accounts.models import MyUser
+
+activate('en-us')
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER

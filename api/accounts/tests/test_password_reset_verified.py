@@ -1,10 +1,15 @@
-from django.test import TransactionTestCase
-from api.accounts.models import MyUser
-from django.contrib.auth import authenticate
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
-from authemail.models import PasswordResetCode
 import json
+
+from authemail.models import PasswordResetCode
+from django.contrib.auth import authenticate
+from django.core.urlresolvers import reverse
+from django.test import TransactionTestCase
+from django.utils.translation import activate
+from rest_framework.test import APIClient
+
+from api.accounts.models import MyUser
+
+activate('en-us')
 
 
 class PasswordResetVerifiedTestCase(TransactionTestCase):

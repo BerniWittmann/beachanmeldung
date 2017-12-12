@@ -4,11 +4,14 @@ import json
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
+from django.utils.translation import activate
 from rest_framework.test import APIClient
 from rest_framework_jwt.settings import api_settings
 
 from api.accounts.models import MyUser
 from api.tournaments.models import Tournament
+
+activate('en-us')
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER

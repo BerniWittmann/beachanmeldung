@@ -1,9 +1,14 @@
-from django.test import TransactionTestCase
-from api.accounts.models import MyUser
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
 import json
+
 from authemail.models import SignupCode
+from django.core.urlresolvers import reverse
+from django.test import TransactionTestCase
+from django.utils.translation import activate
+from rest_framework.test import APIClient
+
+from api.accounts.models import MyUser
+
+activate('en-us')
 
 
 class SignupVerifyTestCase(TransactionTestCase):

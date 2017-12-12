@@ -1,9 +1,12 @@
 from django.test import TestCase
+from django.utils.translation import activate
 
 from api.accounts.models import MyUser
+from api.players.models import Player
 from api.team.models import Team
 from api.tournaments.models import Tournament
-from api.players.models import Player
+
+activate('en-us')
 
 
 class Tournaments(TestCase):

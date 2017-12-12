@@ -1,9 +1,14 @@
-from django.test import TransactionTestCase
-from api.accounts.models import MyUser
-from rest_framework.test import APIClient
-from django.core.urlresolvers import reverse
-from django.utils.timezone import now
 import json
+
+from django.core.urlresolvers import reverse
+from django.test import TransactionTestCase
+from django.utils.timezone import now
+from django.utils.translation import activate
+from rest_framework.test import APIClient
+
+from api.accounts.models import MyUser
+
+activate('en-us')
 
 token_regex = '^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$'
 
