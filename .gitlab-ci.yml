@@ -85,4 +85,4 @@ deploy:
     - cd ../..
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
     only:
-    — master
+     — master
