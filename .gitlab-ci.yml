@@ -37,8 +37,8 @@ backend_tests:
       paths:
       - htmlcov
       expire_in: 4 weeks
-    exclude:
-    - master
+    only:
+    - not_available
 
 backend_lint:
   stage: lint
@@ -46,8 +46,8 @@ backend_lint:
   - source /app/venv/bin/activate
   script:
         - flake8
-  exclude:
-  - master
+  only:
+  - not_available
 
 frontend_tests:
     stage: test
@@ -61,8 +61,8 @@ frontend_tests:
       - web/vueapp/test/unit/reports
       - web/vueapp/test/unit/coverage
       expire_in: 4 weeks
-    exclude:
-    - master
+    only:
+    - not_available
 
 frontend_lint:
     stage: lint
@@ -71,8 +71,8 @@ frontend_lint:
         - cp -R /app/node_modules .
     script:
         - npm run lint
-    exclude:
-    - master
+    only:
+    - not_available
 
 deploy:
     stage: deploy
