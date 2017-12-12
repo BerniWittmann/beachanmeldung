@@ -37,6 +37,8 @@ backend_tests:
       paths:
       - htmlcov
       expire_in: 4 weeks
+    exclude:
+    - master
 
 backend_lint:
   stage: lint
@@ -44,6 +46,8 @@ backend_lint:
   - source /app/venv/bin/activate
   script:
         - flake8
+  exclude:
+  - master
 
 frontend_tests:
     stage: test
@@ -57,6 +61,8 @@ frontend_tests:
       - web/vueapp/test/unit/reports
       - web/vueapp/test/unit/coverage
       expire_in: 4 weeks
+    exclude:
+    - master
 
 frontend_lint:
     stage: lint
@@ -65,6 +71,8 @@ frontend_lint:
         - cp -R /app/node_modules .
     script:
         - npm run lint
+    exclude:
+    - master
 
 deploy:
     stage: deploy
@@ -76,3 +84,5 @@ deploy:
     - npm run build
     - cd ../..
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
+    only:
+    — master
