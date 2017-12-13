@@ -22,8 +22,7 @@ deploy:
     - cd web/vueapp
     - npm install
     - npm run build
-    script:
-    - ls
     - cd ../../
-    - ls
-    - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
+    script:
+    - heroku container:login
+    - heroku container:push web

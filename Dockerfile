@@ -8,7 +8,7 @@ RUN apt-get install -y -qq build-essential libffi-dev libpq-dev libfontconfig1
 RUN apt-get install -y -qq python3 python3-dev python3-pip
 RUN apt-get install -y -qq libpq-dev
 RUN apt-get install -y -qq nodejs npm
-RUN apt-get install -y -qq git-all
+RUN apt-get install -y git
 RUN apt-get install -y -qq ruby-dev
 RUN gem install dpl
 
