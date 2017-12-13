@@ -16,7 +16,7 @@ variables:
 deploy:
     before_script:
     - apt-get update -qy
-    - apt-get install -y git-all
+    - apt-get install -y git-all curl
     - apt-get install -y ruby-dev
     - gem install dpl
     script:
