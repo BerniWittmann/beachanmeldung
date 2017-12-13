@@ -177,10 +177,7 @@ JWT_AUTH = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'web/vueapp/dist/'),
-]
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
