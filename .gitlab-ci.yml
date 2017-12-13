@@ -19,9 +19,9 @@ deploy:
     - apt-get install -y git-all curl
     - apt-get install -y ruby-dev
     - gem install dpl
-    script:
     - cd web/vueapp
     - npm install
     - npm run build
-    - cd ../../
+    script:
+    - ls
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
