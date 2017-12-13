@@ -14,10 +14,12 @@ variables:
     SERVER_EMAIL: test@beach.handballismaning.de.de
 
 deploy:
-    script:
+    before_script:
     - apt-get update -qy
+    - apt-get install -y git-all
     - apt-get install -y ruby-dev
     - gem install dpl
+    script:
     - cd web/vueapp
     - npm install
     - npm run build
