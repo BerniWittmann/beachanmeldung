@@ -19,6 +19,7 @@ deploy:
     - npm install
     - npm run build
     - cd ../../
+    - apt-get install docker-ce
     script:
     - heroku container:login
     - heroku container:push web
