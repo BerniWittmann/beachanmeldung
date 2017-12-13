@@ -11,6 +11,7 @@ RUN apt-get install -y -qq nodejs npm
 RUN apt-get install -y git
 RUN apt-get install -y -qq ruby-dev
 RUN gem install dpl
+RUN wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
 
 WORKDIR /app
 

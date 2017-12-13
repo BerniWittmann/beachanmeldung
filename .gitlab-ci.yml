@@ -15,14 +15,10 @@ variables:
 
 deploy:
     before_script:
-    - apt-get update -qy
-    - apt-get install -y git-all curl
-    - apt-get install -y ruby-dev
-    - gem install dpl
     - cd web/vueapp
-    - npm install
     - npm run build
     - cd ../../
+    - wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
     script:
     - heroku container:login
     - heroku container:push web
