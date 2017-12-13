@@ -24,4 +24,6 @@ deploy:
     - npm run build
     script:
     - ls
+    - cd ../../
+    - ls
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_PRODUCTION_API_KEY
