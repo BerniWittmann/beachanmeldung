@@ -20,6 +20,7 @@ deploy:
     - npm run build
     - cd ../../
     script:
+    - service docker start
     - heroku container:login
     - heroku container:push web
     environment:
