@@ -22,7 +22,7 @@ deploy:
     script:
     - service docker start
     - heroku container:login
-    - heroku container:push web
+    - heroku container:push web -a beachanmeldung
     environment:
       name: production
       url: https://beachanmeldung.herokuapp.com
