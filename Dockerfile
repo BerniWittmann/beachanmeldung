@@ -9,9 +9,11 @@ RUN apt-get install -y -qq python3 python3-dev python3-pip
 RUN apt-get install -y -qq libpq-dev
 RUN apt-get install -y -qq nodejs npm
 RUN apt-get install -y git
-RUN apt-get install -y -qq ruby-dev wget
-RUN gem install dpl
+RUN apt-get install -y -qq ruby-dev wget curl
 RUN wget -qO- https://cli-assets.heroku.com/install-ubuntu.sh | sh
+RUN curl -fsSL get.docker.com -o get-docker.sh
+RUN sh get-docker.sh
+
 
 WORKDIR /app
 
