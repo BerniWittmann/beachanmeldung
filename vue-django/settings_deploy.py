@@ -9,7 +9,7 @@ ALLOWED_HOSTS.append('*',)
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'static/vueapp/',
+        'BUNDLE_DIR_NAME': 'static/',
         'STATS_FILE': os.path.join(BASE_DIR,
                                    'web',
                                    'vueapp',
@@ -22,4 +22,4 @@ INTERNAL_IPS = (
     '127.0.0.1',
 )
 
-STATIC_URL = '/'
+STATIC_URL = '/static/'
