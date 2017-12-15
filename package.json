@@ -1,0 +1,20 @@
+{
+  "name": "vueapp",
+  "version": "1.0.0",
+  "description": "Beachanmeldung",
+  "scripts": {
+    "postinstall": "cd web/vueapp && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/BerniWittmann/beachanmeldung.git"
+  },
+  "keywords": [],
+  "author": "Bernhard Wittmann <b.wittmann@mail.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/BerniWittmann/beachanmeldung/issues"
+  },
+  "homepage": "https://gitlab.com/BerniWittmann/beachanmeldung/blob/master/README.md",
+  "cacheDirectories": ["web/vueapp/node_modules"]
+}
