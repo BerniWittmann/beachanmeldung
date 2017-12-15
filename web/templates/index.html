@@ -1,23 +1,21 @@
 {% load render_bundle from webpack_loader %}
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Vue.js + Django</title>
-    {% if debug == True %}
-          {% render_bundle 'app' 'css' %}
-    {% endif %}
-  </head>
+    <title>Beachanmeldung</title>
+    {% render_bundle 'app' 'css' %}
+</head>
 
-  <body>
-    <div id="app"></div>
-    {% if debug == False %}
-      <script type="text/javascript" src="http://localhost:8080/app.js"></script>
-    {% else%}
-      {% render_bundle 'manifest' 'js' %}
-      {% render_bundle 'vendor' 'js' %}
-      {% render_bundle 'app' 'js' %}
-    {% endif %}
-  </body>
+<body>
+<div id="app"></div>
+{% if debug == False %}
+    <script type="text/javascript" src="http://localhost:8080/app.js"></script>
+{% else %}
+    {% render_bundle 'manifest' 'js' %}
+    {% render_bundle 'vendor' 'js' %}
+    {% render_bundle 'app' 'js' %}
+{% endif %}
+</body>
 
 </html>
