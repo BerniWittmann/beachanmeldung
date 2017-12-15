@@ -1,17 +1,11 @@
-from .settings import INSTALLED_APPS, ALLOWED_HOSTS, BASE_DIR
 import os
+
+from .settings import INSTALLED_APPS, ALLOWED_HOSTS, BASE_DIR
 
 INSTALLED_APPS.append('webpack_loader',)
 INSTALLED_APPS.append('web.apps.WebConfig',)
 
 ALLOWED_HOSTS.append('*',)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, 'static',)
-    os.path.join(BASE_DIR, 'web', 'vueapp', 'dist')
-]
 
 WEBPACK_LOADER = {
     'DEFAULT': {

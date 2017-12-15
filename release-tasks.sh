@@ -3,8 +3,8 @@ echo "Starting Release Tasks"
 cd web/vueapp
 npm install
 npm run build
-
 cd ../..
+
 python manage.py collectstatic --noinput
 python manage.py migrate
 apt-get install gettext -y
