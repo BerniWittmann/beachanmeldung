@@ -7,5 +7,6 @@ npm run build
 cd ../..
 python manage.py collectstatic --noinput
 python manage.py migrate
+apt-get install gettext
 python manage.py compilemessages
 echo "Completed Release Tasks"
