@@ -6,7 +6,7 @@
                 class="nav-image-wrap"
                 tag="a"
         >
-            <img class="nav-image" src="/static/images/logo.png">
+            <img class="nav-image" src="/static/assets/images/logo.png">
             <p class="hidden-sm-and-down" v-if="!displayBackButton">{{ $t('nav.name') }}</p>
             <v-link-button v-else :route="backRouteConfig.route" icon="el-icon-arrow-left" type="text">
                 {{ backRouteConfig.text }}
