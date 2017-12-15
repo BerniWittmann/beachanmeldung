@@ -194,8 +194,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default=None)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False)
 SERVER_EMAIL = config('SERVER_EMAIL')
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 try:
     from .settings_deploy import *  # noqa: F403,F401
 except ImportError:
