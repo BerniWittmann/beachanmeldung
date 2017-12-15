@@ -21,7 +21,7 @@ deploy:
     - cd ../../
     - gem install dpl
     script:
-    - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_API_KEY
+    - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_API_KEY --skip_cleanup
     environment:
       name: production
       url: https://beachanmeldung.herokuapp.com
