@@ -66,6 +66,7 @@ frontend_lint:
         - npm run lint
 
 deploy:
+    stage: deploy
     before_script:
     - gem install dpl
     script:
@@ -73,3 +74,5 @@ deploy:
     environment:
       name: production
       url: https://beachanmeldung.herokuapp.com
+    only:
+    - master
