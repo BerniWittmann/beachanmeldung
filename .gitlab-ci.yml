@@ -19,10 +19,9 @@ deploy:
     - npm install
     - npm run build
     - cd ../../
+    - gem install dpl
     script:
-    - service docker start
-    - heroku container:login
-    - heroku container:push web -a beachanmeldung
+    - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_API_KEY
     environment:
       name: production
       url: https://beachanmeldung.herokuapp.com
