@@ -9,7 +9,7 @@ ALLOWED_HOSTS.append('*',)
 
 WEBPACK_LOADER = {
     'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'static/',
+        'BUNDLE_DIR_NAME': '/',
         'STATS_FILE': os.path.join(BASE_DIR,
                                    'web',
                                    'vueapp',
