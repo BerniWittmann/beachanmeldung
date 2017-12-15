@@ -18,7 +18,7 @@ describe('Components', () => {
     it('should have a logo', () => {
       const vm = utils.mountComponent(Navigation, { store });
       const image = vm.first('img');
-      expect(image.hasAttribute('src', '/static/images/logo.png')).to.equal(true);
+      expect(image.hasAttribute('src')).to.equal(true);
     });
     it('the logo should have a link to home', () => {
       const vm = utils.mountComponent(Navigation, { store });
