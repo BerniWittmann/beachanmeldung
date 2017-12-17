@@ -8,5 +8,6 @@
   "date_joined": "Mitglied seit",
   "please_verify": "Bitte verifiziere deine E-Mail Adresse.",
   "resend_verification": "Verifizierung erneut schicken",
-  "phone": "Telefonnummer"
+  "phone": "Telefonnummer",
+  "to_admin_area": "Zum Admin-Bereich"
 }

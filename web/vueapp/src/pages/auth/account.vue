@@ -16,6 +16,9 @@
                         {{ $t('account.please_verify') }} <a href=""
                                                              @click.prevent="resendVerification()">{{ $t('account.resend_verification')
                         }}</a></p>
+                    <p v-if="account.isStaff">
+                        <v-link-button href="/admin/" plain icon="el-icon-setting">{{ $t('account.to_admin_area') }}</v-link-button>
+                    </p>
                 </div>
             </v-panel>
         </el-row>
@@ -90,6 +93,7 @@
       VPanel: require('@/components/panel.vue'),
       VEditingPanel: require('@/components/editingPanel.vue'),
       VTeamCard: require('@/components/teamCard.vue'),
+      VLinkButton: require('@/components/linkButton.vue'),
     },
 
     data() {
