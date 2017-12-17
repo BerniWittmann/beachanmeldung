@@ -17,6 +17,9 @@
     .nav-image {
       margin: 10px 0 10px 20px;
       height: 40px;
+      width: 40px;
+      background: url('../../../static/images/logo.png') center center;
+      background-size: cover;
     }
     p, a {
       margin-left: 10px;
