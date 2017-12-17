@@ -1,7 +1,7 @@
-from django.contrib import admin
-from django.contrib.auth import get_user_model
 from authemail.admin import (EmailUserAdmin, PasswordResetCodeInline,
                              SignupCodeInline)
+from django.contrib import admin
+from django.contrib.auth import get_user_model
 
 
 class MyPasswordResetCodeInline(PasswordResetCodeInline):
@@ -20,7 +20,7 @@ class MyUserAdmin(EmailUserAdmin):
                                     'is_superuser', 'is_verified',
                                     'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login', 'date_joined')}),
-        ('Custom info', {'fields': ('phone',)}),
+        ('Custom info', {'fields': ('phone', 'receive_notifications',)}),
     )
     inlines = [MyPasswordResetCodeInline, MySignupCodeInline]
 

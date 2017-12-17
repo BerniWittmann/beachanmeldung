@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-17 19:45+0100\n"
+"POT-Creation-Date: 2017-12-17 20:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,14 @@ msgstr "Telefonnummer, möglichst Handynummer"
 #: api/accounts/models.py:15
 msgid "Phone number"
 msgstr "Telefonnummer"
+
+#: api/accounts/models.py:16
+msgid "Receive Signup Notifications"
+msgstr "Anmeldungs-Benachrichtigungen erhalten?"
+
+#: api/accounts/models.py:17
+msgid "Receive a Email Notification when a new team is created"
+msgstr "Erhalte eine Nachricht per E-Mail, jedesmal wenn ein neues Team angemeldet wird."
 
 #: api/accounts/views.py:40
 msgid "User with this Email address already exists."

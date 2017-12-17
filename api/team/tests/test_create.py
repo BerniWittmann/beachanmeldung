@@ -1,5 +1,6 @@
 import json
 
+from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.utils import timezone
@@ -194,3 +195,30 @@ class Teams(TestCase):
             'key': 'after_deadline_signup'
         })
         self.assertEqual(Team.objects.all().count(), 1)
+
+    def test_not_send_signup_notification_email(self):
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.post(reverse('v1:team-list'), {
+            'name': 'New Team',
+            'beachname': 'creative Name',
+            'tournament': self.tournament.id,
+        })
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertNotEqual(mail.outbox[0].subject, 'New Team Registered')
+
+    def test_send_signup_notification_email(self):
+        self.user.receive_notifications = True
+        self.user.save()
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.post(reverse('v1:team-list'), {
+            'name': 'New Team',
+            'beachname': 'creative Name',
+            'tournament': self.tournament.id,
+        })
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(len(mail.outbox), 2)
+        self.assertEqual(mail.outbox[1].subject, 'New Team Registered')

@@ -47,7 +47,7 @@ class MailSender:
         self.send_mail_to_trainer('signup_preliminary_confirmation')
 
     def send_needs_approval_notification(self):
-        emails = [x.email for x in MyUser.objects.filter(is_staff=True)]
+        emails = [x.email for x in MyUser.objects.filter(receive_notifications=True)]
         data = {
             'team': self.team
         }

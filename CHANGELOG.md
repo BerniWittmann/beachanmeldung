@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Field to user model to subscribe to signup notifications
 * Added Link to Admin Area
 * Added Translations to backend
 * Added Emails that notify about important updates
