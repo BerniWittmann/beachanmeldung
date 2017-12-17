@@ -14,12 +14,6 @@ describe('Components', () => {
         actions,
       });
     });
-
-    it('should have a logo', () => {
-      const vm = utils.mountComponent(Navigation, { store });
-      const image = vm.first('img');
-      expect(image.hasAttribute('src', '/static/assets/images/logo.png')).to.equal(true);
-    });
     it('the logo should have a link to home', () => {
       const vm = utils.mountComponent(Navigation, { store });
       const link = vm.first('a');
