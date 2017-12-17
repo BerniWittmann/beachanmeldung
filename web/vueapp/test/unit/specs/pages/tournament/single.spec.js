@@ -84,11 +84,6 @@ describe('Pages', () => {
       expect(vm.vm.signedUpTeams[0].id).to.equal(12);
     });
 
-    it('should contain two team tables', () => {
-      const vm = utils.mountComponent(TournamentSingle, { store });
-      expect(vm.find('.el-table').length).to.equal(2);
-    });
-
     it('should contain a computed property for waiting teams', () => {
       const vm = utils.mountComponent(TournamentSingle, { store });
       expect(vm.vm.waitingTeams.length).to.equal(1);
