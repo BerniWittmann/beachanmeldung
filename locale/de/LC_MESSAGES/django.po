@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-12 15:20+0100\n"
+"POT-Creation-Date: 2017-12-17 15:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -315,7 +315,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Du hast ein neues Passwort angefordert. Klicke auf den Link, um ein neues zu erstellen.\n"
+"                    Du hast ein neues Passwort angefordert. Klicke auf den "
+"Link, um ein neues zu erstellen.\n"
 "                "
 
 #: templates/authemail/password_reset_email.html:25
@@ -335,7 +336,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Bitte bestätige deine E-Mail Adresse indem du auf den Link klickst.\n"
+"                    Bitte bestätige deine E-Mail Adresse indem du auf den "
+"Link klickst.\n"
 "                "
 
 #: templates/authemail/signup_email.html:25
@@ -371,7 +373,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Das Team %(name)s wurde neu angemeldet und wartet nun auf Prüfung.\n"
+"                    Das Team %(name)s wurde neu angemeldet und wartet nun "
+"auf Prüfung.\n"
 "                "
 
 #: templates/teamemail/needs_approval_notification.html:25
@@ -428,7 +431,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Dein Team %(name)s wurde abgemeldet und ist nun nicht mehr aktiv.\n"
+"                    Dein Team %(name)s wurde abgemeldet und ist nun nicht "
+"mehr aktiv.\n"
 "                "
 
 #: templates/teamemail/signoff_confirmation.txt:2
@@ -463,7 +467,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Du musst noch die Anmeldegebühr in Höhe von %(amount)s bezahlen.\n"
+"                    Du musst noch die Anmeldegebühr in Höhe von %(amount)s "
+"bezahlen.\n"
 "                "
 
 #: templates/teamemail/signup_confirmation.html:31
@@ -493,7 +498,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Wir haben die vorläufige Anmeldung des Teams %(name)s erhalten. Wir prüfen nun die Anmeldung und benachrichtigen dich.\n"
+"                    Wir haben die vorläufige Anmeldung des Teams %(name)s "
+"erhalten. Wir prüfen nun die Anmeldung und benachrichtigen dich.\n"
 "                "
 
 #: templates/teamemail/signup_preliminary_confirmation.txt:2
@@ -524,3 +530,7 @@ msgstr "Dein Team wurde auf die Warteliste verschoben."
 #: templates/teamemail/waitlist_confirmation_subject.txt:2
 msgid "Team On Waitlist"
 msgstr "Team auf Warteliste"
+
+#: web/templates/index.html:7
+msgid "Beach Registration"
+msgstr "Beach Anmeldung"
