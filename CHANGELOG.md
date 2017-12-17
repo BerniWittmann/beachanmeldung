@@ -9,6 +9,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+
+### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.1.0 - (2017-12-17)
+---
+
+### New
 * Added Field to user model to subscribe to signup notifications
 * Added Link to Admin Area
 * Added Translations to backend
@@ -22,8 +34,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Fixed Resolving issue with navbar images
 * Fixed small layout issue with the footer
 * Fixed Favicon not loading because of incorrect path
-
-### Breaks
 
 
 ## 1.0.0 - (2017-12-10)

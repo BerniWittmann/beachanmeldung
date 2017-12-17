@@ -1,6 +1,6 @@
 {
-  "name": "vueapp",
-  "version": "1.0.0",
+  "name": "beachanmeldung",
+  "version": "1.1.0",
   "description": "Beachanmeldung",
   "scripts": {
     "postinstall": "cd web/vueapp && npm install",
