@@ -4,19 +4,27 @@ import moment from 'moment';
 
 describe('Components', () => {
   describe('Footer', () => {
+    const state = { account: { isStaff: false } };
+    let store;
+    beforeEach(() => {
+      store = new Vuex.Store({
+        state,
+      });
+    });
+
     it('should have a computed property for the current year', () => {
       expect(Footer.computed.currentYear()).to.equal(moment().format('YYYY'));
     });
 
     describe('should render a copyright notice', () => {
       it('should include the correct year', () => {
-        const vm = utils.mountComponent(Footer);
+        const vm = utils.mountComponent(Footer, { store });
         const textContent = vm.first('.footer-paragrap-copyright').text();
         expect(textContent).to.contain(moment().format('YYYY'));
       });
 
       it('should include the name', () => {
-        const vm = utils.mountComponent(Footer);
+        const vm = utils.mountComponent(Footer, { store });
 
         const textContent = vm.first('.footer-paragrap-copyright').text();
         expect(textContent).to.contain('general.copyright_name');
@@ -26,7 +34,7 @@ describe('Components', () => {
     describe('should contain links to several pages', () => {
       let vm;
       beforeEach(() => {
-        vm = utils.mountComponent(Footer);
+        vm = utils.mountComponent(Footer, { store });
       });
       it('should link to the contact page', () => {
         const element = vm.find('.footer-paragraph')[2];
