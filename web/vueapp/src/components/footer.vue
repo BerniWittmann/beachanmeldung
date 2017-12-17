@@ -6,6 +6,9 @@
                     <p class="footer-paragraph" v-html="$t('general.by_text')"></p>
                     <p class="footer-paragraph footer-paragrap-copyright"><i class="fa fa-copyright"></i> {{currentYear}} {{ $t('general.copyright_name')
                         }}</p>
+                    <p class="footer-paragraph" v-if="isStaff">
+                        <a href="/admin/">{{ $t('general.admin') }}</a>
+                    </p>
                 </el-col>
                 <el-col :lg="{span: 4, offset: 8}" :md="{span: 4, offset: 8}" :sm="{span: 4, offset: 8}"
                         :xs="{span: 4}">
@@ -38,6 +41,10 @@
     computed: {
       currentYear() {
         return moment().format('YYYY');
+      },
+
+      isStaff() {
+        return this.$store.state.account.isStaff;
       },
     },
   };
