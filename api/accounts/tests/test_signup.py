@@ -153,4 +153,4 @@ class SignupTestCase(TransactionTestCase):
                                 'phone': '+49192481024'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Verify your email address')
+        self.assertEqual(mail.outbox[0].subject, 'Confirm your Email Address')

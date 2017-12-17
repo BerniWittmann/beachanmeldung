@@ -102,4 +102,4 @@ class PasswordResetTestCase(TransactionTestCase):
                                {'email': 'test@byom.de'})
         self.assertEqual(response.status_code, 201)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Reset Your Password')
+        self.assertEqual(mail.outbox[0].subject, 'Reset your Password')

@@ -52,7 +52,7 @@ class ResendVerificationTestCase(TransactionTestCase):
         response = client.post(reverse('v1:authemail-resend-verification'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Verify your email address')
+        self.assertEqual(mail.outbox[0].subject, 'Confirm your Email Address')
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['success'],
                          'Email sent.')

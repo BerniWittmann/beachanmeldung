@@ -194,7 +194,7 @@ class AccountMeTestCase(TransactionTestCase):
         })
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
-        self.assertEqual(mail.outbox[0].subject, 'Verify your email address')
+        self.assertEqual(mail.outbox[0].subject, 'Confirm your Email Address')
 
     def test_account_me_update_email_respond_token(self):
         client = APIClient()
