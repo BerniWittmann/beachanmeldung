@@ -4,7 +4,7 @@ import utils from '../../utils';
 
 describe('Layouts', () => {
   describe('FullWidth', () => {
-    const state = { auth: { authenticated: false } };
+    const state = { auth: { authenticated: false }, account: { isStaff: false } };
     let store;
     beforeEach(() => {
       store = new Vuex.Store({

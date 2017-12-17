@@ -7,6 +7,7 @@ describe('Pages', () => {
   describe('Home', () => {
     const state = {
       auth: { authenticated: false },
+      account: { isStaff: false },
       tournament: { tournaments: [] },
       team: { teams: [] },
     };

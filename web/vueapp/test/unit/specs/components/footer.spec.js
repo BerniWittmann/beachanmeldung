@@ -1,6 +1,7 @@
 import Footer from '@/components/footer';
 import utils from '../../utils';
 import moment from 'moment';
+import Vuex from 'vuex';
 
 describe('Components', () => {
   describe('Footer', () => {

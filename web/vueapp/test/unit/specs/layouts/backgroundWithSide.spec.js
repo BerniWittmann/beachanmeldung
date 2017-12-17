@@ -4,7 +4,7 @@ import utils from '../../utils';
 
 describe('Layouts', () => {
   describe('Background With Side', () => {
-    const state = { auth: { authenticated: false } };
+    const state = { auth: { authenticated: false }, account: { isStaff: false } };
     let store;
     beforeEach(() => {
       store = new Vuex.Store({
