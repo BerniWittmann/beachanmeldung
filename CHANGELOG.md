@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added Translation to HTML title
 
 ### Fixes
+* Added Translation to auth emails
 * Fixed Resolving issue with navbar images
 * Fixed small layout issue with the footer
 * Fixed Favicon not loading because of incorrect path

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-17 15:24+0100\n"
+"POT-Creation-Date: 2017-12-17 19:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -304,6 +304,7 @@ msgstr "Der Pfad wurde nicht gefunden"
 
 #: templates/authemail/password_reset_email.html:4
 #: templates/authemail/password_reset_email.html:5
+#: templates/authemail/password_reset_email_subject.txt:2
 msgid "Reset your Password"
 msgstr "Passwort zurücksetzen"
 
@@ -323,8 +324,25 @@ msgstr ""
 msgid "Reset Password"
 msgstr "Passwort zurücksetzen"
 
+#: templates/authemail/password_reset_email.txt:2
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                    You requested a new password. Click on the following "
+#| "link to create a new password\n"
+#| "                "
+msgid ""
+"You requested a new password. Click on the following link to create a new "
+"password"
+msgstr ""
+"\n"
+"                    Du hast ein neues Passwort angefordert. Klicke auf den "
+"Link, um ein neues zu erstellen.\n"
+"                "
+
 #: templates/authemail/signup_email.html:4
 #: templates/authemail/signup_email.html:5
+#: templates/authemail/signup_email_subject.txt:2
 msgid "Confirm your Email Address"
 msgstr "E-Mail Adresse Bestätigen"
 
@@ -344,8 +362,23 @@ msgstr ""
 msgid "Confirm Email Address"
 msgstr "E-Mail Adresse bestätigen"
 
+#: templates/authemail/signup_email.txt:2
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                    Please confirm your email address by clicking the "
+#| "link below\n"
+#| "                "
+msgid "Please confirm your email address by clicking the link below"
+msgstr ""
+"\n"
+"                    Bitte bestätige deine E-Mail Adresse indem du auf den "
+"Link klickst.\n"
+"                "
+
 #: templates/authemail/welcome_email.html:4
 #: templates/authemail/welcome_email.html:5
+#: templates/authemail/welcome_email_subject.txt:2
 msgid "Welcome"
 msgstr "Willkommen"
 
@@ -358,6 +391,12 @@ msgstr ""
 "\n"
 "                    Dein Account wurde erfolgreich erstellt.\n"
 "                "
+
+#: templates/authemail/welcome_email.txt:2
+#, fuzzy
+#| msgid "Your Team was successfully signed up."
+msgid "Your Account was successfully created."
+msgstr "Dein Team wurde erfolgreich angemeldet."
 
 #: templates/teamemail/needs_approval_notification.html:4
 #: templates/teamemail/needs_approval_notification.html:5
@@ -531,6 +570,6 @@ msgstr "Dein Team wurde auf die Warteliste verschoben."
 msgid "Team On Waitlist"
 msgstr "Team auf Warteliste"
 
-#: web/templates/index.html:7
+#: web/templates/index.html:9
 msgid "Beach Registration"
 msgstr "Beach Anmeldung"

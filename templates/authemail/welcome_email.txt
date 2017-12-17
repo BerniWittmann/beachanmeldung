@@ -1,1 +1,2 @@
-Your registration has been successfully done.
+{% load i18n %}
+{% trans "Your Account was successfully created." %}

@@ -1,1 +1,2 @@
-Welcome
+{% load i18n %}
+{% trans "Welcome" %}
