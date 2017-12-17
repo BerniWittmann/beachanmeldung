@@ -69,6 +69,7 @@ deploy:
     stage: deploy
     before_script:
     - gem install dpl
+    - sh build-tasks.sh
     script:
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_API_KEY --skip_cleanup
     environment:

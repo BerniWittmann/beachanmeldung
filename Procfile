@@ -1,1 +1,2 @@
-web: sh ./release-tasks.sh && gunicorn vue-django.wsgi --log-file -
+release: sh ./release-tasks.sh
+web: gunicorn vue-django.wsgi --log-file -
