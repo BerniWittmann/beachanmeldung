@@ -1,9 +1,19 @@
 import os
+import raven
 
 from .settings import INSTALLED_APPS, ALLOWED_HOSTS, BASE_DIR
+from decouple import config
 
 INSTALLED_APPS.append('webpack_loader',)
 INSTALLED_APPS.append('web.apps.WebConfig',)
+INSTALLED_APPS.append('raven.contrib.django.raven_compat',)
+
+RAVEN_CONFIG = {
+    'dsn': config('SENTRY_DSN', default=None),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(BASE_DIR),
+}
 
 ALLOWED_HOSTS.append('*',)
 

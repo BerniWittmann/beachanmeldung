@@ -19,6 +19,16 @@ import Vue from 'vue';
 
 Vue.config.debug = process.env.NODE_ENV !== 'production';
 
+import Raven from 'raven-js';
+import RavenVue from 'raven-js/plugins/vue';
+
+if (!Vue.config.debug) {
+  Raven
+    .config(process.env.SENTRY_DSN)
+    .addPlugin(RavenVue, Vue)
+    .install();
+}
+
 
 /* ============
  * Vue i18n
