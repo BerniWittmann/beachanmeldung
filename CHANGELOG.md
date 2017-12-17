@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added Translation to HTML title
 
 ### Fixes
+* Fixed Favicon not loading because of incorrect path
 
 ### Breaks
 
