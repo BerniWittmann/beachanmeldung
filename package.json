@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Beachanmeldung",
   "scripts": {
-    "postinstall": "cd web/vueapp && npm install"
+    "postinstall": "cd web/vueapp && npm install",
+    "build": "cd web/vueapp && npm install && npm run build"
   },
   "repository": {
     "type": "git",
