@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 echo "Starting Build Tasks"
 
+source /app/venv/bin/activate
+
 echo "Bundling Assets"
 npm run build
 

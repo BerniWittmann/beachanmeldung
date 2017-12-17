@@ -69,10 +69,9 @@ deploy:
     stage: deploy
     before_script:
     - gem install dpl
+    - sh ./build-tasks.sh
+    - source /app/venv/bin/activate
     script:
-    - npm run build
-    - python manage.py collectstatic --noinput
-    - python manage.py compilemessages
     - dpl --provider=heroku --app=beachanmeldung --api-key=$HEROKU_API_KEY --skip_cleanup
     environment:
       name: production
