@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Player Get Endpoints
 * Added Download Button to Tournament Page to download Team List
 * Added Download Button to Team Page to download player list
 * Added Terms of Participation Page
