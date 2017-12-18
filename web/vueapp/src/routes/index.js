@@ -145,6 +145,17 @@ export default [
   },
 
   {
+    path: '/terms-of-participation',
+    name: 'etc.terms-of-participation',
+    component: require('@/pages/etc/termsOfParticipation.vue'),
+
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: false,
+    },
+  },
+
+  {
     path: '/register-team',
     name: 'team.register',
     component: require('@/pages/team/signup.vue'),

@@ -9,9 +9,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Terms of Participation Page
 * Added Admin link to footer
 
 ### Changes
+* Changed the footer a little
 
 ### Fixes
 

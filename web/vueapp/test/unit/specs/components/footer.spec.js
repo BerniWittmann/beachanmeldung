@@ -38,7 +38,7 @@ describe('Components', () => {
         vm = utils.mountComponent(Footer, { store });
       });
       it('should link to the contact page', () => {
-        const element = vm.find('.footer-paragraph')[2];
+        const element = vm.find('.footer-paragraph')[0];
         expect(element.text()).to.contain('nav.contact');
       });
 
