@@ -152,6 +152,13 @@
                         </el-table>
                     </el-col>
                 </el-row>
+                <el-row v-if="isStaff">
+                    <el-col class="team-action-buttons">
+                        <v-download-excel :data="playerListData" :fields="playerListFields" :name="playerListFileName" type="csv" :meta="playerListFileMeta">
+                            <el-button plain type="primary" icon="el-icon-download">{{ $t('team.download_player_list') }}</el-button>
+                        </v-download-excel>
+                    </el-col>
+                </el-row>
             </el-col>
         </el-row>
     </v-layout>
@@ -207,6 +214,19 @@
           default:
             return -1;
         }
+      },
+
+      playerListFileName() {
+        return `${this.team.completeName.replace(/ /g, '_')}.csv`;
+      },
+
+      playerListData() {
+        return this.team.players.map(single => ({
+          number: single.number,
+          firstName: single.firstName,
+          lastName: single.lastName,
+          yearOfBirth: single.yearOfBirth,
+        }));
       },
 
       tableData() {
@@ -293,6 +313,18 @@
     data() {
       return {
         deleteDialogVisible: false,
+        playerListFields: {
+          number: this.$t('player.number'),
+          firstName: this.$t('player.first_name'),
+          lastName: this.$t('player.last_name'),
+          yearOfBirth: this.$t('player.year_of_birth'),
+        },
+        playerListFileMeta: [
+          [{
+            key: 'charset',
+            value: 'utf-8',
+          }],
+        ],
       };
     },
   };

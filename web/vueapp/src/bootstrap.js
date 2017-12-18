@@ -207,6 +207,10 @@ require('font-awesome/less/font-awesome.less');
 require('./assets/style/app.scss');
 
 
+import JsonExcel from 'vue-json-excel';
+
+Vue.component('VDownloadExcel', JsonExcel);
+
 export default {
   router,
   i18n,
