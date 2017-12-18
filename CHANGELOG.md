@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added Admin link to footer
 
 ### Changes
+* Reworked MailSender to send async
 * Changed the footer a little
 
 ### Fixes

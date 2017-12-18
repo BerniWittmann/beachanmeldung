@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from api.enums import TeamStateTypes
 from api.permissions import IsTrainerOrAdminOrReadOnly
 from api.tournaments.models import Tournament
-from .MailSender import MailSender
+from .MailSender import TeamMailSender
 from .models import Team
 from .serializers import TeamSerializer
 
@@ -80,7 +80,7 @@ class TeamViewSet(viewsets.ModelViewSet):
             serializer.save()
 
             team = get_object_or_404(Team.objects.all(), pk=serializer.data.get('id'))
-            mail_sender = MailSender(team=team, request=self.request)
+            mail_sender = TeamMailSender(team=team, request=self.request)
             mail_sender.send_signup_preliminary_confirmation()
             mail_sender.send_needs_approval_notification()
 
@@ -105,7 +105,7 @@ class TeamViewSet(viewsets.ModelViewSet):
             serializer.save()
 
             state = serializer.data.get('state')
-            mail_sender = MailSender(team=team, request=request)
+            mail_sender = TeamMailSender(team=team, request=request)
             if state == TeamStateTypes.signed_up:
                 mail_sender.send_signup_confirmation()
             elif state == TeamStateTypes.needs_approval:
@@ -135,7 +135,7 @@ class TeamViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             serializer.save()
             if state is True:
-                MailSender(team=team, request=request).send_payment_confirmation()
+                TeamMailSender(team=team, request=request).send_payment_confirmation()
 
             return Response(serializer.data, status=status.HTTP_200_OK)
 

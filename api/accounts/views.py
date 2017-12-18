@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_jwt.settings import api_settings
 
-from .MailSender import MailSender
+from .MailSender import AccountMailSender
 from .serializers import UserSerializer, CustomSignupSerializer
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -66,7 +66,7 @@ class CustomSignup(Signup):
                 # Create and associate signup code
                 ipaddr = self.request.META.get('REMOTE_ADDR', '0.0.0.0')
                 signup_code = SignupCode.objects.create_signup_code(user, ipaddr)
-                MailSender(user=user, request=request).send_signup_code_email(signup_code.code)
+                AccountMailSender(user=user, request=request).send_signup_code_email(signup_code.code)
 
             return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
 
@@ -170,7 +170,7 @@ class CustomUserMe(UserMe):
                 ipaddr = self.request.META.get('REMOTE_ADDR', '0.0.0.0')
                 signup_code = SignupCode.objects.create_signup_code(user,
                                                                     ipaddr)
-                MailSender(user=user, request=request).send_signup_code_email(signup_code.code)
+                AccountMailSender(user=user, request=request).send_signup_code_email(signup_code.code)
 
                 content['email_sent'] = True
                 user.is_verified = False
@@ -193,7 +193,8 @@ class CustomPasswordReset(PasswordReset):
                     PasswordResetCode.objects.filter(user=user).delete()
                     password_reset_code = \
                         PasswordResetCode.objects.create_reset_code(user)
-                    MailSender(user=user, request=request).send_password_reset_code_email(password_reset_code.code)
+                    AccountMailSender(user=user, request=request)\
+                        .send_password_reset_code_email(password_reset_code.code)
                     content = {'email': email}
                     return Response(content, status=status.HTTP_201_CREATED)
 
@@ -239,7 +240,7 @@ class ResendVerification(APIView):
 
         ipaddr = self.request.META.get('REMOTE_ADDR', '0.0.0.0')
         signup_code = SignupCode.objects.create_signup_code(user, ipaddr)
-        MailSender(user=user, request=request).send_signup_code_email(signup_code.code)
+        AccountMailSender(user=user, request=request).send_signup_code_email(signup_code.code)
 
         content = {'success': _('Email sent.')}
         return Response(content, status=status.HTTP_200_OK)
