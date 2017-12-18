@@ -57,6 +57,15 @@
       margin-right: 10px;
     }
   }
+
+  .tournament-body-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
 }
 
 .tournament-signup-body {

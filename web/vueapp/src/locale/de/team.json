@@ -131,5 +131,12 @@
       "save": "Verbindlich Anmelden"
     }
   },
-  "download_player_list": "Mannschaftsliste herunterladen"
+  "download_player_list": "Mannschaftsliste herunterladen",
+  "count_players": "Anzahl Spieler",
+  "has_paid": "Bezahlt",
+  "state": "Status",
+  "trainer_first_name": "Trainer: Vorname",
+  "trainer_last_name": "Trainer: Nachname",
+  "trainer_email": "Trainer: E-Mail",
+  "trainer_phone": "Trainer: Telefon"
 }

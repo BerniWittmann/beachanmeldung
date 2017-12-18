@@ -75,6 +75,13 @@
                     <h2>{{ $t('tournament.list_waiting') }}</h2>
                     <v-team-teable :teams="waitingTeams"></v-team-teable>
                 </div>
+                <div class="tournament-body-actions" v-if="isStaff">
+                    <v-download-excel :data="teamListData" :fields="teamListFields" :name="teamListFileName" type="csv"
+                                      :meta="teamListFileMeta">
+                        <el-button plain type="primary" icon="el-icon-download">{{ $t('tournament.download_teams') }}
+                        </el-button>
+                    </v-download-excel>
+                </div>
             </el-col>
         </el-row>
     </v-layout>
@@ -115,12 +122,58 @@
       waitingTeams() {
         return this.teams.filter(single => waitingListTeamStates.includes(single.state));
       },
+
+      isStaff() {
+        return this.$store.state.account.isStaff;
+      },
+
+      teamListFileName() {
+        return `${this.tournament.name.replace(/ /g, '_')}_${this.tournament.gender}.csv`;
+      },
+
+      teamListData() {
+        return this.teams.map(t => ({
+          name: t.name,
+          beachname: t.beachname,
+          countPlayers: t.players.length,
+          hasPaid: t.paid,
+          state: this.$t(`team.status.${t.state.replace(/ /g, '_')}`),
+          dateSignup: t.dateSignup.format('DD.MM.YYYY'),
+          trainerFirstName: t.trainer ? t.trainer.firstName : undefined,
+          trainerLastName: t.trainer ? t.trainer.lastName : undefined,
+          trainerEmail: t.trainer ? t.trainer.email : undefined,
+          trainerPhone: t.trainer ? t.trainer.phone : undefined,
+        }));
+      },
     },
 
     methods: {
       getDateTime(key) {
         return getDateTimeByKey(this.tournament, key);
       },
+    },
+
+    data() {
+      return {
+        teamListFields: {
+          name: this.$t('team.name'),
+          beachname: this.$t('team.beachname'),
+          countPlayers: this.$t('team.count_players'),
+          hasPaid: this.$t('team.has_paid'),
+          state: this.$t('team.state'),
+          dateSignup: this.$t('team.date_signup'),
+          trainerFirstName: this.$t('team.trainer_first_name'),
+          trainerLastName: this.$t('team.trainer_last_name'),
+          trainerEmail: this.$t('team.trainer_email'),
+          trainerPhone: this.$t('team.trainer_phone'),
+        },
+        teamListFileMeta: [
+          [{
+            key: 'charset',
+            value: 'utf-8',
+          }],
+        ],
+      };
     },
   };
 </script>
