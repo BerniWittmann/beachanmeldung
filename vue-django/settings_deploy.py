@@ -2,15 +2,16 @@ import os
 
 from decouple import config
 
-from .settings import INSTALLED_APPS, ALLOWED_HOSTS, BASE_DIR
+from .settings import INSTALLED_APPS, ALLOWED_HOSTS, BASE_DIR, DEBUG
 
 INSTALLED_APPS.append('webpack_loader',)
 INSTALLED_APPS.append('web.apps.WebConfig',)
-INSTALLED_APPS.append('raven.contrib.django.raven_compat',)
 
-RAVEN_CONFIG = {
-    'dsn': config('SENTRY_DSN', default=None),
-}
+if not DEBUG:
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat',)
+    RAVEN_CONFIG = {
+        'dsn': config('SENTRY_DSN', default=None),
+    }
 
 ALLOWED_HOSTS.append('*',)
 
