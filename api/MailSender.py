@@ -7,7 +7,7 @@ from django.template.loader import render_to_string
 
 
 class EmailThread(threading.Thread):
-    def __init__(self, subject, body, from_email, recipient_list, fail_silently, html, bcc):
+    def __init__(self, subject, body, from_email, recipient_list, fail_silently, html, bcc, reply_to):
         self.subject = subject
         self.body = body
         self.recipient_list = recipient_list
@@ -15,10 +15,12 @@ class EmailThread(threading.Thread):
         self.fail_silently = fail_silently
         self.html = html
         self.bcc = bcc
+        self.reply_to = reply_to
         threading.Thread.__init__(self)
 
     def run(self):
-        msg = EmailMultiAlternatives(self.subject, self.body, self.from_email, self.recipient_list, bcc=self.bcc)
+        msg = EmailMultiAlternatives(self.subject, self.body, self.from_email, self.recipient_list, bcc=self.bcc,
+                                     reply_to=[self.reply_to])
         if self.html:
             msg.attach_alternative(self.html, "text/html")
         msg.send(self.fail_silently)
@@ -48,8 +50,9 @@ class MailSender:
         bcc_email = settings.DEFAULT_EMAIL_BCC
         text_content = render_to_string(txt_file, template_ctxt)
         html_content = render_to_string(html_file, template_ctxt)
+        reply_to = config('DEFAULT_REPLY_TO', default=None)
         EmailThread(subject, text_content, from_email, recipient_list=to, fail_silently=False, html=html_content,
-                    bcc=[bcc_email]).start()
+                    bcc=[bcc_email], reply_to=reply_to).start()
 
     def send_email(self, prefix, email, data):
         ctxt = dict(email=email,
