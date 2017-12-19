@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* IBAN and BIC are now controllable with ENV Vars
 * Added Frontend Admin Page to download Players
 * Added Player Get Endpoints
 * Added Download Button to Tournament Page to download Team List

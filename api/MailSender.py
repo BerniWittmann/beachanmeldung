@@ -1,5 +1,6 @@
 import threading
 
+from decouple import config
 from django.conf import settings
 from django.core.mail.message import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -51,5 +52,9 @@ class MailSender:
                     bcc=[bcc_email]).start()
 
     def send_email(self, prefix, email, data):
-        ctxt = dict(email=email, host='https://' + self.request.get_host(), **data)
+        ctxt = dict(email=email,
+                    host='https://' + self.request.get_host(),
+                    iban=config('BANKING_IBAN', default=None),
+                    bic=config('BANKING_BIC', default=None),
+                    **data)
         self.send_multi_format_email(prefix, ctxt, email)
