@@ -47,6 +47,10 @@ class Tournament(models.Model):
         verbose_name=_("Numer of Places")
     )
 
+    class Meta:
+        verbose_name = _('Tournament')
+        verbose_name_plural = _('Tournaments')
+
     def active_teams(self):
         return self.teams.exclude(state=TeamStateTypes.denied)
 

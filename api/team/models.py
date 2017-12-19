@@ -35,6 +35,8 @@ class Team(models.Model):
 
     class Meta:
         unique_together = ("tournament", "name", "beachname")
+        verbose_name = _('Team')
+        verbose_name_plural = _('Teams')
 
     def is_displayed(self):
         return not self.state == TeamStateTypes.denied

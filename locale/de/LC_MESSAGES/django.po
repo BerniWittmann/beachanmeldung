@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-17 20:02+0100\n"
+"POT-Creation-Date: 2017-12-19 18:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: api/accounts/admin.py:19
+msgid "Personal Info"
+msgstr "Persönliche Informationen"
+
+#: api/accounts/admin.py:20
+msgid "Permissions"
+msgstr "Rechte"
+
+#: api/accounts/admin.py:23
+msgid "Important dates"
+msgstr "Wichtige Daten"
+
+#: api/accounts/admin.py:24
+msgid "Custom info"
+msgstr "Benutzerdefinierte Informationen"
 
 #: api/accounts/models.py:15
 msgid "Phone number, preferrably mobile"
@@ -32,7 +48,9 @@ msgstr "Anmeldungs-Benachrichtigungen erhalten?"
 
 #: api/accounts/models.py:17
 msgid "Receive a Email Notification when a new team is created"
-msgstr "Erhalte eine Nachricht per E-Mail, jedesmal wenn ein neues Team angemeldet wird."
+msgstr ""
+"Erhalte eine Nachricht per E-Mail, jedesmal wenn ein neues Team angemeldet "
+"wird."
 
 #: api/accounts/views.py:40
 msgid "User with this Email address already exists."
@@ -54,23 +72,23 @@ msgstr "Nutzer wurde ausgeloggt."
 msgid "Password reset."
 msgstr "Das Passwort wurde zurückgesetzt."
 
-#: api/accounts/views.py:134 api/accounts/views.py:226
+#: api/accounts/views.py:134 api/accounts/views.py:227
 msgid "Unable to verify user."
 msgstr "Der Nutzer konnte"
 
-#: api/accounts/views.py:204
+#: api/accounts/views.py:205
 msgid "Password reset not allowed."
 msgstr "Das Passwort darf nicht zurückgesetzt werden."
 
-#: api/accounts/views.py:223
+#: api/accounts/views.py:224
 msgid "User verified."
 msgstr "Der Nutzer wurde verifiziert."
 
-#: api/accounts/views.py:237
+#: api/accounts/views.py:238
 msgid "User already verified."
 msgstr "Der Nutzer wurde bereits verifiziert"
 
-#: api/accounts/views.py:244
+#: api/accounts/views.py:245
 msgid "Email sent."
 msgstr "E-Mail wurde versendet."
 
@@ -110,9 +128,29 @@ msgstr "Geburtsjahr"
 msgid "Team associated with the player"
 msgstr "Team des Spielers"
 
-#: api/players/models.py:29
+#: api/players/models.py:29 api/team/models.py:38
 msgid "Team"
 msgstr "Team"
+
+#: api/players/models.py:34
+msgid "Player"
+msgstr "Spieler"
+
+#: api/players/models.py:35
+msgid "Players"
+msgstr "Spieler"
+
+#: api/team/admin.py:11 api/tournaments/admin.py:11
+msgid "Date"
+msgstr "Daten"
+
+#: api/team/admin.py:12
+msgid "Status"
+msgstr "Status"
+
+#: api/team/admin.py:14
+msgid "Relations"
+msgstr "Verbindungen"
 
 #: api/team/models.py:11
 msgid "Usually the club name"
@@ -170,6 +208,12 @@ msgstr "Nutzer-Account, der für das Team verantwortlich ist"
 msgid "Trainer"
 msgstr "Trainer"
 
+#: api/team/models.py:39
+#, fuzzy
+#| msgid "Team"
+msgid "Teams"
+msgstr "Teams"
+
 #: api/team/serializers.py:42
 msgid "Tournament not Found"
 msgstr "Turnier wurde nicht gefunden"
@@ -205,6 +249,14 @@ msgstr "Authentifizierungs-details wurden nicht angegeben"
 #: api/team/views.py:98 api/team/views.py:128
 msgid "You do not have permission to perform this action."
 msgstr "Sie haben nicht die ausreichenden Rechte, um diese Aktion auszuführen"
+
+#: api/tournaments/admin.py:12
+msgid "Deadlines"
+msgstr "Deadlines"
+
+#: api/tournaments/admin.py:15
+msgid "General"
+msgstr "Allgemein"
 
 #: api/tournaments/models.py:12
 msgid "Name of the Tournament"
@@ -294,15 +346,27 @@ msgstr "Anzahl an möglichen Teams, die am Turnier teilnehmen können"
 msgid "Numer of Places"
 msgstr "Anzahl Startplätze"
 
-#: api/tournaments/models.py:81
+#: api/tournaments/models.py:51
+#, fuzzy
+#| msgid "Tournament Name"
+msgid "Tournament"
+msgstr "Turnier"
+
+#: api/tournaments/models.py:52
+#, fuzzy
+#| msgid "Tournament Name"
+msgid "Tournaments"
+msgstr "Turniere"
+
+#: api/tournaments/models.py:85
 msgid "SignUp Possible"
 msgstr "Anmeldung möglich"
 
-#: api/tournaments/models.py:93 api/tournaments/serializers.py:32
+#: api/tournaments/models.py:97 api/tournaments/serializers.py:32
 msgid "StartDate must be before EndDate"
 msgstr "Start Datum muss vor End Datum liegen"
 
-#: api/tournaments/models.py:99 api/tournaments/serializers.py:44
+#: api/tournaments/models.py:103 api/tournaments/serializers.py:44
 msgid "Deadline of Signup must be after Start of Signup"
 msgstr "Das Ende der Anmeldephase muss nach dem Start liegen"
 

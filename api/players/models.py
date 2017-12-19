@@ -1,9 +1,9 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from api.team.models import Team
-from django.utils.translation import gettext_lazy as _
 
 
 class Player(models.Model):
@@ -31,6 +31,8 @@ class Player(models.Model):
 
     class Meta:
         unique_together = (("team", "last_name", "first_name"), ("team", "number"))
+        verbose_name = _('Player')
+        verbose_name_plural = _('Players')
 
     def name(self):
         return self.first_name + ' ' + self.last_name

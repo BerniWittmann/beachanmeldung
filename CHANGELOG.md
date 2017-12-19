@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added Admin link to footer
 
 ### Changes
+* Improved Search and Filtering in Django Admin
 * Reworked MailSender to send async
 * Changed the footer a little
 
