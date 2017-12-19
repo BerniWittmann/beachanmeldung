@@ -1,9 +1,27 @@
 {
+  "id": "ID",
   "number": "Nummer",
   "first_name": "Vorname",
   "last_name": "Nachname",
   "year_of_birth": "Jahrgang",
   "index": "Spieler {index}",
   "add": "Spieler hinzufügen",
-  "remove": "Spieler entfernen"
+  "remove": "Spieler entfernen",
+  "notifications": {
+    "get": {
+      "failed": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Die Spieler konnten nicht geladen werden"
+      },
+      "forbidden": {
+        "title": "Spieler konnten nicht abgerufen werden",
+        "message": "Du hast nicht die erforderlichen Rechte, um Spieler abzurufen"
+      }
+    }
+  },
+  "team_id": "Team ID",
+  "team_name": "Team Name",
+  "team_beachname": "Team Beachname",
+  "team_state": "Team Status",
+  "tournament_name": "Turnier"
 }

@@ -10,7 +10,7 @@
                         <router-link :to="{ name: 'etc.terms-of-participation' }">{{ $t('nav.terms_of_participation') }}</router-link>
                     </p>
                     <p class="footer-paragraph" v-if="isStaff">
-                        <a href="/admin/">{{ $t('general.admin') }}</a>
+                        <router-link :to="{ name: 'etc.admin' }">{{ $t('general.admin') }}</router-link>
                     </p>
                 </el-col>
                 <el-col :lg="{span: 7, offset: 5}" :md="{span: 7, offset: 5}" :sm="{span: 7, offset: 5}"

@@ -92,3 +92,10 @@
   display: flex;
   flex: 1;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}

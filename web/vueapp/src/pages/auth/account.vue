@@ -17,7 +17,7 @@
                                                              @click.prevent="resendVerification()">{{ $t('account.resend_verification')
                         }}</a></p>
                     <p v-if="account.isStaff">
-                        <v-link-button href="/admin/" plain icon="el-icon-setting">{{ $t('account.to_admin_area') }}</v-link-button>
+                        <v-link-button :route="{ name: 'etc.admin' }" plain icon="el-icon-setting">{{ $t('account.to_admin_area') }}</v-link-button>
                     </p>
                 </div>
             </v-panel>

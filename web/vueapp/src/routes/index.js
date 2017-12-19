@@ -7,6 +7,7 @@
 
 import tournamentService from '@/services/tournament';
 import teamService from '@/services/team';
+import playerService from '@/services/player';
 import store from '@/store';
 import moment from 'moment';
 import Vue from 'vue';
@@ -152,6 +153,21 @@ export default [
     // If the user needs to be a authenticated to view this page
     meta: {
       auth: false,
+    },
+  },
+
+  {
+    path: '/manage',
+    name: 'etc.admin',
+    component: require('@/pages/etc/admin.vue'),
+
+    // If the user needs to be a authenticated to view this page
+    meta: {
+      auth: true,
+    },
+
+    beforeEnter: (to, from, next) => {
+      playerService.getAll().then(next);
     },
   },
 
