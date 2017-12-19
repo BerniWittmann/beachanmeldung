@@ -36,12 +36,16 @@ describe('Pages', () => {
           beachname: 'THC Eh Drin!',
           completeName: 'THC Eh Drin! (TSV Ismaning)',
           state: teamStates.signedUp,
+          dateSignup: moment(),
+          players: [],
         }, {
           id: 13,
           name: 'TSV Ismaning',
           beachname: 'Anderes Team',
           completeName: 'Anderes Team (TSV Ismaning)',
           state: teamStates.waiting,
+          dateSignup: moment(),
+          players: [],
         }];
       }),
     };

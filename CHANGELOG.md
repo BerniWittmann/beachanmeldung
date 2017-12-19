@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Frontend Admin Page to download Players
 * Added Player Get Endpoints
 * Added Download Button to Tournament Page to download Team List
 * Added Download Button to Team Page to download player list
@@ -20,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Changed the footer a little
 
 ### Fixes
+* Fixed Frontend Tests
 
 ### Breaks
 
