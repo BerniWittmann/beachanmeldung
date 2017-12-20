@@ -157,3 +157,64 @@ class TeamViewSet(viewsets.ModelViewSet):
 
         teams = Team.objects.all().filter(trainer=request.user)
         return Response(TeamSerializer(teams, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
+
+    def send_reminder(self, request, type, **kwargs):
+        if not request.auth:
+            return Response({'detail': _('Authentication credentials were not provided.')},
+                            status=status.HTTP_401_UNAUTHORIZED)
+
+        if not request.user.is_staff:
+            return Response({'detail': _('You do not have permission to perform this action.')},
+                            status=status.HTTP_403_FORBIDDEN)
+
+        if not request.data or request.data.get('teams') is None \
+                or request.data.get('teams') == [] or len(request.data.get('teams')) == 0:
+            return Response({'detail': _('You did not provide Team IDs.')},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        request_data_dict = dict(request.data)
+        team_ids = request_data_dict.get('teams')
+        response = {}
+        successful_teams_count = 0
+        for team_id in team_ids:
+            try:
+                team = Team.objects.get(pk=team_id)
+            except Team.DoesNotExist:
+                team = None
+
+            if not team:
+                response[team_id] = [_('Team not found')]
+                continue
+
+            if type == 'payment' and team.paid:
+                response[team_id] = [_('Team has already paid')]
+                continue
+
+            if type == 'player_list' and team.has_players():
+                response[team_id] = [_('Team has already Players')]
+                continue
+
+            if not team.state == TeamStateTypes.signed_up:
+                response[team_id] = [_('Team not signed up')]
+                continue
+
+            successful_teams_count += 1
+            mail_sender = TeamMailSender(team=team, request=request)
+            if type == 'payment':
+                mail_sender.send_payment_reminder()
+            elif type == 'player_list':
+                mail_sender.send_player_list_reminder()
+
+        if successful_teams_count == 0:
+            return Response(response,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(response, status=status.HTTP_200_OK)
+
+    @list_route(methods=['post'], permission_classes=[IsAdminUser])
+    def send_payment_reminder(self, request, **kwargs):
+        return self.send_reminder(request, 'payment', **kwargs)
+
+    @list_route(methods=['post'], permission_classes=[IsAdminUser])
+    def send_player_list_reminder(self, request, **kwargs):
+        return self.send_reminder(request, 'player_list', **kwargs)

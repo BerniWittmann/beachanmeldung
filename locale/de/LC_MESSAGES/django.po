@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-19 18:10+0100\n"
+"POT-Creation-Date: 2017-12-20 13:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,15 +140,15 @@ msgstr "Spieler"
 msgid "Players"
 msgstr "Spieler"
 
-#: api/team/admin.py:11 api/tournaments/admin.py:11
+#: api/team/admin.py:13 api/tournaments/admin.py:12
 msgid "Date"
 msgstr "Daten"
 
-#: api/team/admin.py:12
+#: api/team/admin.py:14
 msgid "Status"
 msgstr "Status"
 
-#: api/team/admin.py:14
+#: api/team/admin.py:16
 msgid "Relations"
 msgstr "Verbindungen"
 
@@ -243,18 +243,47 @@ msgid "Team Creation not possible after Signup period has ended"
 msgstr "Nach dem Ende der Anmeldephase kann kein Team mehr angemeldet werden"
 
 #: api/team/views.py:94 api/team/views.py:124 api/team/views.py:155
+#: api/team/views.py:163
 msgid "Authentication credentials were not provided."
 msgstr "Authentifizierungs-details wurden nicht angegeben"
 
-#: api/team/views.py:98 api/team/views.py:128
+#: api/team/views.py:98 api/team/views.py:128 api/team/views.py:167
 msgid "You do not have permission to perform this action."
 msgstr "Sie haben nicht die ausreichenden Rechte, um diese Aktion auszuführen"
 
-#: api/tournaments/admin.py:12
+#: api/team/views.py:171
+msgid "You did not provide Team IDs."
+msgstr "Sie haben keine Team-IDs angegeben"
+
+#: api/team/views.py:185
+#, fuzzy
+#| msgid "Tournament not Found"
+msgid "Team not found"
+msgstr "Team wurde nicht gefunden"
+
+#: api/team/views.py:189
+#, fuzzy
+#| msgid "has the team already paid?"
+msgid "Team has already paid"
+msgstr "Hat das Team bereits bezahlt?"
+
+#: api/team/views.py:193
+#, fuzzy
+#| msgid "Name already taken"
+msgid "Team has already Players"
+msgstr "Der Name existiert bereits"
+
+#: api/team/views.py:197
+#, fuzzy
+#| msgid "Team Signed Up"
+msgid "Team not signed up"
+msgstr "Team Angemeldet"
+
+#: api/tournaments/admin.py:13
 msgid "Deadlines"
 msgstr "Deadlines"
 
-#: api/tournaments/admin.py:15
+#: api/tournaments/admin.py:16
 msgid "General"
 msgstr "Allgemein"
 
@@ -518,6 +547,8 @@ msgstr ""
 "                "
 
 #: templates/teamemail/payment_confirmation.html:25
+#: templates/teamemail/payment_reminder.html:38
+#: templates/teamemail/player_list_reminder.html:25
 #: templates/teamemail/signup_confirmation.html:40
 #: templates/teamemail/signup_preliminary_confirmation.html:25
 #: templates/teamemail/waitlist_confirmation.html:25
@@ -527,6 +558,77 @@ msgstr "Team Bearbeiten"
 #: templates/teamemail/payment_confirmation.txt:2
 msgid "We received your payment."
 msgstr "Wir haben die Zahlung erhalten."
+
+#: templates/teamemail/payment_reminder.html:4
+#: templates/teamemail/payment_reminder.html:5
+#: templates/teamemail/payment_reminder_subject.txt:2
+#, fuzzy
+#| msgid "Tournament Gender"
+msgid "Payment Reminder"
+msgstr "Zahlungserinnerung"
+
+#: templates/teamemail/payment_reminder.html:15
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    Your team %(name)s is now successfully signed up.\n"
+#| "                "
+msgid ""
+"\n"
+"                    A Payment for the team %(name)s is still required.\n"
+"                "
+msgstr ""
+"\n"
+"                    Für dein Team %(name)s muss noch die Anmeldegebühr bezahlt werden.\n"
+"                "
+
+#: templates/teamemail/payment_reminder.html:25
+#: templates/teamemail/signup_confirmation.html:26
+#, python-format
+msgid ""
+"\n"
+"                     You still need to pay the starting fee of %(amount)s\n"
+"                "
+msgstr ""
+"\n"
+"                    Du musst noch die Anmeldegebühr in Höhe von %(amount)s "
+"bezahlen.\n"
+"                "
+
+#: templates/teamemail/payment_reminder.html:30
+#: templates/teamemail/signup_confirmation.html:31
+msgid "reference"
+msgstr "Verwendungszweck"
+
+#: templates/teamemail/payment_reminder.txt:2
+msgid "Your Team is still required to pay the Starting Fee"
+msgstr "Dein Team muss noch die Anmeldegebühr bezahlen"
+
+#: templates/teamemail/player_list_reminder.html:4
+#: templates/teamemail/player_list_reminder.html:5
+#: templates/teamemail/player_list_reminder_subject.txt:2
+msgid "Player List Reminder"
+msgstr "Mannschaftslisten - Erinnerung"
+
+#: templates/teamemail/player_list_reminder.html:15
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                     You still need to pay the starting fee of "
+#| "%(amount)s\n"
+#| "                "
+msgid ""
+"\n"
+"                    You still need to upload the players of team %(name)s.\n"
+"                "
+msgstr ""
+"\n"
+"                    Du musst noch die Mannschaftsliste für dein Team %(name)s hochladen.\n"
+"                "
+
+#: templates/teamemail/player_list_reminder.txt:2
+msgid "You still need to upload players to your Team"
+msgstr "Du musst noch die Spielerliste hochladen"
 
 #: templates/teamemail/signoff_confirmation.html:4
 #: templates/teamemail/signoff_confirmation.html:5
@@ -569,22 +671,6 @@ msgstr ""
 "\n"
 "                    Dein Team %(name)s ist nun erfolgreich angemeldet.\n"
 "                "
-
-#: templates/teamemail/signup_confirmation.html:26
-#, python-format
-msgid ""
-"\n"
-"                     You still need to pay the starting fee of %(amount)s\n"
-"                "
-msgstr ""
-"\n"
-"                    Du musst noch die Anmeldegebühr in Höhe von %(amount)s "
-"bezahlen.\n"
-"                "
-
-#: templates/teamemail/signup_confirmation.html:31
-msgid "reference"
-msgstr "Verwendungszweck"
 
 #: templates/teamemail/signup_confirmation.txt:2
 msgid "Your Team was successfully signed up."

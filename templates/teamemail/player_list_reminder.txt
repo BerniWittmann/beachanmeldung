@@ -1,0 +1,2 @@
+{% load i18n %}
+{% trans "You still need to upload players to your Team" %}

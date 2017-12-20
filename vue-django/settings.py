@@ -190,6 +190,8 @@ APPEND_SLASH = True
 DEFAULT_EMAIL_FROM = config('DEFAULT_EMAIL_FROM')
 DEFAULT_EMAIL_BCC = ''
 
+SEND_EMAIL_ASYNC = config('SEND_EMAIL_ASYNC', default=True, cast=bool)
+
 EMAIL_HOST = config('EMAIL_HOST', default=None)
 EMAIL_PORT = config('EMAIL_PORT', default=None)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default=None)

@@ -35,6 +35,12 @@ class TeamMailSender(MailSender):
     def send_payment_confirmation(self):
         self.send_mail_to_trainer('payment_confirmation')
 
+    def send_payment_reminder(self):
+        self.send_mail_to_trainer('payment_reminder')
+
+    def send_player_list_reminder(self):
+        self.send_mail_to_trainer('player_list_reminder')
+
     def send_needs_approval_notification(self):
         emails = [x.email for x in MyUser.objects.filter(receive_notifications=True)]
         data = {

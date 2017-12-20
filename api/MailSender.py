@@ -51,8 +51,15 @@ class MailSender:
         text_content = render_to_string(txt_file, template_ctxt)
         html_content = render_to_string(html_file, template_ctxt)
         reply_to = config('DEFAULT_REPLY_TO', default=None)
-        EmailThread(subject, text_content, from_email, recipient_list=to, fail_silently=False, html=html_content,
-                    bcc=[bcc_email], reply_to=reply_to).start()
+
+        if settings.SEND_EMAIL_ASYNC:
+            EmailThread(subject, text_content, from_email, recipient_list=to, fail_silently=False, html=html_content,
+                        bcc=[bcc_email], reply_to=reply_to).start()
+        else:
+            msg = EmailMultiAlternatives(subject, text_content, from_email, to, bcc=[bcc_email], reply_to=[reply_to])
+            if html_content:
+                msg.attach_alternative(html_content, "text/html")
+            msg.send()
 
     def send_email(self, prefix, email, data):
         ctxt = dict(email=email,
