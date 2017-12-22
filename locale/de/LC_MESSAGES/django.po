@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-20 13:30+0100\n"
+"POT-Creation-Date: 2017-12-22 15:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,33 +251,33 @@ msgstr "Authentifizierungs-details wurden nicht angegeben"
 msgid "You do not have permission to perform this action."
 msgstr "Sie haben nicht die ausreichenden Rechte, um diese Aktion auszuführen"
 
-#: api/team/views.py:171
+#: api/team/views.py:172
 msgid "You did not provide Team IDs."
 msgstr "Sie haben keine Team-IDs angegeben"
 
-#: api/team/views.py:185
+#: api/team/views.py:186
 #, fuzzy
 #| msgid "Tournament not Found"
 msgid "Team not found"
 msgstr "Team wurde nicht gefunden"
 
-#: api/team/views.py:189
+#: api/team/views.py:190
 #, fuzzy
 #| msgid "has the team already paid?"
 msgid "Team has already paid"
 msgstr "Hat das Team bereits bezahlt?"
 
-#: api/team/views.py:193
+#: api/team/views.py:194
 #, fuzzy
 #| msgid "Name already taken"
 msgid "Team has already Players"
 msgstr "Der Name existiert bereits"
 
-#: api/team/views.py:197
+#: api/team/views.py:198
 #, fuzzy
 #| msgid "Team Signed Up"
 msgid "Team not signed up"
-msgstr "Team Angemeldet"
+msgstr "Team nicht Angemeldet"
 
 #: api/tournaments/admin.py:13
 msgid "Deadlines"
@@ -579,7 +579,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Für dein Team %(name)s muss noch die Anmeldegebühr bezahlt werden.\n"
+"                    Für dein Team %(name)s muss noch die Anmeldegebühr "
+"bezahlt werden.\n"
 "                "
 
 #: templates/teamemail/payment_reminder.html:25
@@ -623,7 +624,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Du musst noch die Mannschaftsliste für dein Team %(name)s hochladen.\n"
+"                    Du musst noch die Mannschaftsliste für dein Team "
+"%(name)s hochladen.\n"
 "                "
 
 #: templates/teamemail/player_list_reminder.txt:2
