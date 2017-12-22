@@ -45,7 +45,8 @@
                                 :props="treeProps"
                                 ref="teamListTree"
                                 node-key="id"
-                                show-checkbox>
+                                show-checkbox
+                                :default-checked-keys="defaultCheckedTeams">
                         </el-tree>
                         <div slot="footer" class="dialog-footer">
                             <el-button @click="selectTeamsDialogVisible = false">
@@ -178,17 +179,32 @@
         ],
         currentTeamDialogOption: undefined,
         reminderTypes,
+        defaultCheckedTeams: [],
       };
     },
 
     methods: {
       sendReminders() {
-        const teams = this.$refs.teamListTree.getCheckedNodes().map(s => s.id);
+        const teams = this.$refs.teamListTree.getCheckedKeys();
         if (teams.length === 0) return;
         teamService.sendReminder(teams, this.currentTeamDialogOption).then(() => {
           this.selectTeamsDialogVisible = false;
         });
       },
+    },
+
+    beforeMount() {
+      let checked = this.$route.query.checked;
+      if (checked) {
+        checked = Array.isArray(checked) ? checked : [checked];
+        this.defaultCheckedTeams = checked;
+      }
+    },
+
+    mounted() {
+      if (Object.values(reminderTypes).includes(this.$route.query.type)) {
+        this.currentTeamDialogOption = this.$route.query.type;
+      }
     },
   };
 </script>

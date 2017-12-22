@@ -76,11 +76,25 @@
                     <v-team-teable :teams="waitingTeams"></v-team-teable>
                 </div>
                 <div class="tournament-body-actions" v-if="isStaff">
-                    <v-download-excel :data="teamListData" :fields="teamListFields" :name="teamListFileName" type="csv"
-                                      :meta="teamListFileMeta">
-                        <el-button plain type="primary" icon="el-icon-download">{{ $t('tournament.download_teams') }}
-                        </el-button>
-                    </v-download-excel>
+                    <el-col class="team-action-buttons">
+                        <v-download-excel :data="teamListData" :fields="teamListFields" :name="teamListFileName"
+                                          type="csv"
+                                          :meta="teamListFileMeta">
+                            <el-button plain type="primary" icon="el-icon-download">{{ $t('tournament.download_teams')
+                                }}
+                            </el-button>
+                        </v-download-excel>
+                    </el-col>
+                    <el-col class="team-action-buttons">
+                        <v-link-button plain
+                                       :route="{ name: 'etc.admin', query: { type: 'payment', checked: [this.tournament.id] } }">
+                            {{ $t('etc.admin.send_payment_reminder') }}
+                        </v-link-button>
+                        <v-link-button plain
+                                       :route="{ name: 'etc.admin', query: { type: 'player_list', checked: [this.tournament.id] } }">
+                            {{ $t('etc.admin.send_player_list_reminder') }}
+                        </v-link-button>
+                    </el-col>
                 </div>
             </el-col>
         </el-row>

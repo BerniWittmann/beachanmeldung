@@ -158,6 +158,14 @@
                             <el-button plain type="primary" icon="el-icon-download">{{ $t('team.download_player_list') }}</el-button>
                         </v-download-excel>
                     </el-col>
+                    <el-col class="team-action-buttons">
+                        <v-link-button v-if="!team.paid" plain :route="{ name: 'etc.admin', query: { type: 'payment', checked: [this.team.id] } }">
+                            {{ $t('etc.admin.send_payment_reminder') }}
+                        </v-link-button>
+                        <v-link-button v-if="!team.hasPlayers"  plain :route="{ name: 'etc.admin', query: { type: 'player_list', checked: [this.team.id] } }">
+                            {{ $t('etc.admin.send_player_list_reminder') }}
+                        </v-link-button>
+                    </el-col>
                 </el-row>
             </el-col>
         </el-row>
