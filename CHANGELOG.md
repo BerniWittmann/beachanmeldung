@@ -9,6 +9,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+
+### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.2.0 - (2017-12-22)
+---
+
+### New
 * Added Send Reminder Function to Frontend
 * Added Reminder Emails and Endpoints
 * IBAN and BIC are now controllable with ENV Vars
@@ -27,8 +39,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixes
 * Fixed Frontend Tests
-
-### Breaks
 
 
 ## 1.1.0 - (2017-12-17)
