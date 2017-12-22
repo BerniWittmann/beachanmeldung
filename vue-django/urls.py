@@ -24,8 +24,9 @@ favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/v1/', include('api.urls', namespace='v1')),
+    url(r'^embed/', include('embed.urls')),
     url(r'^favicon\.ico$', favicon_view),
-    url(r'^(?!((static|admin|api)/))', include('web.urls')),
+    url(r'^(?!((static|embed|admin|api)/))', include('web.urls')),
 ]
 
 if settings.DEBUG:

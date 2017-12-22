@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-22 15:36+0100\n"
+"POT-Creation-Date: 2017-12-22 19:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr "Vorname"
 msgid "shirt number of the player"
 msgstr "Trikotnummer des Spielers"
 
-#: api/players/models.py:17
+#: api/players/models.py:17 templates/embed/signup_list.html:13
 msgid "Number"
 msgstr "Nummer"
 
@@ -129,6 +129,7 @@ msgid "Team associated with the player"
 msgstr "Team des Spielers"
 
 #: api/players/models.py:29 api/team/models.py:38
+#: templates/embed/signup_list.html:14
 msgid "Team"
 msgstr "Team"
 
@@ -498,6 +499,11 @@ msgstr ""
 #| msgid "Your Team was successfully signed up."
 msgid "Your Account was successfully created."
 msgstr "Dein Team wurde erfolgreich angemeldet."
+
+#: templates/embed/signup_list.html:6
+#, python-format
+msgid "%(tournament_name)s Signup List"
+msgstr "%(tournament_name)s Meldeliste"
 
 #: templates/teamemail/needs_approval_notification.html:4
 #: templates/teamemail/needs_approval_notification.html:5

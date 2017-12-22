@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'api.tournaments.apps.TournamentsConfig',
     'api.team.apps.TeamConfig',
     'api.players.apps.PlayersConfig',
+    'embed.apps.EmbedConfig',
 ]
 
 MIDDLEWARE = [
