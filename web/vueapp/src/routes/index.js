@@ -167,7 +167,11 @@ export default [
     },
 
     beforeEnter: (to, from, next) => {
-      playerService.getAll().then(next);
+      Promise.all([
+        tournamentService.getAll(),
+        teamService.getAll(),
+        playerService.getAll(),
+      ]).catch(next).then(next);
     },
   },
 

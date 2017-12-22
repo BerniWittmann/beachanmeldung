@@ -8,24 +8,55 @@
         </el-row>
 
         <el-row class="home-part">
-            <el-col :span="24">
+            <el-col :span="24" class="center">
                 <h1>{{ $t('etc.admin.headline') }}</h1>
                 <el-row>
-                    <el-col class="center">
-                        <h2><v-link-button href="/admin/" plain icon="el-icon-setting">{{ $t('etc.admin.to_django_admin') }}</v-link-button></h2>
-                        <p>{{ $t('etc.admin.django_explanation') }}</p>
-                        <br>
-                        <el-row>
-                            <h2>{{ $t('etc.admin.other_actions') }}</h2>
-                            <el-col class="team-action-buttons">
-                                <v-download-excel :data="playerListData" :fields="playerListFields" :name="playerListFileName" type="csv" :meta="playerListFileMeta">
-                                    <el-button plain type="primary" icon="el-icon-download">{{ $t('etc.admin.download_all_players') }}</el-button>
-                                </v-download-excel>
-                            </el-col>
-                        </el-row>
-                    </el-col>
+                    <h2>
+                        <v-link-button href="/admin/" plain icon="el-icon-setting">{{ $t('etc.admin.to_django_admin')
+                            }}
+                        </v-link-button>
+                    </h2>
                 </el-row>
-
+                <el-row>
+                    <p>{{ $t('etc.admin.django_explanation') }}</p>
+                </el-row>
+                <el-row>
+                    <h2>{{ $t('etc.admin.other_actions') }}</h2>
+                    <el-col class="team-action-buttons">
+                        <v-download-excel :data="playerListData" :fields="playerListFields" :name="playerListFileName"
+                                          type="csv" :meta="playerListFileMeta">
+                            <el-button plain type="primary" icon="el-icon-download">
+                                {{ $t('etc.admin.download_all_players') }}
+                            </el-button>
+                        </v-download-excel>
+                    </el-col>
+                    <el-col class="team-action-buttons">
+                        <el-button plain @click="currentTeamDialogOption = reminderTypes.payment">
+                            {{ $t('etc.admin.send_payment_reminder') }}
+                        </el-button>
+                        <el-button plain @click="currentTeamDialogOption = reminderTypes.playerList">
+                            {{ $t('etc.admin.send_player_list_reminder') }}
+                        </el-button>
+                    </el-col>
+                    <el-dialog :title="currentTreeTitle" v-loading="loading"
+                               :visible.sync="selectTeamsDialogVisible">
+                        <el-tree
+                                :data="teamTreeData"
+                                :props="treeProps"
+                                ref="teamListTree"
+                                node-key="id"
+                                show-checkbox>
+                        </el-tree>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="selectTeamsDialogVisible = false">
+                                {{ $t('etc.admin.select_teams_dialog.abort') }}
+                            </el-button>
+                            <el-button type="primary" @click="sendReminders()">
+                                {{ $t('etc.admin.select_teams_dialog.send') }}
+                            </el-button>
+                        </div>
+                    </el-dialog>
+                </el-row>
             </el-col>
         </el-row>
     </v-layout>
@@ -39,6 +70,8 @@
    * The admin page.
    */
   import moment from 'moment';
+  import { teamStates, reminderTypes } from '@/utils/constants';
+  import teamService from '@/services/team';
 
   export default {
     components: {
@@ -59,6 +92,29 @@
         return `${this.$t('nav.name').replace(/ /g, '_')}.csv`;
       },
 
+      teams() {
+        return this.$store.state.team.teams;
+      },
+
+      tournaments() {
+        return this.$store.state.tournament.tournaments;
+      },
+
+      teamTreeData() {
+        return this.tournaments.map(t => ({
+          ...t,
+          completeName: t.gender === 'mixed' ? t.name : `${t.name} - ${t.gender}`,
+          isDisabled: false,
+          teams: this.teams.filter(single =>
+            single.tournament.id === t.id && single.state === teamStates.signedUp)
+            .map(s => ({
+              ...s,
+              isDisabled: this.currentTeamDialogOption === reminderTypes.payment
+                ? s.paid : s.hasPlayers,
+            })),
+        }));
+      },
+
       playerListData() {
         return this.players.map(single => ({
           id: single.id,
@@ -72,6 +128,31 @@
           teamState: this.$t(`team.status.${single.teamState.replace(/ /g, '_')}`),
           tournamentName: single.tournamentName,
         }));
+      },
+
+      treeProps() {
+        return {
+          children: 'teams',
+          label: 'completeName',
+          disabled: 'isDisabled',
+        };
+      },
+
+      currentTreeTitle() {
+        return this.$t(`etc.admin.select_teams_dialog.title.${this.currentTeamDialogOption}`);
+      },
+
+      selectTeamsDialogVisible: {
+        get() {
+          return !!this.currentTeamDialogOption;
+        },
+        set() {
+          this.currentTeamDialogOption = undefined;
+        },
+      },
+
+      loading() {
+        return this.$store.getters['loading/isLoading'];
       },
     },
 
@@ -95,7 +176,19 @@
             value: 'utf-8',
           }],
         ],
+        currentTeamDialogOption: undefined,
+        reminderTypes,
       };
+    },
+
+    methods: {
+      sendReminders() {
+        const teams = this.$refs.teamListTree.getCheckedNodes().map(s => s.id);
+        if (teams.length === 0) return;
+        teamService.sendReminder(teams, this.currentTeamDialogOption).then(() => {
+          this.selectTeamsDialogVisible = false;
+        });
+      },
     },
   };
 </script>

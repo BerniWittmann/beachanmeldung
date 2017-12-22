@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Send Reminder Function to Frontend
 * Added Reminder Emails and Endpoints
 * IBAN and BIC are now controllable with ENV Vars
 * Added Frontend Admin Page to download Players

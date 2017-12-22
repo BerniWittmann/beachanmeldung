@@ -5,3 +5,8 @@ export const teamStates = {
   denied: 'denied',
 };
 export const waitingListTeamStates = [teamStates.waiting, teamStates.needsApproval];
+
+export const reminderTypes = {
+  payment: 'payment',
+  playerList: 'player_list',
+};

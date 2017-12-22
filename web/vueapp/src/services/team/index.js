@@ -7,6 +7,7 @@ import updateState from './updateState';
 import markPaid from './markPaid';
 import markUnpaid from './markUnpaid';
 import getMine from './getMine';
+import sendReminder from './sendReminder';
 
 export default {
   getAll,
@@ -18,4 +19,5 @@ export default {
   markPaid,
   markUnpaid,
   getMine,
+  sendReminder,
 };

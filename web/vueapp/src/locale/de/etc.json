@@ -20,6 +20,17 @@
     "to_django_admin": "Zur Django-Verwaltung",
     "django_explanation": "Die Django-Verwaltung bietet eine umfangreiche Bearbeitung der Daten und ermöglicht auch die Erstellung und Bearbeitung von Turnieren",
     "download_all_players": "Alle Spieler herunterladen",
-    "other_actions": "Weitere Aktionen"
+    "other_actions": "Weitere Aktionen",
+    "send_player_list_reminder": "Mannschaftslisten-Erinnerung senden",
+    "send_payment_reminder": "Zahlungs-Erinnerung senden",
+    "select_teams_dialog": {
+      "title": {
+        "undefined": "Teams auswählen",
+        "payment": "Teams für Zahlungserinnerung auswählen",
+        "player_list": "Teams für Mannschaftslistenerinnerung auswählen"
+      },
+      "abort": "Abbrechen",
+      "send": "Senden"
+    }
   }
 }

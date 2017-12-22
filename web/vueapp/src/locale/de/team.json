@@ -49,6 +49,20 @@
         "title": "Ein Fehler ist aufgetreten",
         "message": "Das Team konnte nicht geändert werden"
       }
+    },
+    "send_reminder": {
+      "success": {
+        "title": "Erinnerungen wurden verschickt.",
+        "message": "Alle ausgewählten Teams werden benachrichtigt."
+      },
+      "success_partial": {
+        "title": "Erinnerungen wurden verschickt.",
+        "message": "Allerdings konnten nicht alle Teams benachrichtigt werden."
+      },
+      "error": {
+        "title": "Ein Fehler ist aufgetreten",
+        "message": "Es wurden keine E-Mails verschickt."
+      }
     }
   },
   "approve": "Anmeldung bestätigen",
