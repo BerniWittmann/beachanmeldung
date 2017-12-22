@@ -80,4 +80,4 @@ deploy:
       name: production
       url: https://beachanmeldung.herokuapp.com
     only:
-    - master
+    - tags
