@@ -9,13 +9,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Embed Endpoint for signup list
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.2.1 - (2017-12-22)
+---
+
+### New
+* Added Embed Endpoint for signup list
 
 
 ## 1.2.0 - (2017-12-22)
