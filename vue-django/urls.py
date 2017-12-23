@@ -26,12 +26,16 @@ urlpatterns = [
     url(r'^api/v1/', include('api.urls', namespace='v1')),
     url(r'^embed/', include('embed.urls')),
     url(r'^favicon\.ico$', favicon_view),
-    url(r'^(?!((static|embed|admin|api)/))', include('web.urls')),
+    url(r'^(?!((static|embed|admin|api|media)/))', include('web.urls')),
 ]
+
+# Generally this is only suitable for development environments, but we don't really need it,
+# apart for the django admin theme and installing and paying for a file storage is not worth it.
+urlpatterns = urlpatterns + static(settings.MEDIA_URL,
+                                   document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns = [
         url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + static(settings.MEDIA_URL,
-               document_root=settings.MEDIA_ROOT) + urlpatterns
+    ] + urlpatterns
