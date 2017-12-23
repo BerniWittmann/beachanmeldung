@@ -9,13 +9,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Token Authentication
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.3.0 - (2017-12-23)
+---
+
+### New
+* Added Token Authentication
 
 
 ## 1.2.2 - (2017-12-23)
