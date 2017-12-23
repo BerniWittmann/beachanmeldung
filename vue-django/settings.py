@@ -19,7 +19,6 @@ from decouple import config
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -30,7 +29,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -48,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'stdimage',
     'rest_framework',
+    'rest_framework.authtoken',
     'djmoney',
     'api.apps.ApiConfig',
     'authemail',
@@ -95,19 +94,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'vue-django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':  config('DATABASE_NAME', default=None),
-        'USER':  config('DATABASE_USER', default=None),
-        'PASSWORD':  config('DATABASE_PASSWORD', default=None),
+        'NAME': config('DATABASE_NAME', default=None),
+        'USER': config('DATABASE_USER', default=None),
+        'PASSWORD': config('DATABASE_PASSWORD', default=None),
         'HOST': config('DATABASE_HOST', default=None),
         'PORT': config('DATABASE_PORT', default=None),
-        'CONN_MAX_AGE': 60*10,
+        'CONN_MAX_AGE': 60 * 10,
     }
 }
 
@@ -140,6 +138,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
 }
