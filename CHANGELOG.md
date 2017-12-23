@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed Serving of Media Files
 
 ### Breaks
+
+
+## 1.2.2 - (2017-12-23)
+---
+
+### Fixes
+* Fixed Serving of Media Files
 
 
 ## 1.2.1 - (2017-12-22)
