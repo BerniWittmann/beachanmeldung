@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from api.enums import TeamStateTypes
+from api.players.models import Player
 from .models import Team
 
 
@@ -47,6 +48,15 @@ def mark_state_denied(modeladmin, request, queryset):
 mark_state_denied.short_description = _("Mark selected teams as denied")
 
 
+class PlayersInline(admin.TabularInline):
+    model = Player
+    extra = 0
+    show_change_link = True
+    fields = ('number', 'first_name', 'last_name', 'year_of_birth')
+    ordering = ('number', 'last_name', 'first_name')
+    classes = ('collapse',)
+
+
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'beachname', 'tournament', 'trainer', 'paid', 'state')
     search_fields = ('name', 'beachname', 'tournament__name', 'trainer__email')
@@ -56,8 +66,9 @@ class TeamAdmin(admin.ModelAdmin):
         (_('Date'), {'fields': ('date_signup',)}),
         (_('Status'), {'fields': ('state',
                                   'paid',)}),
-        (_('Relations'), {'fields': ('trainer', 'tournament',)})
+        (_('Relations'), {'fields': ('trainer', 'tournament')})
     )
+    inlines = [PlayersInline]
     actions = [mark_paid, mark_unpaid, mark_state_denied, mark_state_needs_approval, mark_state_signed_up,
                mark_state_waiting]
 
