@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-22 19:51+0100\n"
+"POT-Creation-Date: 2017-12-25 14:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,15 +141,43 @@ msgstr "Spieler"
 msgid "Players"
 msgstr "Spieler"
 
-#: api/team/admin.py:13 api/tournaments/admin.py:12
+#: api/team/admin.py:12
+#, fuzzy
+#| msgid "has the team already paid?"
+msgid "Mark selected teams as paid"
+msgstr "Ausgewählte Teams als bezahlt markieren"
+
+#: api/team/admin.py:19
+msgid "Mark selected teams as unpaid"
+msgstr "Ausgewählte Teams als nicht bezahlt markieren"
+
+#: api/team/admin.py:26
+msgid "Mark selected teams as needs approval"
+msgstr "Ausgewählte Teams auf 'Wartet auf Bestätigung' setzen"
+
+#: api/team/admin.py:33
+msgid "Mark selected teams as waiting"
+msgstr "Ausgewählte Teams auf Warteliste setzen"
+
+#: api/team/admin.py:40
+#, fuzzy
+#| msgid "Your team is now signed up"
+msgid "Mark selected teams as signed up"
+msgstr "Ausgewählte Teams auf 'Angemeldet' setzen"
+
+#: api/team/admin.py:47
+msgid "Mark selected teams as denied"
+msgstr "Ausgewählte Teams auf 'Abgelehnt' setzen"
+
+#: api/team/admin.py:56 api/tournaments/admin.py:12
 msgid "Date"
 msgstr "Daten"
 
-#: api/team/admin.py:14
+#: api/team/admin.py:57
 msgid "Status"
 msgstr "Status"
 
-#: api/team/admin.py:16
+#: api/team/admin.py:59
 msgid "Relations"
 msgstr "Verbindungen"
 
