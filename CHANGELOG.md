@@ -11,13 +11,21 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.3.1 - (2017-12-25)
+---
+
+### Changes
 * Added Admin Actions to Django Backend for Team
 
 ### Fixes
 * Fixed a bug when searching for team name in django backend
 * Fixed Team State Translation in Django Backend
-
-### Breaks
 
 
 ## 1.3.0 - (2017-12-23)
