@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-25 14:48+0100\n"
+"POT-Creation-Date: 2017-12-25 14:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -91,6 +91,22 @@ msgstr "Der Nutzer wurde bereits verifiziert"
 #: api/accounts/views.py:245
 msgid "Email sent."
 msgstr "E-Mail wurde versendet."
+
+#: api/enums.py:12
+msgid "waiting"
+msgstr "Wartend"
+
+#: api/enums.py:13
+msgid "signed up"
+msgstr "Angemeldet"
+
+#: api/enums.py:14
+msgid "needs approval"
+msgstr "Warten auf Bestätigung"
+
+#: api/enums.py:15
+msgid "denied"
+msgstr "Abgelehnt"
 
 #: api/players/models.py:11
 msgid "Last Name of the player"

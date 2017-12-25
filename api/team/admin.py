@@ -49,7 +49,7 @@ mark_state_denied.short_description = _("Mark selected teams as denied")
 
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'beachname', 'tournament', 'trainer', 'paid', 'state')
-    search_fields = ('name', 'beachname', 'tournament', 'trainer')
+    search_fields = ('name', 'beachname', 'tournament__name', 'trainer__email')
     list_filter = ('paid', 'state', 'tournament__name')
     fieldsets = (
         (None, {'fields': ('name', 'beachname',)}),
