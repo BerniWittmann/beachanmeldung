@@ -28,6 +28,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+ADMINS = [('Berni Wittmann', 'b.wittmann@mail.de')]
+
 ALLOWED_HOSTS = []
 
 # Application definition
