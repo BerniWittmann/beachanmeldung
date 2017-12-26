@@ -200,6 +200,9 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default=None)
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default=None)
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False)
 SERVER_EMAIL = config('SERVER_EMAIL')
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = config('EMAIL_HOST_PASSWORD', default=None)
+SENDGRID_SANDBOX_MODE_IN_DEBUG = config('SENDGRID_SANDBOX_MODE_IN_DEBUG', default=True, cast=bool)
 
 try:
     from .settings_deploy import *  # noqa: F403,F401

@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added ADMIN Django Setting for alerts
 
 ### Fixes
+* Added Sendgrid Email Backend to support sending email with categories
 * Added Team and Player Inlines to Django Admin
 
 ### Breaks

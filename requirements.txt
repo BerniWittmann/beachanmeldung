@@ -18,6 +18,7 @@ django-flat-theme==1.1.4
 django-money==0.12
 django-ordered-model==1.4.1
 django-rest-authemail==1.4.0
+django-sendgrid-v5==0.6.85
 django-stdimage==2.4.2
 django-webpack-loader==0.5.0
 djangorestframework==3.6.3
@@ -37,10 +38,12 @@ pyflakes==1.5.0
 PyJWT==1.5.2
 python-decouple==3.0
 python-gettext==3.0
+python-http-client==3.0.0
 python-utils==2.2.0
 pytz==2017.2
 raven==6.4.0
 requests==2.18.2
+sendgrid==5.3.0
 six==1.10.0
 sqlparse==0.2.3
 urllib3==1.22
