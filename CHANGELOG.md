@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Added Cookie Notice Banner
+* Added Google Analytics
 
 ### Changes
 

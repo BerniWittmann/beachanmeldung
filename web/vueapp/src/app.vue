@@ -16,6 +16,7 @@
   import store from './store';
   import { router, i18n } from './bootstrap';
   import accountService from './services/account';
+  import checkCookie from './utils/cookieNotification';
 
   export default {
     /**
@@ -42,6 +43,7 @@
       if (this.$store.state.auth.authenticated) {
         accountService.find();
       }
+      setTimeout(checkCookie, 2000);
     },
 
     computed: {
