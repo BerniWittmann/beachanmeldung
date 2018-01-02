@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
+from api.team.models import Team
+
 
 class MyPasswordResetCodeInline(PasswordResetCodeInline):
     readonly_fields = ('created_at',)
@@ -11,6 +13,15 @@ class MyPasswordResetCodeInline(PasswordResetCodeInline):
 
 class MySignupCodeInline(SignupCodeInline):
     readonly_fields = ('ipaddr', 'created_at',)
+
+
+class TeamsInline(admin.TabularInline):
+    model = Team
+    extra = 0
+    show_change_link = True
+    fields = ('name', 'beachname', 'trainer', 'paid', 'state')
+    ordering = ('state', 'date_signup')
+    classes = ('collapse',)
 
 
 class MyUserAdmin(EmailUserAdmin):
@@ -23,7 +34,7 @@ class MyUserAdmin(EmailUserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
         (_('Custom info'), {'fields': ('phone', 'receive_notifications',)}),
     )
-    inlines = [MyPasswordResetCodeInline, MySignupCodeInline]
+    inlines = [MyPasswordResetCodeInline, MySignupCodeInline, TeamsInline]
 
 
 admin.site.unregister(get_user_model())
