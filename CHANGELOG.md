@@ -11,11 +11,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Added Team Inline to Account Admin View
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.3.3 - (2018-01-02)
+---
+
+### Changes
+* Added Team Inline to Account Admin View
 
 
 ## 1.3.2 - (2017-12-26)
