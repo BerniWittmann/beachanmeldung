@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fix Cookie Notification issues on mobile
 
 ### Breaks
+
+
+## 1.4.1 - (2018-01-02)
+---
+
+### Fixes
+* Fix Cookie Notification issues on mobile
 
 
 ## 1.4.0 - (2018-01-02)
