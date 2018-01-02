@@ -9,14 +9,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Cookie Notice Banner
-* Added Google Analytics
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.4.0 - (2018-01-02)
+---
+
+### New
+* Added Cookie Notice Banner
+* Added Google Analytics
 
 
 ## 1.3.3 - (2018-01-02)
