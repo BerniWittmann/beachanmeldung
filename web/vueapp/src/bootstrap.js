@@ -94,6 +94,23 @@ VuexRouterSync.sync(store, router);
 Vue.router = router;
 
 /* ============
+ * Vue Analytics
+ * ============
+ *
+ * Google Analytics for Vue.js
+ *
+ * https://matteogabriele.gitbooks.io/vue-analytics/content/
+ */
+import VueAnalytics from 'vue-analytics';
+
+if (!Vue.config.debug) {
+  Vue.use(VueAnalytics, {
+    id: process.env.GA_CODE,
+    router,
+  });
+}
+
+/* ============
  * Axios
  * ============
  *
