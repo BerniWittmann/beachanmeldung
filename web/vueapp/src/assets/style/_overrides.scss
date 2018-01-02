@@ -111,7 +111,14 @@ a + .el-button {
   margin-left: 10px;
 }
 
+$break-small: 320px;
+
 .message-bottom {
   bottom: 20px;
   top: auto;
+  max-width: 100vw;
+
+  @media screen and (max-width: $break-small) {
+    min-width: 100vw;
+  }
 }

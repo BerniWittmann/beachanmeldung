@@ -6,7 +6,7 @@ export default function checkCookie() {
     Vue.$message({
       showClose: true,
       message: Vue.i18n.t('general.cookie_notice'),
-      duration: 0,
+      duration: 10000,
       customClass: 'message-bottom',
       onClose: () => {
         localStorage.setItem('cookie_accepted', true);
