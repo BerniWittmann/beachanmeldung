@@ -11,11 +11,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Changed User Admin for non super users
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.4.2 - (2018-01-06)
+---
+
+### Changes
+* Changed User Admin for non super users
 
 
 ## 1.4.1 - (2018-01-02)
