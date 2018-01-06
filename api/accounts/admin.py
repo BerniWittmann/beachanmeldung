@@ -27,14 +27,41 @@ class TeamsInline(admin.TabularInline):
 class MyUserAdmin(EmailUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal Info'), {'fields': ('first_name', 'last_name')}),
+        (_('Personal Info'), {'fields': ('first_name', 'last_name', 'phone')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff',
-                                       'is_superuser', 'is_verified',
+                                       'is_superuser', 'is_verified', 'receive_notifications',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
-        (_('Custom info'), {'fields': ('phone', 'receive_notifications',)}),
     )
+
+    readonly_fields = ()
+
+    staff_fieldsets = (
+        (None, {'fields': ('email',)}),
+        (_('Personal Info'), {'fields': ('first_name', 'last_name', 'phone')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_verified', 'is_staff',
+                                       'receive_notifications',)}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+    )
+
+    staff_readonly_fields = ('last_login', 'date_joined', 'is_staff', 'is_active', 'password')
+
     inlines = [MyPasswordResetCodeInline, MySignupCodeInline, TeamsInline]
+
+    def change_view(self, request, *args, **kwargs):
+        # for non-superuser
+        if not request.user.is_superuser:
+            try:
+                self.fieldsets = self.staff_fieldsets
+                self.readonly_fields = self.staff_readonly_fields
+                response = super(MyUserAdmin, self).change_view(request, *args, **kwargs)
+            finally:
+                # Reset fieldsets to its original value
+                self.fieldsets = EmailUserAdmin.fieldsets
+                self.readonly_fields = EmailUserAdmin.readonly_fields
+            return response
+        else:
+            return super(MyUserAdmin, self).change_view(request, *args, **kwargs)
 
 
 admin.site.unregister(get_user_model())
