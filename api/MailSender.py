@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 
 class EmailThread(threading.Thread):
     def __init__(self, subject, body, from_email, recipient_list, fail_silently, html, reply_to,
-                 categories=None):
+                 categories=None, cc=None):
         self.subject = subject
         self.body = body
         self.recipient_list = recipient_list
@@ -17,11 +17,12 @@ class EmailThread(threading.Thread):
         self.html = html
         self.reply_to = reply_to
         self.categories = categories
+        self.cc = cc
         threading.Thread.__init__(self)
 
     def run(self):
         msg = EmailMultiAlternatives(self.subject, self.body, self.from_email, self.recipient_list,
-                                     reply_to=[self.reply_to])
+                                     reply_to=[self.reply_to], cc=self.cc)
         if self.html:
             msg.attach_alternative(self.html, "text/html")
         if self.categories:
@@ -54,6 +55,7 @@ class MailSender:
         text_content = render_to_string(txt_file, template_ctxt)
         html_content = render_to_string(html_file, template_ctxt)
         reply_to = config('DEFAULT_REPLY_TO', default=None)
+        cc = None
         sanitized_team_name = template_ctxt.get('team').complete_name() \
             .replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss") \
             if 'team' in template_ctxt.keys() else None
@@ -63,14 +65,17 @@ class MailSender:
             sanitized_team_name
         ]
 
+        if template_prefix in ['payment_reminder', 'signup_confirmation']:
+            cc = [config('TEAM_PAYMENT_CC', default=None)]
+
         if settings.DEBUG:
             categories.append('DEBUG')
 
         if settings.SEND_EMAIL_ASYNC:
             EmailThread(subject, text_content, from_email, recipient_list=to, fail_silently=False, html=html_content,
-                        reply_to=reply_to, categories=categories).start()
+                        reply_to=reply_to, categories=categories, cc=cc).start()
         else:
-            msg = EmailMultiAlternatives(subject, text_content, from_email, to, reply_to=[reply_to])
+            msg = EmailMultiAlternatives(subject, text_content, from_email, to, reply_to=[reply_to], cc=cc)
             if html_content:
                 msg.attach_alternative(html_content, "text/html")
             if categories:
