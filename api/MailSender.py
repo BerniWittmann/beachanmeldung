@@ -76,7 +76,7 @@ class MailSender:
 
     def send_email(self, prefix, email, data):
         ctxt = dict(email=email,
-                    host='https://' + self.request.get_host(),
+                    host='http://' + self.request.get_host(),
                     iban=config('BANKING_IBAN', default=None),
                     bic=config('BANKING_BIC', default=None),
                     **data)
