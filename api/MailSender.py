@@ -63,6 +63,9 @@ class MailSender:
             sanitized_team_name
         ]
 
+        if settings.DEBUG:
+            categories.append('DEBUG')
+
         if settings.SEND_EMAIL_ASYNC:
             EmailThread(subject, text_content, from_email, recipient_list=to, fail_silently=False, html=html_content,
                         reply_to=reply_to, categories=categories).start()

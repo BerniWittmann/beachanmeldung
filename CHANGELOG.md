@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added Receiver Name to Banking Information
 
 ### Fixes
+* Added Sendgrid Category Debug from not Production envs
 * Fix https error in Email Redirects
 
 ### Breaks
