@@ -11,14 +11,22 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.4.3 - (2018-01-08)
+---
+
+### Changes
 * Added a CC Email to payment emails
 * Added Receiver Name to Banking Information
 
 ### Fixes
 * Added Sendgrid Category Debug from not Production envs
 * Fix https error in Email Redirects
-
-### Breaks
 
 
 ## 1.4.2 - (2018-01-06)
