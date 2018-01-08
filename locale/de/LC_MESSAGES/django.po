@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-25 14:52+0100\n"
+"POT-Creation-Date: 2018-01-08 13:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: api/accounts/admin.py:19
+#: api/accounts/admin.py:30 api/accounts/admin.py:41
 msgid "Personal Info"
 msgstr "Persönliche Informationen"
 
-#: api/accounts/admin.py:20
+#: api/accounts/admin.py:31 api/accounts/admin.py:42
 msgid "Permissions"
 msgstr "Rechte"
 
-#: api/accounts/admin.py:23
+#: api/accounts/admin.py:34 api/accounts/admin.py:44
 msgid "Important dates"
 msgstr "Wichtige Daten"
-
-#: api/accounts/admin.py:24
-msgid "Custom info"
-msgstr "Benutzerdefinierte Informationen"
 
 #: api/accounts/models.py:15
 msgid "Phone number, preferrably mobile"
@@ -157,43 +153,43 @@ msgstr "Spieler"
 msgid "Players"
 msgstr "Spieler"
 
-#: api/team/admin.py:12
+#: api/team/admin.py:13
 #, fuzzy
 #| msgid "has the team already paid?"
 msgid "Mark selected teams as paid"
 msgstr "Ausgewählte Teams als bezahlt markieren"
 
-#: api/team/admin.py:19
+#: api/team/admin.py:20
 msgid "Mark selected teams as unpaid"
 msgstr "Ausgewählte Teams als nicht bezahlt markieren"
 
-#: api/team/admin.py:26
+#: api/team/admin.py:27
 msgid "Mark selected teams as needs approval"
 msgstr "Ausgewählte Teams auf 'Wartet auf Bestätigung' setzen"
 
-#: api/team/admin.py:33
+#: api/team/admin.py:34
 msgid "Mark selected teams as waiting"
 msgstr "Ausgewählte Teams auf Warteliste setzen"
 
-#: api/team/admin.py:40
+#: api/team/admin.py:41
 #, fuzzy
 #| msgid "Your team is now signed up"
 msgid "Mark selected teams as signed up"
 msgstr "Ausgewählte Teams auf 'Angemeldet' setzen"
 
-#: api/team/admin.py:47
+#: api/team/admin.py:48
 msgid "Mark selected teams as denied"
 msgstr "Ausgewählte Teams auf 'Abgelehnt' setzen"
 
-#: api/team/admin.py:56 api/tournaments/admin.py:12
+#: api/team/admin.py:66 api/tournaments/admin.py:22
 msgid "Date"
 msgstr "Daten"
 
-#: api/team/admin.py:57
+#: api/team/admin.py:67
 msgid "Status"
 msgstr "Status"
 
-#: api/team/admin.py:59
+#: api/team/admin.py:69
 msgid "Relations"
 msgstr "Verbindungen"
 
@@ -324,11 +320,11 @@ msgstr "Der Name existiert bereits"
 msgid "Team not signed up"
 msgstr "Team nicht Angemeldet"
 
-#: api/tournaments/admin.py:13
+#: api/tournaments/admin.py:23
 msgid "Deadlines"
 msgstr "Deadlines"
 
-#: api/tournaments/admin.py:16
+#: api/tournaments/admin.py:26
 msgid "General"
 msgstr "Allgemein"
 
@@ -597,9 +593,9 @@ msgstr ""
 "                "
 
 #: templates/teamemail/payment_confirmation.html:25
-#: templates/teamemail/payment_reminder.html:38
+#: templates/teamemail/payment_reminder.html:39
 #: templates/teamemail/player_list_reminder.html:25
-#: templates/teamemail/signup_confirmation.html:40
+#: templates/teamemail/signup_confirmation.html:41
 #: templates/teamemail/signup_preliminary_confirmation.html:25
 #: templates/teamemail/waitlist_confirmation.html:25
 msgid "Edit Team"
@@ -646,8 +642,13 @@ msgstr ""
 "bezahlen.\n"
 "                "
 
-#: templates/teamemail/payment_reminder.html:30
-#: templates/teamemail/signup_confirmation.html:31
+#: templates/teamemail/payment_reminder.html:28
+#: templates/teamemail/signup_confirmation.html:29
+msgid "receiver"
+msgstr "Empfänger"
+
+#: templates/teamemail/payment_reminder.html:31
+#: templates/teamemail/signup_confirmation.html:32
 msgid "reference"
 msgstr "Verwendungszweck"
 
@@ -783,3 +784,6 @@ msgstr "Team auf Warteliste"
 #: web/templates/index.html:9
 msgid "Beach Registration"
 msgstr "Beach Anmeldung"
+
+#~ msgid "Custom info"
+#~ msgstr "Benutzerdefinierte Informationen"

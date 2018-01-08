@@ -79,5 +79,6 @@ class MailSender:
                     host='http://' + self.request.get_host(),
                     iban=config('BANKING_IBAN', default=None),
                     bic=config('BANKING_BIC', default=None),
+                    receiver_name=config('BANKING_NAME', default=None),
                     **data)
         self.send_multi_format_email(prefix, ctxt, email)

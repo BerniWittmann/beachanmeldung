@@ -26,6 +26,7 @@
                 {% blocktrans with amount=team.tournament.starting_fee %}
                      You still need to pay the starting fee of {{ amount }}
                 {% endblocktrans %}</p>
+                <p>{% trans "receiver" %}: {{ receiver_name }}</p>
                 <p>IBAN: {{ iban }}</p>
                 <p>BIC: {{ bic }}</p>
                 <p>{% trans "reference" %}: {{ team.banking_reference }}</p>
