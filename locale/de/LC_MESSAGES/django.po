@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-08 13:00+0100\n"
+"POT-Creation-Date: 2018-01-09 08:51+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,10 @@ msgstr "Rechte"
 #: api/accounts/admin.py:34 api/accounts/admin.py:44
 msgid "Important dates"
 msgstr "Wichtige Daten"
+
+#: api/accounts/apps.py:7
+msgid "User Administration"
+msgstr "Nutzer - Verwaltung"
 
 #: api/accounts/models.py:15
 msgid "Phone number, preferrably mobile"
@@ -88,6 +92,18 @@ msgstr "Der Nutzer wurde bereits verifiziert"
 msgid "Email sent."
 msgstr "E-Mail wurde versendet."
 
+#: api/enums.py:6
+msgid "female"
+msgstr "Weiblich"
+
+#: api/enums.py:7
+msgid "male"
+msgstr "Männlich"
+
+#: api/enums.py:8
+msgid "mixed"
+msgstr "Mixed"
+
 #: api/enums.py:12
 msgid "waiting"
 msgstr "Wartend"
@@ -103,6 +119,10 @@ msgstr "Warten auf Bestätigung"
 #: api/enums.py:15
 msgid "denied"
 msgstr "Abgelehnt"
+
+#: api/players/apps.py:7
+msgid "Player Administration"
+msgstr "Spieler - Verwaltung"
 
 #: api/players/models.py:11
 msgid "Last Name of the player"
@@ -192,6 +212,10 @@ msgstr "Status"
 #: api/team/admin.py:69
 msgid "Relations"
 msgstr "Verbindungen"
+
+#: api/team/apps.py:7
+msgid "Team Administration"
+msgstr "Team - Verwaltung"
 
 #: api/team/models.py:11
 msgid "Usually the club name"
@@ -328,6 +352,10 @@ msgstr "Deadlines"
 msgid "General"
 msgstr "Allgemein"
 
+#: api/tournaments/apps.py:7
+msgid "Tournament Administration"
+msgstr "Turnier - Verwaltung"
+
 #: api/tournaments/models.py:12
 msgid "Name of the Tournament"
 msgstr "Name des Turniers"
@@ -417,14 +445,10 @@ msgid "Numer of Places"
 msgstr "Anzahl Startplätze"
 
 #: api/tournaments/models.py:51
-#, fuzzy
-#| msgid "Tournament Name"
 msgid "Tournament"
 msgstr "Turnier"
 
 #: api/tournaments/models.py:52
-#, fuzzy
-#| msgid "Tournament Name"
 msgid "Tournaments"
 msgstr "Turniere"
 
@@ -784,6 +808,9 @@ msgstr "Team auf Warteliste"
 #: web/templates/index.html:9
 msgid "Beach Registration"
 msgstr "Beach Anmeldung"
+
+#~ msgid "Accounts"
+#~ msgstr "Nutzer-Verwaltung"
 
 #~ msgid "Custom info"
 #~ msgstr "Benutzerdefinierte Informationen"

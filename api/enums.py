@@ -3,9 +3,9 @@ from djchoices import DjangoChoices, ChoiceItem
 
 
 class TournamentGenderTypes(DjangoChoices):
-    female = ChoiceItem()
-    male = ChoiceItem()
-    mixed = ChoiceItem()
+    female = ChoiceItem('female', _('female'))
+    male = ChoiceItem('male', _('male'))
+    mixed = ChoiceItem('mixed', _('mixed'))
 
 
 class TeamStateTypes(DjangoChoices):

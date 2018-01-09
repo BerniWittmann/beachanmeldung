@@ -107,4 +107,4 @@ class Tournament(models.Model):
         if self.gender == TournamentGenderTypes.mixed:
             return self.name
 
-        return self.name + " - " + self.gender
+        return self.name + " - " + str(TournamentGenderTypes.get_choice(self.gender).label)
