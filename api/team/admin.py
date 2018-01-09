@@ -60,7 +60,7 @@ class PlayersInline(admin.TabularInline):
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name', 'beachname', 'tournament', 'trainer', 'paid', 'state')
     search_fields = ('name', 'beachname', 'tournament__name', 'trainer__email')
-    list_filter = ('paid', 'state', 'tournament__name')
+    list_filter = ('paid', 'state', 'tournament__name', 'tournament__gender')
     fieldsets = (
         (None, {'fields': ('name', 'beachname',)}),
         (_('Date'), {'fields': ('date_signup',)}),
