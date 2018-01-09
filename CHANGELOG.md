@@ -11,12 +11,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.4.4 - (2018-01-09)
+---
+
+### Changes
 * Added Gender Filter to Team Overview in Django Admin
 
 ### Fixes
 * Fixed several Translation issues in Django Admin
-
-### Breaks
 
 
 ## 1.4.3 - (2018-01-08)
