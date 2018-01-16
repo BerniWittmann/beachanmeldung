@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Not set X-Frame-Option header on embeds
 
 ### Breaks
+
+
+## 1.4.6 - (2018-01-16)
+---
+
+### Fixes
+* Not set X-Frame-Option header on embeds
 
 
 ## 1.4.5 - (2018-01-16)
