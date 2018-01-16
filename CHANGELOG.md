@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Added HandballIsmaning to CORS Whitelist
 
 ### Breaks
+
+
+## 1.4.5 - (2018-01-16)
+---
+
+### Fixes
+* Added HandballIsmaning to CORS Whitelist
 
 
 ## 1.4.4 - (2018-01-09)
