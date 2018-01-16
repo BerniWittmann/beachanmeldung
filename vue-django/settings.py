@@ -166,6 +166,7 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
+    'handballismaning.de',
 )
 
 AUTH_USER_MODEL = 'accounts.MyUser'
