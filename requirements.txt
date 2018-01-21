@@ -8,6 +8,7 @@ coverage==4.4.1
 dj-database-url==0.4.2
 Django==1.11.3
 django-admin-interface==0.5.1
+django-cachalot==1.5.0
 django-choices==1.6.0
 django-colorfield==0.1.14
 django-cors-headers==2.1.0
@@ -36,6 +37,7 @@ py-moneyed==0.7.0
 pycodestyle==2.3.1
 pyflakes==1.5.0
 PyJWT==1.5.2
+pylibmc==1.5.2
 python-decouple==3.0
 python-gettext==3.0
 python-http-client==3.0.0
