@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Only enable caching and sentry when in production
 
 ### Breaks
+
+
+## 1.5.2 - (2018-01-21)
+---
+
+### Fixes
+* Only enable caching and sentry when in production
 
 
 ## 1.5.1 - (2018-01-21)
