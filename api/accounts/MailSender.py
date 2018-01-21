@@ -15,7 +15,7 @@ class AccountMailSender(MailSender):
     def send_code_email(self, prefix, code):
         ctxt = {
             'email': self.user.email,
-            'host': 'https://' + self.request.get_host(),
+            'host': 'http://' + self.request.get_host(),
             'first_name': self.user.first_name,
             'last_name': self.user.last_name,
             'code': code
