@@ -9,13 +9,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Caching for production
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.5.0 - (2018-01-21)
+---
+
+### New
+* Added Caching for production
 
 
 ## 1.4.7 - (2018-01-21)
