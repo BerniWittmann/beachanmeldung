@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import datetime
 import os
+import sys
 
 import dj_database_url
 from decouple import config
@@ -27,6 +28,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
+
+TESTING = 'test' in sys.argv
 
 ADMINS = [('Berni Wittmann', 'b.wittmann@mail.de')]
 
@@ -177,7 +180,7 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
-if not DEBUG:
+if not DEBUG and not TESTING:
     CACHES = {
         'default': {
             # Use pylibmc
