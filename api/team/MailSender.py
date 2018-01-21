@@ -7,7 +7,7 @@ class TeamMailSender(MailSender):
     prefix = 'teamemail'
 
     def __init__(self, team=None, request=None):
-        super().__init__(request)
+        MailSender.__init__(self, request)
         if team is None:
             raise Exception("Team or Request not given")
 

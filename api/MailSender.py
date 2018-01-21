@@ -56,9 +56,13 @@ class MailSender:
         html_content = render_to_string(html_file, template_ctxt)
         reply_to = config('DEFAULT_REPLY_TO', default=None)
         cc = None
-        sanitized_team_name = template_ctxt.get('team').complete_name() \
-            .replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss") \
-            if 'team' in template_ctxt.keys() else None
+        if 'team' in template_ctxt.keys():
+            sanitized_team_name = template_ctxt.get('team').complete_name() \
+                .replace(u"\xe4", "ae").replace(u"\xf6", "oe").replace(u"\xfc", "ue").replace(u"\xdf", "ss") \
+                .replace(u"\xc4", "Ae").replace(u"\xd6", "Oe").replace(u"\xdc", "Ue")
+        else:
+            sanitized_team_name = None
+
         categories = [
             self.prefix,
             template_prefix,

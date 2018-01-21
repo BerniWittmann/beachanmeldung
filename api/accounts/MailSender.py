@@ -6,7 +6,7 @@ class AccountMailSender(MailSender):
     prefix = 'authemail'
 
     def __init__(self, user=None, request=None):
-        super().__init__(request)
+        MailSender.__init__(self, request)
         if user is None:
             raise Exception("User not given")
 

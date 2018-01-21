@@ -188,13 +188,13 @@ if not DEBUG:
             # disables expiration.
             'TIMEOUT': None,
 
-            'LOCATION': config('MEMCACHIER_SERVERS'),
+            'LOCATION': config('MEMCACHIER_SERVERS', None),
 
             'OPTIONS': {
                 # Use binary memcache protocol (needed for authentication)
                 'binary': True,
-                'username': config('MEMCACHIER_USERNAME'),
-                'password': config('MEMCACHIER_PASSWORD'),
+                'username': config('MEMCACHIER_USERNAME', None),
+                'password': config('MEMCACHIER_PASSWORD', None),
                 'behaviors': {
                     # Enable faster IO
                     'no_block': True,
