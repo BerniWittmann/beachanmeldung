@@ -10,6 +10,7 @@ RUN apt-get install -y -qq libpq-dev
 RUN apt-get install -y -qq nodejs npm
 RUN apt-get install -y git gettext
 RUN apt-get install -y -qq ruby-dev
+RUN apt-get install -y -qq libmemcached-dev zlib1g-dev
 
 
 WORKDIR /app
