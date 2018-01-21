@@ -37,7 +37,8 @@ class CustomSignup(Signup):
                 user = get_user_model().objects.get(email=email)
                 if user.is_verified:
                     content = {'detail':
-                               _('User with this Email address already exists.')}
+                               _('User with this Email address already exists.'),
+                               'key': 'user_already_exists'}
                     return Response(content, status=status.HTTP_400_BAD_REQUEST)
 
                 try:
