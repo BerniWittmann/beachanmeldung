@@ -15,11 +15,18 @@ const success = (params) => {
 };
 
 // When the request fails
-const failed = () => {
-  Vue.$notify.error({
-    title: Vue.i18n.t('auth.notifications.register.error.title'),
-    message: Vue.i18n.t('auth.notifications.register.error.message'),
-  });
+const failed = (error) => {
+  if (error && error.response && error.response.data && error.response.data.key === 'user_already_exists') {
+    Vue.$notify.error({
+      title: Vue.i18n.t('auth.notifications.register.user_already_exists.title'),
+      message: Vue.i18n.t('auth.notifications.register.user_already_exists.message'),
+    });
+  } else {
+    Vue.$notify.error({
+      title: Vue.i18n.t('auth.notifications.register.error.title'),
+      message: Vue.i18n.t('auth.notifications.register.error.message'),
+    });
+  }
   return Promise.reject();
 };
 
