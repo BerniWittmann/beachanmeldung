@@ -13,10 +13,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Display correct error when trying to signup with an already existing email
-* Fix https error in Email Redirects for Code Emails
 
 ### Breaks
+
+
+## 1.4.7 - (2018-01-21)
+---
+
+### Fixes
+* Display correct error when trying to signup with an already existing email
+* Fix https error in Email Redirects for Code Emails
 
 
 ## 1.4.6 - (2018-01-16)
