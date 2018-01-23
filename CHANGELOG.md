@@ -9,14 +9,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Send Documents with signup confirmation email
-* Added Document to Tournaments
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.6.0 - (2018-01-23)
+---
+
+### New
+* Send Documents with signup confirmation email
+* Added Document to Tournaments
 
 
 ## 1.5.2 - (2018-01-21)
