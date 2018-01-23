@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 19:22+0100\n"
+"POT-Creation-Date: 2018-01-23 19:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -470,7 +470,7 @@ msgstr "Link zu zusätzlichem Dokument"
 
 #: api/tournaments/models.py:121
 msgid "Document Url"
-msgstr "Dokumentenname"
+msgstr "Dokumenten URL"
 
 #: api/tournaments/models.py:123
 msgid "Name of the Document"
@@ -771,6 +771,16 @@ msgid ""
 msgstr ""
 "\n"
 "                    Dein Team %(name)s ist nun erfolgreich angemeldet.\n"
+"                "
+
+#: templates/teamemail/signup_confirmation.html:50
+msgid ""
+"\n"
+"                     Also take a look at the additional documents.\n"
+"                "
+msgstr ""
+"\n"
+"                    Sieh dir unbedingt auch die nachfolgenden Dokumente an\n"
 "                "
 
 #: templates/teamemail/signup_confirmation.txt:2

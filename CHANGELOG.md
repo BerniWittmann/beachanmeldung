@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Send Documents with signup confirmation email
 * Added Document to Tournaments
 
 ### Changes
