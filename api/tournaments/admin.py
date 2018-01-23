@@ -2,7 +2,13 @@ from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 from api.team.models import Team
-from .models import Tournament
+from .models import Tournament, AdditionalDocument
+
+
+class DocumentsInline(admin.StackedInline):
+    model = AdditionalDocument
+    fields = ('name', 'url')
+    extra = 0
 
 
 class TeamsInline(admin.TabularInline):
@@ -28,7 +34,7 @@ class TournamentAdmin(admin.ModelAdmin):
                                    'starting_fee',
                                    'number_of_places')})
     )
-    inlines = [TeamsInline]
+    inlines = [DocumentsInline, TeamsInline]
 
 
 admin.site.register(Tournament, TournamentAdmin)

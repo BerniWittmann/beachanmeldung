@@ -103,8 +103,29 @@ class Tournament(models.Model):
                 _('Deadline of Signup must be after Start of Signup')
             )
 
+    def has_additional_documents(self):
+        return self.documents.count() > 0
+
     def __str__(self):
         if self.gender == TournamentGenderTypes.mixed:
             return self.name
 
         return self.name + " - " + str(TournamentGenderTypes.get_choice(self.gender).label)
+
+
+class AdditionalDocument(models.Model):
+    tournament = models.ForeignKey(Tournament,
+                                   on_delete=models.CASCADE,
+                                   related_name='documents')
+    url = models.URLField(help_text=_("Url to Document"),
+                          verbose_name=_("Document Url"))
+    name = models.CharField(max_length=120,
+                            help_text=_("Name of the Document"),
+                            verbose_name=_("Document Name"))
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Additional Document')
+        verbose_name_plural = _('Additional Documents')
