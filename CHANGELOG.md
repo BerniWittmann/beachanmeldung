@@ -9,13 +9,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Site Config
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.7.0 - (2018-01-25)
+---
+
+### New
+* Added Site Config
 
 
 ## 1.6.0 - (2018-01-23)
