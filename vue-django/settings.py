@@ -16,6 +16,7 @@ import sys
 
 import dj_database_url
 from decouple import config
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -60,6 +61,8 @@ INSTALLED_APPS = [
     'api.team.apps.TeamConfig',
     'api.players.apps.PlayersConfig',
     'embed.apps.EmbedConfig',
+    'constance',
+    'constance.backends.database',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +119,14 @@ DATABASES = {
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+
+CONSTANCE_CONFIG = {
+    'YEAR': (2017, _('Year'), int),
+    'WELCOME_TEXT': ('', _('Welcome Text'), str),
+    'TERMS_OF_PARTICIPATION': ('', _('Terms of participation'), str),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

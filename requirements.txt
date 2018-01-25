@@ -11,6 +11,7 @@ django-admin-interface==0.5.1
 django-cachalot==1.5.0
 django-choices==1.6.0
 django-colorfield==0.1.14
+django-constance==2.0.0
 django-cors-headers==2.1.0
 django-cors-middleware==1.3.1
 django-debug-toolbar==1.8
@@ -18,6 +19,7 @@ django-flat-responsive==1.4.1
 django-flat-theme==1.1.4
 django-money==0.12
 django-ordered-model==1.4.1
+django-picklefield==1.0.0
 django-rest-authemail==1.4.0
 django-sendgrid-v5==0.6.85
 django-stdimage==2.4.2
