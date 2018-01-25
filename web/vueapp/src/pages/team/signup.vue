@@ -144,7 +144,7 @@
                     <div slot="step_3">
                         <h2>{{ $t('team.signup.confirmation.title') }}</h2>
                         <p><b>{{ $t('team.signup.confirmation.starting_fee', { amount: startingFee }) }}</b></p>
-                        <p v-html="$t('team.signup.confirmation.text', { link: advertisementUrl})"></p>
+                        <p v-html="termsOfParticipation"></p>
                         <el-button :loading="loading" type="success" @click="confirm">
                             {{ $t('team.signup.confirmation.save') }}
                         </el-button>
@@ -243,6 +243,10 @@
     },
 
     computed: {
+      termsOfParticipation() {
+        return this.$store.state.config.termsOfParticipation.replace('{link}', this.advertisementUrl);
+      },
+
       isLoggedIn() {
         return this.$store.state.auth.authenticated;
       },

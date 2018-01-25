@@ -141,7 +141,6 @@
     "confirmation": {
       "title": "Teilnahmebedingungen",
       "starting_fee": "Startgebühr {amount}€",
-      "text": "@:etc.terms_of_participation.text",
       "save": "Verbindlich Anmelden"
     }
   },

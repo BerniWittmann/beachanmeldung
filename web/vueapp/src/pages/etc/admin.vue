@@ -2,7 +2,7 @@
     <v-layout>
         <el-row class="home-part home-part-image">
             <div class="home-header-image">
-                <h1>{{ $t('general.header.title', { currentYear: currentYear }) }}</h1>
+                <h1>{{ $t('general.header.title', { currentYear: year }) }}</h1>
                 <h2>{{ $t('general.header.subtitle') }}</h2>
             </div>
         </el-row>
@@ -70,7 +70,6 @@
    *
    * The admin page.
    */
-  import moment from 'moment';
   import { teamStates, reminderTypes } from '@/utils/constants';
   import teamService from '@/services/team';
 
@@ -81,8 +80,8 @@
     },
 
     computed: {
-      currentYear() {
-        return moment().format('YYYY');
+      year() {
+        return this.$store.state.config.year;
       },
 
       players() {
