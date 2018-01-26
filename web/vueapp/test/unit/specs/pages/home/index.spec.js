@@ -1,7 +1,6 @@
 import Home from '@/pages/home';
 import Vuex from 'vuex';
 import utils from '../../../utils';
-import moment from 'moment';
 
 describe('Pages', () => {
   describe('Home', () => {
@@ -10,6 +9,9 @@ describe('Pages', () => {
       account: { isStaff: false },
       tournament: { tournaments: [] },
       team: { teams: [] },
+      config: {
+        year: 2018
+      }
     };
     const getters = {
       team: () => ({
@@ -31,7 +33,7 @@ describe('Pages', () => {
 
     it('should have a computed property for the current year', () => {
       const vm = utils.mountComponent(Home, { store });
-      expect(vm.vm.currentYear).to.equal(moment().format('YYYY'));
+      expect(vm.vm.year).to.equal(2018);
     });
 
     it('should have computed property for all tournaments', () => {
