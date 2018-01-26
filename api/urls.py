@@ -10,6 +10,6 @@ urlpatterns = [
     url(r'^teams/', include('api.team.urls')),
     url(r'^players/', include('api.players.urls')),
     url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^config/', ConfigView.get_config),
+    url(r'^config/', ConfigView.get_config, name='config'),
     url('^', NotFoundView.raise_404)
 ]
