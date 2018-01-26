@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed Config Tests
 
 ### Breaks
+
+
+## 1.7.1 - (2018-01-26)
+---
+
+### Fixes
+* Fixed Config Tests
 
 
 ## 1.7.0 - (2018-01-25)
