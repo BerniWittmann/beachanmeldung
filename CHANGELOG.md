@@ -11,11 +11,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Added Open Graph Meta Tags
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.7.2 - (2018-01-27)
+---
+
+### Changes
+* Added Open Graph Meta Tags
 
 
 ## 1.7.1 - (2018-01-26)
