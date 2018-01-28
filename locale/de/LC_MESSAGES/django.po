@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-23 19:42+0100\n"
+"POT-Creation-Date: 2018-01-28 07:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -488,7 +488,7 @@ msgstr "Zusätzliches Dokument"
 msgid "Additional Documents"
 msgstr "Zusätzliche Dokumente"
 
-#: api/views.py:10
+#: api/views.py:11
 msgid "Route Not Found"
 msgstr "Der Pfad wurde nicht gefunden"
 
@@ -839,9 +839,31 @@ msgstr "Dein Team wurde auf die Warteliste verschoben."
 msgid "Team On Waitlist"
 msgstr "Team auf Warteliste"
 
+#: vue-django/settings.py:126
+msgid "Year"
+msgstr ""
+
+#: vue-django/settings.py:127
+#, fuzzy
+#| msgid "Welcome"
+msgid "Welcome Text"
+msgstr "Willkommen"
+
+#: vue-django/settings.py:128
+msgid "Terms of participation"
+msgstr ""
+
 #: web/templates/index.html:9
 msgid "Beach Registration"
 msgstr "Beach Anmeldung"
+
+#: web/templates/index.html:10
+msgid "Registration Beach Tournaments"
+msgstr "Anmeldung Beachturniere"
+
+#: web/templates/index.html:11
+msgid "Register now for the beach tournaments"
+msgstr "Jetzt für die Beachturniere in Ismaning anmelden"
 
 #, fuzzy
 #~| msgid "Advertisement Url"
