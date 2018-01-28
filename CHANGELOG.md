@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed Open Graph Tags
 
 ### Breaks
+
+
+## 1.7.3 - (2018-01-28)
+---
+
+### Fixes
+* Fixed Open Graph Tags
 
 
 ## 1.7.2 - (2018-01-27)
