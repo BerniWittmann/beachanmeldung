@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+* Added No-Script tag with javascript activation warning
 
 ### Fixes
 * Fixed Navigation issue to team when not logged in
