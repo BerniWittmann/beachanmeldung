@@ -18,3 +18,6 @@ class MyUser(EmailAbstractUser):
 
     # Required
     objects = EmailUserManager()
+
+    def __str__(self):
+        return self.first_name + " " + self.last_name + " (" + self.email + ")"

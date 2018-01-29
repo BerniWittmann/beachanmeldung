@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+* Fixed User String Representation to include name
 * Added No-Script tag with javascript activation warning
 
 ### Fixes
