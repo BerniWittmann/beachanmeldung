@@ -42,4 +42,16 @@ function getAfterAll(currentStore) {
   return afterAll;
 }
 
-export default { getBeforeAll, getAfterAll };
+function onError() {
+  Vue.nextTick(() => {
+    store.dispatch('loading/unsetNavigation');
+  });
+}
+
+// decorator to inject store
+function getOnError(currentStore) {
+  store = currentStore;
+  return onError;
+}
+
+export default { getBeforeAll, getAfterAll, getOnError };

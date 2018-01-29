@@ -223,7 +223,7 @@ export default [
           if (teamService.checkIsAllowedToViewTeam(to.params.teamID)) {
             return teamService.getByID(to.params.teamID).then(next);
           }
-          return next(!from.name ? { name: 'home.index' } : false);
+          return next(new Error());
         },
 
         auth: true,
@@ -248,7 +248,7 @@ export default [
                 title: Vue.i18n.t('team.notifications.put.after_deadline_edit.title'),
                 message: Vue.i18n.t('team.notifications.put.after_deadline_edit.message'),
               });
-              return next(!from.name ? { name: 'home.index' } : false);
+              return next(new Error());
             },
           },
         ],
