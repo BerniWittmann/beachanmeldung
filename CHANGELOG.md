@@ -9,6 +9,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+
+### Changes
+
+### Fixes
+
+### Breaks
+
+
+## 1.8.0 - (2018-01-29)
+---
+
+### New
 * Show a message to unverified users as a reminder to verify their email address
 
 ### Changes
@@ -20,8 +32,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Fixes
 * Fixed Padding on Home for mobile
 * Fixed Navigation issue to team when not logged in
-
-### Breaks
 
 
 ## 1.7.3 - (2018-01-28)
