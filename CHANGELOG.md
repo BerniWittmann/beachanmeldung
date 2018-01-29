@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed unit test error due to bad configuration
 
 ### Breaks
+
+
+## 1.8.1 - (2018-01-29)
+---
+
+### Fixes
+* Fixed unit test error due to bad configuration
 
 
 ## 1.8.0 - (2018-01-29)
