@@ -17,6 +17,7 @@
   import { router, i18n } from './bootstrap';
   import accountService from './services/account';
   import checkCookie from './utils/cookieNotification';
+  import checkEmailVerification from './utils/emailVerificationNotification';
 
   export default {
     /**
@@ -44,6 +45,7 @@
         accountService.find();
       }
       setTimeout(checkCookie, 2000);
+      setTimeout(checkEmailVerification, 10000);
     },
 
     computed: {

@@ -161,7 +161,14 @@
 
       resendVerification() {
         authService.resendVerification();
+        sessionStorage.setItem('resent_verification', true);
       },
+    },
+
+    mounted() {
+      if (this.$route.query.resend_verification === 'true') {
+        this.resendVerification();
+      }
     },
   };
 </script>

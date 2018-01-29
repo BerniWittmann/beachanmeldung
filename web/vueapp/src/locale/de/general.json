@@ -18,5 +18,6 @@
     "title": "Beachturniere {currentYear}",
     "subtitle": "Ismaning"
   },
-  "cookie_notice": "Diese Seite verwendet Cookies."
+  "cookie_notice": "Diese Seite verwendet Cookies.",
+  "email_verification_notice": "Bitte verifiziere deine E-Mail Adresse. <a href=\"/account?resend_verification=true\">Bestätigung erneut schicken</a>."
 }

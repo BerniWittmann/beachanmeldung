@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+* Show a message to unverified users as a reminder to verify their email address
 
 ### Changes
 * Marked Beachname as optional
