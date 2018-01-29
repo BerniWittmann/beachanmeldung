@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 * Added No-Script tag with javascript activation warning
 
 ### Fixes
+* Fixed Padding on Home for mobile
 * Fixed Navigation issue to team when not logged in
 
 ### Breaks

@@ -1,5 +1,9 @@
 .home-part {
   padding: 30px 20vw;
+  @include breakpoint(mobileonly) {
+    padding: 30px 20px;
+  }
+
   flex: 1;
   display: flex;
 
