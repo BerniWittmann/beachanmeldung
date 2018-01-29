@@ -26,7 +26,7 @@
                 <p>{{ $t('etc.contact.implementation_name') }}</p>
                 <el-row :gutter="20">
                     <el-col :lg="4" :md="4" :sm="6" :xs="12">
-                        <v-link-button href="https://github.com/BerniWittmann/" target="_blank">
+                        <v-link-button href="https://github.com/BerniWittmann/beachanmeldung" target="_blank">
                             <i class="fa fa-github"></i> {{ $t('etc.contact.github') }}
                         </v-link-button>
                     </el-col>
