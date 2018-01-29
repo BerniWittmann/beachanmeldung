@@ -112,6 +112,7 @@
   },
   "save": "Speichern",
   "beachname": "Beachname",
+  "beachname_placeholder": "Beachname (optional)",
   "beachname_description": "Ein kreativer Beachname",
   "abort": "Abbrechen",
   "mine": "Meine Teams",

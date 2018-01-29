@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+* Marked Beachname as optional
 * Updated Github Link on contact page
 * Fixed User String Representation to include name
 * Added No-Script tag with javascript activation warning

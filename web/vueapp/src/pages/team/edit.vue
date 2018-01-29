@@ -23,7 +23,7 @@
                                     <el-form-item prop="beachname">
                                         <el-input v-model="team.beachname"
                                                   type="text" @keyup.native.enter="save"
-                                                  v-bind:placeholder="$t('team.beachname')"></el-input>
+                                                  v-bind:placeholder="$t('team.beachname_placeholder')"></el-input>
                                     </el-form-item>
                                 </el-col>
                             </el-row>
