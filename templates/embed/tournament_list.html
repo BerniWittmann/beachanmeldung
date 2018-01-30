@@ -1,0 +1,46 @@
+{% load static %}
+{% load i18n %}
+
+<html>
+<head>
+    <title>{{ tournament_name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<h3>{% trans "Signup List" %}</h3>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>{% trans "Number" %}</th>
+        <th>{% trans "Team" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for team in teams %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ team.complete_name }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<h3>{% trans "Wait List" %}</h3>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>{% trans "Number" %}</th>
+        <th>{% trans "Team" %}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for team in waitlist_teams %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ team.complete_name }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

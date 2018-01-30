@@ -51,19 +51,33 @@ class EmbedTestCase(TestCase):
             trainer=user,
             state=TeamStateTypes.signed_up,
         )
+        self.team_3 = Team.objects.create(
+            name='TSV Warten',
+            beachname='Ich bin auf der Warteliste',
+            tournament=self.tournament,
+            trainer=user,
+            state=TeamStateTypes.waiting,
+        )
+        self.team_4 = Team.objects.create(
+            name='TSV Warten',
+            beachname='Ich bin auf ebenfalls der Warteliste',
+            tournament=self.tournament,
+            trainer=user,
+            state=TeamStateTypes.needs_approval,
+        )
 
-    def test_get_tournament_embed(self):
+    def test_get_tournament_signup_embed(self):
         client = Client()
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context.get('tournament_name'), self.tournament.__str__())
 
-    def test_get_tournament_embed_404(self):
+    def test_get_tournament_signup_embed_404(self):
         client = Client()
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': 9999999}))
         self.assertEqual(response.status_code, 404)
 
-    def test_get_tournament_embed_full_tournament(self):
+    def test_get_tournament_signup_embed_full_tournament(self):
         client = Client()
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
@@ -71,7 +85,7 @@ class EmbedTestCase(TestCase):
         self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'))
         self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
 
-    def test_get_tournament_embed_free_places(self):
+    def test_get_tournament_signup_embed_free_places(self):
         self.team_1.state = TeamStateTypes.waiting
         self.team_1.save()
 
@@ -82,7 +96,7 @@ class EmbedTestCase(TestCase):
         self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'), count=0)
         self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
 
-    def test_get_tournament_embed_empty(self):
+    def test_get_tournament_signup_embed_empty(self):
         self.team_1.state = TeamStateTypes.waiting
         self.team_1.save()
         self.team_2.state = TeamStateTypes.needs_approval
@@ -94,3 +108,58 @@ class EmbedTestCase(TestCase):
         self.assertEqual(len(response.context.get('teams')), 2)
         self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'), count=0)
         self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'), count=0)
+
+    def test_get_tournament_wait_embed(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context.get('tournament_name'), self.tournament.__str__())
+
+    def test_get_tournament_wait_embed_404(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': 9999999}))
+        self.assertEqual(response.status_code, 404)
+
+    def test_get_tournament_wait_embed_full_tournament(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context.get('teams')), 2)
+        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'))
+
+    def test_get_tournament_wait_embed_empty(self):
+        self.team_3.state = TeamStateTypes.denied
+        self.team_3.save()
+        self.team_4.state = TeamStateTypes.signed_up
+        self.team_4.save()
+
+        client = Client()
+        response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context.get('teams')), 0)
+        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'), count=0)
+
+    def test_get_tournament_complete_embed(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-complete-list', kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context.get('tournament_name'), self.tournament.__str__())
+        self.assertContains(response, '<table', count=2)
+
+    def test_get_tournament_complete_embed_404(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-complete-list', kwargs={'pk': 9999999}))
+        self.assertEqual(response.status_code, 404)
+
+    def test_get_tournament_complete_embed_full_tournament(self):
+        client = Client()
+        response = client.get(reverse('embed-tournament-complete-list', kwargs={'pk': self.tournament.id}))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context.get('teams')), 2)
+        self.assertEqual(len(response.context.get('waitlist_teams')), 2)
+        self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'))

@@ -1,29 +1,4 @@
-{% load static %}
+{% extends "embed/base_list.html" %}
 {% load i18n %}
 
-<html>
-<head>
-    <title>{% blocktrans %}{{ tournament_name }} Signup List{% endblocktrans %}
-    </title>
-</head>
-<body>
-<table>
-    <thead>
-    <tr>
-        <th>{% trans "Number" %}</th>
-        <th>{% trans "Team" %}</th>
-    </tr>
-    </thead>
-    <tbody>
-        {% for team in teams %}
-            <tr>
-
-                <td>{{ forloop.counter }}</td>
-                <td>{{ team.complete_name }}</td>
-
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
-</body>
-</html>
+{% block title %}{% blocktrans %}{{ tournament_name }} Signup List{% endblocktrans %}{% endblock %}

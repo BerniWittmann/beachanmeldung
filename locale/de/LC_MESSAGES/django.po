@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 08:06+0100\n"
+"POT-Creation-Date: 2018-01-30 08:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,7 +144,9 @@ msgstr "Vorname"
 msgid "shirt number of the player"
 msgstr "Trikotnummer des Spielers"
 
-#: api/players/models.py:17 templates/embed/signup_list.html:13
+#: api/players/models.py:17 templates/embed/base_list.html:12
+#: templates/embed/tournament_list.html:13
+#: templates/embed/tournament_list.html:31
 msgid "Number"
 msgstr "Nummer"
 
@@ -161,7 +163,8 @@ msgid "Team associated with the player"
 msgstr "Team des Spielers"
 
 #: api/players/models.py:29 api/team/models.py:38
-#: templates/embed/signup_list.html:14
+#: templates/embed/base_list.html:13 templates/embed/tournament_list.html:14
+#: templates/embed/tournament_list.html:32
 msgid "Team"
 msgstr "Team"
 
@@ -588,10 +591,23 @@ msgstr ""
 msgid "Your Account was successfully created."
 msgstr "Dein Team wurde erfolgreich angemeldet."
 
-#: templates/embed/signup_list.html:6
+#: templates/embed/signup_list.html:4
 #, python-format
 msgid "%(tournament_name)s Signup List"
 msgstr "%(tournament_name)s Meldeliste"
+
+#: templates/embed/tournament_list.html:9
+msgid "Signup List"
+msgstr "Meldeliste"
+
+#: templates/embed/tournament_list.html:27
+msgid "Wait List"
+msgstr "Warteliste"
+
+#: templates/embed/wait_list.html:4
+#, python-format
+msgid "%(tournament_name)s Wait List"
+msgstr "%(tournament_name)s Warteliste"
 
 #: templates/teamemail/needs_approval_notification.html:4
 #: templates/teamemail/needs_approval_notification.html:5
@@ -599,6 +615,7 @@ msgid "A New Team Registered"
 msgstr "Ein neues Team wurde angemeldet"
 
 #: templates/teamemail/needs_approval_notification.html:15
+#, python-format
 msgid ""
 "\n"
 "                    The Team %(name)s registered for %(tournament)s and is "
@@ -606,8 +623,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Das Team %(name)s wurde neu für %(tournament)s angemeldet und wartet nun "
-"auf Prüfung.\n"
+"                    Das Team %(name)s wurde neu für %(tournament)s "
+"angemeldet und wartet nun auf Prüfung.\n"
 "                "
 
 #: templates/teamemail/needs_approval_notification.html:25
