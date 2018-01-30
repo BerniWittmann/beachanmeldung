@@ -9,14 +9,22 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added new Embed Views for waitlist and complete tournament
 
 ### Changes
-* Add Tournament Name to needs approval notification email
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.9.0 - (2018-01-30)
+---
+
+### New
+* Added new Embed Views for waitlist and complete tournament
+
+### Changes
+* Add Tournament Name to needs approval notification email
 
 
 ## 1.8.1 - (2018-01-29)
