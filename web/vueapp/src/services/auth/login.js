@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import accountService from './../account';
 import store from './../../store';
+import checkEmailVerification from '@/utils/emailVerificationNotification';
 
 // When the request succeeds
 const success = (token, params) => {
   store.dispatch('auth/login', token);
   accountService.find();
+  setTimeout(checkEmailVerification, 5000);
   if (params && params.noredirect) return Promise.resolve();
   Vue.router.push({
     name: 'home.index',
