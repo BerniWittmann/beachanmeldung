@@ -11,11 +11,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Hide Waitlist for not staff users
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.9.2 - (2018-02-03)
+---
+
+### Changes
+* Hide Waitlist for not staff users
 
 
 ## 1.9.1 - (2018-01-30)
