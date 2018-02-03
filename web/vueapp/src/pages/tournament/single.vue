@@ -19,7 +19,7 @@
                     {{ $tc('tournament.few_places_left', tournament.freePlaces, { amount: tournament.freePlaces }) }}
                 </p>
                 <p v-else-if="tournament.noPlacesLeft" class="tournament-header-note-big">
-                    {{ $t('tournament.now_places_left') }}
+                    {{ $t('tournament.no_places_left') }}
                 </p>
             </span>
         </div>
@@ -72,8 +72,10 @@
                     <h2>{{ $t('tournament.list_signed_up') }}</h2>
                     <v-team-teable :teams="signedUpTeams" :max-count="tournament.numberOfPlaces"></v-team-teable>
                     <br>
-                    <h2>{{ $t('tournament.list_waiting') }}</h2>
-                    <v-team-teable :teams="waitingTeams"></v-team-teable>
+                    <div v-if="isStaff">
+                        <h2>{{ $t('tournament.list_waiting') }}</h2>
+                        <v-team-teable :teams="waitingTeams"></v-team-teable>
+                    </div>
                 </div>
                 <div class="tournament-body-actions" v-if="isStaff">
                     <el-col class="team-action-buttons">
