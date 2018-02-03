@@ -5,6 +5,9 @@
   }
   .nav-right {
     float: right;
+    display: flex;
+    height: 100%;
+    align-items: center;
   }
 
   .nav-image-wrap {
