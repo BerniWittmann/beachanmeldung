@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fix layout bug in nav
 
 ### Breaks
+
+
+## 1.9.3 - (2018-02-03)
+---
+
+### Fixes
+* Fix layout bug in nav
 
 
 ## 1.9.2 - (2018-02-03)
