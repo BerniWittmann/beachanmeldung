@@ -11,11 +11,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Improved Player Saving UI Behavior
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.9.4 - (2018-02-05)
+---
+
+### Changes
+* Improved Player Saving UI Behavior
 
 
 ## 1.9.3 - (2018-02-03)
