@@ -16,12 +16,12 @@
                                         :sm="{span: 20, offset: 2}"
                                         :xs="{span: 24, offset: 0}">
                                     <el-form-item prop="name">
-                                        <el-input v-model="team.name"
+                                        <el-input v-model="team.name" @change="handleChange"
                                                   type="text" @keyup.native.enter="save"
                                                   v-bind:placeholder="$t('team.name')"></el-input>
                                     </el-form-item>
                                     <el-form-item prop="beachname">
-                                        <el-input v-model="team.beachname"
+                                        <el-input v-model="team.beachname" @change="handleChange"
                                                   type="text" @keyup.native.enter="save"
                                                   v-bind:placeholder="$t('team.beachname_placeholder')"></el-input>
                                     </el-form-item>
@@ -42,28 +42,28 @@
                                         <el-col :lg="4" :md="4" :sm="6" :xs="24">
                                             <el-form-item :prop="`players.${index}.value.number`"
                                                           :rules="playerRules.number">
-                                                <el-input v-model.number="player.value.number"
+                                                <el-input v-model.number="player.value.number" @change="handleChange"
                                                           v-bind:placeholder="$t('player.number')"></el-input>
                                             </el-form-item>
                                         </el-col>
                                         <el-col :lg="7" :md="7" :sm="12" :xs="24">
                                             <el-form-item :prop="`players.${index}.value.firstName`"
                                                           :rules="playerRules.firstName">
-                                                <el-input v-model="player.value.firstName" type="text"
+                                                <el-input v-model="player.value.firstName" type="text" @change="handleChange"
                                                           v-bind:placeholder="$t('player.first_name')"></el-input>
                                             </el-form-item>
                                         </el-col>
                                         <el-col :lg="7" :md="7" :sm="12" :xs="24">
                                             <el-form-item :prop="`players.${index}.value.lastName`"
                                                           :rules="playerRules.lastName">
-                                                <el-input v-model="player.value.lastName" type="text"
+                                                <el-input v-model="player.value.lastName" type="text" @change="handleChange"
                                                           v-bind:placeholder="$t('player.last_name')"></el-input>
                                             </el-form-item>
                                         </el-col>
                                         <el-col :lg="4" :md="4" :sm="6" :xs="24">
                                             <el-form-item :prop="`players.${index}.value.yearOfBirth`"
                                                           :rules="playerRules.yearOfBirth">
-                                                <el-input v-model.number="player.value.yearOfBirth"
+                                                <el-input v-model.number="player.value.yearOfBirth" @change="handleChange"
                                                           v-bind:placeholder="$t('player.year_of_birth')"></el-input>
                                             </el-form-item>
                                         </el-col>
@@ -88,8 +88,8 @@
                                 <el-row>
                                     <el-col :lg="{span: 15}" :md="{span: 13}" :sm="{span: 9}"
                                             :xs="{span: 14}">
-                                        <el-button :loading="loading" type="primary" @click="save">
-                                            {{ $t('team.save') }}
+                                        <el-button :loading="loading" :icon="saveButtonIcon" type="primary" @click="save">
+                                            {{ saveButtonText }}
                                         </el-button>
                                         <v-link-button
                                                 :route="{ name: 'team.single', params: { teamID: activeTeam.id } }">
@@ -133,6 +133,12 @@
       currentYear() {
         return parseInt(moment().format('YYYY'), 10);
       },
+      saveButtonIcon() {
+        return this.saved ? 'el-icon-check' : null;
+      },
+      saveButtonText() {
+        return this.saved ? this.$t('team.saved') : this.$t('team.save');
+      },
     },
 
     watch: {
@@ -146,6 +152,7 @@
 
     data() {
       return {
+        saved: false,
         team: {
           name: undefined,
           beachname: undefined,
@@ -205,7 +212,10 @@
           if (valid) {
             const team = Object.assign({}, this.team);
             team.players = this.team.players.map(single => single.value);
-            teamService.update(team);
+            teamService.update(team).then(() => {
+              this.$refs.teamEditForm.clearValidate();
+              this.saved = true;
+            });
           } else {
             this.$message.error(this.$t('validation.failed'));
           }
@@ -221,12 +231,14 @@
       },
 
       removePlayer(item) {
+        this.handleChange();
         const index = this.team.players.indexOf(item);
         if (index !== -1) {
           this.team.players.splice(index, 1);
         }
       },
       addPlayer() {
+        this.handleChange();
         this.team.players.push({
           key: this.team.players.length + 1,
           value: {
@@ -253,6 +265,10 @@
           return uniquePlayerNames.push(name);
         });
         return callback();
+      },
+
+      handleChange() {
+        this.saved = false;
       },
     },
 
