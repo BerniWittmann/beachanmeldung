@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed cursor display in team/tournament cards
 
 ### Breaks
+
+
+## 1.9.5 - (2018-02-06)
+---
+
+### Fixes
+* Fixed cursor display in team/tournament cards
 
 
 ## 1.9.4 - (2018-02-05)
