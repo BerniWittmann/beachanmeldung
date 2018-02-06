@@ -1,5 +1,6 @@
-.tournament-card {
+.tournament-card, .card{
   margin-bottom: 20px;
+  cursor: pointer;
 
   .header, .body {
     display: flex;
@@ -22,4 +23,8 @@
       margin-right: 10px;
     }
   }
+}
+
+.card {
+  cursor: auto;
 }

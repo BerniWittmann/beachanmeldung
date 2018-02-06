@@ -4,6 +4,7 @@
             :data="tableData"
             border fit :show-header="false"
             style="width: 100%"
+            class="team-table"
             @row-click="navigateToTeam">
         <el-table-column
                 type="expand" v-if="canDisplayOptions" @click.prevent.stop>

@@ -10,7 +10,7 @@
                         <el-row>
                             <el-col :lg="{span: 16, offset: 4}" :md="{span: 18, offset: 3}" :sm="{span: 22, offset: 1}"
                                     :xs="{span: 22, offset: 1}">
-                                <el-card class="tournament-card">
+                                <el-card class="card">
                                     <div slot="header" class="header" v-if="hasSlot('header')">
                                         <slot name="header"></slot>
                                     </div>
