@@ -9,13 +9,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Datadog Tracing
 
 ### Changes
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.10.0 - (2018-02-21)
+---
+
+### New
+* Added Datadog Tracing
 
 
 ## 1.9.6 - (2018-02-21)
