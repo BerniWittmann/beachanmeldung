@@ -10,4 +10,8 @@ import * as App from './app';
 
 require('./bootstrap');
 
-new Vue(App).$mount('#app');
+import configService from '@/services/config';
+
+configService.getConfig().then(() => {
+  new Vue(App).$mount('#app');
+});

@@ -229,10 +229,6 @@ import JsonExcel from 'vue-json-excel';
 
 Vue.component('VDownloadExcel', JsonExcel);
 
-import configService from '@/services/config';
-
-configService.getConfig();
-
 export default {
   router,
   i18n,
