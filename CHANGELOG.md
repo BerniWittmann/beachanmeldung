@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Improved Config Loading
 
 ### Breaks
+
+
+## 1.9.6 - (2018-02-21)
+---
+
+### Fixes
+* Improved Config Loading
 
 
 ## 1.9.5 - (2018-02-06)
