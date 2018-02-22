@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* revert ddtrace port config
 
 ### Breaks
+
+
+## 1.10.3 - (2018-02-22)
+---
+
+### Fixes
+* revert ddtrace port config
 
 
 ## 1.10.2 - (2018-02-22)
