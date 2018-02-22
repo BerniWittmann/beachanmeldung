@@ -8,7 +8,8 @@ INSTALLED_APPS.append('webpack_loader',)
 INSTALLED_APPS.append('web.apps.WebConfig',)
 
 if not DEBUG and not TESTING:
-    INSTALLED_APPS.append('raven.contrib.django.raven_compat', 'ddtrace.contrib.django',)
+    INSTALLED_APPS.append('raven.contrib.django.raven_compat',)
+    INSTALLED_APPS.append('ddtrace.contrib.django',)
     RAVEN_CONFIG = {
         'dsn': config('SENTRY_DSN', default=None),
     }
