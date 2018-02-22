@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* ddtrace initialization
 
 ### Breaks
+
+
+## 1.10.1 - (2018-02-22)
+---
+
+### Fixes
+* ddtrace initialization
 
 
 ## 1.10.0 - (2018-02-21)
