@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* fixed a bug with multiple signup codes
 
 ### Breaks
+
+
+## 1.10.4 - (2018-02-23)
+---
+
+### Fixes
+* fixed a bug with multiple signup codes
 
 
 ## 1.10.3 - (2018-02-22)
