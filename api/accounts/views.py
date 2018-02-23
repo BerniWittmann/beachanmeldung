@@ -162,8 +162,7 @@ class CustomUserMe(UserMe):
             if getattr(settings, "AUTH_EMAIL_VERIFICATION", True):
                 try:
                     # Delete old signup codes
-                    signup_code = SignupCode.objects.get(user=user)
-                    signup_code.delete()
+                    SignupCode.objects.filter(user=user).delete()
                 except SignupCode.DoesNotExist:
                     pass
 

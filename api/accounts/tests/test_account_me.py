@@ -1,5 +1,6 @@
 import json
 
+from authemail.models import SignupCode
 from django.core import mail
 from django.core.urlresolvers import reverse
 from django.test import TransactionTestCase
@@ -181,6 +182,31 @@ class AccountMeTestCase(TransactionTestCase):
         self.assertEqual(user.email, 'new@byom.de')
         self.assertEqual(user.first_name, 'Test')
         self.assertEqual(user.last_name, 'User')
+        self.assertFalse(user.is_verified)
+
+    def test_account_me_update_email_multiple_signup_codes(self):
+        user = MyUser.objects.first()
+        SignupCode.objects.create_signup_code(user, '127.0.0.1')
+        SignupCode.objects.create_signup_code(user, '127.0.0.1')
+        self.assertEqual(SignupCode.objects.filter(user=user).count(), 2)
+
+        client = APIClient()
+        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
+        response = client.put(reverse('v1:authemail-me'), {
+            'email': 'new@byom.de',
+            'first_name': 'Test',
+            'last_name': 'User',
+            'phone': '+49192481024',
+        })
+        self.assertEqual(response.status_code, 200)
+        data = json.loads(response.content.decode('utf-8'))['user']
+        self.assertEqual(data['email'], 'new@byom.de')
+        self.assertEqual(data['first_name'], 'Test')
+        self.assertEqual(data['last_name'], 'User')
+        self.assertFalse(data['is_verified'])
+
+        user = MyUser.objects.first()
+        self.assertEqual(SignupCode.objects.filter(user=user).count(), 1)
         self.assertFalse(user.is_verified)
 
     def test_account_me_update_email_send_mail(self):
