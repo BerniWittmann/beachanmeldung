@@ -16,7 +16,7 @@
     "after_signup": "Der Anmeldezeitraum hat bereits am {date} um {time} Uhr geendet."
   },
   "few_places_left": "Nur noch 1 Platz frei | Nur noch {amount} Plätze frei",
-  "no_places_left": "Keine Plätze mehr frei",
+  "no_places_left": "Meldeliste bereits voll. Trotzdem noch anmelden, um über die Warteliste teilzunehmen!",
   "date_of_tournament": "Datum des Turniers",
   "starting_fee": "Startgebühr",
   "number_of_places": "Gesamtanzahl Plätze",

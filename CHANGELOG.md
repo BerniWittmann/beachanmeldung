@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
+* Adapt Text for no places left message
 * Display Payment Status for everyone
 
 ### Fixes
