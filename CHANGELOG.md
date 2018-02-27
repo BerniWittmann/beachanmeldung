@@ -11,12 +11,18 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### New
 
 ### Changes
-* Adapt Text for no places left message
-* Display Payment Status for everyone
 
 ### Fixes
 
 ### Breaks
+
+
+## 1.10.5 - (2018-02-27)
+---
+
+### Changes
+* Adapt Text for no places left message
+* Display Payment Status for everyone
 
 
 ## 1.10.4 - (2018-02-23)
