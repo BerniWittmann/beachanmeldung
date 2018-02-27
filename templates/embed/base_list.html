@@ -5,6 +5,7 @@
 <head>
     <title>{% block pagetitle %}{% endblock %}</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 <body>
 <table class="table table-striped table-hover">
@@ -12,6 +13,7 @@
     <tr>
         <th>{% trans "Number" %}</th>
         <th>{% trans "Team" %}</th>
+        <th>{% trans "Paid" %}</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +21,7 @@
             <tr>
                 <td>{{ forloop.counter }}</td>
                 <td>{{ team.complete_name }}</td>
+                <td>{% if team.paid %}<i class="far fa-money-bill-alt text-success"></i>{% else %}<i class="far fa-money-bill-alt text-danger"></i></i>{% endif %}</td>
             </tr>
         {% endfor %}
     </tbody>

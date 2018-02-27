@@ -22,13 +22,20 @@
                 prop="name">
         </el-table-column>
         <el-table-column
-                width="70"
-                v-if="canDisplayOptions">
+                width="40">
             <template slot-scope="scope">
                 <div v-if="scope.row.data">
                     <el-tooltip v-if="scope.row.data.paid" :content="$t('team.paid')" placement="top">
                         <i class="fa fa-money fa-fw"></i>
                     </el-tooltip>
+                </div>
+            </template>
+        </el-table-column>
+        <el-table-column
+                width="70"
+                v-if="canDisplayOptions">
+            <template slot-scope="scope">
+                <div v-if="scope.row.data">
                     <el-tooltip v-if="scope.row.data.hasPlayers" :content="$t('team.list_uploaded')" placement="top">
                         <i class="fa fa-list fa-fw"></i>
                     </el-tooltip>

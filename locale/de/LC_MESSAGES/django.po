@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-30 08:20+0100\n"
+"POT-Creation-Date: 2018-02-27 17:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,23 +72,23 @@ msgstr "Nutzer wurde ausgeloggt."
 msgid "Password reset."
 msgstr "Das Passwort wurde zurückgesetzt."
 
-#: api/accounts/views.py:135 api/accounts/views.py:228
+#: api/accounts/views.py:135 api/accounts/views.py:227
 msgid "Unable to verify user."
 msgstr "Der Nutzer konnte"
 
-#: api/accounts/views.py:206
+#: api/accounts/views.py:205
 msgid "Password reset not allowed."
 msgstr "Das Passwort darf nicht zurückgesetzt werden."
 
-#: api/accounts/views.py:225
+#: api/accounts/views.py:224
 msgid "User verified."
 msgstr "Der Nutzer wurde verifiziert."
 
-#: api/accounts/views.py:239
+#: api/accounts/views.py:238
 msgid "User already verified."
 msgstr "Der Nutzer wurde bereits verifiziert"
 
-#: api/accounts/views.py:246
+#: api/accounts/views.py:245
 msgid "Email sent."
 msgstr "E-Mail wurde versendet."
 
@@ -144,9 +144,9 @@ msgstr "Vorname"
 msgid "shirt number of the player"
 msgstr "Trikotnummer des Spielers"
 
-#: api/players/models.py:17 templates/embed/base_list.html:12
-#: templates/embed/tournament_list.html:13
-#: templates/embed/tournament_list.html:31
+#: api/players/models.py:17 templates/embed/base_list.html:14
+#: templates/embed/tournament_list.html:14
+#: templates/embed/tournament_list.html:32
 msgid "Number"
 msgstr "Nummer"
 
@@ -163,8 +163,8 @@ msgid "Team associated with the player"
 msgstr "Team des Spielers"
 
 #: api/players/models.py:29 api/team/models.py:38
-#: templates/embed/base_list.html:13 templates/embed/tournament_list.html:14
-#: templates/embed/tournament_list.html:32
+#: templates/embed/base_list.html:15 templates/embed/tournament_list.html:15
+#: templates/embed/tournament_list.html:33
 msgid "Team"
 msgstr "Team"
 
@@ -591,16 +591,20 @@ msgstr ""
 msgid "Your Account was successfully created."
 msgstr "Dein Team wurde erfolgreich angemeldet."
 
+#: templates/embed/base_list.html:16
+msgid "Paid"
+msgstr "Bezahlt"
+
 #: templates/embed/signup_list.html:4
 #, python-format
 msgid "%(tournament_name)s Signup List"
 msgstr "%(tournament_name)s Meldeliste"
 
-#: templates/embed/tournament_list.html:9
+#: templates/embed/tournament_list.html:10
 msgid "Signup List"
 msgstr "Meldeliste"
 
-#: templates/embed/tournament_list.html:27
+#: templates/embed/tournament_list.html:28
 msgid "Wait List"
 msgstr "Warteliste"
 
