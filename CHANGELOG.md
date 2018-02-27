@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* fix bug in embed list template
 
 ### Breaks
+
+
+## 1.10.6 - (2018-02-27)
+---
+
+### Fixes
+* fix bug in embed list template
 
 
 ## 1.10.5 - (2018-02-27)
