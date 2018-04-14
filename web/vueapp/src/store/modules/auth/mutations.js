@@ -7,18 +7,24 @@
  */
 
 import Vue from 'vue';
-import {
-  CHECK,
-  LOGIN,
-  LOGOUT,
-} from './mutation-types';
+import moment from 'moment';
+
+import {CHECK, LOGIN, LOGOUT,} from './mutation-types';
+
+import {parseJwt} from '@/utils/helpers';
 
 export default {
   [CHECK](state) {
-    state.authenticated = !!localStorage.getItem('id_token');
-    if (state.authenticated) {
-      Vue.$http.defaults.headers.common.Authorization = `JWT ${localStorage.getItem('id_token')}`;
+    const token = localStorage.getItem('id_token');
+    if (token) {
+      if (moment().isBefore(moment.unix(parseJwt(token).exp))) {
+        state.authenticated = true;
+        Vue.$http.defaults.headers.common.Authorization = `JWT ${token}`;
+        return;
+      }
+      localStorage.removeItem('id_token');
     }
+    state.authenticated = false;
   },
 
   [LOGIN](state, token) {
