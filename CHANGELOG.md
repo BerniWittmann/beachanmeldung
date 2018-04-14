@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* fixed linting issue
 
 ### Breaks
+
+
+## 1.10.9 - (2018-04-14)
+---
+
+### Fixes
+* fixed linting issue
 
 
 ## 1.10.8 - (2018-04-14)
