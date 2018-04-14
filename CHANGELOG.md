@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* fixed failing tests
 
 ### Breaks
+
+
+## 1.10.10 - (2018-04-14)
+---
+
+### Fixes
+* fixed failing tests
 
 
 ## 1.10.9 - (2018-04-14)
