@@ -9,9 +9,9 @@
 import Vue from 'vue';
 import moment from 'moment';
 
-import {CHECK, LOGIN, LOGOUT} from './mutation-types';
+import { CHECK, LOGIN, LOGOUT } from './mutation-types';
 
-import {parseJwt} from '@/utils/helpers';
+import { parseJwt } from '@/utils/helpers';
 
 export default {
   [CHECK](state) {
