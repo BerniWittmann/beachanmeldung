@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* fix bug which resulted in too much 401 when token expired
 
 ### Breaks
+
+
+## 1.10.7 - (2018-04-14)
+---
+
+### Fixes
+* fix bug which resulted in too much 401 when token expired
 
 
 ## 1.10.6 - (2018-02-27)
