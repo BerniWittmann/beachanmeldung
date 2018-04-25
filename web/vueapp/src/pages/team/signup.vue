@@ -323,7 +323,9 @@
       register() {
         this.$refs.registerForm.validate((valid) => {
           if (valid) {
-            authService.register(this.user, { noredirect: true }).then(this.nextStep, () => {
+            authService.register(this.user, { noredirect: true }).then(() => {
+              authService.login(this.user, { noredirect: true }).then(this.nextStep, () => {});
+            }, () => {
             });
           } else {
             this.$message.error(this.$t('validation.failed'));
