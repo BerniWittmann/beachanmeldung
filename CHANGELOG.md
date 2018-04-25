@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
+* fixed some css issues on Firefox
+* fixed authentication issue during team signup
 
 ### Breaks
 
