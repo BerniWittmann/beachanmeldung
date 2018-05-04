@@ -19,6 +19,11 @@
 </head>
 
 <body>
+
+<!--[if IE]>
+{% trans "Your Browser is not supported. Please use a modern Browser like Safari, Firefox or Chrome." %}
+<![endif]-->
+<![if !IE]>
 <noscript>Please activate Javascript in your Browser!</noscript>
 <div id="app"></div>
 {% if debug == False %}
@@ -28,6 +33,7 @@
     {% render_bundle 'vendor' 'js' %}
     {% render_bundle 'app' 'js' %}
 {% endif %}
+<![endif]>
 </body>
 
 </html>
