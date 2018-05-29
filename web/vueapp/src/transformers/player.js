@@ -5,6 +5,7 @@
  * The transformer for the Player.
  */
 
+import { parseDate } from '@/utils/helpers';
 import Transformer from './transformer';
 
 export default class PlayerTransformer extends Transformer {
@@ -21,7 +22,7 @@ export default class PlayerTransformer extends Transformer {
       name: player.name,
       firstName: player.first_name,
       lastName: player.last_name,
-      yearOfBirth: player.year_of_birth,
+      birthDate: parseDate(player.birth_date),
       number: player.number,
     };
   }
@@ -38,7 +39,7 @@ export default class PlayerTransformer extends Transformer {
       id: player.id,
       first_name: player.firstName,
       last_name: player.lastName,
-      year_of_birth: player.yearOfBirth,
+      birth_date: player.birthDate.format('DD.MM.YYYY'),
       number: player.number,
     };
   }

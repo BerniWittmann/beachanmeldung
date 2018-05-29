@@ -78,7 +78,7 @@ class Teams(TestCase):
             first_name='Test',
             last_name='Player',
             number=12,
-            year_of_birth=1990,
+            birth_date='1990-01-01',
             team=self.already_has_players_team,
         )
         self.other_team = Team.objects.create(

@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
@@ -64,7 +65,7 @@ class Players(TestCase):
                 first_name='Test',
                 last_name='Player',
                 number=12,
-                year_of_birth=1990,
+                birth_date=datetime.date(1990, 1, 1),
                 team=self.team,
             )
 

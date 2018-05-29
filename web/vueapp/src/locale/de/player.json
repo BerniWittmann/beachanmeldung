@@ -3,7 +3,7 @@
   "number": "Nummer",
   "first_name": "Vorname",
   "last_name": "Nachname",
-  "year_of_birth": "Jahrgang",
+  "birth_date": "Geburtsdatum",
   "index": "Spieler {index}",
   "add": "Spieler hinzufügen",
   "remove": "Spieler entfernen",

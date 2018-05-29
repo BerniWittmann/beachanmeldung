@@ -47,7 +47,7 @@ class Tournaments(TestCase):
             number=1,
             first_name='Test',
             last_name='Player',
-            year_of_birth='1990',
+            birth_date='1990-01-01',
             team=self.team
         )
 

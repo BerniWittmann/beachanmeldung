@@ -145,9 +145,9 @@
                                     :label="$t('player.last_name')">
                             </el-table-column>
                             <el-table-column
-                                    prop="yearOfBirth"
+                                    prop="birthDate"
                                     align="center"
-                                    :label="$t('player.year_of_birth')">
+                                    :label="$t('player.birth_date')">
                             </el-table-column>
                         </el-table>
                     </el-col>
@@ -233,7 +233,7 @@
           number: single.number,
           firstName: single.firstName,
           lastName: single.lastName,
-          yearOfBirth: single.yearOfBirth,
+          birthDate: single.birthDate.format('DD.MM.YYYY'),
         }));
       },
 
@@ -264,7 +264,10 @@
       },
 
       playerTableData() {
-        return this.team.players;
+        return this.team.players.map(player => ({
+          ...player,
+          birthDate: player.birthDate.format('DD.MM.YYYY'),
+        }));
       },
 
       displayButtonSignup() {
@@ -325,7 +328,7 @@
           number: this.$t('player.number'),
           firstName: this.$t('player.first_name'),
           lastName: this.$t('player.last_name'),
-          yearOfBirth: this.$t('player.year_of_birth'),
+          birthDate: this.$t('player.birth_date'),
         },
         playerListFileMeta: [
           [{

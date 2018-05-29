@@ -39,7 +39,7 @@
                                         {{ $t('player.index', { index: player.key }) }}
                                     </h3>
                                     <el-row :gutter="10">
-                                        <el-col :lg="4" :md="4" :sm="6" :xs="24">
+                                        <el-col :lg="2" :md="2" :sm="6" :xs="24">
                                             <el-form-item :prop="`players.${index}.value.number`"
                                                           :rules="playerRules.number">
                                                 <el-input v-model.number="player.value.number" @change="handleChange"
@@ -60,11 +60,15 @@
                                                           v-bind:placeholder="$t('player.last_name')"></el-input>
                                             </el-form-item>
                                         </el-col>
-                                        <el-col :lg="4" :md="4" :sm="6" :xs="24">
-                                            <el-form-item :prop="`players.${index}.value.yearOfBirth`"
-                                                          :rules="playerRules.yearOfBirth">
-                                                <el-input v-model.number="player.value.yearOfBirth" @change="handleChange"
-                                                          v-bind:placeholder="$t('player.year_of_birth')"></el-input>
+                                        <el-col :lg="6" :md="6" :sm="6" :xs="24">
+                                            <el-form-item :prop="`players.${index}.value.birthDate`"
+                                                          :rules="playerRules.birthDate">
+                                                <el-date-picker
+                                                        v-model="player.value.birthDate"
+                                                        type="date" @change="handleChange"
+                                                        format="dd.MM.yyyy"
+                                                        v-bind:placeholder="$t('player.birth_date')">
+                                                </el-date-picker>
                                             </el-form-item>
                                         </el-col>
                                         <el-col :lg="2" :md="2" :sm="6" :xs="24">
@@ -191,14 +195,11 @@
               trigger: 'blur',
             },
           ],
-          yearOfBirth: [
-            { required: true, message: this.$t('validation.player.year_of_birth.required') },
-            { type: 'number', message: this.$t('validation.player.year_of_birth.type'), trigger: 'blur' },
+          birthDate: [
+            { required: true, message: this.$t('validation.player.birth_date.required') },
             {
-              min: 1900,
-              max: this.currentYear,
-              type: 'number',
-              message: this.$t('validation.player.year_of_birth.range'),
+              validator: this.validateDate,
+              message: this.$t('validation.player.birth_date.valid'),
               trigger: 'blur',
             },
           ],
@@ -211,7 +212,10 @@
         this.$refs.teamEditForm.validate((valid) => {
           if (valid) {
             const team = Object.assign({}, this.team);
-            team.players = this.team.players.map(single => single.value);
+            team.players = this.team.players.map(single => ({
+              ...single.value,
+              birthDate: moment(single.value.birthDate),
+            }));
             teamService.update(team).then(() => {
               this.$refs.teamEditForm.clearValidate();
               this.saved = true;
@@ -245,7 +249,7 @@
             number: undefined,
             firstName: undefined,
             lastName: undefined,
-            yearOfBirth: undefined,
+            birthDate: undefined,
           },
         });
       },
@@ -265,6 +269,10 @@
           return uniquePlayerNames.push(name);
         });
         return callback();
+      },
+
+      validateDate(rule, value, callback) {
+        return moment(value, 'DD.MM.YYYY').isValid() ? callback() : callback(new Error('Invalid Date'));
       },
 
       handleChange() {

@@ -6,9 +6,10 @@ from .models import Player
 
 class PlayerListSerializer(serializers.ModelSerializer):
     team = TeamSerializer(required=False)
+    birth_date = serializers.DateField(input_formats=['iso-8601', '%d.%m.%Y'])
 
     class Meta:
         model = Player
         fields = ('first_name', 'last_name', 'name',
-                  'id', 'year_of_birth', 'number', 'team')
+                  'id', 'birth_date', 'number', 'team')
         read_only_fields = ('id',)

@@ -52,7 +52,7 @@ class PlayersInline(admin.TabularInline):
     model = Player
     extra = 0
     show_change_link = True
-    fields = ('number', 'first_name', 'last_name', 'year_of_birth')
+    fields = ('number', 'first_name', 'last_name', 'birth_date')
     ordering = ('number', 'last_name', 'first_name')
     classes = ('collapse',)
 

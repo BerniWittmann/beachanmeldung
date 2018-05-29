@@ -37,10 +37,9 @@
     "last_name": {
       "required": "Bitte gib einen Nachnamen für diesen Spieler an"
     },
-    "year_of_birth": {
-      "required": "Bitte gib ein Geburtsjahr an",
-      "type": "Bitte gib das Geburtsjahr im Format JJJJ an (z.B. 1990)",
-      "range": "Bitte gib ein korrektes Geburtsjahr im Format JJJJ an (z.B. 1990)"
+    "birth_date": {
+      "required": "Bitte gib ein Geburtsdatum an",
+      "valid": "Bitte gib ein gülitges Datum im Format DD.MM.JJJJ an"
     },
     "name": {
       "unique": "Der Name darf nicht doppelt vorkommen"

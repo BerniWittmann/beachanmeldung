@@ -1,6 +1,4 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from api.team.models import Team
@@ -15,12 +13,10 @@ class Player(models.Model):
                                   verbose_name=_("First Name"))
     number = models.PositiveIntegerField(help_text=_("shirt number of the player"),
                                          verbose_name=_("Number"))
-    year_of_birth = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(1900),
-            MaxValueValidator(timezone.now().year)],
-        help_text=_("Use the following format: YYYY"),
-        verbose_name=_("Year of Birth"))
+    birth_date = models.DateField(
+        blank=True, null=True,
+        help_text=_("Use the following format: YYYY-MM-DD"),
+        verbose_name=_("Birth Date"))
     team = models.ForeignKey(
         Team,
         on_delete=models.CASCADE,

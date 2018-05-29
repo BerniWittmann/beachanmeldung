@@ -1,4 +1,5 @@
 import json
+import datetime
 
 from django.core.urlresolvers import reverse
 from django.test import TransactionTestCase
@@ -72,14 +73,14 @@ class Players(TransactionTestCase):
             first_name='First',
             last_name='Player',
             number=42,
-            year_of_birth=1990,
+            birth_date=datetime.date(1990, 1, 1),
             team=self.team
         )
         self.second_player = Player.objects.create(
             first_name='Other',
             last_name='Player',
             number=43,
-            year_of_birth=1991,
+            birth_date=datetime.date(1991, 4, 4),
             team=self.team
         )
 
@@ -159,13 +160,13 @@ class Players(TransactionTestCase):
                 'first_name': 'New',
                 'last_name': 'Player',
                 'number': 42,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'id': self.second_player.id,
                 'first_name': 'Another',
                 'last_name': 'Name',
                 'number': 43,
-                'year_of_birth': 1990
+                'birth_date': '2000-12-24'
             }],
         }
         response = client.put(reverse('v1:team-detail',
@@ -194,18 +195,18 @@ class Players(TransactionTestCase):
                 'first_name': 'New',
                 'last_name': 'Player',
                 'number': 42,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'id': self.second_player.id,
                 'first_name': 'Another',
                 'last_name': 'Name',
                 'number': 43,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'first_name': 'Very',
                 'last_name': 'New',
                 'number': 44,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }],
         }
         response = client.put(reverse('v1:team-detail',
@@ -232,18 +233,18 @@ class Players(TransactionTestCase):
                 'first_name': 'New',
                 'last_name': 'Player',
                 'number': 42,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'id': self.second_player.id,
                 'first_name': 'New',
                 'last_name': 'Player',
                 'number': 43,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'first_name': 'Other',
                 'last_name': 'Player',
                 'number': 41,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }],
         }
         response = client.put(reverse('v1:team-detail',
@@ -267,18 +268,18 @@ class Players(TransactionTestCase):
                 'first_name': 'New',
                 'last_name': 'Player',
                 'number': 42,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'id': self.second_player.id,
                 'first_name': 'New',
                 'last_name': 'Another',
                 'number': 42,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }, {
                 'first_name': 'Other',
                 'last_name': 'Player',
                 'number': 41,
-                'year_of_birth': 1990
+                'birth_date': '1990-01-01'
             }],
         }
         response = client.put(reverse('v1:team-detail',
