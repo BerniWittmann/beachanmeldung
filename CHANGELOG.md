@@ -17,6 +17,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.11.0 - (2018-05-29)
+---
+
+### New
+* Migrated from year_of_birth to birth_date
+
+
 ## 1.10.12 - (2018-05-04)
 ---
 
