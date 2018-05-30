@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* removed Google Analytics
 
 ### Breaks
+
+
+## 1.11.1 - (2018-05-30)
+---
+
+### Fixes
+* removed Google Analytics
 
 
 ## 1.11.0 - (2018-05-29)
