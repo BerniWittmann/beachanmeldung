@@ -57,8 +57,11 @@ class Tournament(models.Model):
     def total_count_teams(self):
         return self.active_teams().count()
 
+    def signed_up_teams(self):
+        return self.active_teams().filter(state=TeamStateTypes.signed_up)
+
     def count_signed_up_teams(self):
-        return self.active_teams().filter(state=TeamStateTypes.signed_up).count()
+        return self.signed_up_teams().count()
 
     def free_places(self):
         return max(self.number_of_places - self.count_signed_up_teams(), 0)

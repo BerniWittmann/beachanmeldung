@@ -5,7 +5,17 @@ from rest_framework import serializers
 from .models import Tournament
 
 
+class TeamShortSerializer(serializers.Serializer):
+    id = serializers.IntegerField(label='ID', read_only=True)
+    name = serializers.CharField(read_only=True)
+    beachname = serializers.CharField(read_only=True)
+    complete_name = serializers.ReadOnlyField(read_only=True)
+    has_players = serializers.BooleanField(read_only=True)
+
+
 class TournamentSerializer(serializers.HyperlinkedModelSerializer):
+    signed_up_teams = TeamShortSerializer(many=True, read_only=True)
+
     class Meta:
         model = Tournament
         fields = ('id', 'name', 'gender', 'start_date', 'end_date',
@@ -15,11 +25,11 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
                   'is_before_signup', 'is_after_signup',
                   'number_of_places', 'total_count_teams', 'count_signed_up_teams',
                   'free_places', 'waitlist_count', 'approval_count',
-                  'no_places_left_flag', 'few_places_left_flag')
+                  'no_places_left_flag', 'few_places_left_flag', 'signed_up_teams')
         read_only_fields = ('id', 'signup_open', 'is_before_signup', 'is_after_signup',
                             'total_count_teams', 'count_signed_up_teams',
                             'free_places', 'waitlist_count', 'approval_count',
-                            'no_places_left_flag', 'few_places_left_flag')
+                            'no_places_left_flag', 'few_places_left_flag', 'signed_up_teams')
 
     def validate(self, data):
         start_date = data.get('start_date', self.instance.start_date if
