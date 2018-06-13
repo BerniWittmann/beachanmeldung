@@ -82,10 +82,8 @@ class Teams(TestCase):
         self.assertEqual(response.status_code, 200)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(len(data), 2)
-        self.assertEqual(data[1]['name'], 'TSV Ismaning')
-        self.assertGreaterEqual(data[1]['id'], 1)
-        self.assertEqual(data[0]['name'], 'Antoher Team')
-        self.assertGreaterEqual(data[0]['id'], 1)
+        self.assertIn(data[0]['name'], ['TSV Ismaning', 'Antoher Team'])
+        self.assertIn(data[1]['name'], ['TSV Ismaning', 'Antoher Team'])
 
     def test_team_list_get_unauthorized(self):
         client = APIClient()
