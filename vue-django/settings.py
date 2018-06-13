@@ -17,6 +17,7 @@ import sys
 import dj_database_url
 from decouple import config
 from django.utils.translation import gettext_lazy as _
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -180,7 +181,16 @@ CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
+    'localhost:8000',
+    'beach.handballismaning.de',
+    'spielplanismaning.herokuapp.com'
     'handballismaning.de',
+    'beachanmeldung.handballismaning.de',
+    'beachanmeldung.herokuapp.com'
+)
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'authentication',
 )
 
 AUTH_USER_MODEL = 'accounts.MyUser'
