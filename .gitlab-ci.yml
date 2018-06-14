@@ -21,6 +21,7 @@ variables:
 backend_tests:
     stage: test
     before_script:
+    - export SECRET_KEY=test-secret
     - export DATABASE_NAME=beachtest
     - export DATABASE_USER=beachtest
     - export DATABASE_PASSWORD=beachtest
