@@ -9,14 +9,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Include Teams in tournament response
 
 ### Changes
 
 ### Fixes
-* Fixed some settings and config view bug
 
 ### Breaks
+
+
+## 1.12.0 - (2018-06-14)
+---
+
+### New
+* Include Teams in tournament response
+
+
+### Fixes
+* Fixed some settings and config view bug
 
 
 ## 1.11.1 - (2018-05-30)
