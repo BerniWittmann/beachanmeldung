@@ -28,7 +28,7 @@ backend_tests:
     - export DATABASE_HOST=postgres
     - source /app/venv/bin/activate
     script:
-        - coverage run manage.py test
+        - SECRET_KEY=test-secret coverage run manage.py test
     after_script:
     - source /app/venv/bin/activate
     - coverage report
