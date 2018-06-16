@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed Backend Tests missing Secret key in CI
 
 ### Breaks
+
+
+## 1.12.1 - (2018-06-16)
+---
+
+### Fixes
+* Fixed Backend Tests missing Secret key in CI
 
 
 ## 1.12.0 - (2018-06-14)
