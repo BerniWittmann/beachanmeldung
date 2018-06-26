@@ -13,10 +13,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Improved Privacy texts
-* Fixed Bug when trying to edit a team
 
 ### Breaks
+
+
+## 1.12.2 - (2018-06-26)
+---
+
+### Fixes
+* Improved Privacy texts
+* Fixed Bug when trying to edit a team
 
 
 ## 1.12.1 - (2018-06-16)
