@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Updated E-Mail Adresses
 
 ### Breaks
+
+
+## 1.12.3 - (2018-06-26)
+---
+
+### Fixes
+* Updated E-Mail Adresses
 
 
 ## 1.12.2 - (2018-06-26)
