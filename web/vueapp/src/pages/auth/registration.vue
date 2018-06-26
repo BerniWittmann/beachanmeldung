@@ -39,6 +39,7 @@
                                           type="password" @keyup.native.enter="register"
                                           v-bind:placeholder="$t('auth.password_confirm')"></el-input>
                             </el-form-item>
+                            <p class="small">{{ $t('auth.agb_privacy_note') }}</p>
                             <el-form-item>
                                 <el-button :loading="loading" type="primary" @click="register">{{ $t('auth.register') }}
                                 </el-button>
