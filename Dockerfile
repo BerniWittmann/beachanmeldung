@@ -1,7 +1,7 @@
 # Base Docker image used in the CI pipeline
 
 FROM ubuntu:16.04
-MAINTAINER Bernhard Wittmann <b.wittmann@mail.de>
+MAINTAINER Bernhard Wittmann <dev@bernhardwittmann.com>
 
 RUN apt-get update -y -qq
 RUN apt-get install -y -qq build-essential libffi-dev libpq-dev libfontconfig1

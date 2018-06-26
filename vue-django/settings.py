@@ -33,7 +33,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 
 TESTING = 'test' in sys.argv
 
-ADMINS = [('Berni Wittmann', 'b.wittmann@mail.de')]
+ADMINS = [('Berni Wittmann', 'dev+handball@bernhardwittmann.com')]
 
 ALLOWED_HOSTS = []
 

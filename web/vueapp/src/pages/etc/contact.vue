@@ -31,7 +31,7 @@
                         </v-link-button>
                     </el-col>
                     <el-col :lg="4" :md="4" :sm="6" :xs="12">
-                        <v-link-button href="mailto:b.wittmann@mail.de" icon="el-icon-message">
+                        <v-link-button href="mailto:handball@bernhardwittmann.com" icon="el-icon-message">
                             {{ $t('etc.contact.mail') }}
                         </v-link-button>
                     </el-col>

@@ -158,9 +158,9 @@ Feel free to hit me up on:
 
 [GitHub](https://github.com/berniwittmann)
 
-Create an [issue](https://github.com/BerniWittmann/vue-django-boilerplate/issues/new)
+Create an [issue](https://github.com/BerniWittmann/beachanmeldung/issues/new)
 
-Or send me an [email](mailto:b.wittmann@mail.de)
+Or send me an [email](mailto:dev@bernhardwittmann.com)
 
 ## License
 
