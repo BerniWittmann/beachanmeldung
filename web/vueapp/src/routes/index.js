@@ -240,7 +240,7 @@ export default [
 
             beforeEnter: (to, from, next) => {
               if (store.state.account.isStaff) return next();
-              const currentTournament = store.state.tournament.currentTournament || {};
+              const currentTournament = store.state.tournament.activeTournament || {};
               if (moment().isBefore(currentTournament.deadlineEdit)) {
                 return next();
               }
