@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-04 12:38+0200\n"
+"POT-Creation-Date: 2018-06-27 15:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,55 +124,57 @@ msgstr "Abgelehnt"
 msgid "Player Administration"
 msgstr "Spieler - Verwaltung"
 
-#: api/players/models.py:11
+#: api/players/models.py:9
 msgid "Last Name of the player"
 msgstr "Nachname des Spielers"
 
-#: api/players/models.py:12
+#: api/players/models.py:10
 msgid "Last Name"
 msgstr "Nachname"
 
-#: api/players/models.py:14
+#: api/players/models.py:12
 msgid "First Name of the player"
 msgstr "Vorname des Spielers"
 
-#: api/players/models.py:15
+#: api/players/models.py:13
 msgid "First Name"
 msgstr "Vorname"
 
-#: api/players/models.py:16
+#: api/players/models.py:14
 msgid "shirt number of the player"
 msgstr "Trikotnummer des Spielers"
 
-#: api/players/models.py:17 templates/embed/base_list.html:14
+#: api/players/models.py:15 templates/embed/base_list.html:14
 #: templates/embed/tournament_list.html:14
 #: templates/embed/tournament_list.html:32
 msgid "Number"
 msgstr "Nummer"
 
-#: api/players/models.py:22
-msgid "Use the following format: YYYY"
+#: api/players/models.py:18
+#, fuzzy
+#| msgid "Use the following format: YYYY"
+msgid "Use the following format: YYYY-MM-DD"
 msgstr "Benutze das folgende Format: JJJJ"
 
-#: api/players/models.py:23
-msgid "Year of Birth"
-msgstr "Geburtsjahr"
+#: api/players/models.py:19
+msgid "Birth Date"
+msgstr ""
 
-#: api/players/models.py:28
+#: api/players/models.py:24
 msgid "Team associated with the player"
 msgstr "Team des Spielers"
 
-#: api/players/models.py:29 api/team/models.py:38
+#: api/players/models.py:25 api/team/models.py:38
 #: templates/embed/base_list.html:15 templates/embed/tournament_list.html:15
 #: templates/embed/tournament_list.html:33
 msgid "Team"
 msgstr "Team"
 
-#: api/players/models.py:34
+#: api/players/models.py:30
 msgid "Player"
 msgstr "Spieler"
 
-#: api/players/models.py:35
+#: api/players/models.py:31
 msgid "Players"
 msgstr "Spieler"
 
@@ -455,43 +457,43 @@ msgstr "Turnier"
 msgid "Tournaments"
 msgstr "Turniere"
 
-#: api/tournaments/models.py:85
+#: api/tournaments/models.py:88
 msgid "SignUp Possible"
 msgstr "Anmeldung möglich"
 
-#: api/tournaments/models.py:97 api/tournaments/serializers.py:32
+#: api/tournaments/models.py:100 api/tournaments/serializers.py:42
 msgid "StartDate must be before EndDate"
 msgstr "Start Datum muss vor End Datum liegen"
 
-#: api/tournaments/models.py:103 api/tournaments/serializers.py:44
+#: api/tournaments/models.py:106 api/tournaments/serializers.py:54
 msgid "Deadline of Signup must be after Start of Signup"
 msgstr "Das Ende der Anmeldephase muss nach dem Start liegen"
 
-#: api/tournaments/models.py:120
+#: api/tournaments/models.py:123
 msgid "Url to Document"
 msgstr "Link zu zusätzlichem Dokument"
 
-#: api/tournaments/models.py:121
+#: api/tournaments/models.py:124
 msgid "Document Url"
 msgstr "Dokumenten URL"
 
-#: api/tournaments/models.py:123
+#: api/tournaments/models.py:126
 msgid "Name of the Document"
 msgstr "Name oder Bezeichnung des Dokuments"
 
-#: api/tournaments/models.py:124
+#: api/tournaments/models.py:127
 msgid "Document Name"
 msgstr "Dokumentenname"
 
-#: api/tournaments/models.py:130
+#: api/tournaments/models.py:133
 msgid "Additional Document"
 msgstr "Zusätzliches Dokument"
 
-#: api/tournaments/models.py:131
+#: api/tournaments/models.py:134
 msgid "Additional Documents"
 msgstr "Zusätzliche Dokumente"
 
-#: api/views.py:11
+#: api/views.py:10
 msgid "Route Not Found"
 msgstr "Der Pfad wurde nicht gefunden"
 
@@ -859,17 +861,17 @@ msgstr "Dein Team wurde auf die Warteliste verschoben."
 msgid "Team On Waitlist"
 msgstr "Team auf Warteliste"
 
-#: vue-django/settings.py:126
+#: vue-django/settings.py:127
 msgid "Year"
 msgstr ""
 
-#: vue-django/settings.py:127
+#: vue-django/settings.py:128
 #, fuzzy
 #| msgid "Welcome"
 msgid "Welcome Text"
 msgstr "Willkommen"
 
-#: vue-django/settings.py:128
+#: vue-django/settings.py:129
 msgid "Terms of participation"
 msgstr ""
 
@@ -890,16 +892,17 @@ msgid ""
 "Your Browser is not supported. Please use a modern Browser like Safari, "
 "Firefox or Chrome."
 msgstr ""
-"Ihr Browser wird nicht unterstützt. Bitte benutzen Sie einen aktuellen Browser, wie Safari, "
-"Firefox oder Chrome."
+"Ihr Browser wird nicht unterstützt. Bitte benutzen Sie einen aktuellen "
+"Browser, wie Safari, Firefox oder Chrome."
 
-#, fuzzy
-#~| msgid "Advertisement Url"
-#~ msgid "Additional Document Url"
-#~ msgstr "Dokumenten URL"
+msgid "Year of Birth"
+msgstr "Geburtsjahr"
 
-#~ msgid "Accounts"
-#~ msgstr "Nutzer-Verwaltung"
+msgid "Additional Document Url"
+msgstr "Dokumenten URL"
 
-#~ msgid "Custom info"
-#~ msgstr "Benutzerdefinierte Informationen"
+msgid "Accounts"
+msgstr "Nutzer-Verwaltung"
+
+msgid "Custom info"
+msgstr "Benutzerdefinierte Informationen"
