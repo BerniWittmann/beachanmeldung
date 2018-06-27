@@ -21,7 +21,7 @@ export default class ListPlayerTransformer extends Transformer {
       name: player.name,
       firstName: player.first_name,
       lastName: player.last_name,
-      yearOfBirth: player.year_of_birth,
+      birthDate: player.birth_date,
       number: player.number,
       teamID: player.team ? player.team.id : undefined,
       teamName: player.team ? player.team.name : undefined,

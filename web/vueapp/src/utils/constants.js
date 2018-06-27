@@ -9,4 +9,5 @@ export const waitingListTeamStates = [teamStates.waiting, teamStates.needsApprov
 export const reminderTypes = {
   payment: 'payment',
   playerList: 'player_list',
+  email: 'email',
 };

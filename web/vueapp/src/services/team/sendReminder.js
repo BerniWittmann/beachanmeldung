@@ -25,11 +25,12 @@ const failed = () => {
   });
 };
 
-export default (teamIDs, type) => {
+export default (teamIDs, type, body) => {
   if (!Object.values(reminderTypes).includes(type)) return new Promise().reject();
 
   return Vue.$http.post(`/teams/send_${type}_reminder/`, {
     teams: teamIDs,
+    body,
   }).then((response) => {
     success(response.data);
   }).catch((error) => {

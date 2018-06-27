@@ -204,6 +204,8 @@ class TeamViewSet(viewsets.ModelViewSet):
                 mail_sender.send_payment_reminder()
             elif type == 'player_list':
                 mail_sender.send_player_list_reminder()
+            elif type == 'email':
+                mail_sender.send_email_reminder(request_data_dict)
 
         if successful_teams_count == 0:
             return Response(response,
@@ -218,3 +220,7 @@ class TeamViewSet(viewsets.ModelViewSet):
     @list_route(methods=['post'], permission_classes=[IsAdminUser])
     def send_player_list_reminder(self, request, **kwargs):
         return self.send_reminder(request, 'player_list', **kwargs)
+
+    @list_route(methods=['post'], permission_classes=[IsAdminUser])
+    def send_email_reminder(self, request, **kwargs):
+        return self.send_reminder(request, 'email', **kwargs)

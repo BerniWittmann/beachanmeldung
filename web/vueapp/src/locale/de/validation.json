@@ -10,7 +10,13 @@
   },
   "email": {
     "required": "Bitte gib deine E-Mail an",
-    "valid": "Bitte gib eine gültige E-Mail Adresse an"
+    "valid": "Bitte gib eine gültige E-Mail Adresse an",
+    "text": {
+      "required": "Bitte gib einen Text an"
+    },
+    "subject": {
+      "required": "Bitte gib einen Betreff an"
+    }
   },
   "password": {
     "required": "Bitte gib ein Passwort an",

@@ -31,11 +31,14 @@
                         </v-download-excel>
                     </el-col>
                     <el-col class="team-action-buttons">
-                        <el-button plain @click="currentTeamDialogOption = reminderTypes.payment">
+                        <el-button plain icon="el-icon-bell" @click="currentTeamDialogOption = reminderTypes.payment">
                             {{ $t('etc.admin.send_payment_reminder') }}
                         </el-button>
-                        <el-button plain @click="currentTeamDialogOption = reminderTypes.playerList">
+                        <el-button plain icon="el-icon-tickets" @click="currentTeamDialogOption = reminderTypes.playerList">
                             {{ $t('etc.admin.send_player_list_reminder') }}
+                        </el-button>
+                        <el-button icon="el-icon-message" plain @click="currentTeamDialogOption = reminderTypes.email">
+                            {{ $t('etc.admin.send_email_reminder') }}
                         </el-button>
                     </el-col>
                     <el-dialog :title="currentTreeTitle" v-loading="loading"
@@ -48,11 +51,28 @@
                                 show-checkbox
                                 :default-checked-keys="defaultCheckedTeams">
                         </el-tree>
+                        <div v-if="currentTeamDialogOption == reminderTypes.email">
+                            <br>
+                            <h3>{{ $t('etc.admin.email.title') }}</h3>
+                            <el-form :rules="emailRules" :model="email" ref="emailForm">
+                                <el-form-item prop="subject">
+                                    <el-input v-model="email.subject"
+                                              type="text"
+                                              v-bind:placeholder="$t('etc.admin.email.subject')"></el-input>
+                                </el-form-item>
+                                <el-form-item prop="text">
+                                    <el-input v-model="email.text"
+                                              type="textarea"
+                                              :autosize="{ minRows: 4 }"
+                                              v-bind:placeholder="$t('etc.admin.email.text')"></el-input>
+                                </el-form-item>
+                            </el-form>
+                        </div>
                         <div slot="footer" class="dialog-footer">
-                            <el-button @click="selectTeamsDialogVisible = false">
+                            <el-button icon="el-icon-close" @click="abort()">
                                 {{ $t('etc.admin.select_teams_dialog.abort') }}
                             </el-button>
-                            <el-button type="primary" @click="sendReminders()">
+                            <el-button icon="el-icon-check" type="primary" @click="sendReminders()">
                                 {{ $t('etc.admin.select_teams_dialog.send') }}
                             </el-button>
                         </div>
@@ -103,15 +123,23 @@
       teamTreeData() {
         return this.tournaments.map(t => ({
           ...t,
+          id: `t_${t.id}`,
           completeName: t.gender === 'mixed' ? t.name : `${t.name} - ${t.gender}`,
           isDisabled: false,
           teams: this.teams.filter(single =>
             single.tournament.id === t.id && single.state === teamStates.signedUp)
-            .map(s => ({
-              ...s,
-              isDisabled: this.currentTeamDialogOption === reminderTypes.payment
-                ? s.paid : s.hasPlayers,
-            })),
+            .map((s) => {
+              let isDisabled = this.currentTeamDialogOption === reminderTypes.payment
+                ? s.paid : s.hasPlayers;
+              if (this.currentTeamDialogOption === reminderTypes.email) {
+                isDisabled = false;
+              }
+
+              return {
+                ...s,
+                isDisabled,
+              };
+            }),
         }));
       },
 
@@ -121,7 +149,7 @@
           number: single.number,
           firstName: single.firstName,
           lastName: single.lastName,
-          yearOfBirth: single.yearOfBirth,
+          birthDate: single.birthDate,
           teamID: single.teamID,
           teamName: single.teamName,
           teamBeachName: single.teamBeachName,
@@ -148,6 +176,10 @@
         },
         set() {
           this.currentTeamDialogOption = undefined;
+          this.email = {
+            subject: undefined,
+            text: undefined,
+          };
         },
       },
 
@@ -163,7 +195,7 @@
           number: this.$t('player.number'),
           firstName: this.$t('player.first_name'),
           lastName: this.$t('player.last_name'),
-          yearOfBirth: this.$t('player.year_of_birth'),
+          birthDate: this.$t('player.birth_date'),
           teamID: this.$t('player.team_id'),
           teamName: this.$t('player.team_name'),
           teamBeachName: this.$t('player.team_beachname'),
@@ -179,16 +211,56 @@
         currentTeamDialogOption: undefined,
         reminderTypes,
         defaultCheckedTeams: [],
+        email: {
+          subject: undefined,
+          text: undefined,
+        },
+        emailRules: {
+          subject: [
+            { required: true, message: this.$t('validation.email.subject.required'), trigger: 'blur' },
+          ],
+          text: [
+            { required: true, message: this.$t('validation.email.text.required'), trigger: 'blur' },
+          ],
+        },
       };
     },
 
     methods: {
       sendReminders() {
+        if (this.currentTeamDialogOption === reminderTypes.email) {
+          this.$refs.emailForm.validate((valid) => {
+            if (valid) {
+              this.send();
+            }
+          });
+        } else {
+          this.send();
+        }
+      },
+
+      send() {
         const teams = this.$refs.teamListTree.getCheckedKeys();
         if (teams.length === 0) return;
-        teamService.sendReminder(teams, this.currentTeamDialogOption).then(() => {
+        const body = {
+          subject: this.email.subject,
+          text: this.email.text ? this.email.text.replace(/(?:\r\n|\r|\n)/g, '<br />') : undefined,
+        };
+        teamService.sendReminder(teams, this.currentTeamDialogOption, body).then(() => {
           this.selectTeamsDialogVisible = false;
+          this.email = {
+            subject: undefined,
+            text: undefined,
+          };
         });
+      },
+
+      abort() {
+        this.selectTeamsDialogVisible = false;
+        this.email = {
+          subject: undefined,
+          text: undefined,
+        };
       },
     },
 

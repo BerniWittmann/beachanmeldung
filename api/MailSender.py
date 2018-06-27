@@ -49,7 +49,7 @@ class MailSender:
         txt_file = '{}/{}.txt'.format(self.prefix, template_prefix)
         html_file = '{}/{}.html'.format(self.prefix, template_prefix)
 
-        subject = render_to_string(subject_file).strip()
+        subject = render_to_string(subject_file, template_ctxt).strip()
         from_email = settings.DEFAULT_EMAIL_FROM
         to = target_email
         text_content = render_to_string(txt_file, template_ctxt)

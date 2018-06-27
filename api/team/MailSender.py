@@ -41,6 +41,16 @@ class TeamMailSender(MailSender):
     def send_player_list_reminder(self):
         self.send_mail_to_trainer('player_list_reminder')
 
+    def send_email_reminder(self, data):
+        email = [self.team.trainer.email]
+        data = {
+            'team': self.team,
+            'text_html': data.get('body').get('text'),
+            'text': data.get('body').get('text').replace('<br />', '\n'),
+            'subject': data.get('body').get('subject')
+        }
+        self.send_email('email_reminder', email, data)
+
     def send_needs_approval_notification(self):
         emails = [x.email for x in MyUser.objects.filter(receive_notifications=True)]
         data = {
