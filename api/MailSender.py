@@ -87,8 +87,12 @@ class MailSender:
             msg.send()
 
     def send_email(self, prefix, email, data):
+        host = 'http://' + self.request.get_host()
+        if self.request.is_secure():
+            host = 'https://' + self.request.get_host()
+
         ctxt = dict(email=email,
-                    host='http://' + self.request.get_host(),
+                    host=host,
                     iban=config('BANKING_IBAN', default=None),
                     bic=config('BANKING_BIC', default=None),
                     receiver_name=config('BANKING_NAME', default=None),
