@@ -13,10 +13,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Updated Translations
-* Fixed Email Links to also use https
 
 ### Breaks
+
+
+## 1.13.1 - (2018-06-27)
+---
+
+### Fixes
+* Updated Translations
+* Fixed Email Links to also use https
 
 
 ## 1.13.0 - (2018-06-27)
