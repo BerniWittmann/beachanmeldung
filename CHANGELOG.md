@@ -9,14 +9,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
-* Added Ability to send a free text email to teams
 
 ### Changes
 
 ### Fixes
-* Fixed bug with player birthDate in Player Export
 
 ### Breaks
+
+
+## 1.13.0 - (2018-06-27)
+---
+
+### New
+* Added Ability to send a free text email to teams
+
+
+### Fixes
+* Fixed bug with player birthDate in Player Export
 
 
 ## 1.12.3 - (2018-06-26)
