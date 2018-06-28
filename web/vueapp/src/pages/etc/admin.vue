@@ -240,7 +240,7 @@
       },
 
       send() {
-        const teams = this.$refs.teamListTree.getCheckedKeys();
+        const teams = this.$refs.teamListTree.getCheckedKeys(true);
         if (teams.length === 0) return;
         const body = {
           subject: this.email.subject,
