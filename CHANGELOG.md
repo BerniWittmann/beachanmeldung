@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed Email Send Bug with whole tournaments
 
 ### Breaks
+
+
+## 1.13.2 - (2018-06-28)
+---
+
+### Fixes
+* Fixed Email Send Bug with whole tournaments
 
 
 ## 1.13.1 - (2018-06-27)
