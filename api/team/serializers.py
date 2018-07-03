@@ -33,6 +33,13 @@ class TeamSerializer(serializers.Serializer):
     players = PlayerSerializer(many=True, required=False, allow_null=True)
     has_players = serializers.BooleanField(read_only=True)
 
+    @staticmethod
+    def setup_eager_loading(queryset):
+        queryset = queryset.select_related('trainer', 'tournament')
+
+        queryset = queryset.prefetch_related('players', 'tournament__teams', 'tournament__teams__players')
+        return queryset
+
     def validate(self, data):
         try:
             tournament = Tournament.objects.get(pk=data.get('tournament_id')) \

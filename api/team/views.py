@@ -15,10 +15,18 @@ from .serializers import TeamSerializer
 
 
 class TeamViewSet(viewsets.ModelViewSet):
-    queryset = Team.objects.all().exclude(state=TeamStateTypes.denied).order_by('date_signup')
     permission_classes = (IsTrainerOrAdminOrReadOnly,)
     serializer_class = TeamSerializer
     pagination_class = None
+
+    def get_queryset(self):
+        queryset = Team.objects.all()
+        # Set up eager loading to avoid N+1 selects
+        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+
+        queryset.exclude(state=TeamStateTypes.denied).order_by('date_signup')
+
+        return queryset
 
     def get_serializer_context(self):
         return {'request': self.request}
@@ -155,7 +163,9 @@ class TeamViewSet(viewsets.ModelViewSet):
             return Response({'detail': _('Authentication credentials were not provided.')},
                             status=status.HTTP_401_UNAUTHORIZED)
 
-        teams = Team.objects.all().filter(trainer=request.user)
+        queryset = Team.objects.all()
+        queryset = self.get_serializer_class().setup_eager_loading(queryset)
+        teams = queryset.filter(trainer=request.user)
         return Response(TeamSerializer(teams, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
 
     def send_reminder(self, request, type, **kwargs):

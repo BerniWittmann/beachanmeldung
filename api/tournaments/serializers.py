@@ -1,7 +1,9 @@
+from django.db.models import Prefetch
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
+from api.team.models import Team
 from .models import Tournament
 
 
@@ -55,3 +57,13 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
             )
 
         return data
+
+    @staticmethod
+    def setup_eager_loading(queryset):
+        queryset = queryset.select_related()
+        queryset = queryset.prefetch_related(
+            Prefetch('teams', queryset=Team.objects.all()
+                     .select_related('trainer', 'tournament')
+                     .prefetch_related('players')),
+        )
+        return queryset
