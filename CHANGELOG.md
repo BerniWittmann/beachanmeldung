@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Added Eager fetching for better performance
 
 ### Breaks
+
+
+## 1.13.3 - (2018-07-03)
+---
+
+### Fixes
+* Added Eager fetching for better performance
 
 
 ## 1.13.2 - (2018-06-28)
