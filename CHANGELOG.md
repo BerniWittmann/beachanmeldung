@@ -13,11 +13,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
+
+### Breaks
+
+
+## 1.13.4 - (2018-07-04)
+---
+
+### Fixes
 * Optimized performance using cached properties
 * Fixed help text for birth date
 * Improved Eager fetching
-
-### Breaks
 
 
 ## 1.13.3 - (2018-07-03)
