@@ -14,6 +14,14 @@ class TeamShortSerializer(serializers.Serializer):
     complete_name = serializers.ReadOnlyField(read_only=True)
     has_players = serializers.BooleanField(read_only=True)
 
+    @staticmethod
+    def setup_eager_loading(queryset):
+        queryset = queryset.select_related()
+        queryset = queryset.prefetch_related(
+            'players'
+        )
+        return queryset
+
 
 class TournamentSerializer(serializers.HyperlinkedModelSerializer):
     signed_up_teams = TeamShortSerializer(many=True, read_only=True)
@@ -62,8 +70,6 @@ class TournamentSerializer(serializers.HyperlinkedModelSerializer):
     def setup_eager_loading(queryset):
         queryset = queryset.select_related()
         queryset = queryset.prefetch_related(
-            Prefetch('teams', queryset=Team.objects.all()
-                     .select_related('trainer', 'tournament')
-                     .prefetch_related('players')),
+            Prefetch('teams', queryset=TeamShortSerializer.setup_eager_loading(Team.objects.all())),
         )
         return queryset

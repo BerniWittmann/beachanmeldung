@@ -1,6 +1,7 @@
 from collections import OrderedDict
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Prefetch
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.fields import SkipField
@@ -35,9 +36,13 @@ class TeamSerializer(serializers.Serializer):
 
     @staticmethod
     def setup_eager_loading(queryset):
-        queryset = queryset.select_related('trainer', 'tournament')
+        queryset = queryset.select_related(
+            'trainer'
+        )
 
-        queryset = queryset.prefetch_related('players', 'tournament__teams', 'tournament__teams__players')
+        queryset = queryset.prefetch_related(
+            'players',
+            Prefetch('tournament', queryset=TournamentSerializer.setup_eager_loading(Tournament.objects.all())),)
         return queryset
 
     def validate(self, data):
