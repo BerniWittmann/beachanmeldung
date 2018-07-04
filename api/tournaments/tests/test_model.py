@@ -42,9 +42,9 @@ class Tournaments(TestCase):
         self.tournament.deadline_signup = timezone.now() + \
             timezone.timedelta(days=1)
 
-        self.assertTrue(self.tournament.signup_open())
-        self.assertFalse(self.tournament.is_after_signup())
-        self.assertFalse(self.tournament.is_before_signup())
+        self.assertTrue(self.tournament.signup_open)
+        self.assertFalse(self.tournament.is_after_signup)
+        self.assertFalse(self.tournament.is_before_signup)
 
     def test_tournament_is_signup_not_open(self):
         self.tournament.start_signup = timezone.now() + \
@@ -52,14 +52,14 @@ class Tournaments(TestCase):
         self.tournament.deadline_signup = timezone.now() + \
             timezone.timedelta(days=-1)
 
-        self.assertFalse(self.tournament.signup_open())
+        self.assertFalse(self.tournament.signup_open)
 
         self.tournament.start_signup = timezone.now() + \
             timezone.timedelta(days=2)
         self.tournament.deadline_signup = timezone.now() + \
             timezone.timedelta(days=3)
 
-        self.assertFalse(self.tournament.signup_open())
+        self.assertFalse(self.tournament.signup_open)
 
     def test_tournament_is_before_signup(self):
         self.tournament.start_signup = timezone.now() + \
@@ -67,9 +67,9 @@ class Tournaments(TestCase):
         self.tournament.deadline_signup = timezone.now() + \
             timezone.timedelta(days=3)
 
-        self.assertFalse(self.tournament.signup_open())
-        self.assertFalse(self.tournament.is_after_signup())
-        self.assertTrue(self.tournament.is_before_signup())
+        self.assertFalse(self.tournament.signup_open)
+        self.assertFalse(self.tournament.is_after_signup)
+        self.assertTrue(self.tournament.is_before_signup)
 
     def test_tournament_is_after_signup(self):
         self.tournament.start_signup = timezone.now() + \
@@ -77,17 +77,17 @@ class Tournaments(TestCase):
         self.tournament.deadline_signup = timezone.now() + \
             timezone.timedelta(days=-3)
 
-        self.assertFalse(self.tournament.signup_open())
-        self.assertTrue(self.tournament.is_after_signup())
-        self.assertFalse(self.tournament.is_before_signup())
+        self.assertFalse(self.tournament.signup_open)
+        self.assertTrue(self.tournament.is_after_signup)
+        self.assertFalse(self.tournament.is_before_signup)
 
     def test_tournament_team_count_empty(self):
-        self.assertEqual(self.tournament.active_teams().count(), 0)
-        self.assertEqual(self.tournament.total_count_teams(), 0)
-        self.assertEqual(self.tournament.count_signed_up_teams(), 0)
-        self.assertEqual(self.tournament.free_places(), 23)
-        self.assertEqual(self.tournament.waitlist_count(), 0)
-        self.assertEqual(self.tournament.approval_count(), 0)
+        self.assertEqual(self.tournament.active_teams.count(), 0)
+        self.assertEqual(self.tournament.total_count_teams, 0)
+        self.assertEqual(self.tournament.count_signed_up_teams, 0)
+        self.assertEqual(self.tournament.free_places, 23)
+        self.assertEqual(self.tournament.waitlist_count, 0)
+        self.assertEqual(self.tournament.approval_count, 0)
 
     def test_tournament_team_count_approval(self):
         Team.objects.create(
@@ -97,12 +97,12 @@ class Tournaments(TestCase):
             trainer=self.user,
             state=TeamStateTypes.needs_approval
         )
-        self.assertEqual(self.tournament.active_teams().count(), 1)
-        self.assertEqual(self.tournament.total_count_teams(), 1)
-        self.assertEqual(self.tournament.count_signed_up_teams(), 0)
-        self.assertEqual(self.tournament.free_places(), 23)
-        self.assertEqual(self.tournament.waitlist_count(), 1)
-        self.assertEqual(self.tournament.approval_count(), 1)
+        self.assertEqual(self.tournament.active_teams.count(), 1)
+        self.assertEqual(self.tournament.total_count_teams, 1)
+        self.assertEqual(self.tournament.count_signed_up_teams, 0)
+        self.assertEqual(self.tournament.free_places, 23)
+        self.assertEqual(self.tournament.waitlist_count, 1)
+        self.assertEqual(self.tournament.approval_count, 1)
 
     def test_tournament_team_count_waitlist(self):
         Team.objects.create(
@@ -112,12 +112,12 @@ class Tournaments(TestCase):
             trainer=self.user,
             state=TeamStateTypes.waiting
         )
-        self.assertEqual(self.tournament.active_teams().count(), 1)
-        self.assertEqual(self.tournament.total_count_teams(), 1)
-        self.assertEqual(self.tournament.count_signed_up_teams(), 0)
-        self.assertEqual(self.tournament.free_places(), 23)
-        self.assertEqual(self.tournament.waitlist_count(), 1)
-        self.assertEqual(self.tournament.approval_count(), 0)
+        self.assertEqual(self.tournament.active_teams.count(), 1)
+        self.assertEqual(self.tournament.total_count_teams, 1)
+        self.assertEqual(self.tournament.count_signed_up_teams, 0)
+        self.assertEqual(self.tournament.free_places, 23)
+        self.assertEqual(self.tournament.waitlist_count, 1)
+        self.assertEqual(self.tournament.approval_count, 0)
 
     def test_tournament_team_count_signed_up(self):
         Team.objects.create(
@@ -127,12 +127,12 @@ class Tournaments(TestCase):
             trainer=self.user,
             state=TeamStateTypes.signed_up
         )
-        self.assertEqual(self.tournament.active_teams().count(), 1)
-        self.assertEqual(self.tournament.total_count_teams(), 1)
-        self.assertEqual(self.tournament.count_signed_up_teams(), 1)
-        self.assertEqual(self.tournament.free_places(), 22)
-        self.assertEqual(self.tournament.waitlist_count(), 0)
-        self.assertEqual(self.tournament.approval_count(), 0)
+        self.assertEqual(self.tournament.active_teams.count(), 1)
+        self.assertEqual(self.tournament.total_count_teams, 1)
+        self.assertEqual(self.tournament.count_signed_up_teams, 1)
+        self.assertEqual(self.tournament.free_places, 22)
+        self.assertEqual(self.tournament.waitlist_count, 0)
+        self.assertEqual(self.tournament.approval_count, 0)
 
     def test_tournament_team_count_denied(self):
         Team.objects.create(
@@ -142,9 +142,9 @@ class Tournaments(TestCase):
             trainer=self.user,
             state=TeamStateTypes.denied
         )
-        self.assertEqual(self.tournament.active_teams().count(), 0)
-        self.assertEqual(self.tournament.total_count_teams(), 0)
-        self.assertEqual(self.tournament.count_signed_up_teams(), 0)
-        self.assertEqual(self.tournament.free_places(), 23)
-        self.assertEqual(self.tournament.waitlist_count(), 0)
-        self.assertEqual(self.tournament.approval_count(), 0)
+        self.assertEqual(self.tournament.active_teams.count(), 0)
+        self.assertEqual(self.tournament.total_count_teams, 0)
+        self.assertEqual(self.tournament.count_signed_up_teams, 0)
+        self.assertEqual(self.tournament.free_places, 23)
+        self.assertEqual(self.tournament.waitlist_count, 0)
+        self.assertEqual(self.tournament.approval_count, 0)

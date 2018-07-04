@@ -200,7 +200,7 @@ class TeamViewSet(viewsets.ModelViewSet):
                 response[team_id] = [_('Team has already paid')]
                 continue
 
-            if type == 'player_list' and team.has_players():
+            if type == 'player_list' and team.has_players:
                 response[team_id] = [_('Team has already Players')]
                 continue
 

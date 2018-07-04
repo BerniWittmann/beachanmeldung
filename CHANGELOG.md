@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
+* Optimized performance using cached properties
 * Fixed help text for birth date
 * Improved Eager fetching
 

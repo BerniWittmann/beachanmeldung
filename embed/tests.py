@@ -82,8 +82,8 @@ class EmbedTestCase(TestCase):
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 2)
-        self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'))
-        self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_1.complete_name, response.content.decode('utf-8'))
+        self.assertInHTML(self.team_2.complete_name, response.content.decode('utf-8'))
 
     def test_get_tournament_signup_embed_free_places(self):
         self.team_1.state = TeamStateTypes.waiting
@@ -93,8 +93,8 @@ class EmbedTestCase(TestCase):
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 2)
-        self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'), count=0)
-        self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_1.complete_name, response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_2.complete_name, response.content.decode('utf-8'))
 
     def test_get_tournament_signup_embed_empty(self):
         self.team_1.state = TeamStateTypes.waiting
@@ -106,8 +106,8 @@ class EmbedTestCase(TestCase):
         response = client.get(reverse('embed-tournament-signup-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 2)
-        self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'), count=0)
-        self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_1.complete_name, response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_2.complete_name, response.content.decode('utf-8'), count=0)
 
     def test_get_tournament_wait_embed(self):
         client = Client()
@@ -125,8 +125,8 @@ class EmbedTestCase(TestCase):
         response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 2)
-        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'))
-        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_3.complete_name, response.content.decode('utf-8'))
+        self.assertInHTML(self.team_4.complete_name, response.content.decode('utf-8'))
 
     def test_get_tournament_wait_embed_empty(self):
         self.team_3.state = TeamStateTypes.denied
@@ -138,8 +138,8 @@ class EmbedTestCase(TestCase):
         response = client.get(reverse('embed-tournament-wait-list', kwargs={'pk': self.tournament.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 0)
-        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'), count=0)
-        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_3.complete_name, response.content.decode('utf-8'), count=0)
+        self.assertInHTML(self.team_4.complete_name, response.content.decode('utf-8'), count=0)
 
     def test_get_tournament_complete_embed(self):
         client = Client()
@@ -159,7 +159,7 @@ class EmbedTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context.get('teams')), 2)
         self.assertEqual(len(response.context.get('waitlist_teams')), 2)
-        self.assertInHTML(self.team_1.complete_name(), response.content.decode('utf-8'))
-        self.assertInHTML(self.team_2.complete_name(), response.content.decode('utf-8'))
-        self.assertInHTML(self.team_3.complete_name(), response.content.decode('utf-8'))
-        self.assertInHTML(self.team_4.complete_name(), response.content.decode('utf-8'))
+        self.assertInHTML(self.team_1.complete_name, response.content.decode('utf-8'))
+        self.assertInHTML(self.team_2.complete_name, response.content.decode('utf-8'))
+        self.assertInHTML(self.team_3.complete_name, response.content.decode('utf-8'))
+        self.assertInHTML(self.team_4.complete_name, response.content.decode('utf-8'))

@@ -180,8 +180,8 @@ class Players(TransactionTestCase):
         self.assertEqual(players[1]['name'], 'Another Name')
         players = Player.objects.all()
         self.assertNotEqual(players, [])
-        self.assertEqual(players[0].name(), 'New Player')
-        self.assertEqual(players[1].name(), 'Another Name')
+        self.assertEqual(players[0].name, 'New Player')
+        self.assertEqual(players[1].name, 'Another Name')
         self.assertEqual(Player.objects.count(), 2)
 
     def test_team_update_add_players(self):
@@ -219,7 +219,7 @@ class Players(TransactionTestCase):
         self.assertEqual(players[2]['name'], 'Very New')
         players = Player.objects.all()
         self.assertNotEqual(players, [])
-        self.assertEqual(players[2].name(), 'Very New')
+        self.assertEqual(players[2].name, 'Very New')
         self.assertEqual(Player.objects.count(), 3)
 
     def test_team_update_players_not_unique(self):

@@ -270,20 +270,28 @@ class Tournaments(TestCase):
             datetime.timedelta(days=1)
         self.tournament.save()
 
-        self.assertTrue(self.tournament.signup_open())
+        self.assertFalse(self.tournament.is_before_signup)
+        self.assertFalse(self.tournament.is_after_signup)
+        self.assertTrue(self.tournament.signup_open)
 
+    def test_tournament_signup_open_before(self):
         self.tournament.deadline_signup = timezone.now() + \
             datetime.timedelta(days=2)
         self.tournament.start_signup = timezone.now() + \
             datetime.timedelta(days=1)
         self.tournament.save()
 
-        self.assertFalse(self.tournament.signup_open())
+        self.assertTrue(self.tournament.is_before_signup)
+        self.assertFalse(self.tournament.is_after_signup)
+        self.assertFalse(self.tournament.signup_open)
 
+    def test_tournament_signup_open_after(self):
         self.tournament.deadline_signup = timezone.now() - \
             datetime.timedelta(days=1)
         self.tournament.start_signup = timezone.now() - \
             datetime.timedelta(days=2)
         self.tournament.save()
 
-        self.assertFalse(self.tournament.signup_open())
+        self.assertFalse(self.tournament.is_before_signup)
+        self.assertTrue(self.tournament.is_after_signup)
+        self.assertFalse(self.tournament.signup_open)

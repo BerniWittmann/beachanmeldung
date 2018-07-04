@@ -57,7 +57,7 @@ class MailSender:
         reply_to = config('DEFAULT_REPLY_TO', default=None)
         cc = None
         if 'team' in template_ctxt.keys():
-            sanitized_team_name = template_ctxt.get('team').complete_name() \
+            sanitized_team_name = template_ctxt.get('team').complete_name \
                 .replace(u"\xe4", "ae").replace(u"\xf6", "oe").replace(u"\xfc", "ue").replace(u"\xdf", "ss") \
                 .replace(u"\xc4", "Ae").replace(u"\xd6", "Oe").replace(u"\xdc", "Ue")
         else:

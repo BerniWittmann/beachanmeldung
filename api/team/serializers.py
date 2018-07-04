@@ -42,7 +42,9 @@ class TeamSerializer(serializers.Serializer):
 
         queryset = queryset.prefetch_related(
             'players',
-            Prefetch('tournament', queryset=TournamentSerializer.setup_eager_loading(Tournament.objects.all())),)
+            Prefetch('tournament', queryset=TournamentSerializer.setup_eager_loading(Tournament.objects.all())),
+            'tournament__teams'
+        )
         return queryset
 
     def validate(self, data):

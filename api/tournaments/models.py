@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from djmoney.models.fields import MoneyField
+from django.utils.functional import cached_property
 
 from api.enums import TeamStateTypes, TournamentGenderTypes
 
@@ -51,35 +52,45 @@ class Tournament(models.Model):
         verbose_name = _('Tournament')
         verbose_name_plural = _('Tournaments')
 
+    @cached_property
     def active_teams(self):
         return self.teams.exclude(state=TeamStateTypes.denied)
 
+    @cached_property
     def total_count_teams(self):
-        return self.active_teams().count()
+        return self.active_teams.count()
 
+    @cached_property
     def signed_up_teams(self):
-        return self.active_teams().filter(state=TeamStateTypes.signed_up)
+        return self.active_teams.filter(state=TeamStateTypes.signed_up)
 
+    @cached_property
     def count_signed_up_teams(self):
-        return self.signed_up_teams().count()
+        return self.signed_up_teams.count()
 
+    @cached_property
     def free_places(self):
-        return max(self.number_of_places - self.count_signed_up_teams(), 0)
+        return max(self.number_of_places - self.count_signed_up_teams, 0)
 
+    @cached_property
     def waitlist_count(self):
-        return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval, TeamStateTypes.waiting]).count()
+        return self.active_teams.filter(state__in=[TeamStateTypes.needs_approval, TeamStateTypes.waiting]).count()
 
+    @cached_property
     def approval_count(self):
-        return self.active_teams().filter(state__in=[TeamStateTypes.needs_approval]).count()
+        return self.active_teams.filter(state__in=[TeamStateTypes.needs_approval]).count()
 
+    @cached_property
     def no_places_left_flag(self):
-        return self.free_places() == 0
+        return self.free_places == 0
 
+    @cached_property
     def few_places_left_flag(self):
-        if self.no_places_left_flag():
+        if self.no_places_left_flag:
             return False
-        return self.free_places() / self.number_of_places <= 0.25 or self.free_places() <= 2
+        return self.free_places / self.number_of_places <= 0.25 or self.free_places <= 2
 
+    @cached_property
     def signup_open(self):
         return self.deadline_signup > timezone.now() >= self.start_signup
 
@@ -87,9 +98,11 @@ class Tournament(models.Model):
     signup_open.boolean = True
     signup_open.short_description = _('SignUp Possible')
 
+    @cached_property
     def is_before_signup(self):
         return timezone.now() < self.start_signup
 
+    @cached_property
     def is_after_signup(self):
         return timezone.now() > self.deadline_signup
 
@@ -106,6 +119,7 @@ class Tournament(models.Model):
                 _('Deadline of Signup must be after Start of Signup')
             )
 
+    @cached_property
     def has_additional_documents(self):
         return self.documents.count() > 0
 

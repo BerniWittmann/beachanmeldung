@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.utils.functional import cached_property
 
 from api.enums import TeamStateTypes
 from api.tournaments.models import Tournament
@@ -38,15 +39,18 @@ class Team(models.Model):
         verbose_name = _('Team')
         verbose_name_plural = _('Teams')
 
+    @cached_property
     def is_displayed(self):
         return not self.state == TeamStateTypes.denied
 
+    @cached_property
     def complete_name(self):
         if not self.beachname:
             return self.name
 
         return self.beachname + ' (' + self.name + ')'
 
+    @cached_property
     def has_players(self):
         return self.players.count() > 0
 
@@ -56,5 +60,6 @@ class Team(models.Model):
     def url(self):
         return '/tournament/{}/team/{}'.format(self.tournament.id, self.id)
 
+    @cached_property
     def banking_reference(self):
-        return 'Beachanmeldung {} - {}'.format(self.tournament.__str__(), self.complete_name())
+        return 'Beachanmeldung {} - {}'.format(self.tournament.__str__(), self.complete_name)

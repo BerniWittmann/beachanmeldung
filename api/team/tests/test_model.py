@@ -52,16 +52,16 @@ class Tournaments(TestCase):
         )
 
     def test_team_complete_name(self):
-        self.assertEqual(self.team.complete_name(), 'THC Eh Drin! (TSV Ismaning)')
+        self.assertEqual(self.team.complete_name, 'THC Eh Drin! (TSV Ismaning)')
 
     def test_team_complete_name_without_beachname(self):
         self.team.beachname = None
         self.team.save()
-        self.assertEqual(self.team.complete_name(), 'TSV Ismaning')
+        self.assertEqual(self.team.complete_name, 'TSV Ismaning')
 
     def test_team_has_players(self):
-        self.assertTrue(self.team.has_players())
+        self.assertTrue(self.team.has_players)
 
     def test_team_has_no_players(self):
         self.player.delete()
-        self.assertFalse(self.team.has_players())
+        self.assertFalse(self.team.has_players)

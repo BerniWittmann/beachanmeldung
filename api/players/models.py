@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils.functional import cached_property
 
 from api.team.models import Team
 
@@ -30,6 +31,7 @@ class Player(models.Model):
         verbose_name = _('Player')
         verbose_name_plural = _('Players')
 
+    @cached_property
     def name(self):
         return self.first_name + ' ' + self.last_name
 
