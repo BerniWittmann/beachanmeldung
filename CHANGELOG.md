@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Improved Eager fetching for players
 
 ### Breaks
+
+
+## 1.13.6 - (2018-07-07)
+---
+
+### Fixes
+* Improved Eager fetching for players
 
 
 ## 1.13.5 - (2018-07-07)
