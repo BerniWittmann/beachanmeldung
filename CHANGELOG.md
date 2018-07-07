@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Improved Exception handling with unavailable local Storage
 
 ### Breaks
+
+
+## 1.13.5 - (2018-07-07)
+---
+
+### Fixes
+* Improved Exception handling with unavailable local Storage
 
 
 ## 1.13.4 - (2018-07-04)
