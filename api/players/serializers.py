@@ -11,3 +11,13 @@ class PlayerSerializer(serializers.ModelSerializer):
         fields = ('first_name', 'last_name', 'name',
                   'id', 'birth_date', 'number')
         read_only_fields = ('id',)
+
+    @staticmethod
+    def setup_eager_loading(queryset):
+        queryset = queryset.prefetch_related(
+            'team',
+            'team__tournament',
+            'team__tournament__teams',
+            'team__players'
+        )
+        return queryset

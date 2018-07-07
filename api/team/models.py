@@ -51,11 +51,15 @@ class Team(models.Model):
         return self.beachname + ' (' + self.name + ')'
 
     @cached_property
+    def player_count(self):
+        return self.players.count()
+
+    @cached_property
     def has_players(self):
-        return self.players.count() > 0
+        return self.player_count > 0
 
     def __str__(self):
-        return self.complete_name()
+        return self.complete_name
 
     def url(self):
         return '/tournament/{}/team/{}'.format(self.tournament.id, self.id)

@@ -8,7 +8,6 @@ from rest_framework.test import APIClient
 from rest_framework_jwt.settings import api_settings
 
 from api.accounts.models import MyUser
-from api.enums import TeamStateTypes
 from api.players.models import Player
 from api.team.models import Team
 from api.tournaments.models import Tournament
@@ -131,18 +130,6 @@ class Players(TestCase):
         client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
         response = client.get(reverse('v1:player-detail',
                                       kwargs={'pk': 9999999999}))
-        self.assertEqual(response.status_code, 404)
-        data = json.loads(response.content.decode('utf-8'))
-        self.assertEqual(data['detail'], 'Not found.')
-
-    def test_player_get_disabled_team(self):
-        self.team.state = TeamStateTypes.denied
-        self.team.save()
-
-        client = APIClient()
-        client.credentials(HTTP_AUTHORIZATION='JWT ' + self.token)
-        response = client.get(reverse('v1:player-detail',
-                                      kwargs={'pk': self.player.id}))
         self.assertEqual(response.status_code, 404)
         data = json.loads(response.content.decode('utf-8'))
         self.assertEqual(data['detail'], 'Not found.')
