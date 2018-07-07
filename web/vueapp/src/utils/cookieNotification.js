@@ -1,7 +1,9 @@
 import Vue from 'vue';
 
-export default function checkCookie() {
-  const hasAcceptedAlready = !!localStorage.getItem('cookie_accepted');
+import storageService from '@/services/storage';
+
+export function checkCookie() {
+  const hasAcceptedAlready = storageService.hasItem('cookie_accepted');
   if (!hasAcceptedAlready) {
     Vue.$message({
       showClose: true,
@@ -9,8 +11,19 @@ export default function checkCookie() {
       duration: 10000,
       customClass: 'message-bottom',
       onClose: () => {
-        localStorage.setItem('cookie_accepted', true);
+        storageService.setItem('cookie_accepted', true);
       },
+    });
+  }
+}
+
+export function checkLocalStorageAvailable() {
+  const isAvailable = storageService.isAvailable();
+  if (!isAvailable) {
+    Vue.$message({
+      message: Vue.i18n.t('general.local_storage_not_available'),
+      duration: 10000,
+      type: 'warning',
     });
   }
 }

@@ -30,6 +30,7 @@ module.exports = {
 
     'no-param-reassign': 0,
     'no-multi-assign': 0,
+    'no-empty': ["error", { "allowEmptyCatch": true }],
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {

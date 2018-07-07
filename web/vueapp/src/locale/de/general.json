@@ -19,5 +19,6 @@
     "subtitle": "Ismaning"
   },
   "cookie_notice": "Diese Seite verwendet Cookies.",
-  "email_verification_notice": "Bitte verifiziere deine E-Mail Adresse. <a href=\"/account?resend_verification=true\">Bestätigung erneut schicken</a>."
+  "email_verification_notice": "Bitte verifiziere deine E-Mail Adresse. <a href=\"/account?resend_verification=true\">Bestätigung erneut schicken</a>.",
+  "local_storage_not_available": "Diese Seite benötigt Zugriff auf den LocalStorage ihres Browsers, um verlässlich funktionieren zu können. Wahrscheinlich nutzen Sie den Privaten Modus, der mit Ihrer Version Ihres Browsers nicht unterstützt wird."
 }
