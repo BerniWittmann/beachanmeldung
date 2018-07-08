@@ -9,7 +9,7 @@ class PlayerAdmin(admin.ModelAdmin):
     list_filter = ('team__tournament__name', 'team__name', 'team__beachname', )
 
     def team_name(self, player):
-        return player.team.complete_name()
+        return player.team.complete_name
 
 
 admin.site.register(Player, PlayerAdmin)
