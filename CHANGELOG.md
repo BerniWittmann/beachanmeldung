@@ -13,9 +13,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 
 ### Fixes
-* Fixed some little bugs with model property calling
 
 ### Breaks
+
+
+## 1.13.7 - (2018-07-08)
+---
+
+### Fixes
+* Fixed some little bugs with model property calling
 
 
 ## 1.13.6 - (2018-07-07)
