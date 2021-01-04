@@ -22,7 +22,7 @@
   },
   "homepage": "https://gitlab.com/BerniWittmann/beachanmeldung/blob/master/README.md",
   "dependencies": {
-    "axios": "^0.16.1",
+    "axios": "^0.21.1",
     "babel": "^6.23.0",
     "babel-runtime": "^6.26.0",
     "bootstrap": "^3.3.7",
